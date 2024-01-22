@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://ctd3mgp0s172q"]
 
-[ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/pj/pj.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="1"]
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/characters/debug_character.tscn" id="3"]
 

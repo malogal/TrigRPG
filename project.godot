@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Top Down Action RPG"
+config/name="Trig RPG"
+config/version="v0.0.1"
 run/main_scene="res://scenes/levels/Intro.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.2")
@@ -30,6 +31,9 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/extend_to_title=true
 window/stretch/mode="2d"
 
 [input]
