@@ -1216,7 +1216,7 @@ autostart = true
 [node name="hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -72.0772)
 
-[node name="col" type="CollisionShape2D" parent="hurtbox"]
+[node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
 shape = SubResource("18")
 
 [node name="item_spawner" parent="." instance=ExtResource("3")]
