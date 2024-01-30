@@ -1188,9 +1188,10 @@ script = ExtResource("1")
 modulate = Color(0, 0, 0, 1)
 position = Vector2(6.30249, -86.9744)
 texture = ExtResource("2")
+flip_h = true
 hframes = 8
 vframes = 4
-frame = 2
+frame = 9
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.882385, -27.9806)
