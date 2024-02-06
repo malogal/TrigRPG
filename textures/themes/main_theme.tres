@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dxgoy0vbgwgyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypks6"]
+bg_color = Color(0, 0.509804, 0.870588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 32.0
+expand_margin_top = 16.0
+expand_margin_right = 32.0
+expand_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrxfo"]
+bg_color = Color(0, 0.509804, 0.870588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 32.0
+expand_margin_top = 16.0
+expand_margin_right = 32.0
+expand_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7k5l"]
+bg_color = Color(0.156863, 0.615686, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 32.0
+expand_margin_top = 16.0
+expand_margin_right = 32.0
+expand_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbqsd"]
+bg_color = Color(0, 0.509804, 0.870588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 32.0
+expand_margin_top = 16.0
+expand_margin_right = 32.0
+expand_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufxwm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao1y4"]
+bg_color = Color(0.890196, 0.239216, 1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_j2jpn"]
+font_names = PackedStringArray("Fira Code")
+font_italic = true
+
+[resource]
+default_font = SubResource("SystemFont_j2jpn")
+default_font_size = 24
+Button/styles/focus = SubResource("StyleBoxFlat_ypks6")
+Button/styles/hover = SubResource("StyleBoxFlat_wrxfo")
+Button/styles/normal = SubResource("StyleBoxFlat_c7k5l")
+Button/styles/pressed = SubResource("StyleBoxFlat_cbqsd")
+HSeparator/styles/separator = SubResource("StyleBoxFlat_ufxwm")
+Label/styles/normal = null
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ao1y4")

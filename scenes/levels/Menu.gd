@@ -23,6 +23,7 @@ func _on_continue_pressed():
 func _on_new_game_pressed():
 	if initial_level != "":
 		Globals.current_level = initial_level
+		print(initial_level)
 		if Globals.save_game() == false:
 			push_error("Error saving game")
 		var err = get_tree().change_scene_to_file(initial_level)
