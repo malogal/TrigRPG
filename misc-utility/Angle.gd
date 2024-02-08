@@ -1,61 +1,57 @@
-extends RefCounted
+class_name Angle extends RefCounted
 
-#degrees as normal
-var deg_num:int = 0
-var deg_den:int = 1
-#radians as fraction of π
-var rad_num:int = 0
-var rad_den:int = 1
+#rounding precision required
+const ERROR:=0.0001
+
+var rads:float
 #for display
 var prefix:String
 var suffix:String
 
-func _init(num:int,den:int,is_deg:bool,pre:String,suf:String):
+func _init(val:int,is_deg:bool,pre:String,suf:String):
+	rads = 0
 	if is_deg:
-		add_deg(num,den)
+		add_deg(val)
 	else:
-		add_rad(num,den)
+		add_rad(val)
 	prefix = pre
 	suffix = suf
 
 func gcd(a:int,b:int) -> int:
 	return a if b==0 else gcd(b,a%b)
 
-func add_deg(num:int,den:int) -> void:
-	var new_num = deg_num*den+deg_den*num
-	var new_den = deg_den*den
-	var simp = gcd(new_den,new_num)
-	deg_num = new_num/simp
-	deg_den = new_den/simp
-	rad_num = deg_num
-	rad_den = 180*deg_den
-	simp = gcd(rad_den,rad_num)
-	rad_num/=simp
-	rad_den/=simp
+func mod_2pi(val) -> float:
+	print("before: "+str(val))
+	var modifier:=TAU if val<0 else -TAU
+	while val<0 or val>TAU:
+		val+=modifier
+	print("after:  "+str(val))
+	return val
 
-func add_rad(num:int,den:int) -> void:
-	var new_num = deg_num*den+deg_den*num
-	var new_den = deg_den*den
-	var simp = gcd(new_den,new_num)
-	rad_num = new_num/simp
-	rad_den = new_den/simp
-	deg_num = 180*rad_num
-	deg_den = rad_den
-	simp = gcd(deg_den,deg_num)
-	deg_num/=simp
-	deg_den/=simp
+func add_deg(val:int) -> void:
+	rads = mod_2pi(rads+val*PI/180)
 
-func sub_deg(num:int,den:int) -> void:
-	add_deg(-num,den)
+func add_rad(val:float) -> void:
+	rads = mod_2pi(rads+val)
 
-func sub_rad(num:int,den:int) -> void:
-	add_rad(-num,den)
+func sub_deg(val:int) -> void:
+	rads = mod_2pi(rads-val*PI/180)
+
+func sub_rad(val:float) -> void:
+	rads = mod_2pi(rads-val)
 
 func is_zero() -> bool:
-	return deg_num==0
+	return abs(rads)<ERROR or abs(rads-TAU)<ERROR
 
 func get_str_deg() -> String:
-	return prefix+str(deg_num)+("/"+str(deg_den) if deg_den>1 else "")+suffix
+	return prefix+str(round(rads*18000/PI)/100)+suffix
 
 func get_str_rad() -> String:
-	return prefix+str(rad_num)+"π"+("/"+str(rad_den) if rad_den>1 else "")+suffix
+	#search for approximation
+	var decimal:=rads/PI
+	for denominator in range(1,100):
+		var numerator:=decimal*denominator
+		if abs(numerator-round(numerator))<ERROR:
+			return prefix+str(round(numerator))+"π"+("/"+str(denominator) if denominator>1 else "")+suffix
+	#fails to approximate
+	return prefix+str(rads)+suffix
