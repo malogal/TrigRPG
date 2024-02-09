@@ -10,15 +10,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_gldwi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_gldwi")
-}, {
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_gldwi")
 }],
 "loop": true,
 "name": &"pie",
@@ -26,7 +17,9 @@ animations = [{
 }]
 
 [node name="Pie" type="RigidBody2D"]
-gravity_scale = 1.66533e-16
+collision_layer = 8192
+collision_mask = 8
+mass = 12.5
 script = ExtResource("1_4a6u7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["pie"]]

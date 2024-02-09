@@ -44,10 +44,14 @@ func _ready():
 	$PieThrowing.set_cooldown(1.0)
 	pass
 
+func get_input(): 
+		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = input_direction * WALK_SPEED
 
 func _physics_process(_delta):
 	var action
 	## PROCESS STATES
+	get_input()
 	match state:
 		STATE_BLOCKED:
 			new_anim = "idle_" + facing
@@ -79,8 +83,9 @@ func _physics_process(_delta):
 			if Input.is_action_just_pressed("roll"):
 				state = STATE_ROLL
 			
-			set_velocity(linear_vel)
-			var t = position
+			# Trying to use 'get_input()' instead, will slowly introduce
+			#set_velocity(linear_vel)
+			#var t = position
 			move_and_slide()
 			linear_vel = velocity
 			
@@ -133,8 +138,8 @@ func _physics_process(_delta):
 		anim = new_anim
 		$anims.play(anim)
 	if action == PIE: 
-		var mouse_pos = get_viewport().get_mouse_position()
-		$PieThrowing.throw(position, mouse_pos, 10)
+		var mouse_pos = get_global_mouse_position()
+		$PieThrowing.throw(global_position, mouse_pos, 10)
 	pass
 
 

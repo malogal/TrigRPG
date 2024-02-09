@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/props/Grass.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/props/House.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b7w18rrmllohu" path="res://scenes/props/House.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/misc/MusicTrack.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/props/Flower.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="8"]

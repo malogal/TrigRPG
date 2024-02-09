@@ -833,7 +833,7 @@ radius = 33.801
 height = 67.6021
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(585.638, 309.087)
+motion_mode = 1
 script = ExtResource("2")
 
 [node name="sprite" type="Sprite2D" parent="."]

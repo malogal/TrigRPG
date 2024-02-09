@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed = 0
+@export var speed = 350
 
 var can_throw: bool
 var pies: PackedScene
@@ -10,7 +10,7 @@ func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: int = 10):
 		$PieCooldown.start()
 		var pie = pies.instantiate()
 		add_child(pie)
-		pie.new_pie(char_pos, (char_pos.direction_to(click_pos)), amount_of_pie, speed)
+		pie.new_pie(char_pos, click_pos, amount_of_pie, speed)
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +26,7 @@ func set_cooldown(cd: float):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
 func _on_pie_cooldown_timeout():
 	can_throw = true
 	
