@@ -1,12 +1,13 @@
 extends Node2D
 
-@export var speed = 350
+@export var speed = 700
 
 var can_throw: bool
 var pies: PackedScene
 
 func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: int = 10):
 	if can_throw:
+		can_throw = false
 		$PieCooldown.start()
 		var pie = pies.instantiate()
 		add_child(pie)

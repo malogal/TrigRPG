@@ -26,7 +26,7 @@ var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 var anim = ""
 var new_anim = ""
 
-enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE }
+enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE, WAVE}
 
 var state = STATE_IDLE
 
@@ -66,6 +66,8 @@ func _physics_process(_delta):
 					state = STATE_WALKING
 			if Input.is_action_just_pressed("throw_pie"):
 				action = PIE
+			if Input.is_action_just_released("wave"):
+				action = WAVE
 			if Input.is_action_just_pressed("attack"):
 				state = STATE_ATTACK
 			if Input.is_action_just_pressed("roll"):
@@ -138,8 +140,10 @@ func _physics_process(_delta):
 		anim = new_anim
 		$anims.play(anim)
 	if action == PIE: 
-		var mouse_pos = get_global_mouse_position()
+		var mouse_pos = get_local_mouse_position()
 		$PieThrowing.throw(global_position, mouse_pos, 10)
+	if action == WAVE:
+		$WaveTeleport.create_wave(global_position)
 	pass
 
 

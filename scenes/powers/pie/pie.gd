@@ -1,21 +1,9 @@
 extends RigidBody2D
 
-var speed: int
 var degree: int
-var test_count = 100
 
 # Pie rotation
-const rotate_speed = 350
-var current_rotation = 0
-var vec: Vector2
-var target: Vector2
-#@export var texture : Texture2D:
-	#set(value):
-		#texture = value
-		#queue_redraw()
-
-#func _draw():
-	#draw_texture(texture,position)
+const rotate_speed = 4
 
 signal hit 
 # Called when the node enters the scene tree for the first time.
@@ -24,12 +12,13 @@ func _ready():
 	pass # Replace with function body.
 
 func new_pie(start_pos: Vector2, dir: Vector2, amount: int, pie_speed: int):
-	global_position = start_pos
-	target = dir
+	global_position = get_parent().get_parent().global_position
 	degree = amount
-	
-	speed = pie_speed
-
+	linear_damp = -1
+	angular_damp = -1
+	angular_velocity = rotate_speed
+	linear_velocity = global_position.direction_to(dir*500) * pie_speed
+	#apply_central_impulse(global_position.direction_to(target*500) * speed)
 	pass
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -45,8 +34,8 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	linear_velocity = global_position.direction_to(target*500) * speed
-	angular_velocity = delta*rotate_speed
+	pass
+	# Multiply target by 500 incase they click somewhere near character
 
 	
 func _on_body_entered(body):

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://co8ecubpep20b"]
+
+[ext_resource type="Script" path="res://scenes/powers/wave/wave_teleport.gd" id="1_s4eq4"]
+
+[node name="WaveTeleport" type="Node2D"]
+script = ExtResource("1_s4eq4")
+
+[node name="WaveCooldown" type="Timer" parent="."]
+one_shot = true

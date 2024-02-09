@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctd3mgp0s172q"]
+[gd_scene load_steps=25 format=3 uid="uid://ctd3mgp0s172q"]
 
 [ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="1"]
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/characters/debug_character.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="4_ysf0e"]
+[ext_resource type="PackedScene" uid="uid://co8ecubpep20b" path="res://scenes/powers/wave/wave_teleport.tscn" id="5_iocfp"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 35.8589
@@ -881,5 +882,7 @@ position = Vector2(0, -78.0211)
 shape = SubResource("18")
 
 [node name="PieThrowing" parent="." instance=ExtResource("4_ysf0e")]
+
+[node name="WaveTeleport" parent="." instance=ExtResource("5_iocfp")]
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
