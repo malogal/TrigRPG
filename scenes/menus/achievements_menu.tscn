@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1vb24lg5l3nj"]
 
-[ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://objects/menu_button.tscn" id="1_ifacx"]
+[ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_ifacx"]
 
 [sub_resource type="SystemFont" id="SystemFont_m2dfh"]
 font_names = PackedStringArray("Impact")
@@ -56,10 +56,10 @@ alignment = 1
 
 [node name="BackButton" parent="." instance=ExtResource("1_ifacx")]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 16.0
-offset_right = 251.0
-offset_bottom = 93.0
+offset_left = 54.0
+offset_top = 42.0
+offset_right = 216.0
+offset_bottom = 95.0
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../ContinueGameButton")
 text = "Back"
