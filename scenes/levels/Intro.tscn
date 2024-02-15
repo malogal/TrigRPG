@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqjxhlcvohevs"]
 
-[ext_resource type="Texture2D" uid="uid://xriucyfo0o30" path="res://textures/misc/logo-bg.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bc8oc41wxytr1" path="res://textures/misc/logo-logo.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dqt0n5ytc0a4r" path="res://textures/misc/logo-studio.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://xriucyfo0o30" path="res://textures/temp-misc/logo-bg.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bc8oc41wxytr1" path="res://textures/temp-misc/logo-logo.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dqt0n5ytc0a4r" path="res://textures/temp-misc/logo-studio.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://bub2p8fvv46yx" path="res://music/logo.wav" id="4"]
 
 [sub_resource type="Animation" id="1"]

@@ -141,10 +141,10 @@ referencePath = "res://scenes/menus/main_menu.tscn"
 
 [node name="TEMP" parent="." instance=ExtResource("1_3p1x3")]
 layout_mode = 0
-offset_left = 824.0
-offset_top = 595.0
-offset_right = 1109.0
-offset_bottom = 626.0
+offset_left = 950.0
+offset_top = 690.0
+offset_right = 1235.0
+offset_bottom = 721.0
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../ContinueGameButton")
 text = "Start existing game

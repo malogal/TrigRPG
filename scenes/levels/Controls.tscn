@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c21763n8k4xt1"]
+[gd_scene load_steps=4 format=3 uid="uid://dtcm22bv4agq1"]
 
 [ext_resource type="Script" path="res://scenes/levels/Controls.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://dhdedjhqm5wcg" path="res://textures/misc/controls.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dhdedjhqm5wcg" path="res://textures/temp-misc/controls.png" id="2"]
 [ext_resource type="FontFile" path="res://fonts/dialog.tres" id="3"]
 
 [node name="Controls" type="Control"]
