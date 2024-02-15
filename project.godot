@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Trig RPG"
 config/version="v0.0.1"
-run/main_scene="res://scenes/levels/Intro.tscn"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7hba61yvpilc"]
+
+[ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_6wctx"]
+[ext_resource type="Script" path="res://scenes/misc/ui elements/menu_button.gd" id="3_fjpjn"]
+
+[node name="MenuButton" type="Button"]
+theme = ExtResource("1_6wctx")
+text = "Button
+"
+script = ExtResource("3_fjpjn")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
