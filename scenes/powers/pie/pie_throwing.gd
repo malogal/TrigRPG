@@ -18,7 +18,6 @@ func _ready():
 	pies = preload("res://scenes/powers/pie/pie.tscn")
 	can_throw = true
 	set_cooldown(1.5)
-	pass # Replace with function body.
 
 func set_cooldown(cd: float):
 	$PieCooldown.wait_time = cd
