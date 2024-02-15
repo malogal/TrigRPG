@@ -6,8 +6,6 @@
 
 [node name="NpcMovement" type="CharacterBody2D"]
 script = ExtResource("1_t7o77")
-facing = "right"
-default_move_type = "horizontal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v3x1h")
