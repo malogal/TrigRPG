@@ -1,6 +1,5 @@
 extends Control
 
-
 #change to save://save1.save for actual game
 var save1Path = "res://save1.save"
 var save2Path = "res://save2.save"
@@ -43,49 +42,21 @@ var savesData = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	var saveSlot1 = SaveSlot.new(save1Path, saveNameLabel1, lastPlayedLabel1, timeSpentLabel1, panel1)	
+	var saveSlot2 = SaveSlot.new(save2Path, saveNameLabel2, lastPlayedLabel2, timeSpentLabel2, panel2)
+	var saveSlot3 = SaveSlot.new(save3Path, saveNameLabel3, lastPlayedLabel3, timeSpentLabel3, panel3)
 	
-	#var saveNameLabel2 = 
-	#var lastPlayedLabel2 = 
-	#var timeSpentLabel2 = 
-	#
-	#var saveNameLabel3 = 
-	#var lastPlayedLabel3 = 
-	#var timeSpentLabel3 = 
-
-	#var theme = "res://textures/themes/main_theme.tres"
-	#theme.
-
-	
-	#saveNameLabel1.text = "Save 1"
-	#lastPlayedLabel1.text = "Last Played on: 02/08/2024"
-	#timeSpentLabel1.text = "Time Spent: 01:43"
-	
-	#saveNameLabel1.color = "red"
-	#saveName = "Save 1"
-	#lastPlayed = "Last Played on: 02/08/2024"
-	#timeSpent = "Time Spent: 01:43"
-	
-
-	
-	var save1Array = [save1Path, saveNameLabel1, lastPlayedLabel1, timeSpentLabel1, panel1]
-	var save2Array = [save2Path, saveNameLabel2, lastPlayedLabel2, timeSpentLabel2, panel2]
-	var save3Array = [save3Path, saveNameLabel3, lastPlayedLabel3, timeSpentLabel3, panel3]
-	
-	savesData.append(save1Array)
-	savesData.append(save2Array)
-	savesData.append(save3Array)
+	savesData.append(saveSlot1)
+	savesData.append(saveSlot2)
+	savesData.append(saveSlot3)
 	
 
 	
 	#saveSavesData()
 	loadSavesData()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 	
+# note: something similar will be used in new game code
 func saveSavesData():
 	var file = FileAccess.open(save1Path, FileAccess.WRITE)
 	file.store_var(saveName)	
@@ -95,13 +66,11 @@ func saveSavesData():
 func loadSavesData():
 	
 	for save in savesData:		
-		
-		var savePath = save[0]
-		var saveNameLabel = save[1]
-		var lastPlayedLabel = save[2]
-		var timeSpentLabel = save[3]
-		var panel = save[4]
-		
+		var savePath = save.savePath
+		var saveNameLabel = save.saveName
+		var lastPlayedLabel = save.lastPlayed
+		var timeSpentLabel = save.timeSpent
+		var panel = save.panel
 		
 		if FileAccess.file_exists(savePath):
 			var file = FileAccess.open(savePath, FileAccess.READ)
@@ -109,19 +78,15 @@ func loadSavesData():
 			saveName = file.get_var()
 			lastPlayed = file.get_var()
 			timeSpent = file.get_var()
+			
 		else:
 			print("no data in file: " + savePath)
 			saveName = ""
 			lastPlayed = "EMPTY SLOT"
 			timeSpent = ""
 			panel.modulate = Color(0, 0, 0, 0.4)
-			
-			
-			
-		#print(saveName)
-		#print(lastPlayed)
-		#print(timeSpent)
 	
+		# setting panel info
 		saveNameLabel.text = saveName
 		lastPlayedLabel.text = lastPlayed
 		timeSpentLabel.text = timeSpent
