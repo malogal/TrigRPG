@@ -16,5 +16,3 @@ func _init(initialSavePath, initialSaveName, initialLastPlayed, intialTimeSpent,
 	lastPlayed = initialLastPlayed
 	timeSpent = intialTimeSpent
 	panel = initialPanel
-
-
