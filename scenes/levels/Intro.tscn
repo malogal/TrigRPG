@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqjxhlcvohevs"]
 
-[ext_resource type="Texture2D" uid="uid://xriucyfo0o30" path="res://textures/misc/logo-bg.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bc8oc41wxytr1" path="res://textures/misc/logo-logo.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dqt0n5ytc0a4r" path="res://textures/misc/logo-studio.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://xriucyfo0o30" path="res://textures/temp-misc/logo-bg.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bc8oc41wxytr1" path="res://textures/temp-misc/logo-logo.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dqt0n5ytc0a4r" path="res://textures/temp-misc/logo-studio.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://bub2p8fvv46yx" path="res://music/logo.wav" id="4"]
 
 [sub_resource type="Animation" id="1"]
@@ -194,10 +194,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = 191.0
-offset_right = 300.0
-offset_bottom = 191.0
+offset_left = -364.0
+offset_top = 167.0
+offset_right = 236.0
+offset_bottom = 167.0
 texture = ExtResource("1")
 expand_mode = 1
 
@@ -207,10 +207,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = 433.0
-offset_right = 8.0
-offset_bottom = 815.0
+offset_left = -72.0
+offset_top = 409.0
+offset_right = -56.0
+offset_bottom = 791.0
 texture = ExtResource("2")
 expand_mode = 1
 
@@ -220,10 +220,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -326.333
-offset_top = -600.401
-offset_right = 326.334
-offset_bottom = -184.734
+offset_left = -390.333
+offset_top = -624.401
+offset_right = 262.334
+offset_bottom = -208.734
 texture = ExtResource("3")
 expand_mode = 1
 

@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://bou4pn1kp8x1k"]
+
+[ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_ibg8s"]
+[ext_resource type="Script" path="res://scenes/misc/ui elements/menu_button.gd" id="2_qgf5k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eepip"]
+bg_color = Color(0.894118, 0.894118, 0.894118, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_fd8dt"]
+font_names = PackedStringArray("Impact")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ibg8s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eepip")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Separator" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = SubResource("SystemFont_fd8dt")
+theme_override_font_sizes/font_size = 64
+text = "TrigRPG"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_ibg8s")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Separator2" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../ContinueGameButton")
+theme = ExtResource("1_ibg8s")
+text = "New Game"
+script = ExtResource("2_qgf5k")
+referencePath = "res://scenes/menus/new_game_menu.tscn"
+startFocused = true
+
+[node name="Separator3" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../NewGameButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+theme = ExtResource("1_ibg8s")
+text = "Continue
+"
+script = ExtResource("2_qgf5k")
+referencePath = "res://scenes/menus/continue_game_menu.tscn"
+
+[node name="Separator4" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueGameButton")
+focus_neighbor_bottom = NodePath("../AchievementsButton")
+theme = ExtResource("1_ibg8s")
+text = "Settings"
+script = ExtResource("2_qgf5k")
+referencePath = "res://scenes/menus/settings_menu.tscn"
+
+[node name="Separator5" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AchievementsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme = ExtResource("1_ibg8s")
+text = "Achievements"
+script = ExtResource("2_qgf5k")
+referencePath = "res://scenes/menus/achievements_menu.tscn"
+
+[node name="Separator6" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../AchievementsButton")
+focus_neighbor_bottom = NodePath("../NewGameButton")
+theme = ExtResource("1_ibg8s")
+text = "Quit"
+script = ExtResource("2_qgf5k")
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/NewGameButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/NewGameButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ContinueGameButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ContinueGameButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/AchievementsButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/AchievementsButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" method="_on_pressed"]

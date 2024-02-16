@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://bycx5snr304xk"]
 
 [ext_resource type="Script" path="res://scenes/characters/Enemy.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/pj/pj.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/misc/ItemSpawner.tscn" id="3"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
@@ -1216,7 +1216,7 @@ autostart = true
 [node name="hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -72.0772)
 
-[node name="col" type="CollisionShape2D" parent="hurtbox"]
+[node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
 shape = SubResource("18")
 
 [node name="item_spawner" parent="." instance=ExtResource("3")]

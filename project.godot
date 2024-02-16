@@ -10,8 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Top Down Action RPG"
-run/main_scene="res://scenes/levels/Intro.tscn"
+config/name="Trig RPG"
+config/version="v0.0.1"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
@@ -30,7 +31,10 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/stretch/mode="2d"
+window/size/viewport_width=1280
+window/size/viewport_height=740
+window/size/extend_to_title=true
+window/stretch/mode="viewport"
 
 [input]
 
@@ -86,6 +90,15 @@ pause={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+throw_pie={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(268, 14),"global_position":Vector2(274, 76),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[physics]
+
+2d/default_gravity=2.08165e-12
 
 [rendering]
 
