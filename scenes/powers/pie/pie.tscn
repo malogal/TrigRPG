@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dntuwro3gepaq"]
+
+[ext_resource type="Script" path="res://scenes/powers/pie/pie.gd" id="1_4a6u7"]
+[ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="1_gldwi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ygu5d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a51nj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gldwi")
+}],
+"loop": true,
+"name": &"pie",
+"speed": 5.0
+}]
+
+[node name="Pie" type="RigidBody2D"]
+collision_layer = 8192
+collision_mask = 8
+mass = 12.5
+script = ExtResource("1_4a6u7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["pie"]]
+shape = SubResource("CircleShape2D_ygu5d")
+debug_color = Color(0.737255, 0.466667, 0, 0.419608)
+
+[node name="AnimatedPie" type="AnimatedSprite2D" parent="."]
+z_index = 3
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_a51nj")
+animation = &"pie"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

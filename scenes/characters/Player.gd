@@ -15,6 +15,8 @@ and probably both should extend some parent script
 var linear_vel = Vector2()
 var roll_direction = Vector2.DOWN
 
+var cooldown = 1.0
+
 signal health_changed(current_hp)
 
 @export var facing = "down" # (String, "up", "down", "left", "right")
@@ -24,7 +26,7 @@ var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 var anim = ""
 var new_anim = ""
 
-enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT }
+enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE }
 
 var state = STATE_IDLE
 
@@ -40,12 +42,18 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$anims.play()
+
+	$PieThrowing.set_cooldown(1.0)
 	pass
 
+func get_input(): 
+		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = input_direction * WALK_SPEED
 
 func _physics_process(_delta):
-	
+	var action
 	## PROCESS STATES
+	get_input()
 	match state:
 		STATE_BLOCKED:
 			new_anim = "idle_" + facing
@@ -58,6 +66,8 @@ func _physics_process(_delta):
 					Input.is_action_pressed("move_up")
 				):
 					state = STATE_WALKING
+			if Input.is_action_just_pressed("throw_pie"):
+				action = PIE
 			if Input.is_action_just_pressed("attack"):
 				state = STATE_ATTACK
 			#if Input.is_action_just_pressed("roll"):
@@ -75,7 +85,9 @@ func _physics_process(_delta):
 			#if Input.is_action_just_pressed("roll"):
 				#state = STATE_ROLL
 			
-			set_velocity(linear_vel)
+			# Trying to use 'get_input()' instead, will slowly introduce
+			#set_velocity(linear_vel)
+			#var t = position
 			move_and_slide()
 			linear_vel = velocity
 			
@@ -134,6 +146,10 @@ func _physics_process(_delta):
 		$anims.stop()
 		$anims.animation = anim
 		$anims.play()
+	if action == PIE: 
+		var mouse_pos = get_global_mouse_position()
+		$PieThrowing.throw(global_position, mouse_pos, 10)
+
 	pass
 
 

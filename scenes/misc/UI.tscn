@@ -26,7 +26,6 @@ anchors_preset = 15
 
 [node name="Status_text" parent="." instance=ExtResource("3")]
 visible = false
-anchors_preset = 14
 
 [node name="Healthbar" parent="." instance=ExtResource("4")]
 offset_right = 14.0
