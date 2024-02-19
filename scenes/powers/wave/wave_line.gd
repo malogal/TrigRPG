@@ -20,7 +20,6 @@ func _ready() -> void:
 	apply(Vector2(20,20))
 	
 
-
 func apply(trans: Vector2):
 	for i in range(array.size()): 
 		array[i] = array[i]*trans

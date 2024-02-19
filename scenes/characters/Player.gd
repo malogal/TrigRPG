@@ -143,7 +143,7 @@ func _physics_process(_delta):
 		var mouse_pos = get_local_mouse_position()
 		$PieThrowing.throw(global_position, mouse_pos, 10)
 	if action == WAVE:
-		$WaveTeleport.create_wave(global_position)
+		$WaveTeleport.create_wave()
 	pass
 
 

@@ -7,6 +7,7 @@
 script = ExtResource("1_ce3cd")
 
 [node name="WaveLine" type="Line2D" parent="."]
+visible = false
 width = 1.0
 default_color = Color(0.721569, 0.117647, 0.537255, 1)
 joint_mode = 2
