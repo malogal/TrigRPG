@@ -42,6 +42,7 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$anims.play()
+
 	$PieThrowing.set_cooldown(1.0)
 	pass
 
@@ -148,6 +149,7 @@ func _physics_process(_delta):
 	if action == PIE: 
 		var mouse_pos = get_global_mouse_position()
 		$PieThrowing.throw(global_position, mouse_pos, 10)
+
 	pass
 
 

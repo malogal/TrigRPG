@@ -1,17 +1,11 @@
-[gd_scene load_steps=57 format=3 uid="uid://ctd3mgp0s172q"]
+[gd_scene load_steps=58 format=3 uid="uid://ctd3mgp0s172q"]
 
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/characters/debug_character.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://8ntvar0ymwfo" path="res://textures/bob/bob_idle.png" id="3_ebymc"]
 [ext_resource type="Texture2D" uid="uid://begnu4m6v8mmp" path="res://textures/bob/bob_throw.png" id="4_j41ff"]
-[ext_resource type="Texture2D" uid="uid://o2e8y5gudwu6" path="res://textures/bob/bob_walk.png" id="5_vbtrl"]
-
-[gd_scene load_steps=24 format=3 uid="uid://ctd3mgp0s172q"]
-
-[ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="1"]
-[ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/characters/debug_character.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="4_ysf0e"]
+[ext_resource type="Texture2D" uid="uid://o2e8y5gudwu6" path="res://textures/bob/bob_walk.png" id="5_vbtrl"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 35.8589
@@ -444,15 +438,6 @@ animations = [{
 motion_mode = 1
 script = ExtResource("2")
 
-[node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(6.30249, -86.9744)
-texture = ExtResource("1")
-flip_h = true
-hframes = 8
-vframes = 4
-frame = 9
-
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.882385, -27.9806)
 rotation = 1.5708
@@ -479,7 +464,6 @@ enabled = false
 [node name="col" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, -78.0211)
 shape = SubResource("18")
-
 
 [node name="anims" type="AnimatedSprite2D" parent="."]
 scale = Vector2(6, 6)
