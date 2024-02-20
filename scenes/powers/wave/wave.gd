@@ -13,7 +13,7 @@ signal hit
 func _ready():
 	pass # Replace with function body.
 
-# Wave properties
+# Wave properties, default values
 var amplitude: float = 900.0 # Height of the wave
 var frequency: float = 0.01 # How many waves within a certain distance
 var is_sine_wave: bool = true # True for sine, false for cosine
@@ -52,12 +52,17 @@ func set_points(start_pos: Vector2, first: int, last: int, direction: Vector2, a
 		# Skip first line which would draw straight from player to begining of wave
 		arr.append(current_point)
 
-func new_wave(amp: float = 900, freq: float = 0.01, is_sine: bool = true, is_horiz: bool = true,color: Color = Color(1,0,0,1)):
-	amplitude = amp
-	frequency = freq
-	is_sine_wave = is_sine
-	is_horizontal = is_horiz
-	wave_color = color
+func new_wave(specs: Dictionary):
+	if "amp" in specs:
+		amplitude = specs.amp
+	if "freq" in specs:
+		frequency = specs.freq
+	if "is_sine" in specs:
+		is_sine_wave = specs.is_sine
+	if "is_horizontal" in specs:
+		is_horizontal = specs.is_horizontal
+	if "color" in specs:
+		wave_color = specs.color
 	fill_array()
 	pass
 	

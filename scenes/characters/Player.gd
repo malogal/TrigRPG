@@ -25,10 +25,13 @@ var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
 var anim = ""
 var new_anim = ""
+var can_transition_animation: bool = true
 
 enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE, WAVE}
 
 var state = STATE_IDLE
+var action = STATE_IDLE
+var movement = idle
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
@@ -42,16 +45,65 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$anims.play()
-
+	$anims.action_animation_complete.connect(_on_anims_animation_finished)
 	$PieThrowing.set_cooldown(1.0)
 	pass
 
-func get_input(): 
-		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = input_direction * WALK_SPEED
+var up = { 
+	input = "move_up",
+	facing = "up",
+	direction = Vector2(0,1),
+	horizontal_wave = false
+}
 
+var down = { 
+	input = "move_down",
+	facing = "down",
+	direction = Vector2(0,-1),
+	horizontal_wave = false
+}
+
+var left = { 
+	input = "move_left",
+	facing = "left",
+	direction = Vector2(-1,0),
+	horizontal_wave = true
+}
+
+var right = { 
+	input = "move_right",
+	facing = "right",
+	direction = Vector2(1,0),
+	horizontal_wave = true
+}
+
+var idle = {
+	horizontal_wave = false,
+	facing = "down",
+	direction = Vector2(0,0)
+}
+
+var movements_from_input = [right, left, up, down]
+
+# Updates state, action, and velocity
+func get_input(): 
+		var input_direction: Vector2 = Input.get_vector(left.input, right.input, up.input, down.input)
+		velocity = input_direction * WALK_SPEED		
+		movement = idle
+		move_and_slide()
+		## FIXME this won't work if diagnal
+		for input in movements_from_input:
+			if input.has("input") && Input.is_action_pressed(input.input): 
+				movement = input
+				facing = input.facing
+				state = STATE_WALKING
+		action = STATE_IDLE
+		if Input.is_action_just_pressed("throw_pie"):
+			action = PIE
+		if Input.is_action_just_released("wave"):
+			action = WAVE
+			 
 func _physics_process(_delta):
-	var action
 	## PROCESS STATES
 	get_input()
 	match state:
@@ -59,59 +111,10 @@ func _physics_process(_delta):
 			new_anim = "idle_" + facing
 			pass
 		STATE_IDLE:
-			if (
-					Input.is_action_pressed("move_down") or
-					Input.is_action_pressed("move_left") or
-					Input.is_action_pressed("move_right") or
-					Input.is_action_pressed("move_up")
-				):
-					state = STATE_WALKING
-			if Input.is_action_just_pressed("throw_pie"):
-				action = PIE
-			if Input.is_action_just_released("wave"):
-				action = WAVE
-			if Input.is_action_just_pressed("attack"):
-				state = STATE_ATTACK
-			#if Input.is_action_just_pressed("roll"):
-				#state = STATE_ROLL
-				#roll_direction = Vector2(
-						#- int( Input.is_action_pressed("move_left") ) + int( Input.is_action_pressed("move_right") ),
-						#-int( Input.is_action_pressed("move_up") ) + int( Input.is_action_pressed("move_down") )
-					#).normalized()
-				#_update_facing()
-			#new_anim = "idle_" + facing
+			new_anim = "idle_" + facing
 			pass
 		STATE_WALKING:
-			if Input.is_action_just_pressed("attack"):
-				state = STATE_ATTACK
-			#if Input.is_action_just_pressed("roll"):
-				#state = STATE_ROLL
-			
-			# Trying to use 'get_input()' instead, will slowly introduce
-			#set_velocity(linear_vel)
-			#var t = position
-			move_and_slide()
-			linear_vel = velocity
-			
-			var target_speed = Vector2()
-			
-			if Input.is_action_pressed("move_down"):
-				target_speed += Vector2.DOWN
-			if Input.is_action_pressed("move_left"):
-				target_speed += Vector2.LEFT
-			if Input.is_action_pressed("move_right"):
-				target_speed += Vector2.RIGHT
-			if Input.is_action_pressed("move_up"):
-				target_speed += Vector2.UP
-			
-			target_speed *= WALK_SPEED
-			#linear_vel = linear_vel.linear_interpolate(target_speed, 0.9)
-			linear_vel = target_speed
-			roll_direction = linear_vel.normalized()
-			
-			_update_facing()
-			
-			if linear_vel.length() > 5:
+			if velocity.length() > 5:
 				new_anim = "walk_" + facing
 			else:
 				goto_idle()
@@ -120,38 +123,29 @@ func _physics_process(_delta):
 			#new_anim = "slash_" + facing
 			new_anim = "throw_"+facing
 			pass
-		#STATE_ROLL:
-			#if roll_direction == Vector2.ZERO:
-				#state = STATE_IDLE
-				#new_anim = "idle_"+facing
-			#else:
-				#set_velocity(linear_vel)
-				#move_and_slide()
-				#linear_vel = velocity
-				#var target_speed = Vector2()
-				#target_speed = roll_direction
-				#target_speed *= ROLL_SPEED
-				##linear_vel = linear_vel.linear_interpolate(target_speed, 0.9)
-				#linear_vel = target_speed
-				##new_anim = "roll"
-				#new_anim = "idle_"+facing
 		STATE_DIE:
 			#new_anim = "die"
 			new_anim = "idle_"+facing
 		STATE_HURT:
 			#new_anim = "hurt"
 			new_anim = "idle_"+facing
-	
+	match action:
+		PIE: 
+			var mouse_pos = get_local_mouse_position()
+			$PieThrowing.throw(global_position, mouse_pos, 10)
+			new_anim = "throw_"+facing
+		WAVE:
+			$WaveTeleport.create_wave({"is_sine":true, "is_horizontal": movement.horizontal_wave})
+			new_anim = "throw_"+facing
 	## UPDATE ANIMATION
-	if new_anim != anim:
+	if new_anim != anim && can_transition_animation:
 		anim = new_anim
 		$anims.stop()
 		$anims.animation = anim
 		$anims.play()
-	if action == PIE: 
-		var mouse_pos = get_local_mouse_position()
-		$PieThrowing.throw(global_position, mouse_pos, 10)
-
+		if action != STATE_IDLE:
+			can_transition_animation = false 
+		
 	pass
 
 
@@ -167,17 +161,7 @@ func goto_idle():
 	linear_vel = Vector2.ZERO
 	new_anim = "idle_" + facing
 	state = STATE_IDLE
-
-
-func _update_facing():
-	if Input.is_action_pressed("move_left"):
-		facing = "left"
-	if Input.is_action_pressed("move_right"):
-		facing = "right"
-	if Input.is_action_pressed("move_up"):
-		facing = "up"
-	if Input.is_action_pressed("move_down"):
-		facing = "down"
+	movement = idle
 
 
 func despawn():
@@ -201,3 +185,7 @@ func _on_hurtbox_area_entered(area):
 		if hitpoints <= 0:
 			state = STATE_DIE
 	pass
+
+
+func _on_anims_animation_finished() -> void:
+	can_transition_animation = true

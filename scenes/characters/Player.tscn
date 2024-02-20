@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ctd3mgp0s172q"]
+[gd_scene load_steps=60 format=3 uid="uid://ctd3mgp0s172q"]
 
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/characters/debug_character.tscn" id="3"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://begnu4m6v8mmp" path="res://textures/bob/bob_throw.png" id="4_j41ff"]
 [ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="4_ysf0e"]
 [ext_resource type="Texture2D" uid="uid://o2e8y5gudwu6" path="res://textures/bob/bob_walk.png" id="5_vbtrl"]
+[ext_resource type="Script" path="res://scenes/characters/anims.gd" id="6_2jx58"]
+[ext_resource type="PackedScene" uid="uid://co8ecubpep20b" path="res://scenes/powers/wave/wave_teleport.tscn" id="7_y8k3y"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 35.8589
@@ -468,10 +470,13 @@ shape = SubResource("18")
 [node name="anims" type="AnimatedSprite2D" parent="."]
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_7g4av")
-animation = &"idle_down"
+animation = &"throw_down"
+frame_progress = 0.857533
+script = ExtResource("6_2jx58")
 
 [node name="PieThrowing" parent="." instance=ExtResource("4_ysf0e")]
 
-[node name="WaveTeleport" parent="." instance=ExtResource("5_iocfp")]
+[node name="WaveTeleport" parent="." instance=ExtResource("7_y8k3y")]
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="animation_finished" from="anims" to="." method="_on_anims_animation_finished"]

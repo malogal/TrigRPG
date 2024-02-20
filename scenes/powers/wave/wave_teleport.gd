@@ -7,7 +7,9 @@ var is_wave_active: bool = false
 var waves: PackedScene
 var wave_main: Node
 
-func create_wave(char_pos: Vector2):
+func new_wave(amp: float = 900, freq: float = 0.01, is_sine: bool = true, is_horiz: bool = true,color: Color = Color(1,0,0,1)):
+	pass
+func create_wave(wave_specs: Dictionary):
 	if can_teleport:
 		if is_wave_active:
 			is_wave_active = false
@@ -16,7 +18,7 @@ func create_wave(char_pos: Vector2):
 			is_wave_active = true			
 			$WaveCooldown.start()
 			wave_main = waves.instantiate()
-			wave_main.new_wave(char_pos)
+			wave_main.new_wave(wave_specs)
 			add_child(wave_main)
 	
 
