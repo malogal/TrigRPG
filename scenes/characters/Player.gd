@@ -29,9 +29,9 @@ var can_transition_animation: bool = true
 
 enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE, WAVE}
 
-var state = STATE_IDLE
-var action = STATE_IDLE
-var movement = idle
+var state
+var action
+var movement
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
@@ -48,7 +48,11 @@ func _ready():
 	$anims.animation_looped.connect(_on_anims_animation_looped)
 	$PieThrowing.set_cooldown(1.0)
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
-	pass
+	# getting current save path from load game screen
+	print("currently in save " + Globals.currentSavePath)
+	state = STATE_IDLE
+	action = STATE_IDLE
+	movement = movement_map.idle
 
 
 
@@ -91,7 +95,8 @@ func get_input():
 		movement = movement_map.idle
 		move_and_slide()
 		## FIXME this won't work if diagnal
-		for input in movement_map:
+		for dir in movement_map:
+			var input = movement_map[dir]
 			if input.has("input") && Input.is_action_pressed(input.input): 
 				movement = input
 				facing = input.facing

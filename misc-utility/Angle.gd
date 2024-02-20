@@ -1,7 +1,7 @@
 class_name Angle extends RefCounted
 
 #rounding precision required
-const ERROR:=0.0001
+const ERROR:=0.000001
 
 var rads:float
 #for display
@@ -21,11 +21,13 @@ func gcd(a:int,b:int) -> int:
 	return a if b==0 else gcd(b,a%b)
 
 func mod_2pi(val) -> float:
-	print("before: "+str(val))
+	#print("before: "+str(val))
 	var modifier:=TAU if val<0 else -TAU
 	while val<0 or val>TAU:
 		val+=modifier
-	print("after:  "+str(val))
+	if TAU-val<ERROR:
+		val = 0
+	#print("after:  "+str(val))
 	return val
 
 func add_deg(val:int) -> void:
@@ -39,6 +41,12 @@ func sub_deg(val:int) -> void:
 
 func sub_rad(val:float) -> void:
 	rads = mod_2pi(rads-val)
+
+func add_angle(angle:Angle) -> void:
+	add_rad(angle.rads)
+
+func sub_angle(angle:Angle) -> void:
+	sub_rad(angle.rads)
 
 func is_zero() -> bool:
 	return abs(rads)<ERROR or abs(rads-TAU)<ERROR

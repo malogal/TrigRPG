@@ -8,6 +8,8 @@ var saveName
 var lastPlayed
 var timeSpent
 
+var mainGamePath = "res://scenes/levels/Outside.tscn"
+
 #save box 1
 @onready
 var saveNameLabel1 = $PanelContainer/MarginContainer/Rows/PanelContainer/SaveRows/SaveNameLabel
@@ -17,6 +19,10 @@ var lastPlayedLabel1 = $PanelContainer/MarginContainer/Rows/PanelContainer/SaveR
 var timeSpentLabel1 = $PanelContainer/MarginContainer/Rows/PanelContainer/SaveRows/TimeSpentLabel
 @onready
 var panel1 = $PanelContainer/MarginContainer/Rows/PanelContainer
+@onready
+var deleteButton1 = $Save1DeleteButton
+var mouseOverPanel1 = false
+var slot1Filled = false
 
 #save box 2
 @onready
@@ -27,6 +33,10 @@ var lastPlayedLabel2 = $PanelContainer/MarginContainer/Rows/PanelContainer2/Save
 var timeSpentLabel2 = $PanelContainer/MarginContainer/Rows/PanelContainer2/SaveRows/TimeSpentLabel
 @onready
 var panel2 = $PanelContainer/MarginContainer/Rows/PanelContainer2
+@onready
+var deleteButton2 = $Save2DeleteButton
+var mouseOverPanel2 = false
+var slot2Filled = false
 
 #save box 3
 @onready
@@ -37,31 +47,26 @@ var lastPlayedLabel3 = $PanelContainer/MarginContainer/Rows/PanelContainer3/Save
 var timeSpentLabel3 = $PanelContainer/MarginContainer/Rows/PanelContainer3/SaveRows/TimeSpentLabel
 @onready
 var panel3 = $PanelContainer/MarginContainer/Rows/PanelContainer3
+@onready
+var deleteButton3 = $Save3DeleteButton
+var mouseOverPanel3 = false
+var slot3Filled = false
 
 var savesData = []
+#var mainMenuScene = "res://scenes/menus/main_menu.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var saveSlot1 = SaveSlot.new(save1Path, saveNameLabel1, lastPlayedLabel1, timeSpentLabel1, panel1)	
-	var saveSlot2 = SaveSlot.new(save2Path, saveNameLabel2, lastPlayedLabel2, timeSpentLabel2, panel2)
-	var saveSlot3 = SaveSlot.new(save3Path, saveNameLabel3, lastPlayedLabel3, timeSpentLabel3, panel3)
+	var saveSlot1 = SaveSlot.new(save1Path, saveNameLabel1, lastPlayedLabel1, timeSpentLabel1, panel1, deleteButton1)	
+	var saveSlot2 = SaveSlot.new(save2Path, saveNameLabel2, lastPlayedLabel2, timeSpentLabel2, panel2, deleteButton2)
+	var saveSlot3 = SaveSlot.new(save3Path, saveNameLabel3, lastPlayedLabel3, timeSpentLabel3, panel3, deleteButton3)
 	
 	savesData.append(saveSlot1)
 	savesData.append(saveSlot2)
 	savesData.append(saveSlot3)
 	
-
-	
-	#saveSavesData()
 	loadSavesData()
 
-	
-# note: something similar will be used in new game code
-func saveSavesData():
-	var file = FileAccess.open(save1Path, FileAccess.WRITE)
-	file.store_var(saveName)	
-	file.store_var(lastPlayed)	
-	file.store_var(timeSpent)
 	
 func loadSavesData():
 	
@@ -71,6 +76,7 @@ func loadSavesData():
 		var lastPlayedLabel = save.lastPlayed
 		var timeSpentLabel = save.timeSpent
 		var panel = save.panel
+		var deleteButton = save.deleteButton
 		
 		if FileAccess.file_exists(savePath):
 			var file = FileAccess.open(savePath, FileAccess.READ)
@@ -80,13 +86,65 @@ func loadSavesData():
 			timeSpent = file.get_var()
 			
 		else:
-			print("no data in file: " + savePath)
 			saveName = ""
 			lastPlayed = "EMPTY SLOT"
 			timeSpent = ""
 			panel.modulate = Color(0, 0, 0, 0.4)
-	
-		# setting panel info
+			deleteButton.hide()
+			
+			# setting panel info
 		saveNameLabel.text = saveName
 		lastPlayedLabel.text = lastPlayed
 		timeSpentLabel.text = timeSpent
+
+func _on_save_1_delete_button_pressed():
+	if FileAccess.file_exists(save1Path):
+		DirAccess.remove_absolute(save1Path)
+		print("deleted data in " + save1Path)
+		loadSavesData()
+
+func _on_save_2_delete_button_pressed():
+	if FileAccess.file_exists(save2Path):
+		DirAccess.remove_absolute(save2Path)
+		print("deleted data in " + save2Path)
+		loadSavesData()
+
+func _on_save_3_delete_button_pressed():
+	if FileAccess.file_exists(save3Path):
+		DirAccess.remove_absolute(save3Path)
+		print("deleted data in " + save3Path)
+		loadSavesData()
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if mouseOverPanel1 and event.pressed and savesData[0].saveName.text != "":
+			print("loading save 1")
+			Globals.currentSavePath = save1Path
+			get_tree().change_scene_to_file(mainGamePath)
+		if mouseOverPanel2 and event.pressed and savesData[1].saveName.text != "":
+			print("loading save 2")
+			Globals.currentSavePath = save2Path
+			get_tree().change_scene_to_file(mainGamePath)
+		if mouseOverPanel3 and event.pressed and savesData[2].saveName.text != "":
+			print("loading save 3")
+			Globals.currentSavePath = save3Path
+			get_tree().change_scene_to_file(mainGamePath)
+
+func _on_panel_container_mouse_entered():
+	mouseOverPanel1 = true
+
+func _on_panel_container_mouse_exited():
+	mouseOverPanel1 = false
+
+func _on_panel_container_2_mouse_entered():
+	mouseOverPanel2 = true
+
+func _on_panel_container_2_mouse_exited():
+	mouseOverPanel2 = false
+
+func _on_panel_container_3_mouse_entered():
+	mouseOverPanel3 = true
+
+func _on_panel_container_3_mouse_exited():
+	mouseOverPanel3 = false
