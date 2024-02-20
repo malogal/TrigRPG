@@ -41,6 +41,7 @@ func _ready():
 			Dialogs.dialog_started.connect(_on_dialog_started) == OK and
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
+	$anims.play()
 	$PieThrowing.set_cooldown(1.0)
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
@@ -70,20 +71,20 @@ func _physics_process(_delta):
 				action = PIE
 			if Input.is_action_just_pressed("attack"):
 				state = STATE_ATTACK
-			if Input.is_action_just_pressed("roll"):
-				state = STATE_ROLL
-				roll_direction = Vector2(
-						- int( Input.is_action_pressed("move_left") ) + int( Input.is_action_pressed("move_right") ),
-						-int( Input.is_action_pressed("move_up") ) + int( Input.is_action_pressed("move_down") )
-					).normalized()
-				_update_facing()
-			new_anim = "idle_" + facing
+			#if Input.is_action_just_pressed("roll"):
+				#state = STATE_ROLL
+				#roll_direction = Vector2(
+						#- int( Input.is_action_pressed("move_left") ) + int( Input.is_action_pressed("move_right") ),
+						#-int( Input.is_action_pressed("move_up") ) + int( Input.is_action_pressed("move_down") )
+					#).normalized()
+				#_update_facing()
+			#new_anim = "idle_" + facing
 			pass
 		STATE_WALKING:
 			if Input.is_action_just_pressed("attack"):
 				state = STATE_ATTACK
-			if Input.is_action_just_pressed("roll"):
-				state = STATE_ROLL
+			#if Input.is_action_just_pressed("roll"):
+				#state = STATE_ROLL
 			
 			# Trying to use 'get_input()' instead, will slowly introduce
 			#set_velocity(linear_vel)
@@ -115,30 +116,37 @@ func _physics_process(_delta):
 				goto_idle()
 			pass
 		STATE_ATTACK:
-			new_anim = "slash_" + facing
+			#new_anim = "slash_" + facing
+			new_anim = "throw_"+facing
 			pass
-		STATE_ROLL:
-			if roll_direction == Vector2.ZERO:
-				state = STATE_IDLE
-			else:
-				set_velocity(linear_vel)
-				move_and_slide()
-				linear_vel = velocity
-				var target_speed = Vector2()
-				target_speed = roll_direction
-				target_speed *= ROLL_SPEED
-				#linear_vel = linear_vel.linear_interpolate(target_speed, 0.9)
-				linear_vel = target_speed
-				new_anim = "roll"
+		#STATE_ROLL:
+			#if roll_direction == Vector2.ZERO:
+				#state = STATE_IDLE
+				#new_anim = "idle_"+facing
+			#else:
+				#set_velocity(linear_vel)
+				#move_and_slide()
+				#linear_vel = velocity
+				#var target_speed = Vector2()
+				#target_speed = roll_direction
+				#target_speed *= ROLL_SPEED
+				##linear_vel = linear_vel.linear_interpolate(target_speed, 0.9)
+				#linear_vel = target_speed
+				##new_anim = "roll"
+				#new_anim = "idle_"+facing
 		STATE_DIE:
-			new_anim = "die"
+			#new_anim = "die"
+			new_anim = "idle_"+facing
 		STATE_HURT:
-			new_anim = "hurt"
+			#new_anim = "hurt"
+			new_anim = "idle_"+facing
 	
 	## UPDATE ANIMATION
 	if new_anim != anim:
 		anim = new_anim
-		$anims.play(anim)
+		$anims.stop()
+		$anims.animation = anim
+		$anims.play()
 	if action == PIE: 
 		var mouse_pos = get_global_mouse_position()
 		$PieThrowing.throw(global_position, mouse_pos, 10)
