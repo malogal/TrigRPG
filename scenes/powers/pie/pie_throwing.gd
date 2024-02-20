@@ -5,6 +5,8 @@ extends Node2D
 var can_throw: bool
 var pies: PackedScene
 
+signal turn_direction(dir: String)
+
 func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: int = 10):
 	if can_throw:
 		can_throw = false
@@ -12,6 +14,18 @@ func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: int = 10):
 		var pie = pies.instantiate()
 		add_child(pie)
 		pie.new_pie(char_pos, click_pos, amount_of_pie, speed)
+		
+		var deg = rad_to_deg(pie.get_velocity().angle())
+		var str_dir 
+		if abs(deg) < 45:
+			str_dir = "right"
+		if deg >= 45 && deg <= 135:
+			str_dir = "down"
+		if abs(deg) > 135:
+			str_dir = "left"
+		if deg <= -45 && deg >= -135:
+			str_dir = "up"
+		turn_direction.emit(str_dir)
 	
 
 # Called when the node enters the scene tree for the first time.

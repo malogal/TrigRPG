@@ -45,54 +45,53 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$anims.play()
-	$anims.action_animation_complete.connect(_on_anims_animation_finished)
+	$anims.animation_looped.connect(_on_anims_animation_looped)
 	$PieThrowing.set_cooldown(1.0)
+	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
 	pass
 
-var up = { 
-	input = "move_up",
-	facing = "up",
-	direction = Vector2(0,1),
-	horizontal_wave = false
-}
 
-var down = { 
-	input = "move_down",
-	facing = "down",
-	direction = Vector2(0,-1),
-	horizontal_wave = false
-}
 
-var left = { 
-	input = "move_left",
-	facing = "left",
-	direction = Vector2(-1,0),
-	horizontal_wave = true
+var movement_map = { 
+	up = { 
+		input = "move_up",
+		facing = "up",
+		direction = Vector2(0,1),
+		horizontal_wave = false
+	},
+	down = { 
+		input = "move_down",
+		facing = "down",
+		direction = Vector2(0,-1),
+		horizontal_wave = false
+	},
+	left = { 
+		input = "move_left",
+		facing = "left",
+		direction = Vector2(-1,0),
+		horizontal_wave = true
+	},
+	right = { 
+		input = "move_right",
+		facing = "right",
+		direction = Vector2(1,0),
+		horizontal_wave = true
+	},
+	idle = {
+		horizontal_wave = false,
+		facing = "down",
+		direction = Vector2(0,0)
+	},
 }
-
-var right = { 
-	input = "move_right",
-	facing = "right",
-	direction = Vector2(1,0),
-	horizontal_wave = true
-}
-
-var idle = {
-	horizontal_wave = false,
-	facing = "down",
-	direction = Vector2(0,0)
-}
-
-var movements_from_input = [right, left, up, down]
 
 # Updates state, action, and velocity
 func get_input(): 
-		var input_direction: Vector2 = Input.get_vector(left.input, right.input, up.input, down.input)
+		var input_direction: Vector2 = Input.get_vector(movement_map.left.input, movement_map.right.input, movement_map.up.input, movement_map.down.input)
 		velocity = input_direction * WALK_SPEED		
-		movement = idle
+		movement = movement_map.idle
 		move_and_slide()
 		## FIXME this won't work if diagnal
-		for input in movements_from_input:
+		for input in movement_map:
 			if input.has("input") && Input.is_action_pressed(input.input): 
 				movement = input
 				facing = input.facing
@@ -137,17 +136,23 @@ func _physics_process(_delta):
 		WAVE:
 			$WaveTeleport.create_wave({"is_sine":true, "is_horizontal": movement.horizontal_wave})
 			new_anim = "throw_"+facing
+		_: 
+			action = STATE_IDLE
+			
 	## UPDATE ANIMATION
 	if new_anim != anim && can_transition_animation:
-		anim = new_anim
-		$anims.stop()
-		$anims.animation = anim
-		$anims.play()
-		if action != STATE_IDLE:
-			can_transition_animation = false 
+		# IF the old animation is one we don't want to inturrupt
+		if new_anim.begins_with("throw"):
+			can_transition_animation = false
+		assign_animation(new_anim)
 		
 	pass
 
+func assign_animation(a: String):
+	anim = new_anim
+	$anims.stop()
+	$anims.animation = anim
+	$anims.play()			
 
 func _on_dialog_started():
 	state = STATE_BLOCKED
@@ -161,7 +166,7 @@ func goto_idle():
 	linear_vel = Vector2.ZERO
 	new_anim = "idle_" + facing
 	state = STATE_IDLE
-	movement = idle
+	movement = movement_map.idle
 
 
 func despawn():
@@ -189,3 +194,12 @@ func _on_hurtbox_area_entered(area):
 
 func _on_anims_animation_finished() -> void:
 	can_transition_animation = true
+
+
+func _on_anims_animation_looped() -> void:
+	can_transition_animation = true
+
+func _on_pie_throwing_turn_direction(dir: String):
+	facing = dir
+	assign_animation("throw_" + facing)
+	

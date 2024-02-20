@@ -12,7 +12,7 @@ func _ready():
 
 
 func new_pie(start_pos: Vector2, dir: Vector2, amount: int, pie_speed: int):
-	global_position = get_parent().get_parent().global_position
+	global_position = start_pos
 	degree = amount
 	linear_damp = -1
 	angular_damp = -1
@@ -29,10 +29,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _process(delta):
 	queue_redraw()
 
-	
-func _physics_process(delta):
-	pass
-	# Multiply target by 500 incase they click somewhere near character
+func get_velocity() -> Vector2:
+	return linear_velocity
 
 	
 func _on_body_entered(body):
