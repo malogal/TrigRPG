@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjk160ytr6b8j"]
+[gd_scene load_steps=7 format=3 uid="uid://cjk160ytr6b8j"]
 
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_3p1x3"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_5thls"]
 [ext_resource type="Script" path="res://scenes/menus/continue_game_menu.gd" id="1_86vw1"]
+[ext_resource type="Texture2D" uid="uid://cmldvta6xsulp" path="res://textures/menu/trash can.png" id="4_hujv6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fvfk"]
 bg_color = Color(0.894118, 0.894118, 0.894118, 1)
@@ -139,14 +140,39 @@ focus_neighbor_bottom = NodePath("../ContinueGameButton")
 text = "Back"
 referencePath = "res://scenes/menus/main_menu.tscn"
 
-[node name="TEMP" parent="." instance=ExtResource("1_3p1x3")]
+[node name="Save1DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 950.0
-offset_top = 690.0
-offset_right = 1235.0
-offset_bottom = 721.0
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../ContinueGameButton")
-text = "Start existing game
-"
-referencePath = "res://scenes/levels/Outside.tscn"
+offset_left = 886.0
+offset_top = 266.0
+offset_right = 1406.0
+offset_bottom = 786.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("4_hujv6")
+
+[node name="Save2DeleteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 437.0
+offset_right = 1408.0
+offset_bottom = 957.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("4_hujv6")
+
+[node name="Save3DeleteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 604.0
+offset_right = 1408.0
+offset_bottom = 1124.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("4_hujv6")
+
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/PanelContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/Rows/PanelContainer" to="." method="_on_panel_container_mouse_exited"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/PanelContainer2" to="." method="_on_panel_container_2_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/Rows/PanelContainer2" to="." method="_on_panel_container_2_mouse_exited"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/PanelContainer3" to="." method="_on_panel_container_3_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/Rows/PanelContainer3" to="." method="_on_panel_container_3_mouse_exited"]
+[connection signal="pressed" from="Save1DeleteButton" to="." method="_on_save_1_delete_button_pressed"]
+[connection signal="pressed" from="Save2DeleteButton" to="." method="_on_save_2_delete_button_pressed"]
+[connection signal="pressed" from="Save3DeleteButton" to="." method="_on_save_3_delete_button_pressed"]

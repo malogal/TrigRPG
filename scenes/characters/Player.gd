@@ -42,6 +42,8 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$PieThrowing.set_cooldown(1.0)
+	# getting current save path from load game screen
+	print("currently in save " + Globals.currentSavePath)
 	pass
 
 func get_input(): 
