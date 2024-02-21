@@ -44,6 +44,8 @@ func _ready():
 	$anims.play()
 
 	$PieThrowing.set_cooldown(1.0)
+	# getting current save path from load game screen
+	print("currently in save " + Globals.currentSavePath)
 	
 	
 	# placeholder start run to run a dialog, fill with dialog file name
