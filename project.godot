@@ -24,6 +24,7 @@ Dialogs="*res://singletons/Dialogs.gd"
 Inventory="*res://singletons/Inventory.gd"
 Quest="*res://singletons/Quest.gd"
 Globals="*res://singletons/Globals.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [debug]
 
@@ -35,6 +36,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=740
 window/size/extend_to_title=true
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -95,6 +100,10 @@ throw_pie={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(268, 14),"global_position":Vector2(274, 76),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialogue", "res://dialogue/cutscene1.dialogue", "res://dialogue/cutscene3.dialogue", "res://dialogue/cutscene4.dialogue", "res://dialogue/cutscene7.dialogue", "res://dialogue/cutscene6.dialogue", "res://dialogue/cutscene5.dialogue", "res://dialogue/cutscene8.dialogue", "res://dialogue/cutscene9.dialogue")
 
 [physics]
 

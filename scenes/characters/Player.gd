@@ -44,7 +44,10 @@ func _ready():
 	$anims.play()
 
 	$PieThrowing.set_cooldown(1.0)
-	pass
+	
+	
+	# placeholder start run to run a dialog, fill with dialog file name
+	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
 func get_input(): 
 		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
