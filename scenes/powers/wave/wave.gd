@@ -18,16 +18,16 @@ var amplitude: float = 900.0 # Height of the wave
 var frequency: float = 0.01 # How many waves within a certain distance
 var is_sine_wave: bool = true # True for sine, false for cosine
 var wave_length: float = 2000 # Length of the wave to be drawn
-var wave_color: Color = Color(1, 0, 0, 1) # Bright red color
+var wave_color_pos: Color = Color(0.00000100867101, 0.5642226934433, 0.51764661073685, 0.5)
+var wave_color_neg: Color = Color(0.79184025526047, 0.31729644536972, 0.10155173391104, 0.5)
 var is_horizontal: bool = true
 
 var wave_points_positive: PackedVector2Array 
 var wave_points_negative: PackedVector2Array 
 
-
 func _draw():
-	draw_polyline(wave_points_positive, wave_color, 10, true)
-	draw_polyline(wave_points_negative, wave_color.inverted(), 10, true)
+	draw_polyline(wave_points_positive, wave_color_pos, 10, true)
+	draw_polyline(wave_points_negative, wave_color_neg, 10, true)
 	
 func fill_array():
 	var start_pos = Vector2(0,0) 
@@ -61,12 +61,8 @@ func new_wave(specs: Dictionary):
 		is_sine_wave = specs.is_sine
 	if "is_horizontal" in specs:
 		is_horizontal = specs.is_horizontal
-	if "color" in specs:
-		wave_color = specs.color
 	fill_array()
-	pass
-	
-func _process(delta):
-	queue_redraw()
-	pass
-	
+	$InnerWave.new_inner_wave(wave_points_positive, wave_points_negative)
+
+func get_inner_wave_point() -> Vector2:
+	return $InnerWave.get_inner_wave_point()

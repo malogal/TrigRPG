@@ -7,8 +7,6 @@ var is_wave_active: bool = false
 var waves: PackedScene
 var wave_main: Node
 
-func new_wave(amp: float = 900, freq: float = 0.01, is_sine: bool = true, is_horiz: bool = true,color: Color = Color(1,0,0,1)):
-	pass
 func create_wave(wave_specs: Dictionary):
 	if can_teleport:
 		if is_wave_active:
@@ -31,7 +29,9 @@ func _ready():
 
 func set_cooldown(cd: float):
 	$WaveCooldown.wait_time = cd
-	
+
+func get_inner_wave_point() -> Vector2:
+	return wave_main.get_inner_wave_point()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -39,3 +39,6 @@ func _process(delta):
 func _on_wave_cooldown_timeout():
 	can_teleport = true
 	
+func stop_wave():
+	is_wave_active = false
+	remove_child(wave_main)

@@ -1,2 +1,4 @@
 *.translation
 .godot/
+./save*.save
+

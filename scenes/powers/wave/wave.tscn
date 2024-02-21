@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://1t46gbu6ps34"]
+[gd_scene load_steps=4 format=3 uid="uid://1t46gbu6ps34"]
 
 [ext_resource type="Script" path="res://scenes/powers/wave/wave.gd" id="1_ce3cd"]
 [ext_resource type="Script" path="res://scenes/powers/wave/wave_line.gd" id="2_gj3cw"]
+[ext_resource type="Script" path="res://scenes/powers/wave/InnerLine.gd" id="2_vhby3"]
 
 [node name="Wave" type="Node2D"]
 script = ExtResource("1_ce3cd")
+
+[node name="InnerWave" type="Node2D" parent="."]
+script = ExtResource("2_vhby3")
 
 [node name="WaveLine" type="Line2D" parent="."]
 visible = false

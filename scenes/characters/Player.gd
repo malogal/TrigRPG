@@ -106,6 +106,12 @@ func get_input():
 			action = PIE
 		if Input.is_action_just_released("wave"):
 			action = WAVE
+		if Input.is_action_just_pressed("teleport"):
+			var point: Vector2 = $WaveTeleport.get_inner_wave_point()
+			# Point recieved from wave teleport is relative
+			position.x += point.x
+			position.y += point.y
+			$WaveTeleport.stop_wave()
 			 
 func _physics_process(_delta):
 	## PROCESS STATES
@@ -139,7 +145,7 @@ func _physics_process(_delta):
 			$PieThrowing.throw(global_position, mouse_pos, 10)
 			new_anim = "throw_"+facing
 		WAVE:
-			$WaveTeleport.create_wave({"is_sine":true, "is_horizontal": movement.horizontal_wave})
+			$WaveTeleport.create_wave({"is_sine":true, "is_horizontal": is_facing_horizontal()})
 			new_anim = "throw_"+facing
 		_: 
 			action = STATE_IDLE
@@ -196,6 +202,13 @@ func _on_hurtbox_area_entered(area):
 			state = STATE_DIE
 	pass
 
+func is_facing_horizontal() -> bool:
+	var is_horizontal = false
+	if facing.ends_with("left") or facing.ends_with("right"):
+		is_horizontal = true
+	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		is_horizontal = true
+	return is_horizontal or movement.horizontal_wave
 
 func _on_anims_animation_finished() -> void:
 	can_transition_animation = true
