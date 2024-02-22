@@ -1182,7 +1182,7 @@ radius = 49.0
 height = 170.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_gpet0"]
-font_size = 36
+font_size = 45
 font_color = Color(0.627451, 0.196078, 0.129412, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
