@@ -30,7 +30,6 @@ func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: 
 	target = dir
 	amount = amount_of_pie
 	speed = pie_speed
-
 	pass
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -46,7 +45,5 @@ func _physics_process(delta):
 	linear_velocity = global_position.direction_to(target*500) * speed
 	angular_velocity = delta*rotate_speed
 
-	
-func _on_body_entered(body):
-	print_debug("pie hit body", body)
-
+func pie_get_amount() -> Angle: 
+	return amount

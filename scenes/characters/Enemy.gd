@@ -114,22 +114,21 @@ func _on_state_changer_timeout():
 	facing = ["left", "right", "up", "down"][randi()%3]
 	pass # Replace with function body.
 
+func despawn():
+	var despawn_particles = despawn_fx.instantiate()
+	get_parent().add_child(despawn_particles)
+	despawn_particles.global_position = global_position
+	if has_node("item_spawner"):
+		get_node("item_spawner").spawn()
+	queue_free()
+	pass
 
 
-func _on_hurtbox_area_entered(area, pie_amount: Angle):
-	if state != STATE_DIE and area.name == "player_sword":
-		hitpoints -= 1
-		var pushback_direction = (global_position - area.global_position).normalized()
-		set_velocity(pushback_direction * 5000)
-		move_and_slide()
-		state = STATE_HURT
-		$state_changer.start()
-		if hitpoints <= 0:
-			$state_changer.stop()
-			state = STATE_DIE
-	if state != STATE_DIE and area.is_in_group("pie"):
-		health_angle.add_angle(pie_amount)
-		var pushback_direction = (global_position - area.global_position).normalized()
+func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
+		$DamageTimer.start()
+		health_angle.add_angle(body.pie_get_amount())
+		var pushback_direction = (global_position - body.global_position).normalized()
 		set_velocity(pushback_direction * 5000)
 		move_and_slide()
 		state = STATE_HURT
@@ -139,13 +138,3 @@ func _on_hurtbox_area_entered(area, pie_amount: Angle):
 			$state_changer.stop()
 			state = STATE_DIE
 	
-	pass # Replace with function body.
-
-func despawn():
-	var despawn_particles = despawn_fx.instantiate()
-	get_parent().add_child(despawn_particles)
-	despawn_particles.global_position = global_position
-	if has_node("item_spawner"):
-		get_node("item_spawner").spawn()
-	queue_free()
-	pass

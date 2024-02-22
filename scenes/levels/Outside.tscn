@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bwgyo0qknm6gt" path="res://textures/temp-props/puddle_big.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://cgd2njb3hg82" path="res://textures/temp-props/puddle_small.png" id="11"]
 [ext_resource type="PackedScene" path="res://scenes/items/Item.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://scenes/characters/Npc.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
 
 [node name="Outside" type="Node"]
@@ -142,7 +142,7 @@ position = Vector2(887.73, 2775.94)
 position = Vector2(1352.46, 2961.83)
 
 [node name="enemy6" parent="level" instance=ExtResource("4")]
-position = Vector2(144.914, 746.878)
+position = Vector2(243.976, 629.355)
 
 [node name="enemy7" parent="level" instance=ExtResource("4")]
 position = Vector2(1766.1, 666.819)

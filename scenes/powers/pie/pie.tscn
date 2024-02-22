@@ -16,7 +16,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygu5d"]
 
-[node name="Pie" type="RigidBody2D"]
+[node name="Pie" type="RigidBody2D" groups=["pie"]]
 mass = 12.5
 script = ExtResource("1_4a6u7")
 
@@ -28,9 +28,7 @@ animation = &"pie"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="pie_collision" type="CollisionShape2D" parent="Area2D" groups=["pie"]]
+[node name="pie_collision" type="CollisionShape2D" parent="." groups=["pie"]]
 shape = SubResource("CircleShape2D_ygu5d")
 debug_color = Color(0.737255, 0.466667, 0, 0.419608)
 

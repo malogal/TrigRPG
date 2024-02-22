@@ -1178,8 +1178,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="18"]
-radius = 33.801
-height = 67.6021
+radius = 49.0
+height = 170.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_gpet0"]
 font_size = 36
@@ -1225,6 +1225,7 @@ autostart = true
 position = Vector2(0, -72.0772)
 
 [node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
+position = Vector2(-5.638, -22.0098)
 shape = SubResource("18")
 
 [node name="item_spawner" parent="." instance=ExtResource("3")]
@@ -1242,5 +1243,10 @@ vertical_alignment = 1
 uppercase = true
 script = ExtResource("4_5xoxs")
 
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.722
+one_shot = true
+
 [connection signal="timeout" from="state_changer" to="." method="_on_state_changer_timeout"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered" flags=3]
+[connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
