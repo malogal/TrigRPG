@@ -1,7 +1,9 @@
 extends RigidBody2D
 
+const AngleClass = preload("res://misc-utility/Angle.gd")
+
 var speed: int
-var degree: int
+var amount: Angle = AngleClass.new(PI/2)
 var test_count = 100
 
 # Pie rotation
@@ -23,11 +25,10 @@ func _ready():
 	$AnimatedPie.play()
 
 
-func new_pie(start_pos: Vector2, dir: Vector2, amount: int, pie_speed: int):
+func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: int):
 	global_position = start_pos
 	target = dir
-	degree = amount
-	
+	amount = amount_of_pie
 	speed = pie_speed
 
 	pass
@@ -48,3 +49,4 @@ func _physics_process(delta):
 	
 func _on_body_entered(body):
 	print_debug("pie hit body", body)
+

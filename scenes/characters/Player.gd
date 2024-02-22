@@ -12,6 +12,10 @@ and probably both should extend some parent script
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
 
+const AngleClass = preload("res://misc-utility/Angle.gd")
+
+var pie_amount = AngleClass.new(PI/2)
+
 var linear_vel = Vector2()
 var roll_direction = Vector2.DOWN
 
@@ -150,7 +154,7 @@ func _physics_process(_delta):
 		$anims.play()
 	if action == PIE: 
 		var mouse_pos = get_global_mouse_position()
-		$PieThrowing.throw(global_position, mouse_pos, 10)
+		$PieThrowing.throw(global_position, mouse_pos, pie_amount)
 
 	pass
 

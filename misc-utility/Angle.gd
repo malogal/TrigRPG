@@ -8,7 +8,7 @@ var rads:float
 var prefix:String
 var suffix:String
 
-func _init(val:int,is_deg:bool,pre:String,suf:String):
+func _init(val:float,is_deg:bool = false, pre:String = "",suf:String = ""):
 	rads = 0
 	if is_deg:
 		add_deg(val)

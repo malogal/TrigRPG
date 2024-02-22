@@ -8,10 +8,13 @@ in the AssetLib if you want to make something more complex. Also it shares code 
 and probably both should extend some parent script
 """
 
+const AngleClass = preload("res://misc-utility/Angle.gd")
+
 @export var WALK_SPEED: int = 350
 @export var ROLL_SPEED: int = 1000
 @export var hitpoints: int = 3
-
+@export var health: float = PI/2 
+var health_angle = AngleClass.new(health)
 var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
 var linear_vel = Vector2()
@@ -112,7 +115,8 @@ func _on_state_changer_timeout():
 	pass # Replace with function body.
 
 
-func _on_hurtbox_area_entered(area):
+
+func _on_hurtbox_area_entered(area, pie_amount: Angle):
 	if state != STATE_DIE and area.name == "player_sword":
 		hitpoints -= 1
 		var pushback_direction = (global_position - area.global_position).normalized()
@@ -123,6 +127,18 @@ func _on_hurtbox_area_entered(area):
 		if hitpoints <= 0:
 			$state_changer.stop()
 			state = STATE_DIE
+	if state != STATE_DIE and area.is_in_group("pie"):
+		health_angle.add_angle(pie_amount)
+		var pushback_direction = (global_position - area.global_position).normalized()
+		set_velocity(pushback_direction * 5000)
+		move_and_slide()
+		state = STATE_HURT
+		$state_changer.start()
+		$Health.set_angle_text(health_angle)
+		if health_angle.is_zero():
+			$state_changer.stop()
+			state = STATE_DIE
+	
 	pass # Replace with function body.
 
 func despawn():

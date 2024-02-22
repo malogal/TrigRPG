@@ -5,7 +5,7 @@ extends Node2D
 var can_throw: bool
 var pies: PackedScene
 
-func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: int = 10):
+func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: Angle):
 	if can_throw:
 		$PieCooldown.start()
 		var pie = pies.instantiate()
