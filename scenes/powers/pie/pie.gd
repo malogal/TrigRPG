@@ -3,6 +3,7 @@ extends RigidBody2D
 var speed: int
 var degree: int
 var test_count = 100
+var amount = 1 #update to amt when we get amount changing in place
 
 # Pie rotation
 const rotate_speed = 350
@@ -20,10 +21,11 @@ var target: Vector2
 signal hit 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimatedPie.animation = "amount_"+str(amount)
 	$AnimatedPie.play()
 
 
-func new_pie(start_pos: Vector2, dir: Vector2, amount: int, pie_speed: int):
+func new_pie(start_pos: Vector2, dir: Vector2, amt: int, pie_speed: int):
 	global_position = start_pos
 	target = dir
 	degree = amount
@@ -43,7 +45,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	linear_velocity = global_position.direction_to(target*500) * speed
-	angular_velocity = delta*rotate_speed
+	#angular_velocity = delta*rotate_speed
 
 	
 func _on_body_entered(body):

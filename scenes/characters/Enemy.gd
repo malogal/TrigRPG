@@ -26,6 +26,7 @@ var state = STATE_IDLE
 
 func _ready():
 	randomize()
+	$anims.speed_scale = randf_range(0.25,2)
 
 func _physics_process(_delta):
 	

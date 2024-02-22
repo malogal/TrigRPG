@@ -1,7 +1,7 @@
 [gd_scene load_steps=58 format=3 uid="uid://ctd3mgp0s172q"]
 
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/characters/debug_character.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bk42yg5aycg0t" path="res://scenes/characters/debug_character.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://8ntvar0ymwfo" path="res://textures/bob/bob_idle.png" id="3_ebymc"]
 [ext_resource type="Texture2D" uid="uid://begnu4m6v8mmp" path="res://textures/bob/bob_throw.png" id="4_j41ff"]
 [ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="4_ysf0e"]
