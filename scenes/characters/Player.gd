@@ -46,7 +46,10 @@ func _ready():
 	$PieThrowing.set_cooldown(1.0)
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
-	pass
+	
+	
+	# placeholder start run to run a dialog, fill with dialog file name
+	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
 func get_input(): 
 		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
