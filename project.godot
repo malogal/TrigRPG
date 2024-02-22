@@ -24,6 +24,7 @@ Dialogs="*res://singletons/Dialogs.gd"
 Inventory="*res://singletons/Inventory.gd"
 Quest="*res://singletons/Quest.gd"
 Globals="*res://singletons/Globals.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [debug]
 
@@ -36,6 +37,10 @@ window/size/viewport_height=1480
 window/size/extend_to_title=true
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -111,6 +116,10 @@ teleport={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialogue", "res://dialogue/cutscene1.dialogue", "res://dialogue/cutscene3.dialogue", "res://dialogue/cutscene4.dialogue", "res://dialogue/cutscene7.dialogue", "res://dialogue/cutscene6.dialogue", "res://dialogue/cutscene5.dialogue", "res://dialogue/cutscene8.dialogue", "res://dialogue/cutscene9.dialogue")
 
 [physics]
 

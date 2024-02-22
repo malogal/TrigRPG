@@ -54,6 +54,8 @@ func _ready():
 	action = STATE_IDLE
 	movement = movement_map.idle
 
+	# placeholder start run to run a dialog, fill with dialog file name
+	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
 
 var movement_map = { 
