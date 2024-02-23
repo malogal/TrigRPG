@@ -25,10 +25,13 @@ var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
 var anim = ""
 var new_anim = ""
+var can_transition_animation: bool = true
 
-enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE }
+enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE, WAVE}
 
-var state = STATE_IDLE
+var state
+var action
+var movement
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
@@ -42,21 +45,80 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$anims.play()
-
+	$anims.animation_looped.connect(_on_anims_animation_looped)
 	$PieThrowing.set_cooldown(1.0)
+	$WaveTeleport.set_wave_cooldown(1.5)
+	$WaveTeleport.set_teleport_cooldown(5)
+	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
-	
-	
+	state = STATE_IDLE
+	action = STATE_IDLE
+	movement = movement_map.idle
+
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
-func get_input(): 
-		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = input_direction * WALK_SPEED
 
+var movement_map = { 
+	up = { 
+		input = "move_up",
+		facing = "up",
+		direction = Vector2(0,1),
+		horizontal_wave = false
+	},
+	down = { 
+		input = "move_down",
+		facing = "down",
+		direction = Vector2(0,-1),
+		horizontal_wave = false
+	},
+	left = { 
+		input = "move_left",
+		facing = "left",
+		direction = Vector2(-1,0),
+		horizontal_wave = true
+	},
+	right = { 
+		input = "move_right",
+		facing = "right",
+		direction = Vector2(1,0),
+		horizontal_wave = true
+	},
+	idle = {
+		horizontal_wave = false,
+		facing = "down",
+		direction = Vector2(0,0)
+	},
+}
+
+# Updates state, action, and velocity
+func get_input(): 
+		var input_direction: Vector2 = Input.get_vector(movement_map.left.input, movement_map.right.input, movement_map.up.input, movement_map.down.input)
+		velocity = input_direction * WALK_SPEED		
+		movement = movement_map.idle
+		move_and_slide()
+		## FIXME this won't work if diagnal
+		for dir in movement_map:
+			var input = movement_map[dir]
+			if input.has("input") && Input.is_action_pressed(input.input): 
+				movement = input
+				facing = input.facing
+				state = STATE_WALKING
+		action = STATE_IDLE
+		if Input.is_action_just_pressed("throw_pie") && !$WaveTeleport.is_wave_actived():
+			action = PIE
+		if Input.is_action_just_released("wave"):
+			action = WAVE
+		if Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
+			var point: Vector2 = $WaveTeleport.get_teleport_to()
+			# Point recieved from wave teleport is relative
+			position.x += point.x
+			position.y += point.y
+			# Get out of wave teleport mode 
+			$WaveTeleport.stop_wave()
+			 
 func _physics_process(_delta):
-	var action
 	## PROCESS STATES
 	get_input()
 	match state:
@@ -64,57 +126,10 @@ func _physics_process(_delta):
 			new_anim = "idle_" + facing
 			pass
 		STATE_IDLE:
-			if (
-					Input.is_action_pressed("move_down") or
-					Input.is_action_pressed("move_left") or
-					Input.is_action_pressed("move_right") or
-					Input.is_action_pressed("move_up")
-				):
-					state = STATE_WALKING
-			if Input.is_action_just_pressed("throw_pie"):
-				action = PIE
-			if Input.is_action_just_pressed("attack"):
-				state = STATE_ATTACK
-			#if Input.is_action_just_pressed("roll"):
-				#state = STATE_ROLL
-				#roll_direction = Vector2(
-						#- int( Input.is_action_pressed("move_left") ) + int( Input.is_action_pressed("move_right") ),
-						#-int( Input.is_action_pressed("move_up") ) + int( Input.is_action_pressed("move_down") )
-					#).normalized()
-				#_update_facing()
-			#new_anim = "idle_" + facing
+			new_anim = "idle_" + facing
 			pass
 		STATE_WALKING:
-			if Input.is_action_just_pressed("attack"):
-				state = STATE_ATTACK
-			#if Input.is_action_just_pressed("roll"):
-				#state = STATE_ROLL
-			
-			# Trying to use 'get_input()' instead, will slowly introduce
-			#set_velocity(linear_vel)
-			#var t = position
-			move_and_slide()
-			linear_vel = velocity
-			
-			var target_speed = Vector2()
-			
-			if Input.is_action_pressed("move_down"):
-				target_speed += Vector2.DOWN
-			if Input.is_action_pressed("move_left"):
-				target_speed += Vector2.LEFT
-			if Input.is_action_pressed("move_right"):
-				target_speed += Vector2.RIGHT
-			if Input.is_action_pressed("move_up"):
-				target_speed += Vector2.UP
-			
-			target_speed *= WALK_SPEED
-			#linear_vel = linear_vel.linear_interpolate(target_speed, 0.9)
-			linear_vel = target_speed
-			roll_direction = linear_vel.normalized()
-			
-			_update_facing()
-			
-			if linear_vel.length() > 5:
+			if velocity.length() > 5:
 				new_anim = "walk_" + facing
 			else:
 				goto_idle()
@@ -123,40 +138,37 @@ func _physics_process(_delta):
 			#new_anim = "slash_" + facing
 			new_anim = "throw_"+facing
 			pass
-		#STATE_ROLL:
-			#if roll_direction == Vector2.ZERO:
-				#state = STATE_IDLE
-				#new_anim = "idle_"+facing
-			#else:
-				#set_velocity(linear_vel)
-				#move_and_slide()
-				#linear_vel = velocity
-				#var target_speed = Vector2()
-				#target_speed = roll_direction
-				#target_speed *= ROLL_SPEED
-				##linear_vel = linear_vel.linear_interpolate(target_speed, 0.9)
-				#linear_vel = target_speed
-				##new_anim = "roll"
-				#new_anim = "idle_"+facing
 		STATE_DIE:
 			#new_anim = "die"
 			new_anim = "idle_"+facing
 		STATE_HURT:
 			#new_anim = "hurt"
 			new_anim = "idle_"+facing
-	
+	match action:
+		PIE: 
+			var mouse_pos = get_local_mouse_position()
+			$PieThrowing.throw(global_position, mouse_pos, 10)
+			new_anim = "throw_"+facing
+		WAVE:
+			$WaveTeleport.create_stop_wave({"is_sine":true, "is_horizontal": is_facing_horizontal()})
+			new_anim = "throw_"+facing
+		_: 
+			action = STATE_IDLE
+			
 	## UPDATE ANIMATION
-	if new_anim != anim:
-		anim = new_anim
-		$anims.stop()
-		$anims.animation = anim
-		$anims.play()
-	if action == PIE: 
-		var mouse_pos = get_global_mouse_position()
-		$PieThrowing.throw(global_position, mouse_pos, 10)
-
+	if new_anim != anim && can_transition_animation:
+		# IF the old animation is one we don't want to inturrupt
+		if new_anim.begins_with("throw"):
+			can_transition_animation = false
+		assign_animation(new_anim)
+		
 	pass
 
+func assign_animation(a: String):
+	anim = new_anim
+	$anims.stop()
+	$anims.animation = anim
+	$anims.play()			
 
 func _on_dialog_started():
 	state = STATE_BLOCKED
@@ -170,17 +182,7 @@ func goto_idle():
 	linear_vel = Vector2.ZERO
 	new_anim = "idle_" + facing
 	state = STATE_IDLE
-
-
-func _update_facing():
-	if Input.is_action_pressed("move_left"):
-		facing = "left"
-	if Input.is_action_pressed("move_right"):
-		facing = "right"
-	if Input.is_action_pressed("move_up"):
-		facing = "up"
-	if Input.is_action_pressed("move_down"):
-		facing = "down"
+	movement = movement_map.idle
 
 
 func despawn():
@@ -204,3 +206,23 @@ func _on_hurtbox_area_entered(area):
 		if hitpoints <= 0:
 			state = STATE_DIE
 	pass
+
+func is_facing_horizontal() -> bool:
+	var is_horizontal = false
+	if facing.ends_with("left") or facing.ends_with("right"):
+		is_horizontal = true
+	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		is_horizontal = true
+	return is_horizontal or movement.horizontal_wave
+
+func _on_anims_animation_finished() -> void:
+	can_transition_animation = true
+
+
+func _on_anims_animation_looped() -> void:
+	can_transition_animation = true
+
+func _on_pie_throwing_turn_direction(dir: String):
+	facing = dir
+	assign_animation("throw_" + facing)
+	

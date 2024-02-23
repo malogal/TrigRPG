@@ -92,8 +92,7 @@ func loadSavesData():
 			panel.modulate = Color(0, 0, 0, 0.4)
 			deleteButton.hide()
 			
-	
-		# setting panel info
+			# setting panel info
 		saveNameLabel.text = saveName
 		lastPlayedLabel.text = lastPlayed
 		timeSpentLabel.text = timeSpent
