@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dj0ggscc56knq"]
 
 [ext_resource type="FontFile" path="res://fonts/dialog.tres" id="1"]
-[ext_resource type="Texture2D" uid="uid://cb2u7ijtdnnyg" path="res://textures/menu/game_title.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://ck0bibv77mxh2" path="res://textures/menu/bg.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cb2u7ijtdnnyg" path="res://textures/temp-menu/game_title.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://ck0bibv77mxh2" path="res://textures/temp-menu/bg.png" id="3"]
 [ext_resource type="Script" path="res://scenes/levels/Menu.gd" id="4"]
 
 [node name="Menu" type="Control"]
