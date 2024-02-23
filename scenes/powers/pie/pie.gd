@@ -1,17 +1,17 @@
 extends RigidBody2D
 
 var degree: int
-
 # Pie rotation
 const rotate_speed = 4
-
+var amount = 1
 signal hit 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimatedPie.animation = "amount_"+str(amount)
 	$AnimatedPie.play()
 
 
-func new_pie(start_pos: Vector2, dir: Vector2, amount: int, pie_speed: int):
+func new_pie(start_pos: Vector2, dir: Vector2, amt: int, pie_speed: int):
 	global_position = start_pos
 	degree = amount
 	linear_damp = -1
