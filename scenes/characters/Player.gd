@@ -6,9 +6,10 @@ class_name Player
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
 
-const AngleClass = preload("res://misc-utility/Angle.gd")
+#const AngleClass = preload("res://misc-utility/Angle.gd")
 
-var pie_amount = AngleClass.new(PI/2)
+var pie_amount = Angle.new(PI/2)
+var pie_increment = Angle.new(PI/4)
 
 var linear_vel: Vector2     = Vector2()
 var roll_direction: Vector2 = Vector2.DOWN
@@ -16,6 +17,8 @@ var roll_direction: Vector2 = Vector2.DOWN
 var cooldown: float = 1.0
 
 signal health_changed(current_hp)
+# Signal new amount of pie
+signal pie_changed(amount: Angle)
 
 @export var facing: String = "down" # (String, "up", "down", "left", "right")
 
@@ -30,6 +33,38 @@ enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE
 var state
 var action
 var movement
+
+var movement_map: Dictionary = {
+   up = {
+	   input = "move_up",
+	   facing = "up",
+	   direction = Vector2(0,1),
+	   horizontal_wave = false
+   },
+   down = {
+	   input = "move_down",
+	   facing = "down",
+	   direction = Vector2(0,-1),
+	   horizontal_wave = false
+   },
+   left = {
+	   input = "move_left",
+	   facing = "left",
+	   direction = Vector2(-1,0),
+	   horizontal_wave = true
+   },
+   right = {
+	   input = "move_right",
+	   facing = "right",
+	   direction = Vector2(1,0),
+	   horizontal_wave = true
+   },
+   idle = {
+	   horizontal_wave = false,
+	   facing = "down",
+	   direction = Vector2(0,0)
+   },
+}
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
@@ -57,39 +92,6 @@ func _ready():
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
-
-var movement_map: Dictionary = { 
-	up = { 
-		input = "move_up",
-		facing = "up",
-		direction = Vector2(0,1),
-		horizontal_wave = false
-	},
-	down = { 
-		input = "move_down",
-		facing = "down",
-		direction = Vector2(0,-1),
-		horizontal_wave = false
-	},
-	left = { 
-		input = "move_left",
-		facing = "left",
-		direction = Vector2(-1,0),
-		horizontal_wave = true
-	},
-	right = { 
-		input = "move_right",
-		facing = "right",
-		direction = Vector2(1,0),
-		horizontal_wave = true
-	},
-	idle = {
-		horizontal_wave = false,
-		facing = "down",
-		direction = Vector2(0,0)
-	},
-}
-
 # Updates state, action, and velocity
 func get_input(): 
 		var input_direction: Vector2 = Input.get_vector(movement_map.left.input, movement_map.right.input, movement_map.up.input, movement_map.down.input)
@@ -104,8 +106,15 @@ func get_input():
 				facing = input.facing
 				state = STATE_WALKING
 		action = STATE_IDLE
-		if Input.is_action_just_pressed("throw_pie") && !$WaveTeleport.is_wave_actived():
-			action = PIE
+		if !$WaveTeleport.is_wave_actived(): 
+			if Input.is_action_just_pressed("throw_pie"):
+				action = PIE
+			if Input.is_action_just_pressed("shift-space"):
+				pie_amount.sub_angle(pie_increment)
+				pie_changed.emit(pie_amount)
+			elif Input.is_action_just_pressed("space"):
+				pie_amount.add_angle(pie_increment)
+				pie_changed.emit(pie_amount)				
 		if Input.is_action_just_released("wave"):
 			action = WAVE
 		if Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():

@@ -2,12 +2,6 @@ extends CharacterBody2D
 
 class_name Enemy
 
-"""
-This implements a very rudimentary state machine. There are better implementations
-in the AssetLib if you want to make something more complex. Also it shares code with Enemy.gd
-and probably both should extend some parent script
-"""
-
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
 @export var WALK_SPEED: int = 350

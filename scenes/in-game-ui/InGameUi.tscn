@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://boygnr5mqtvfy"]
+
+[ext_resource type="Script" path="res://scenes/in-game-ui/InGameUi.gd" id="1_6y26o"]
+[ext_resource type="PackedScene" uid="uid://dsr6iiolheh1f" path="res://scenes/in-game-ui/bottom_ui.tscn" id="2_x02kv"]
+
+[node name="InGameUi" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_6y26o")
+
+[node name="BottomUi" parent="." instance=ExtResource("2_x02kv")]
+visible = false
