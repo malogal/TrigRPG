@@ -2,29 +2,27 @@ extends CharacterBody2D
 
 class_name Player
 
-"""
-This implements a very rudimentary state machine. There are better implementations
-in the AssetLib if you want to make something more complex. Also it shares code with Enemy.gd
-and probably both should extend some parent script
-"""
-
 @export var WALK_SPEED: int = 350 # pixels per second
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
 
-var linear_vel = Vector2()
-var roll_direction = Vector2.DOWN
+const AngleClass = preload("res://misc-utility/Angle.gd")
 
-var cooldown = 1.0
+var pie_amount = AngleClass.new(PI/2)
+
+var linear_vel: Vector2     = Vector2()
+var roll_direction: Vector2 = Vector2.DOWN
+
+var cooldown: float = 1.0
 
 signal health_changed(current_hp)
 
-@export var facing = "down" # (String, "up", "down", "left", "right")
+@export var facing: String = "down" # (String, "up", "down", "left", "right")
 
-var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
+var despawn_fx: PackedScene = preload("res://scenes/misc/DespawnFX.tscn")
 
-var anim = ""
-var new_anim = ""
+var anim: String                   = ""
+var new_anim: String               = ""
 var can_transition_animation: bool = true
 
 enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT, PIE, WAVE}
@@ -35,7 +33,7 @@ var movement
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
-	var spawnpoints = get_tree().get_nodes_in_group("spawnpoints")
+	var spawnpoints: Array[Variant] = get_tree().get_nodes_in_group("spawnpoints")
 	for spawnpoint in spawnpoints:
 		if spawnpoint.name == Globals.spawnpoint:
 			global_position = spawnpoint.global_position
@@ -60,7 +58,7 @@ func _ready():
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
 
-var movement_map = { 
+var movement_map: Dictionary = { 
 	up = { 
 		input = "move_up",
 		facing = "up",
@@ -147,7 +145,7 @@ func _physics_process(_delta):
 	match action:
 		PIE: 
 			var mouse_pos = get_local_mouse_position()
-			$PieThrowing.throw(global_position, mouse_pos, 10)
+			$PieThrowing.throw(global_position, mouse_pos, pie_amount)
 			new_anim = "throw_"+facing
 		WAVE:
 			$WaveTeleport.create_stop_wave({"is_sine":true, "is_horizontal": is_facing_horizontal()})
@@ -162,7 +160,7 @@ func _physics_process(_delta):
 			can_transition_animation = false
 		assign_animation(new_anim)
 		
-	pass
+
 
 func assign_animation(a: String):
 	anim = new_anim
@@ -208,7 +206,7 @@ func _on_hurtbox_area_entered(area):
 	pass
 
 func is_facing_horizontal() -> bool:
-	var is_horizontal = false
+	var is_horizontal: bool = false
 	if facing.ends_with("left") or facing.ends_with("right"):
 		is_horizontal = true
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):

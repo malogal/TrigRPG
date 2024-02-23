@@ -8,10 +8,13 @@ in the AssetLib if you want to make something more complex. Also it shares code 
 and probably both should extend some parent script
 """
 
+const AngleClass = preload("res://misc-utility/Angle.gd")
+
 @export var WALK_SPEED: int = 350
 @export var ROLL_SPEED: int = 1000
 @export var hitpoints: int = 3
-
+@export var health: float = PI/2 
+var health_angle = AngleClass.new(health)
 var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
 var linear_vel = Vector2()
@@ -110,22 +113,7 @@ func _on_state_changer_timeout():
 	$state_changer.wait_time = randf_range(1.0, 5.0)
 	#state = randi() %3
 	state = STATE_ATTACK
-	facing = ["left", "right", "up", "down"][randi()%3]
-	pass # Replace with function body.
-
-
-func _on_hurtbox_area_entered(area):
-	if state != STATE_DIE and area.name == "player_sword":
-		hitpoints -= 1
-		var pushback_direction = (global_position - area.global_position).normalized()
-		set_velocity(pushback_direction * 5000)
-		move_and_slide()
-		state = STATE_HURT
-		$state_changer.start()
-		if hitpoints <= 0:
-			$state_changer.stop()
-			state = STATE_DIE
-	pass # Replace with function body.
+	facing = ["left", "right", "up", "down"][randi() % 3]
 
 func despawn():
 	var despawn_particles = despawn_fx.instantiate()
@@ -135,3 +123,21 @@ func despawn():
 		get_node("item_spawner").spawn()
 	queue_free()
 	pass
+
+
+func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
+		$DamageTimer.start()
+		health_angle.add_angle(body.pie_get_amount())
+		var pushback_direction = (global_position - body.global_position).normalized()
+		set_velocity(pushback_direction * 5000)
+		move_and_slide()
+		state = STATE_HURT
+		$state_changer.start()
+		$Health.set_angle_text(health_angle)
+		if health_angle.is_zero():
+			$state_changer.stop()
+			state = STATE_DIE
+			despawn()
+	
+

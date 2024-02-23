@@ -4,10 +4,10 @@ extends Node2D
 
 var can_throw: bool
 var pies: PackedScene
-
 signal turn_direction(dir: String)
 
-func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: int = 10):
+func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: Angle):
+
 	if can_throw:
 		can_throw = false
 		$PieCooldown.start()
