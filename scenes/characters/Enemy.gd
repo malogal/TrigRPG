@@ -29,6 +29,7 @@ var state = STATE_IDLE
 
 func _ready():
 	randomize()
+	$anims.speed_scale = randf_range(0.25,2)
 
 func _physics_process(_delta):
 	
@@ -54,7 +55,6 @@ func _physics_process(_delta):
 			target_speed *= WALK_SPEED
 			linear_vel = linear_vel.lerp(target_speed, 0.9)
 			
-			new_anim = ""
 			if abs(linear_vel.x) > abs(linear_vel.y):
 				if linear_vel.x < 0:
 					facing = "left"
@@ -96,10 +96,12 @@ func _physics_process(_delta):
 		STATE_HURT:
 			new_anim = "hurt"
 	
-
-
+	#override for testing
+	new_anim = "walk_right"
+	
 	if new_anim != anim:
 		anim = new_anim
+		$anims.stop()
 		$anims.play(anim)
 	pass
 

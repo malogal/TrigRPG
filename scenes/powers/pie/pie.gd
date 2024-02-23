@@ -12,14 +12,15 @@ const rotate_speed = 4
 signal hit 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimatedPie.animation = "amount_"+str(1)
 	$AnimatedPie.play()
 
 func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: int):
 	global_position = start_pos
+	linear_damp = -1
 	amount = amount_of_pie
 	speed = pie_speed
 
-	linear_damp = -1
 	angular_damp = -1
 	angular_velocity = rotate_speed
 	linear_velocity = global_position.direction_to(dir*500) * pie_speed
