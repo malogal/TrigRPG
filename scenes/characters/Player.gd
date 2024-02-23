@@ -47,6 +47,8 @@ func _ready():
 	$anims.play()
 	$anims.animation_looped.connect(_on_anims_animation_looped)
 	$PieThrowing.set_cooldown(1.0)
+	$WaveTeleport.set_wave_cooldown(1.5)
+	$WaveTeleport.set_teleport_cooldown(5)
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
@@ -104,15 +106,16 @@ func get_input():
 				facing = input.facing
 				state = STATE_WALKING
 		action = STATE_IDLE
-		if Input.is_action_just_pressed("throw_pie"):
+		if Input.is_action_just_pressed("throw_pie") && !$WaveTeleport.is_wave_actived():
 			action = PIE
 		if Input.is_action_just_released("wave"):
 			action = WAVE
-		if Input.is_action_just_pressed("teleport"):
-			var point: Vector2 = $WaveTeleport.get_inner_wave_point()
+		if Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
+			var point: Vector2 = $WaveTeleport.get_teleport_to()
 			# Point recieved from wave teleport is relative
 			position.x += point.x
 			position.y += point.y
+			# Get out of wave teleport mode 
 			$WaveTeleport.stop_wave()
 			 
 func _physics_process(_delta):
@@ -147,7 +150,7 @@ func _physics_process(_delta):
 			$PieThrowing.throw(global_position, mouse_pos, 10)
 			new_anim = "throw_"+facing
 		WAVE:
-			$WaveTeleport.create_wave({"is_sine":true, "is_horizontal": is_facing_horizontal()})
+			$WaveTeleport.create_stop_wave({"is_sine":true, "is_horizontal": is_facing_horizontal()})
 			new_anim = "throw_"+facing
 		_: 
 			action = STATE_IDLE

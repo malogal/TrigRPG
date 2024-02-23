@@ -7,3 +7,6 @@ script = ExtResource("1_s4eq4")
 
 [node name="WaveCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="TeleportCooldown" type="Timer" parent="."]
+one_shot = true
