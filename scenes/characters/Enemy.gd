@@ -113,8 +113,7 @@ func _on_state_changer_timeout():
 	$state_changer.wait_time = randf_range(1.0, 5.0)
 	#state = randi() %3
 	state = STATE_ATTACK
-	facing = ["left", "right", "up", "down"][randi()%3]
-	pass # Replace with function body.
+	facing = ["left", "right", "up", "down"][randi() % 3]
 
 func despawn():
 	var despawn_particles = despawn_fx.instantiate()
@@ -139,5 +138,6 @@ func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 		if health_angle.is_zero():
 			$state_changer.stop()
 			state = STATE_DIE
+			despawn()
 	
 
