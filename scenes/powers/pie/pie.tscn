@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bc6tn1ljbng2m" path="res://textures/projectile/pie_smallslice.png" id="4_80vmk"]
 [ext_resource type="Texture2D" uid="uid://b4v3sxg7id33r" path="res://textures/projectile/pie_full.png" id="5_yg6e8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ygu5d"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_r72bl"]
 atlas = ExtResource("2_hv8re")
 region = Rect2(0, 0, 16, 16)

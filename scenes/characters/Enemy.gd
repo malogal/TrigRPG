@@ -140,3 +140,4 @@ func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 			$state_changer.stop()
 			state = STATE_DIE
 	
+
