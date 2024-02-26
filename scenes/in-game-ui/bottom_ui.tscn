@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsr6iiolheh1f"]
+
+[ext_resource type="PackedScene" uid="uid://b7l7auw2qxeme" path="res://scenes/in-game-ui/PieMenu.tscn" id="1_nuohx"]
+[ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
+[ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="2_1min0"]
+[ext_resource type="Texture2D" uid="uid://b4v3sxg7id33r" path="res://textures/projectile/pie_full.png" id="3_1vmqb"]
+
+[node name="BottomUi" type="MarginContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -169.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_w3s35")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="PieNumber" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_nuohx")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="PieDisplay" type="BoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/PieDisplay"]
+layout_mode = 2
+texture = ExtResource("2_1min0")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Inventory" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+texture = ExtResource("3_1vmqb")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_1vmqb")
+expand_mode = 2
+stretch_mode = 4

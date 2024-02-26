@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7l7auw2qxeme"]
+
+[ext_resource type="Script" path="res://scenes/in-game-ui/PieMenu.gd" id="1_jn0kq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3hrm"]
+font_size = 40
+font_color = Color(0.380392, 0, 0.0117647, 0.494118)
+
+[node name="PieMenu" type="CenterContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -121.0
+offset_right = 349.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_jn0kq")
+
+[node name="PieAmountLabel" type="Label" parent="."]
+layout_mode = 2
+text = "π/2 : 90º"
+label_settings = SubResource("LabelSettings_l3hrm")

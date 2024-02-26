@@ -1,21 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://deqgnj30xx13t"]
+[gd_scene load_steps=15 format=3 uid="uid://deqgnj30xx13t"]
 
 [ext_resource type="PackedScene" path="res://scenes/misc/Dialog_box.tscn" id="1"]
+[ext_resource type="Script" path="res://scenes/misc/UI.gd" id="1_u2823"]
 [ext_resource type="PackedScene" path="res://scenes/misc/Stats.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://iu0aegkhj8po" path="res://scenes/misc/StatusText.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://scenes/misc/Healthbar.tscn" id="4"]
-[ext_resource type="Texture2D" uid="uid://dwn5qf313j5en" path="res://textures/misc/btn-roll.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://dvjbkxvp6yxld" path="res://textures/misc/btn-interact.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://cv2n6qfbgtko0" path="res://scenes/misc/Healthbar.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://dwn5qf313j5en" path="res://textures/temp-misc/btn-roll.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://dsr6iiolheh1f" path="res://scenes/in-game-ui/bottom_ui.tscn" id="5_tont6"]
+[ext_resource type="Texture2D" uid="uid://dvjbkxvp6yxld" path="res://textures/temp-misc/btn-interact.png" id="6"]
 [ext_resource type="Script" path="res://scenes/misc/TouchInterface.gd" id="7"]
-[ext_resource type="BitMap" uid="uid://btqy1wgyliysp" path="res://textures/misc/btn-mask.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://v7wbqrihcdka" path="res://textures/misc/btn-slash.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://bf8tm281iqk3u" path="res://textures/misc/arrow.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://baqod7bulkenk" path="res://textures/misc/btn-stats.png" id="11"]
+[ext_resource type="BitMap" uid="uid://btqy1wgyliysp" path="res://textures/temp-misc/btn-mask.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://v7wbqrihcdka" path="res://textures/temp-misc/btn-slash.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://bf8tm281iqk3u" path="res://textures/temp-misc/arrow.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://baqod7bulkenk" path="res://textures/temp-misc/btn-stats.png" id="11"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(60, 200)
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_u2823")
 
 [node name="Dialog_box" parent="." instance=ExtResource("1")]
 anchors_preset = 12
@@ -29,6 +32,8 @@ visible = false
 
 [node name="Healthbar" parent="." instance=ExtResource("4")]
 offset_right = 14.0
+
+[node name="BottomUi" parent="." instance=ExtResource("5_tont6")]
 
 [node name="TouchInterface" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.501961)
