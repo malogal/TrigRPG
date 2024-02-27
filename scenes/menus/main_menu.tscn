@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/misc/ui elements/menu_button.gd" id="2_qgf5k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eepip"]
-bg_color = Color(0.894118, 0.894118, 0.894118, 1)
+bg_color = Color(0.756863, 0.756863, 0.756863, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_fd8dt"]
 font_names = PackedStringArray("Impact")
@@ -67,6 +67,12 @@ alignment = 1
 [node name="Separator2" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Separator11" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator12" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="NewGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
@@ -78,6 +84,9 @@ referencePath = "res://scenes/menus/new_game_menu.tscn"
 startFocused = true
 
 [node name="Separator3" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator7" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="ContinueGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -93,6 +102,9 @@ referencePath = "res://scenes/menus/continue_game_menu.tscn"
 [node name="Separator4" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Separator8" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ContinueGameButton")
@@ -105,6 +117,9 @@ referencePath = "res://scenes/menus/settings_menu.tscn"
 [node name="Separator5" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Separator9" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="AchievementsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
@@ -115,6 +130,9 @@ script = ExtResource("2_qgf5k")
 referencePath = "res://scenes/menus/achievements_menu.tscn"
 
 [node name="Separator6" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator10" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
