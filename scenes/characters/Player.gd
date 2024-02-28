@@ -7,14 +7,18 @@ class_name Player
 @export var hitpoints: int = 3
 
 #const AngleClass = preload("res://misc-utility/Angle.gd")
-
 var pie_amount = Angle.new(PI/2)
 var pie_increment = Angle.new(PI/4)
+
+var items: Dictionary = {}
 
 var linear_vel: Vector2     = Vector2()
 var roll_direction: Vector2 = Vector2.DOWN
 
-var cooldown: float = 1.0
+const default_cooldown_pie: float = 1.0
+const default_cooldown_wave: float = 1.5
+const default_cooldown_teleport: float = 6.0
+var freq_cooldown_modifier: float = 1.0
 
 signal health_changed(current_hp)
 # Signal new amount of pie
@@ -33,6 +37,11 @@ enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE
 var state
 var action
 var movement
+
+var allowed_powers = {
+	pie = true,
+	teleport = true,
+}
 
 var movement_map: Dictionary = {
    up = {
@@ -78,11 +87,15 @@ func _ready():
 			Dialogs.dialog_ended.connect(_on_dialog_ended) == OK ):
 		printerr("Error connecting to dialog system")
 	$anims.play()
-	$anims.animation_looped.connect(_on_anims_animation_looped)
-	$PieThrowing.set_cooldown(1.0)
-	$WaveTeleport.set_wave_cooldown(1.5)
-	$WaveTeleport.set_teleport_cooldown(5)
+	
+	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
+	set_cooldowns()
+	
+	$anims.animation_looped.connect(_on_anims_animation_looped)		
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
+	Inventory.item_changed.connect(_on_item_changed)
+	
+	
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
 	state = STATE_IDLE
@@ -115,9 +128,9 @@ func get_input():
 			elif Input.is_action_just_pressed("space"):
 				pie_amount.add_angle(pie_increment)
 				pie_changed.emit(pie_amount)				
-		if Input.is_action_just_released("wave"):
+		if allowed_powers.teleport and Input.is_action_just_released("wave"):
 			action = WAVE
-		if Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
+		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
 			var point: Vector2 = $WaveTeleport.get_teleport_to()
 			# Point recieved from wave teleport is relative
 			position.x += point.x
@@ -157,7 +170,18 @@ func _physics_process(_delta):
 			$PieThrowing.throw(global_position, mouse_pos, pie_amount)
 			new_anim = "throw_"+facing
 		WAVE:
-			$WaveTeleport.create_stop_wave({"is_sine":true, "is_horizontal": is_facing_horizontal()})
+			var is_sine = true
+			# To make sine the default in all cases except cosine picked up,
+			# check for cosine in inventory instead of sine
+			if Inventory.get_item("cosine", 0) != 0:
+				is_sine = false
+			$WaveTeleport.create_stop_wave(
+				{
+					"is_sine":is_sine,
+					"is_horizontal": is_facing_horizontal(),
+					"amplitude":Inventory.get_item("amplitude", 1),
+					"frequency":Inventory.get_item("frequency", 1),
+				})
 			new_anim = "throw_"+facing
 		_: 
 			action = STATE_IDLE
@@ -199,8 +223,11 @@ func despawn():
 	hide()
 	await get_tree().create_timer(5.0).timeout
 	get_tree().reload_current_scene()
-	pass
 
+func set_cooldowns():
+	$PieThrowing.set_cooldown(default_cooldown_pie / freq_cooldown_modifier)
+	$WaveTeleport.set_wave_cooldown(default_cooldown_wave / freq_cooldown_modifier)
+	$WaveTeleport.set_teleport_cooldown(default_cooldown_teleport / freq_cooldown_modifier)
 
 func _on_hurtbox_area_entered(area):
 	if state != STATE_DIE and area.is_in_group("enemy_weapons"):
@@ -233,3 +260,9 @@ func _on_pie_throwing_turn_direction(dir: String):
 	facing = dir
 	assign_animation("throw_" + facing)
 	
+func _on_item_changed(action: String, type: String, amount: float) -> void:
+	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
+	set_cooldowns()
+
+func get_pie_available_signal() -> Signal:
+	return $PieThrowing.get_pie_available_signal()

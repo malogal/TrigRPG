@@ -2,4 +2,6 @@
 .godot/
 ./save*.save
 
-./idea/
+./.idea/
+.idea
+

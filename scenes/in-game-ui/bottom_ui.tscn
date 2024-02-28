@@ -1,9 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsr6iiolheh1f"]
+[gd_scene load_steps=12 format=3 uid="uid://dsr6iiolheh1f"]
 
-[ext_resource type="PackedScene" uid="uid://b7l7auw2qxeme" path="res://scenes/in-game-ui/PieMenu.tscn" id="1_nuohx"]
 [ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
 [ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="2_1min0"]
-[ext_resource type="Texture2D" uid="uid://b4v3sxg7id33r" path="res://textures/projectile/pie_full.png" id="3_1vmqb"]
+[ext_resource type="Script" path="res://scenes/in-game-ui/Inventory.gd" id="3_d8tjt"]
+[ext_resource type="Texture2D" uid="uid://bilgm4qtxv6un" path="res://textures/power-ups/purple-box.png" id="4_jpg4r"]
+[ext_resource type="LabelSettings" uid="uid://du3fepabgj3y2" path="res://fonts/modifier_label_settings.tres" id="4_r7aal"]
+[ext_resource type="LabelSettings" uid="uid://ckf3lk76e86ni" path="res://fonts/frequency_label_settings.tres" id="5_j3mav"]
+[ext_resource type="Texture2D" uid="uid://corddxeqkqia3" path="res://textures/power-ups/green-box.png" id="5_rjayb"]
+[ext_resource type="LabelSettings" uid="uid://db0svtjv6o8j2" path="res://fonts/amplitude_label_settings.tres" id="6_aka0c"]
+[ext_resource type="Texture2D" uid="uid://dtra3xk0fpsv0" path="res://textures/power-ups/blue-box.png" id="6_khwi1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3s64t"]
+font_size = 35
+font_color = Color(0.419608, 0.180392, 0.180392, 1)
+
+[sub_resource type="GDScript" id="GDScript_vexre"]
+script/source = "extends TextureRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="BottomUi" type="MarginContainer"]
 anchors_preset = 12
@@ -22,39 +45,83 @@ script = ExtResource("1_w3s35")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="PieSection" type="GridContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 
-[node name="PieNumber" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_nuohx")]
+[node name="PieNumber" type="Label" parent="HBoxContainer/PieSection"]
+custom_minimum_size = Vector2(40, 30)
 layout_mode = 2
-size_flags_horizontal = 1
+text = "π/2: 90º"
+label_settings = SubResource("LabelSettings_3s64t")
+justification_flags = 35
+
+[node name="PieDisplay" type="BoxContainer" parent="HBoxContainer/PieSection"]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PieDisplay" type="BoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/PieDisplay"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PieSection/PieDisplay"]
 layout_mode = 2
 texture = ExtResource("2_1min0")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Inventory" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Divider" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Inventory" type="GridContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-alignment = 2
+columns = 3
+script = ExtResource("3_d8tjt")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Inventory"]
+[node name="ModifierLabel" type="Label" parent="HBoxContainer/Inventory"]
 layout_mode = 2
-texture = ExtResource("3_1vmqb")
-expand_mode = 2
-stretch_mode = 4
+text = "Sine
+"
+label_settings = ExtResource("4_r7aal")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Inventory"]
+[node name="FrequencyLabel" type="Label" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+text = "Freq: 1
+"
+label_settings = ExtResource("5_j3mav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmplitudeLabel" type="Label" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+text = "Amp: 1
+"
+label_settings = ExtResource("6_aka0c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Modifier" type="TextureRect" parent="HBoxContainer/Inventory"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("3_1vmqb")
+tooltip_text = "Sine or Cosine Wave Modifier
+"
+texture = ExtResource("4_jpg4r")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="Frequency" type="TextureRect" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Frequency Power-Up"
+texture = ExtResource("5_rjayb")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Amplitude" type="TextureRect" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+tooltip_text = "Amplitude Power-Up"
+texture = ExtResource("6_khwi1")
+expand_mode = 2
+stretch_mode = 4
+script = SubResource("GDScript_vexre")

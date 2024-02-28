@@ -12,25 +12,25 @@ signal item_changed(action, type, amount)
 var inventory = {}
 
 
-func get_item(type:String) -> int:
+func get_item(type:String, default: float = 0) -> float:
 	if inventory.has(type):
 		return inventory[type]
 	else:
-		return 0
+		return default
 
 
-func add_item(type:String, amount:int) -> bool:
-	if inventory.has(type):
-		inventory[type] += amount
-		emit_signal("item_changed", "added", type, amount)
-		return true
-	else:
-		inventory[type] = amount
-		emit_signal("item_changed", "added", type, amount)
-		return true
+func add_item(type:String, amount:float = 1) -> bool:
+	match type:
+		"sine":
+			inventory["cosine"] = 0
+		"cosine":
+			inventory["sine"] = 0
+	inventory[type] = amount
+	emit_signal("item_changed", "added", type, amount)
+	return true
 
-
-func remove_item(type:String, amount:int) -> bool:
+# TODO !!Unused for now, leaving incase we find a use for it!!
+func remove_item(type:String, amount:float = 1) -> bool:
 	if inventory.has(type) and inventory[type] >= amount:
 		inventory[type] -= amount
 		if inventory[type] == 0:
