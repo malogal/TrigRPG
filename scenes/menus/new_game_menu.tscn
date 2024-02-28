@@ -1,17 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxisgdeos3jw5"]
+[gd_scene load_steps=10 format=3 uid="uid://bxisgdeos3jw5"]
 
 [ext_resource type="Script" path="res://scenes/menus/new_game_menu.gd" id="1_1ha5e"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_vcq7c"]
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="2_3eei8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk8uh"]
-bg_color = Color(0.894118, 0.894118, 0.894118, 1)
+bg_color = Color(0.756863, 0.756863, 0.756863, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_vsik5"]
 font_names = PackedStringArray("Impact")
 
-[sub_resource type="SystemFont" id="SystemFont_taylh"]
-font_names = PackedStringArray("Impact")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ox6xc"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfhcv"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpdr5"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00rbc"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
 
 [node name="NewGameMenu" type="Control"]
 layout_mode = 3
@@ -21,6 +62,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ha5e")
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -29,7 +71,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.01402)
+scale = Vector2(0.998631, 1.0156)
 theme_override_styles/panel = SubResource("StyleBoxFlat_jk8uh")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -88,10 +130,13 @@ horizontal_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 theme = ExtResource("1_vcq7c")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 placeholder_text = "New Save Name"
 
 [node name="Separator" type="Control" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="Separator12" type="Control" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 
 [node name="CreateSaveButton" type="Button" parent="PanelContainer/MarginContainer/Rows"]
@@ -108,54 +153,18 @@ layout_mode = 2
 [node name="Separator9" type="Control" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 60
-
-[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 8
-theme_override_constants/shadow_offset_y = 8
-theme_override_constants/outline_size = 24
-theme_override_fonts/font = SubResource("SystemFont_taylh")
-theme_override_font_sizes/font_size = 64
-text = "New Game"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-alignment = 1
-
 [node name="BackButton" parent="." instance=ExtResource("2_3eei8")]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 37.0
-offset_right = 192.0
-offset_bottom = 68.0
+offset_left = 45.0
+offset_top = 42.0
+offset_right = 226.0
+offset_bottom = 92.0
+scale = Vector2(0.991153, 1)
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../ContinueGameButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ox6xc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jfhcv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kpdr5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_00rbc")
 text = "Back"
 referencePath = "res://scenes/menus/main_menu.tscn"
 

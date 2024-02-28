@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjk160ytr6b8j"]
+[gd_scene load_steps=11 format=3 uid="uid://cjk160ytr6b8j"]
 
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_3p1x3"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_5thls"]
@@ -6,10 +6,54 @@
 [ext_resource type="Texture2D" uid="uid://cmldvta6xsulp" path="res://textures/menu/trash can.png" id="4_hujv6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fvfk"]
-bg_color = Color(0.894118, 0.894118, 0.894118, 1)
+bg_color = Color(0.756863, 0.756863, 0.756863, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_tqj7o"]
 font_names = PackedStringArray("Impact")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4xgo"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b78tv"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf8y1"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_si2ct"]
+bg_color = Color(0, 0, 0, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
 
 [node name="ContinueGameMenu" type="Control"]
 layout_mode = 3
@@ -135,8 +179,13 @@ offset_left = 45.0
 offset_top = 42.0
 offset_right = 226.0
 offset_bottom = 92.0
+scale = Vector2(0.998866, 1)
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../ContinueGameButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o4xgo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b78tv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rf8y1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_si2ct")
 text = "Back"
 referencePath = "res://scenes/menus/main_menu.tscn"
 

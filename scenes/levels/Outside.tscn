@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=16 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="PackedScene" path="res://scenes/props/MushroomBig.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" path="res://scenes/items/Item.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
 
 [node name="Outside" type="Node"]
 
@@ -190,3 +191,10 @@ amount = 3
 music_track = "res://music/310-world-map-loop.ogg"
 
 [node name="UI" parent="." instance=ExtResource("2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_xavrg")]
+process_mode = 0
+visible = false

@@ -1,101 +1,224 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bem53ha4l0duu"]
 
-[ext_resource path="res://scenes/misc/Stats.gd" type="Script" id=1]
-[ext_resource path="res://fonts/dialog.tres" type="FontFile" id=2]
-[ext_resource path="res://fonts/stats.tres" type="FontFile" id=3]
-[ext_resource path="res://scenes/misc/stats.stylebox" type="StyleBox" id=4]
+[ext_resource type="FontFile" path="res://fonts/dialog.tres" id="2"]
+[ext_resource type="FontFile" path="res://fonts/stats.tres" id="3"]
+[ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="5_j3ac4"]
+[ext_resource type="Script" path="res://scenes/misc/ui elements/menu_button.gd" id="6_ves2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2aihw"]
+content_margin_left = 20.0
+content_margin_top = 50.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="GDScript" id="GDScript_wa15d"]
+script/source = "extends PanelContainer
+#
+#var enabled = false
+#
+#func _ready():
+	#Globals.save_game()
+	#get_tree().set_auto_accept_quit(false)
+	#hide()
+#
+#func _input(event):
+	#if event.is_action_pressed(\"pause\"):
+		#enabled = !enabled
+		#visible = enabled
+		#get_tree().paused = enabled
+		#if enabled:
+			#grab_focus()
+			#_update_quest_listing()
+			#_update_item_listing()
+			#
+#func _update_quest_listing():
+	#var text = \"\"
+	#text += \"Started:\\n\"
+	#for quest in Quest.list(Quest.STATUS.STARTED):
+		#text += \"  %s\\n\" % quest
+	#text += \"Failed:\\n\"
+	#for quest in Quest.list(Quest.STATUS.FAILED):
+		#text += \"  %s\\n\" % quest
+	#
+	#$VBoxContainer/HBoxContainer/Quests/Details.text = text
+	#pass
+#
+#func _update_item_listing():
+	#var text = \"\"
+	#var inventory = Inventory.list()
+	#if inventory.is_empty():
+		#text += \"[Empty]\"
+	#for item in inventory:
+		#text += \"%s x %s\\n\" % [item, inventory[item]]
+	#$VBoxContainer/HBoxContainer/Inventory/Details.text = text
+	#pass
+#
+#
+#
+#func _on_Exit_pressed():
+	#quit_game()
+	#pass # Replace with function body.
+#
+#func _notification(what):
+	#if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		#quit_game()
+		#
+#func quit_game():
+	#Globals.save_game()
+	#get_tree().quit()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iokos"]
+bg_color = Color(0.894118, 0.894118, 0.894118, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_gyubo"]
+font_names = PackedStringArray("Impact")
 
 [node name="Stats" type="PanelContainer"]
 process_mode = 3
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_neighbor_top = NodePath("VBoxContainer/Exit")
 focus_neighbor_bottom = NodePath("VBoxContainer/Exit")
 focus_mode = 2
-theme_override_styles/panel = ExtResource( 4 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_styles/panel = SubResource("StyleBoxFlat_2aihw")
+script = SubResource("GDScript_wa15d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 1004.0
-offset_bottom = 580.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Paused" type="Label" parent="VBoxContainer"]
-offset_right = 984.0
-offset_bottom = 43.0
-theme_override_fonts/font = ExtResource( 2 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "Paused"
-align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-offset_top = 47.0
-offset_right = 984.0
-offset_bottom = 507.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Quests" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-offset_right = 490.0
-offset_bottom = 460.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Quests"]
-offset_right = 490.0
-offset_bottom = 43.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource("2")
 text = "Quests"
-align = 1
 
 [node name="Details" type="Label" parent="VBoxContainer/HBoxContainer/Quests"]
-offset_top = 47.0
-offset_right = 490.0
-offset_bottom = 460.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource( 3 )
+theme_override_fonts/font = ExtResource("3")
 text = "Quest 1
 Quest 2
 Quest 3
 Quest 4"
 
 [node name="Inventory" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-offset_left = 494.0
-offset_right = 984.0
-offset_bottom = 460.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Inventory"]
-offset_right = 490.0
-offset_bottom = 43.0
-theme_override_fonts/font = ExtResource( 2 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "Inventory"
-align = 1
 
 [node name="Details" type="Label" parent="VBoxContainer/HBoxContainer/Inventory"]
-offset_top = 47.0
-offset_right = 490.0
-offset_bottom = 460.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource( 3 )
+theme_override_fonts/font = ExtResource("3")
 text = "Item 1
 "
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
-offset_top = 511.0
-offset_right = 984.0
-offset_bottom = 560.0
-theme_override_fonts/font = ExtResource( 2 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "EXIT"
 flat = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iokos")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Separator" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = SubResource("SystemFont_gyubo")
+theme_override_font_sizes/font_size = 64
+text = "TrigRPG"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("5_j3ac4")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Separator3" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../SettingsButton")
+theme = ExtResource("5_j3ac4")
+text = "Continue
+"
+script = ExtResource("6_ves2r")
+referencePath = "res://scenes/menus/continue_game_menu.tscn"
+
+[node name="Separator4" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueGameButton")
+theme = ExtResource("5_j3ac4")
+text = "Settings"
+script = ExtResource("6_ves2r")
+referencePath = "res://scenes/menus/settings_menu.tscn"
+
+[node name="Separator6" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_j3ac4")
+text = "Quit"
+script = ExtResource("6_ves2r")
+referencePath = "res://scenes/menus/main_menu.tscn"
+
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ContinueGameButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ContinueGameButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ExitButton" to="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ExitButton" method="_on_pressed"]
