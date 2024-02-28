@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=20 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="PackedScene" path="res://scenes/props/MushroomBig.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="13_33be8"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://bikkohdpm1t2t" path="res://scenes/items/Cosine.tscn" id="14_ctil3"]
+[ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
 
@@ -42,7 +43,7 @@ texture = ExtResource("10")
 
 [node name="level" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(208.024, -117.355)
+position = Vector2(208.024, -128.355)
 
 [node name="Jorgito" parent="level" instance=ExtResource("13")]
 position = Vector2(2062.51, 2957.82)
@@ -55,7 +56,7 @@ initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
 [node name="Character" parent="level" instance=ExtResource("8")]
-position = Vector2(1618.98, 3691.35)
+position = Vector2(1509.86, 2579.34)
 
 [node name="house" parent="level" instance=ExtResource("5")]
 position = Vector2(908.151, 406.509)
@@ -217,3 +218,10 @@ position = Vector2(2265.98, 3668.35)
 music_track = "res://music/310-world-map-loop.ogg"
 
 [node name="UI" parent="." instance=ExtResource("2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_xavrg")]
+process_mode = 0
+visible = false
