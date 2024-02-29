@@ -233,6 +233,9 @@ position = Vector2(0, -46)
 scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_wabu1")
 
+[node name="state_changer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
 [connection signal="area_exited" from="attack_range" to="." method="_on_exit_attack_range"]
