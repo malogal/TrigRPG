@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=24 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="PackedScene" path="res://scenes/props/MushroomBig.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -11,10 +11,15 @@
 [ext_resource type="PackedScene" path="res://scenes/props/MushroomSmall.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bwgyo0qknm6gt" path="res://textures/temp-props/puddle_big.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://cgd2njb3hg82" path="res://textures/temp-props/puddle_small.png" id="11"]
-[ext_resource type="PackedScene" path="res://scenes/items/Item.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://bcc8p1og38gk5" path="res://scenes/items/Item.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="13_33be8"]
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://bikkohdpm1t2t" path="res://scenes/items/Cosine.tscn" id="14_ctil3"]
+[ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
+[ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
+[ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jbarr"]
 
@@ -1097,7 +1102,6 @@ item_type = "Magic Sword"
 visible = false
 position = Vector2(969.666, 1659.36)
 item_type = "Coso"
-amount = 3
 
 [node name="Item6" parent="level" instance=ExtResource("12")]
 visible = false
@@ -1112,7 +1116,6 @@ item_type = "Magic Sword"
 visible = false
 position = Vector2(2573.47, 1840.24)
 item_type = "Coso"
-amount = 3
 
 [node name="Item9" parent="level" instance=ExtResource("12")]
 visible = false
@@ -1127,7 +1130,32 @@ item_type = "Magic Sword"
 visible = false
 position = Vector2(2847.81, 2114.57)
 item_type = "Coso"
-amount = 3
+
+[node name="Amplitude" parent="level" instance=ExtResource("13_33be8")]
+position = Vector2(982.976, 3635.35)
+
+[node name="Amplitude2" parent="level" instance=ExtResource("13_33be8")]
+position = Vector2(983.976, 3872.35)
+amount = 2.5
+
+[node name="Cosine" parent="level" instance=ExtResource("14_ctil3")]
+position = Vector2(1604.98, 4019.35)
+
+[node name="Cosine2" parent="level" instance=ExtResource("14_ctil3")]
+position = Vector2(1403.98, 4018.35)
+
+[node name="Frequency" parent="level" instance=ExtResource("15_xsvti")]
+position = Vector2(2042.98, 4003.35)
+
+[node name="Frequency2" parent="level" instance=ExtResource("15_xsvti")]
+position = Vector2(2254.98, 3983.35)
+amount = 1.5
+
+[node name="Sine" parent="level" instance=ExtResource("16_cr781")]
+position = Vector2(2066.98, 3672.35)
+
+[node name="Sine2" parent="level" instance=ExtResource("16_cr781")]
+position = Vector2(2265.98, 3668.35)
 
 [node name="Forest" type="TileMap" parent="level"]
 scale = Vector2(12, 12)
@@ -1139,3 +1167,10 @@ layer_0/tile_data = PackedInt32Array(-65538, 6, 4, -2, 6, 5, 65534, 6, 6, 131070
 music_track = "res://music/310-world-map-loop.ogg"
 
 [node name="UI" parent="." instance=ExtResource("2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_xavrg")]
+process_mode = 0
+visible = false

@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://deqgnj30xx13t"]
+[gd_scene load_steps=14 format=3 uid="uid://deqgnj30xx13t"]
 
 [ext_resource type="PackedScene" path="res://scenes/misc/Dialog_box.tscn" id="1"]
 [ext_resource type="Script" path="res://scenes/misc/UI.gd" id="1_u2823"]
-[ext_resource type="PackedScene" path="res://scenes/misc/Stats.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://iu0aegkhj8po" path="res://scenes/misc/StatusText.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cv2n6qfbgtko0" path="res://scenes/misc/Healthbar.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://dwn5qf313j5en" path="res://textures/temp-misc/btn-roll.png" id="5"]
@@ -23,9 +22,6 @@ script = ExtResource("1_u2823")
 [node name="Dialog_box" parent="." instance=ExtResource("1")]
 anchors_preset = 12
 expand_mode = 1
-
-[node name="Stats" parent="." instance=ExtResource("2")]
-anchors_preset = 15
 
 [node name="Status_text" parent="." instance=ExtResource("3")]
 visible = false
@@ -49,6 +45,7 @@ visibility_mode = 1
 [node name="stats" type="TouchScreenButton" parent="TouchInterface"]
 process_mode = 3
 position = Vector2(912.494, 3.77242)
+scale = Vector2(0.891857, 1.00181)
 texture_normal = ExtResource("11")
 bitmask = ExtResource("8")
 action = "pause"

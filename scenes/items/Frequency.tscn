@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://4p8hxrq30dg"]
+
+[ext_resource type="PackedScene" uid="uid://bcc8p1og38gk5" path="res://scenes/items/Item.tscn" id="1_c05uu"]
+[ext_resource type="Script" path="res://scenes/items/Frequency.gd" id="1_rgrsp"]
+
+[node name="Frequency" type="Node2D" groups=["power_up"]]
+script = ExtResource("1_rgrsp")
+
+[node name="Item" parent="." instance=ExtResource("1_c05uu")]

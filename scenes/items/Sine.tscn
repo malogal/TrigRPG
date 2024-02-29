@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b30u0l32vtcwv"]
+
+[ext_resource type="Script" path="res://scenes/items/Sine.gd" id="1_can4x"]
+[ext_resource type="PackedScene" uid="uid://bcc8p1og38gk5" path="res://scenes/items/Item.tscn" id="1_e645p"]
+
+[node name="Sine" type="Node2D" groups=["power_up"]]
+script = ExtResource("1_can4x")
+
+[node name="Item" parent="." instance=ExtResource("1_e645p")]

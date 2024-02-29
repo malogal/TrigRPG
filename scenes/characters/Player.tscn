@@ -12,15 +12,15 @@ radius = 35.8589
 height = 71.7178
 
 [sub_resource type="CapsuleShape2D" id="18"]
-radius = 33.801
-height = 67.6021
+radius = 30.0
+height = 144.16
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("2")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.882385, -27.9806)
+position = Vector2(0, 23)
 rotation = 1.5708
 shape = SubResource("1")
 
@@ -41,9 +41,9 @@ properties = ["linear_vel", "roll_direction", "facing"]
 enabled = false
 
 [node name="hurtbox" type="Area2D" parent="."]
+position = Vector2(0, 21)
 
 [node name="col" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(0, -78.0211)
 shape = SubResource("18")
 
 [node name="anims" type="AnimatedSprite2D" parent="."]

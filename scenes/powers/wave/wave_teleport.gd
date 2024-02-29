@@ -22,10 +22,10 @@ func _ready():
 	set_wave_cooldown(1.5)
 	set_teleport_cooldown(6.0)
 
-func set_wave_cooldown(cd: float):
+func set_wave_cooldown(cd: float = 1.5):
 	$WaveCooldown.wait_time = cd
 
-func set_teleport_cooldown(cd: float):
+func set_teleport_cooldown(cd: float = 6.0):
 	$TeleportCooldown.wait_time = cd
 
 func can_teleport() -> bool: 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://pwubbh68vpku"]
+
+[ext_resource type="PackedScene" uid="uid://bcc8p1og38gk5" path="res://scenes/items/Item.tscn" id="1_o4df6"]
+[ext_resource type="Script" path="res://scenes/items/Amplitude.gd" id="1_vyctk"]
+
+[node name="Amplitude" type="Node2D" groups=["power_up"]]
+script = ExtResource("1_vyctk")
+
+[node name="Item" parent="." instance=ExtResource("1_o4df6")]
