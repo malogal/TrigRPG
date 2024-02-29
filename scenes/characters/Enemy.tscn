@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bycx5snr304xk"]
+[gd_scene load_steps=28 format=3 uid="uid://bycx5snr304xk"]
 
 [ext_resource type="Script" path="res://scenes/characters/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="2"]
@@ -153,9 +153,16 @@ animations = [{
 font_size = 45
 font_color = Color(0.803922, 0.133333, 0.180392, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wuu5n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wabu1"]
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(588, 286)
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1")
+WALK_SPEED = 150
 
 [node name="sprite" type="Sprite2D" parent="."]
 visible = false
@@ -180,11 +187,8 @@ position = Vector2(6, 14.0211)
 polygon = PackedVector2Array(-134.513, -92.9393, -124.246, 19.4555, -59.4026, 109.155, 76.2278, 112.938, 75.147, 26.4802, -2.66479, 20.5363, -36.1671, -8.64319, -57.2411, -40.5244)
 disabled = true
 
-[node name="state_changer" type="Timer" parent="."]
-autostart = true
-
 [node name="hurtbox" type="Area2D" parent="."]
-position = Vector2(0, -72.0772)
+position = Vector2(0, -49.0772)
 collision_mask = 3
 
 [node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
@@ -215,5 +219,22 @@ metadata/_edit_use_anchors_ = true
 [node name="DamageTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="state_changer" to="." method="_on_state_changer_timeout"]
+[node name="attack_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
+position = Vector2(0, -46)
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_wuu5n")
+
+[node name="sight_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight_range"]
+position = Vector2(0, -46)
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_wabu1")
+
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
+[connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
+[connection signal="area_exited" from="attack_range" to="." method="_on_exit_attack_range"]
+[connection signal="area_entered" from="sight_range" to="." method="_on_enter_sight"]
+[connection signal="area_exited" from="sight_range" to="." method="_on_exit_sight"]
