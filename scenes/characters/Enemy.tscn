@@ -154,6 +154,7 @@ font_size = 45
 font_color = Color(0.803922, 0.133333, 0.180392, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wuu5n"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wabu1"]
 
@@ -163,6 +164,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1")
 WALK_SPEED = 150
+metadata/_edit_horizontal_guides_ = [-71.0]
 
 [node name="sprite" type="Sprite2D" parent="."]
 visible = false
@@ -199,7 +201,7 @@ item_type = "Bandit Head"
 
 [node name="anims" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -71)
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_7q67h")
 animation = &"walk_down"
 
