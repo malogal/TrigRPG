@@ -47,7 +47,7 @@ position = Vector2(0, 21)
 shape = SubResource("18")
 
 [node name="anims" type="AnimatedSprite2D" parent="."]
-scale = Vector2(6, 6)
+scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_n3wkj")
 animation = &"idle_left"
 script = ExtResource("6_2jx58")
