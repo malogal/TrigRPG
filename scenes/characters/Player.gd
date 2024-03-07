@@ -16,7 +16,7 @@ var items: Dictionary = {}
 var linear_vel: Vector2     = Vector2()
 var roll_direction: Vector2 = Vector2.DOWN
 
-const default_cooldown_pie: float = 1.0
+const default_cooldown_pie: float = 2.0
 const default_cooldown_wave: float = 1.5
 const default_cooldown_teleport: float = 6.0
 var freq_cooldown_modifier: float = 1.0
@@ -24,6 +24,7 @@ var freq_cooldown_modifier: float = 1.0
 signal health_changed(current_hp)
 # Signal new amount of pie
 signal pie_changed(amount: Angle)
+
 
 @export var facing: String = "down" # (String, "up", "down", "left", "right")
 
@@ -92,12 +93,13 @@ func _ready():
 		printerr("Error connecting to dialog system")
 	$anims.play()
 	
+	# Probably a better way to do this incase running reinit causes items to be 'dropped'
+	Inventory.item_changed.connect(_on_item_changed)
 	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
 	set_cooldowns()
 	
 	$anims.animation_looped.connect(_on_anims_animation_looped)		
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
-	Inventory.item_changed.connect(_on_item_changed)
 	
 	
 	# getting current save path from load game screen
@@ -116,7 +118,7 @@ func _ready():
 # Updates state, action, and velocity
 func get_input(): 
 		var input_direction: Vector2 = Input.get_vector(movement_map.left.input, movement_map.right.input, movement_map.up.input, movement_map.down.input)
-		velocity = input_direction * WALK_SPEED		
+		velocity = input_direction * WALK_SPEED
 		movement = movement_map.idle
 		move_and_slide()
 		## FIXME this won't work if diagnal
@@ -135,7 +137,7 @@ func get_input():
 				pie_changed.emit(pie_amount)
 			elif Input.is_action_just_pressed("space"):
 				pie_amount.add_angle(pie_increment)
-				pie_changed.emit(pie_amount)				
+				pie_changed.emit(pie_amount)
 		if allowed_powers.teleport and Input.is_action_just_released("wave"):
 			action = WAVE
 		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
@@ -277,11 +279,22 @@ func _on_pie_throwing_turn_direction(dir: String):
 	assign_animation("throw_" + facing)
 	
 func _on_item_changed(action: String, type: String, amount: float) -> void:
-	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
-	set_cooldowns()
+	if type == "frequency":
+		# Default frequency to 0 using 'get_item' instead of 'amount'
+		freq_cooldown_modifier = Inventory.get_item("frequency", 1)
+		set_cooldowns()
+	# When an item is dropped, place it on the ground with the item spawner
+	if action == "removed":
+		$item_spawner.spawn(type, amount)
 
 func get_pie_available_signal() -> Signal:
 	return $PieThrowing.get_pie_available_signal()
+
+func get_wave_available_signal() -> Signal:
+	return $WaveTeleport.wave_available
+
+func get_teleport_available_signal() -> Signal:
+	return $WaveTeleport.teleport_available
 
 func _on_invincibility_timer_timeout():
 	is_invincible = false

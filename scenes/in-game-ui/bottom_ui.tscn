@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dsr6iiolheh1f"]
+[gd_scene load_steps=19 format=3 uid="uid://dsr6iiolheh1f"]
 
 [ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
 [ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="2_1min0"]
@@ -27,6 +27,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvjlu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsmwt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xd5i"]
+bg_color = Color(0.929412, 0.203922, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ispom"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jejwj"]
+bg_color = Color(0.286275, 0.67451, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg364"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kogbh"]
+bg_color = Color(0.317647, 0.490196, 0.937255, 1)
 
 [node name="BottomUi" type="MarginContainer"]
 anchors_preset = 12
@@ -125,3 +142,60 @@ texture = ExtResource("6_khwi1")
 expand_mode = 2
 stretch_mode = 4
 script = SubResource("GDScript_vexre")
+
+[node name="Cooldowns" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CooldownLabel" type="Label" parent="HBoxContainer/Cooldowns"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_nvjlu")
+text = "Cool Downs"
+horizontal_alignment = 1
+
+[node name="Buttons" type="GridContainer" parent="HBoxContainer/Cooldowns"]
+layout_mode = 2
+columns = 3
+
+[node name="TabButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
+material = SubResource("ShaderMaterial_hsmwt")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_6xd5i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ispom")
+toggle_mode = true
+action_mode = 0
+button_mask = 0
+text = "Tab"
+expand_icon = true
+
+[node name="FBtutton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
+material = SubResource("ShaderMaterial_hsmwt")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_jejwj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
+toggle_mode = true
+action_mode = 0
+button_mask = 0
+text = "  F  "
+expand_icon = true
+
+[node name="ClickButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
+material = SubResource("ShaderMaterial_hsmwt")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_kogbh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
+toggle_mode = true
+action_mode = 0
+button_mask = 0
+text = "Click"
