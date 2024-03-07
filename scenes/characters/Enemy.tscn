@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/characters/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/misc/ItemSpawner.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://qjowafifjm62" path="res://textures/enemy/zombie_walk.png" id="4_hlxtn"]
 [ext_resource type="Script" path="res://scenes/characters/Health.gd" id="5_ya5kf"]
 
@@ -197,7 +197,7 @@ collision_mask = 3
 shape = SubResource("18")
 
 [node name="item_spawner" parent="." instance=ExtResource("3")]
-item_type = "Bandit Head"
+item_type = "cosine"
 
 [node name="anims" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -71)

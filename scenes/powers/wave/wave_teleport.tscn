@@ -10,3 +10,6 @@ one_shot = true
 
 [node name="TeleportCooldown" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="timeout" from="WaveCooldown" to="." method="_on_wave_cooldown_timeout"]
+[connection signal="timeout" from="TeleportCooldown" to="." method="_on_teleport_cooldown_timeout"]

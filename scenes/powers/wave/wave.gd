@@ -14,8 +14,8 @@ func _ready():
 	pass # Replace with function body.
 
 # Wave properties, default values
-var amplitude: float = 650 # Height of the wave
-var frequency: float = 0.01 # How many waves within a certain distance
+var amplitude: float = 450 # Height of the wave
+var frequency: float = 0.005 # How many waves within a certain distance
 var is_sine_wave: bool = true # True for sine, false for cosine
 var wave_color_pos: Color = Color(0.00000100867101, 0.5642226934433, 0.51764661073685, 0.5)
 var wave_color_neg: Color = Color(0.79184025526047, 0.31729644536972, 0.10155173391104, 0.5)
@@ -55,7 +55,7 @@ func set_points(start_pos: Vector2, first: int, last: int, direction: Vector2, a
 		var current_point: Vector2
 		
 		if is_horizontal:
-			current_point = start_pos + Vector2(displacement.x, wave_offset)
+			current_point = start_pos + Vector2(displacement.x, -wave_offset)
 		else:
 			current_point = start_pos + Vector2(wave_offset, displacement.y)
 		# Skip first line which would draw straight from player to begining of wave
@@ -71,6 +71,8 @@ func new_wave(specs: Dictionary):
 		is_sine_wave = specs.is_sine
 	if "is_horizontal" in specs:
 		is_horizontal = specs.is_horizontal
+	# TODO Disable vertical wave for now
+	is_horizontal = true
 	fill_array()
 	$InnerWave.new_inner_wave(wave_points_positive, wave_points_negative)
 

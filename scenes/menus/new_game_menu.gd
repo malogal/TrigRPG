@@ -51,7 +51,7 @@ func saveNewSave():
 	
 	# set global variable to new save
 	Globals.currentSavePath = currentSaveSlot
-	
+	Inventory.reset()
 	# load game with that save
 	get_tree().change_scene_to_file(mainGamePath)
 

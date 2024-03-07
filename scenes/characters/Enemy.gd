@@ -81,8 +81,8 @@ func _physics_process(_delta):
 			pass
 		STATE_DIE:
 			new_anim = "die"
-		STATE_HURT:
-			new_anim = "hurt"
+		#STATE_HURT:
+			#new_anim = "hurt"
 	
 	#override for testing
 	#new_anim = "walk_right"
@@ -133,10 +133,10 @@ func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
 		$DamageTimer.start()
 		health_angle.add_angle(body.pie_get_amount())
-		var pushback_direction = (global_position - body.global_position).normalized()
+		var pushback_direction = body.linear_velocity.normalized()
 		set_velocity(pushback_direction * 5000)
 		move_and_slide()
-		state = STATE_HURT
+		#state = STATE_HURT
 		$state_changer.start()
 		$Health.set_angle_text(health_angle)
 		if health_angle.is_zero():

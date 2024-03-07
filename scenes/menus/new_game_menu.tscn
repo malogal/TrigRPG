@@ -154,6 +154,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="BackButton" parent="." instance=ExtResource("2_3eei8")]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 42.0
 offset_right = 226.0

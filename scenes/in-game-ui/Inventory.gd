@@ -7,8 +7,13 @@ var cosine = preload("res://textures/power-ups/red-box.png")
 
 func _ready() -> void:
 	Inventory.item_changed.connect(_on_item_changed)
+	var inv = Inventory.list()
+	for type in inv:
+		_on_item_changed("added", type, inv[type])
 
 func _on_item_changed(action: String, type: String, amount: float): 
+	if action != "added":
+		return
 	match type:
 		"amplitude":
 			$Amplitude.visible = true
