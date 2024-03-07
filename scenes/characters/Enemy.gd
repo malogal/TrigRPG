@@ -18,7 +18,6 @@ var anim = ""
 var new_anim = ""
 
 var player
-var attack_hitbox
 
 enum { STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT }
 
@@ -62,7 +61,6 @@ func _physics_process(_delta):
 			pass
 		STATE_ATTACK:
 			new_anim = "attack_" + facing
-			player.damage_player($enemy_attack)
 			pass
 		STATE_ROLL:
 			set_velocity(linear_vel)
@@ -145,3 +143,4 @@ func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 			$state_changer.stop()
 			state = STATE_DIE
 			despawn()
+	

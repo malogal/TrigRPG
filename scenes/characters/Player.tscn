@@ -56,9 +56,6 @@ script = ExtResource("6_2jx58")
 
 [node name="WaveTeleport" parent="." instance=ExtResource("7_y8k3y")]
 
-[node name="invincibility_timer" type="Timer" parent="."]
-
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="animation_finished" from="anims" to="." method="_on_anims_animation_finished"]
 [connection signal="animation_looped" from="anims" to="." method="_on_anims_animation_looped"]
-[connection signal="timeout" from="invincibility_timer" to="." method="_on_invincibility_timer_timeout"]
