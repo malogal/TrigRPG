@@ -18,7 +18,6 @@ focus_neighbor_right = NodePath("credits")
 focus_neighbor_bottom = NodePath("new_game")
 focus_mode = 2
 script = ExtResource("4")
-initial_level = "res://scenes/levels/Outside.tscn"
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 0

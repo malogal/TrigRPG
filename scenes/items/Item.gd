@@ -52,12 +52,13 @@ func _ready():
 		item_type = name
 		
 func _process( delta: float, ) -> void:
-	if pickup_able and Input.is_action_pressed("interact"):
+	if pickup_able and Input.is_action_just_pressed("interact"):
+		pickup_able = false
 		pickup()
 		
 func _on_Item_body_entered(body):
 	if body is Player:
-		$anims.play("flashing")
+		$anims.queue("flashing")
 		pickup_able = true
 		
 func _on_Item_body_exited(body):

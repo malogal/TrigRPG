@@ -98,18 +98,34 @@ func loadSavesData():
 		timeSpentLabel.text = timeSpent
 
 func _on_save_1_delete_button_pressed():
+	# Delete saved game inventory
+	var js_save = Globals.save_file_to_user_save(save1Path)
+	if FileAccess.file_exists(js_save):
+		DirAccess.remove_absolute(js_save)
+	# Delete save slot
 	if FileAccess.file_exists(save1Path):
 		DirAccess.remove_absolute(save1Path)
 		print("deleted data in " + save1Path)
 		loadSavesData()
+	
 
 func _on_save_2_delete_button_pressed():
+	# Delete saved game inventory
+	var js_save = Globals.save_file_to_user_save(save2Path)
+	if FileAccess.file_exists(js_save):
+		DirAccess.remove_absolute(js_save)
+	# Delete save slot
 	if FileAccess.file_exists(save2Path):
 		DirAccess.remove_absolute(save2Path)
 		print("deleted data in " + save2Path)
 		loadSavesData()
 
 func _on_save_3_delete_button_pressed():
+	# Delete saved game inventory
+	var js_save = Globals.save_file_to_user_save(save3Path)
+	if FileAccess.file_exists(js_save):
+		DirAccess.remove_absolute(js_save)
+	# Delete save slot
 	if FileAccess.file_exists(save3Path):
 		DirAccess.remove_absolute(save3Path)
 		print("deleted data in " + save3Path)
@@ -126,6 +142,7 @@ func _input(event):
 			print("loading save 2")
 			Globals.currentSavePath = save2Path
 			get_tree().change_scene_to_file(mainGamePath)
+			Globals.load_game()
 		if mouseOverPanel3 and event.pressed and savesData[2].saveName.text != "":
 			print("loading save 3")
 			Globals.currentSavePath = save3Path
