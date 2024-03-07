@@ -5,6 +5,7 @@ class_name Player
 @export var WALK_SPEED: int = 350 # pixels per second
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
+@export var time_invincible: float = 2.0
 
 #const AngleClass = preload("res://misc-utility/Angle.gd")
 var pie_amount = Angle.new(PI/2)
@@ -37,6 +38,9 @@ enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE
 var state
 var action
 var movement
+
+var invincibility_timer
+var is_invincible
 
 var allowed_powers = {
 	pie = true,
@@ -101,6 +105,10 @@ func _ready():
 	state = STATE_IDLE
 	action = STATE_IDLE
 	movement = movement_map.idle
+	
+	# Set up invincibility timer
+	invincibility_timer = $invincibility_timer
+	is_invincible = false
 
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
@@ -230,7 +238,14 @@ func set_cooldowns():
 	$WaveTeleport.set_teleport_cooldown(default_cooldown_teleport / freq_cooldown_modifier)
 
 func _on_hurtbox_area_entered(area):
-	if state != STATE_DIE and area.is_in_group("enemy_weapons"):
+	damage_player(area)
+	pass
+
+func damage_player(area):
+	if state != STATE_DIE and area.is_in_group("enemy_weapons") and !is_invincible:
+		is_invincible = true
+		invincibility_timer.wait_time = time_invincible
+		invincibility_timer.start()
 		hitpoints -= 1
 		emit_signal("health_changed", hitpoints)
 		var pushback_direction = (global_position - area.global_position).normalized()
@@ -240,6 +255,7 @@ func _on_hurtbox_area_entered(area):
 		if hitpoints <= 0:
 			state = STATE_DIE
 	pass
+	
 
 func is_facing_horizontal() -> bool:
 	var is_horizontal: bool = false
@@ -266,3 +282,6 @@ func _on_item_changed(action: String, type: String, amount: float) -> void:
 
 func get_pie_available_signal() -> Signal:
 	return $PieThrowing.get_pie_available_signal()
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false
