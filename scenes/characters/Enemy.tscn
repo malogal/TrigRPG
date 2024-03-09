@@ -181,14 +181,6 @@ position = Vector2(-0.882385, -27.9806)
 rotation = 1.5708
 shape = SubResource("1")
 
-[node name="enemy_sword" type="Area2D" parent="." groups=["enemy_weapons"]]
-position = Vector2(0, -78.0211)
-
-[node name="slash" type="CollisionPolygon2D" parent="enemy_sword"]
-position = Vector2(6, 14.0211)
-polygon = PackedVector2Array(-134.513, -92.9393, -124.246, 19.4555, -59.4026, 109.155, 76.2278, 112.938, 75.147, 26.4802, -2.66479, 20.5363, -36.1671, -8.64319, -57.2411, -40.5244)
-disabled = true
-
 [node name="hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -49.0772)
 collision_mask = 3
@@ -221,7 +213,7 @@ metadata/_edit_use_anchors_ = true
 [node name="DamageTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="attack_range" type="Area2D" parent="."]
+[node name="attack_range" type="Area2D" parent="." groups=["enemy_weapons"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
 position = Vector2(0, -46)
