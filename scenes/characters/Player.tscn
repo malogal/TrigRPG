@@ -49,7 +49,7 @@ shape = SubResource("18")
 [node name="anims" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_n3wkj")
-animation = &"idle_left"
+animation = &"walk_down"
 script = ExtResource("6_2jx58")
 
 [node name="PieThrowing" parent="." instance=ExtResource("4_ysf0e")]
