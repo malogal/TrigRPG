@@ -1,9 +1,9 @@
 extends GridContainer
 
-var amplitude = preload("res://textures/power-ups/blue-box.png")
-var frequency = preload("res://textures/power-ups/green-box.png")
-var sine = preload("res://textures/power-ups/purple-box.png")
-var cosine = preload("res://textures/power-ups/red-box.png")
+var amplitude = preload("res://textures/power-ups/power_amp.png")
+var frequency = preload("res://textures/power-ups/power_freq.png")
+var sine = preload("res://textures/power-ups/power_sin.png")
+var cosine = preload("res://textures/power-ups/power_cos.png")
 
 func _ready() -> void:
 	Inventory.item_changed.connect(_on_item_changed)

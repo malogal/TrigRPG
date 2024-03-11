@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmvgb8mb2ou0r"
-path="res://.godot/imported/red-box.png-79807a3e159585e23a158f5fd607890a.ctex"
+uid="uid://c601v4let1yjk"
+path="res://.godot/imported/power_freq.png-0332388d698d91b6739666b2ad350443.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/power-ups/red-box.png"
-dest_files=["res://.godot/imported/red-box.png-79807a3e159585e23a158f5fd607890a.ctex"]
+source_file="res://textures/power-ups/power_freq.png"
+dest_files=["res://.godot/imported/power_freq.png-0332388d698d91b6739666b2ad350443.ctex"]
 
 [params]
 
