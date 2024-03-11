@@ -78,3 +78,4 @@ func save_file_to_user_save(save_file):
 			return jsSave2
 		save3Path:
 			return jsSave3
+	return jsSave1

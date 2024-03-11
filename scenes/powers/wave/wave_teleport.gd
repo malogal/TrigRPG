@@ -33,13 +33,16 @@ func set_teleport_cooldown(cd: float = 6.0):
 	$TeleportCooldown.wait_time = cd
 
 func can_teleport() -> bool: 
-	return $TeleportCooldown.is_stopped() && is_wave_active
+	if wave_main == null:
+		return false
+	var point: Vector2 = wave_main.get_inner_wave_point()
+	return is_wave_active && $TeleportCooldown.is_stopped() && !point.is_zero_approx()
 	
 # Returns (0,0) if wave_main has not been initatited yet, it is freed, or 
 # teleport teleport is on CD. Should not be used if user is not teleporting. 
 func get_teleport_to() -> Vector2:	
 	# if wave has not been init, the wave isn't active, or teleport is still on CD, return (0,0)
-	if wave_main == null || !is_wave_active || !$TeleportCooldown.is_stopped(): 
+	if !can_teleport():
 		return Vector2(0,0) 
 	var point: Vector2 = wave_main.get_inner_wave_point()
 	# If the teleportation point is near zero, don't start the cool down

@@ -6,6 +6,7 @@ class_name Player
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
 @export var time_invincible: float = 2.0
+const time_to_teleport = .75
 
 #const AngleClass = preload("res://misc-utility/Angle.gd")
 var pie_amount = Angle.new(PI/2)
@@ -101,7 +102,6 @@ func _ready():
 	$anims.animation_looped.connect(_on_anims_animation_looped)		
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
 	
-	
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
 	state = STATE_IDLE
@@ -141,10 +141,10 @@ func get_input():
 		if allowed_powers.teleport and Input.is_action_just_released("wave"):
 			action = WAVE
 		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
-			var point: Vector2 = $WaveTeleport.get_teleport_to()
-			# Point recieved from wave teleport is relative
-			position.x += point.x
-			position.y += point.y
+			$TeleportAnimated.visible = true
+			$TeleportAnimated.play("teleport")
+			# Start countdown until we teleport
+			delayed_teleport($WaveTeleport.get_teleport_to())
 			# Get out of wave teleport mode 
 			$WaveTeleport.stop_wave()
 			 
@@ -298,3 +298,11 @@ func get_teleport_available_signal() -> Signal:
 
 func _on_invincibility_timer_timeout():
 	is_invincible = false
+
+func _on_teleport_animated_animation_finished() -> void:
+	$TeleportAnimated.visible = false
+
+func delayed_teleport(pos: Vector2):
+	await get_tree().create_timer(time_to_teleport).timeout
+	position.x += pos.x
+	position.y += pos.y

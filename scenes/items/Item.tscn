@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bcc8p1og38gk5"]
 
 [ext_resource type="Script" path="res://scenes/items/Item.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://dtra3xk0fpsv0" path="res://textures/power-ups/blue-box.png" id="2_ehlfw"]
+[ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="2_r8yh2"]
 [ext_resource type="AudioStream" uid="uid://bkqm1wbxr2gg5" path="res://sounds/item_collected.wav" id="3"]
 [ext_resource type="LabelSettings" uid="uid://db0svtjv6o8j2" path="res://fonts/amplitude_label_settings.tres" id="4_by0bj"]
 
@@ -184,10 +184,9 @@ _data = {
 script = ExtResource("2")
 
 [node name="sprite" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_ehlfw")
+scale = Vector2(4, 4)
+texture = ExtResource("2_r8yh2")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -205,9 +204,11 @@ libraries = {
 autoplay = "spawn"
 
 [node name="Label" type="Label" parent="."]
-offset_left = -43.0
-offset_top = -97.0
-offset_right = 44.0
-offset_bottom = -61.0
+offset_left = -52.0
+offset_top = -106.0
+offset_right = 35.0
+offset_bottom = -70.0
+scale = Vector2(1.25, 1.25)
 text = "Amp: 1"
 label_settings = ExtResource("4_by0bj")
+horizontal_alignment = 1

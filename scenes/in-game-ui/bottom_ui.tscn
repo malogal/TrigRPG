@@ -1,14 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://dsr6iiolheh1f"]
+[gd_scene load_steps=20 format=3 uid="uid://dsr6iiolheh1f"]
 
 [ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
 [ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="2_1min0"]
 [ext_resource type="Script" path="res://scenes/in-game-ui/Inventory.gd" id="3_d8tjt"]
-[ext_resource type="Texture2D" uid="uid://bilgm4qtxv6un" path="res://textures/power-ups/purple-box.png" id="4_jpg4r"]
+[ext_resource type="StyleBox" uid="uid://u0klvjtwyoju" path="res://fonts/grey_style_box_bg.tres" id="4_i7vl6"]
 [ext_resource type="LabelSettings" uid="uid://du3fepabgj3y2" path="res://fonts/modifier_label_settings.tres" id="4_r7aal"]
 [ext_resource type="LabelSettings" uid="uid://ckf3lk76e86ni" path="res://fonts/frequency_label_settings.tres" id="5_j3mav"]
-[ext_resource type="Texture2D" uid="uid://corddxeqkqia3" path="res://textures/power-ups/green-box.png" id="5_rjayb"]
 [ext_resource type="LabelSettings" uid="uid://db0svtjv6o8j2" path="res://fonts/amplitude_label_settings.tres" id="6_aka0c"]
-[ext_resource type="Texture2D" uid="uid://dtra3xk0fpsv0" path="res://textures/power-ups/blue-box.png" id="6_khwi1"]
+[ext_resource type="Texture2D" uid="uid://btf40c3p0dmmu" path="res://textures/power-ups/power_sin.png" id="7_ijb4x"]
+[ext_resource type="Texture2D" uid="uid://c601v4let1yjk" path="res://textures/power-ups/power_freq.png" id="8_jxyj6"]
+[ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="9_pp2gc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3s64t"]
 font_size = 35
@@ -85,6 +86,7 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="Divider" type="Panel" parent="HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
@@ -96,6 +98,7 @@ script = ExtResource("3_d8tjt")
 
 [node name="ModifierLabel" type="Label" parent="HBoxContainer/Inventory"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
 text = "Sine
 "
 label_settings = ExtResource("4_r7aal")
@@ -104,6 +107,7 @@ vertical_alignment = 1
 
 [node name="FrequencyLabel" type="Label" parent="HBoxContainer/Inventory"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
 text = "Freq: 1
 "
 label_settings = ExtResource("5_j3mav")
@@ -112,6 +116,7 @@ vertical_alignment = 1
 
 [node name="AmplitudeLabel" type="Label" parent="HBoxContainer/Inventory"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
 text = "Amp: 1
 "
 label_settings = ExtResource("6_aka0c")
@@ -123,7 +128,7 @@ layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Sine or Cosine Wave Modifier
 "
-texture = ExtResource("4_jpg4r")
+texture = ExtResource("7_ijb4x")
 expand_mode = 2
 stretch_mode = 4
 
@@ -131,14 +136,14 @@ stretch_mode = 4
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Frequency Power-Up"
-texture = ExtResource("5_rjayb")
+texture = ExtResource("8_jxyj6")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="Amplitude" type="TextureRect" parent="HBoxContainer/Inventory"]
 layout_mode = 2
 tooltip_text = "Amplitude Power-Up"
-texture = ExtResource("6_khwi1")
+texture = ExtResource("9_pp2gc")
 expand_mode = 2
 stretch_mode = 4
 script = SubResource("GDScript_vexre")

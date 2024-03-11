@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bilgm4qtxv6un"
-path="res://.godot/imported/purple-box.png-1dbbefa3344cfef7f7d8bf651d390224.ctex"
+uid="uid://bj8exkjdoterf"
+path="res://.godot/imported/teleport.png-f718c9482c7797d227ca6457f2626e68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/power-ups/purple-box.png"
-dest_files=["res://.godot/imported/purple-box.png-1dbbefa3344cfef7f7d8bf651d390224.ctex"]
+source_file="res://textures/projectile/teleport.png"
+dest_files=["res://.godot/imported/teleport.png-f718c9482c7797d227ca6457f2626e68.ctex"]
 
 [params]
 
