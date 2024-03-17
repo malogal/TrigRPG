@@ -5,6 +5,8 @@ class_name Player
 @export var WALK_SPEED: int = 350 # pixels per second
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
+@export var time_invincible: float = 2.0
+const time_to_teleport = .75
 
 #const AngleClass = preload("res://misc-utility/Angle.gd")
 var pie_amount = Angle.new(PI/2)
@@ -15,7 +17,7 @@ var items: Dictionary = {}
 var linear_vel: Vector2     = Vector2()
 var roll_direction: Vector2 = Vector2.DOWN
 
-const default_cooldown_pie: float = 1.0
+const default_cooldown_pie: float = 2.0
 const default_cooldown_wave: float = 1.5
 const default_cooldown_teleport: float = 6.0
 var freq_cooldown_modifier: float = 1.0
@@ -23,6 +25,7 @@ var freq_cooldown_modifier: float = 1.0
 signal health_changed(current_hp)
 # Signal new amount of pie
 signal pie_changed(amount: Angle)
+
 
 @export var facing: String = "down" # (String, "up", "down", "left", "right")
 
@@ -37,6 +40,9 @@ enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE
 var state
 var action
 var movement
+
+var invincibility_timer
+var is_invincible
 
 var allowed_powers = {
 	pie = true,
@@ -88,19 +94,23 @@ func _ready():
 		printerr("Error connecting to dialog system")
 	$anims.play()
 	
+	# Probably a better way to do this incase running reinit causes items to be 'dropped'
+	Inventory.item_changed.connect(_on_item_changed)
 	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
 	set_cooldowns()
 	
 	$anims.animation_looped.connect(_on_anims_animation_looped)		
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
-	Inventory.item_changed.connect(_on_item_changed)
-	
 	
 	# getting current save path from load game screen
 	print("currently in save " + Globals.currentSavePath)
 	state = STATE_IDLE
 	action = STATE_IDLE
 	movement = movement_map.idle
+	
+	# Set up invincibility timer
+	invincibility_timer = $invincibility_timer
+	is_invincible = false
 
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
@@ -108,7 +118,7 @@ func _ready():
 # Updates state, action, and velocity
 func get_input(): 
 		var input_direction: Vector2 = Input.get_vector(movement_map.left.input, movement_map.right.input, movement_map.up.input, movement_map.down.input)
-		velocity = input_direction * WALK_SPEED		
+		velocity = input_direction * WALK_SPEED
 		movement = movement_map.idle
 		move_and_slide()
 		## FIXME this won't work if diagnal
@@ -127,14 +137,14 @@ func get_input():
 				pie_changed.emit(pie_amount)
 			elif Input.is_action_just_pressed("change_pie_measurement_positive"):
 				pie_amount.add_angle(pie_increment)
-				pie_changed.emit(pie_amount)				
+				pie_changed.emit(pie_amount)
 		if allowed_powers.teleport and Input.is_action_just_released("wave"):
 			action = WAVE
 		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
-			var point: Vector2 = $WaveTeleport.get_teleport_to()
-			# Point recieved from wave teleport is relative
-			position.x += point.x
-			position.y += point.y
+			$TeleportAnimated.visible = true
+			$TeleportAnimated.play("teleport")
+			# Start countdown until we teleport
+			delayed_teleport($WaveTeleport.get_teleport_to())
 			# Get out of wave teleport mode 
 			$WaveTeleport.stop_wave()
 			 
@@ -230,7 +240,14 @@ func set_cooldowns():
 	$WaveTeleport.set_teleport_cooldown(default_cooldown_teleport / freq_cooldown_modifier)
 
 func _on_hurtbox_area_entered(area):
-	if state != STATE_DIE and area.is_in_group("enemy_weapons"):
+	damage_player(area)
+	pass
+
+func damage_player(area):
+	if state != STATE_DIE and area.is_in_group("enemy_weapons") and !is_invincible:
+		is_invincible = true
+		invincibility_timer.wait_time = time_invincible
+		invincibility_timer.start()
 		hitpoints -= 1
 		emit_signal("health_changed", hitpoints)
 		var pushback_direction = (global_position - area.global_position).normalized()
@@ -240,6 +257,7 @@ func _on_hurtbox_area_entered(area):
 		if hitpoints <= 0:
 			state = STATE_DIE
 	pass
+	
 
 func is_facing_horizontal() -> bool:
 	var is_horizontal: bool = false
@@ -261,8 +279,30 @@ func _on_pie_throwing_turn_direction(dir: String):
 	assign_animation("throw_" + facing)
 	
 func _on_item_changed(action: String, type: String, amount: float) -> void:
-	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
-	set_cooldowns()
+	if type == "frequency":
+		# Default frequency to 0 using 'get_item' instead of 'amount'
+		freq_cooldown_modifier = Inventory.get_item("frequency", 1)
+		set_cooldowns()
+	# When an item is dropped, place it on the ground with the item spawner
+	if action == "removed":
+		$item_spawner.spawn(type, amount)
 
 func get_pie_available_signal() -> Signal:
 	return $PieThrowing.get_pie_available_signal()
+
+func get_wave_available_signal() -> Signal:
+	return $WaveTeleport.wave_available
+
+func get_teleport_available_signal() -> Signal:
+	return $WaveTeleport.teleport_available
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false
+
+func _on_teleport_animated_animation_finished() -> void:
+	$TeleportAnimated.visible = false
+
+func delayed_teleport(pos: Vector2):
+	await get_tree().create_timer(time_to_teleport).timeout
+	position.x += pos.x
+	position.y += pos.y

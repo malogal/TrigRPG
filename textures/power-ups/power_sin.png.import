@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://corddxeqkqia3"
-path="res://.godot/imported/green-box.png-a8ecac482d2bfe892a5a26c6d6c725bc.ctex"
+uid="uid://btf40c3p0dmmu"
+path="res://.godot/imported/power_sin.png-ee1a750a33ba0f26b77b866b79b28db3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/power-ups/green-box.png"
-dest_files=["res://.godot/imported/green-box.png-a8ecac482d2bfe892a5a26c6d6c725bc.ctex"]
+source_file="res://textures/power-ups/power_sin.png"
+dest_files=["res://.godot/imported/power_sin.png-ee1a750a33ba0f26b77b866b79b28db3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtra3xk0fpsv0"
-path="res://.godot/imported/blue-box.png-51cde3e36eca98b02c954ab9a2b5dc3b.ctex"
+uid="uid://hsad7depgeqo"
+path="res://.godot/imported/forest_atlas.png-3b48c249c1968e15b8b6ae0d97e3bf1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/power-ups/blue-box.png"
-dest_files=["res://.godot/imported/blue-box.png-51cde3e36eca98b02c954ab9a2b5dc3b.ctex"]
+source_file="res://textures/tiles/forest_atlas.png"
+dest_files=["res://.godot/imported/forest_atlas.png-3b48c249c1968e15b8b6ae0d97e3bf1d.ctex"]
 
 [params]
 

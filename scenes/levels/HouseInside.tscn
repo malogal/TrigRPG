@@ -51,7 +51,7 @@ size = Vector2(1412.42, 336.798)
 [sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(1378.44, 314.398)
 
-[node name="HouseInside" type="Node"]
+[node name="HouseInside" type="Node" groups=["levels"]]
 
 [node name="house_inside" type="Sprite2D" parent="."]
 texture = ExtResource("1")
