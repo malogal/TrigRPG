@@ -122,10 +122,10 @@ func get_input():
 		if !$WaveTeleport.is_wave_actived(): 
 			if Input.is_action_just_pressed("throw_pie"):
 				action = PIE
-			if Input.is_action_just_pressed("shift-space"):
+			if Input.is_action_just_pressed("change_pie_measurement_negative"):
 				pie_amount.sub_angle(pie_increment)
 				pie_changed.emit(pie_amount)
-			elif Input.is_action_just_pressed("space"):
+			elif Input.is_action_just_pressed("change_pie_measurement_positive"):
 				pie_amount.add_angle(pie_increment)
 				pie_changed.emit(pie_amount)				
 		if allowed_powers.teleport and Input.is_action_just_released("wave"):

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/misc/MusicTrack.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://scenes/characters/Npc.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="8"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "idle"
