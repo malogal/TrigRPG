@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5ae7asa3t6gw"]
+
+[sub_resource type="SystemFont" id="SystemFont_ch65j"]
+font_names = PackedStringArray("Fira Code")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_262mh"]
+bg_color = Color(0, 0, 0, 0.690196)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsgmq"]
+bg_color = Color(1, 1, 1, 0.105882)
+
+[node name="KeybindInputButton" type="Button"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("SystemFont_ch65j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_262mh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xsgmq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xsgmq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+text = "Input Key"
+vertical_alignment = 1

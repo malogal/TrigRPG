@@ -27,10 +27,10 @@ func new_inner_wave(positive: PackedVector2Array, negative: PackedVector2Array):
 		
 func _process(delta):
 	var direction = 1
-	if Input.is_action_pressed("shift-space"):
+	if Input.is_action_pressed("change_pie_measurement_negative"):
 		calc_index(-1, delta)
 		queue_redraw()
-	elif Input.is_action_pressed("space"):
+	elif Input.is_action_pressed("change_pie_measurement_positive"):
 		calc_index(1, delta)
 		queue_redraw()
 	
