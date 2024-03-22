@@ -186,7 +186,6 @@ func _on_reset_button_pressed():
 
 
 func _on_exit_button_pressed():
-	saveSettings()
 	get_tree().change_scene_to_file(mainMenuScene)
 
 
