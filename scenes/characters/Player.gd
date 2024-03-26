@@ -171,9 +171,11 @@ func _physics_process(_delta):
 		STATE_DIE:
 			new_anim = "die"
 			#new_anim = "idle_"+facing
+			state = STATE_IDLE
 		STATE_HURT:
 			new_anim = "hurt_"+facing
 			#new_anim = "idle_"+facing
+			state = STATE_IDLE
 	match action:
 		PIE: 
 			var mouse_pos = get_local_mouse_position()
@@ -199,7 +201,7 @@ func _physics_process(_delta):
 	## UPDATE ANIMATION
 	if new_anim != anim && can_transition_animation:
 		# IF the old animation is one we don't want to inturrupt
-		if new_anim.begins_with("throw") or new_anim.begins_with("hurt"):
+		if new_anim.begins_with("throw") or new_anim.begins_with("hurt") or new_anim=="die":
 			can_transition_animation = false
 		assign_animation(new_anim)
 		
