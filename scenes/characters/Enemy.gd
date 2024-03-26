@@ -18,6 +18,7 @@ var anim = ""
 var new_anim = ""
 
 var player
+var attack_hitbox
 
 enum { STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT }
 
@@ -27,6 +28,7 @@ func _ready():
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
 	player = get_tree().get_nodes_in_group("player")[0]
+	attack_hitbox = $attack_range
 
 func _physics_process(_delta):
 	match state:
@@ -61,6 +63,7 @@ func _physics_process(_delta):
 			pass
 		STATE_ATTACK:
 			new_anim = "attack_" + facing
+			player.damage_player(attack_hitbox)
 			pass
 		STATE_ROLL:
 			set_velocity(linear_vel)
@@ -81,8 +84,8 @@ func _physics_process(_delta):
 			pass
 		STATE_DIE:
 			new_anim = "die"
-		STATE_HURT:
-			new_anim = "hurt"
+		#STATE_HURT:
+			#new_anim = "hurt"
 	
 	#override for testing
 	#new_anim = "walk_right"
@@ -133,14 +136,13 @@ func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
 		$DamageTimer.start()
 		health_angle.add_angle(body.pie_get_amount())
-		var pushback_direction = (global_position - body.global_position).normalized()
+		var pushback_direction = body.linear_velocity.normalized()
 		set_velocity(pushback_direction * 5000)
 		move_and_slide()
-		state = STATE_HURT
+		#state = STATE_HURT
 		$state_changer.start()
 		$Health.set_angle_text(health_angle)
 		if health_angle.is_zero():
 			$state_changer.stop()
 			state = STATE_DIE
 			despawn()
-	

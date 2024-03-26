@@ -107,6 +107,7 @@ theme_override_constants/separation = 32
 alignment = 1
 
 [node name="BackButton" parent="." instance=ExtResource("1_ifacx")]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 42.0
 offset_right = 226.0

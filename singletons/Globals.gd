@@ -5,6 +5,14 @@ var spawnpoint = ""
 var current_level = ""
 var currentSavePath = ""
 
+var save1Path = "res://save1.save"
+var save2Path = "res://save2.save"
+var save3Path = "res://save3.save"
+
+var jsSave1 = "user://savegame1.save"
+var jsSave2 = "user://savegame2.save"
+var jsSave3 = "user://savegame3.save"
+
 func _ready():
 	RenderingServer.set_default_clear_color(Color.WHITE)
 
@@ -12,7 +20,7 @@ func _ready():
 Really simple save file implementation. Just saving some variables to a dictionary
 """
 func save_game(): 
-	var savefile = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var savefile = FileAccess.open(save_file_to_user_save(currentSavePath), FileAccess.WRITE)
 	var save_dict = {}
 	save_dict.spawnpoint = spawnpoint
 	save_dict.current_level = current_level
@@ -27,11 +35,11 @@ If check_only is true it will only check for a valid save file and return true o
 restoring any data
 """
 func load_game(check_only=false):
-	
-	if not FileAccess.file_exists("user://savegame.save"):
+	var saveFileName = save_file_to_user_save(currentSavePath)
+	if not FileAccess.file_exists(saveFileName):
 		return false
 	
-	var savefile = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var savefile = FileAccess.open(saveFileName, FileAccess.READ)
 	
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(savefile.get_line())
@@ -55,10 +63,19 @@ func _restore_data(save_dict):
 	
 	# JSON numbers are always parsed as floats. In this case we need to turn them into ints
 	for key in save_dict.inventory:
-		save_dict.inventory[key] = int(save_dict.inventory[key])
-	Inventory.inventory = save_dict.inventory
+		save_dict.inventory[key] = float(save_dict.inventory[key])
+	Inventory.init_inventory(save_dict.inventory)
 	
 	spawnpoint = save_dict.spawnpoint
 	current_level = save_dict.current_level
 	pass
 	
+func save_file_to_user_save(save_file):
+	match save_file:
+		save1Path:
+			return jsSave1
+		save2Path:
+			return jsSave2
+		save3Path:
+			return jsSave3
+	return jsSave1

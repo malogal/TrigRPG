@@ -11,6 +11,15 @@ signal item_changed(action, type, amount)
 
 var inventory = {}
 
+func reset():
+	inventory = {}
+	
+func init_inventory(inv: Dictionary):
+	inventory = inv
+	for type in inventory:
+		if inventory[type] != 0:
+			item_changed.emit("added", type, inv[type])
+
 
 func get_item(type:String, default: float = 0) -> float:
 	if inventory.has(type):
@@ -19,14 +28,22 @@ func get_item(type:String, default: float = 0) -> float:
 		return default
 
 
-func add_item(type:String, amount:float = 1) -> bool:
+func add_item(type:String, amount:float = 1) -> bool: 
+	if inventory.has(type) and inventory[type] != 0:
+		item_changed.emit("removed", type, inventory[type])
+	# Special cases for sine and cosine as they are opposite items, but occupy the same spot
+	# If inventory has 'sine' already, 'cosine' should be amount == 0, and vise versa
 	match type:
 		"sine":
-			inventory["cosine"] = 0
+			if inventory.has("cosine") and inventory["cosine"] != 0:
+				item_changed.emit("removed", "cosine", inventory["cosine"])
+				inventory["cosine"] = 0
 		"cosine":
-			inventory["sine"] = 0
+			if inventory.has("sine") and inventory["sine"] != 0:
+				item_changed.emit("removed", "sine", inventory["sine"])
+				inventory["sine"] = 0
 	inventory[type] = amount
-	emit_signal("item_changed", "added", type, amount)
+	item_changed.emit("added", type, amount)
 	return true
 
 # TODO !!Unused for now, leaving incase we find a use for it!!
@@ -35,7 +52,7 @@ func remove_item(type:String, amount:float = 1) -> bool:
 		inventory[type] -= amount
 		if inventory[type] == 0:
 			inventory.erase(type)
-		emit_signal("item_changed", "removed", type, amount)
+		item_changed.emit("removed", type, amount)
 		return true
 	else:
 		return false
