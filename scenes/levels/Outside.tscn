@@ -1,17 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=17 format=3 uid="uid://damx5ema0gns7"]
 
-[ext_resource type="PackedScene" path="res://scenes/props/MushroomBig.tscn" id="1"]
+[ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/props/Grass.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://b7w18rrmllohu" path="res://scenes/props/House.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://scenes/misc/MusicTrack.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://scenes/props/Flower.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cw4pu11w75h78" path="res://scenes/misc/MusicTrack.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://scenes/props/MushroomSmall.tscn" id="9"]
-[ext_resource type="Texture2D" uid="uid://bwgyo0qknm6gt" path="res://textures/temp-props/puddle_big.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://cgd2njb3hg82" path="res://textures/temp-props/puddle_small.png" id="11"]
-[ext_resource type="PackedScene" uid="uid://bcc8p1og38gk5" path="res://scenes/items/Item.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="13_33be8"]
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
@@ -929,35 +922,13 @@ sources/6 = SubResource("TileSetAtlasSource_jdpm6")
 tile_proxies/coords_level = [[1, Vector2i(0, 0)], [6, Vector2i(0, 0)], [1, Vector2i(0, 1)], [6, Vector2i(0, 1)], [1, Vector2i(0, 2)], [6, Vector2i(0, 2)], [1, Vector2i(0, 3)], [6, Vector2i(0, 3)], [1, Vector2i(1, 0)], [6, Vector2i(1, 0)], [1, Vector2i(1, 1)], [6, Vector2i(1, 1)], [1, Vector2i(1, 2)], [6, Vector2i(1, 2)], [1, Vector2i(1, 3)], [6, Vector2i(1, 3)], [1, Vector2i(2, 0)], [6, Vector2i(2, 0)], [1, Vector2i(2, 1)], [6, Vector2i(2, 1)], [1, Vector2i(2, 2)], [6, Vector2i(2, 2)], [1, Vector2i(2, 3)], [6, Vector2i(2, 3)], [1, Vector2i(3, 0)], [6, Vector2i(3, 0)], [1, Vector2i(3, 1)], [6, Vector2i(3, 1)], [1, Vector2i(3, 2)], [6, Vector2i(3, 2)], [1, Vector2i(3, 3)], [6, Vector2i(3, 3)], [1, Vector2i(4, 0)], [6, Vector2i(4, 0)], [1, Vector2i(4, 1)], [6, Vector2i(4, 1)], [1, Vector2i(4, 2)], [6, Vector2i(4, 2)], [1, Vector2i(4, 3)], [6, Vector2i(4, 3)], [1, Vector2i(5, 0)], [6, Vector2i(5, 0)], [1, Vector2i(5, 1)], [6, Vector2i(5, 1)], [1, Vector2i(5, 2)], [6, Vector2i(5, 2)], [1, Vector2i(5, 3)], [6, Vector2i(5, 3)], [1, Vector2i(6, 0)], [6, Vector2i(6, 0)], [1, Vector2i(6, 1)], [6, Vector2i(6, 1)], [1, Vector2i(6, 2)], [6, Vector2i(6, 2)], [1, Vector2i(6, 3)], [6, Vector2i(6, 3)], [1, Vector2i(7, 0)], [6, Vector2i(7, 0)], [1, Vector2i(7, 1)], [6, Vector2i(7, 1)], [1, Vector2i(7, 2)], [6, Vector2i(7, 2)], [1, Vector2i(7, 3)], [6, Vector2i(7, 3)], [1, Vector2i(8, 0)], [6, Vector2i(8, 0)], [1, Vector2i(8, 1)], [6, Vector2i(8, 1)], [1, Vector2i(8, 2)], [6, Vector2i(8, 2)], [1, Vector2i(8, 3)], [6, Vector2i(8, 3)], [1, Vector2i(9, 0)], [6, Vector2i(9, 0)], [1, Vector2i(9, 1)], [6, Vector2i(9, 1)], [1, Vector2i(9, 2)], [6, Vector2i(9, 2)], [1, Vector2i(9, 3)], [6, Vector2i(9, 3)], [1, Vector2i(10, 0)], [6, Vector2i(10, 0)], [1, Vector2i(10, 1)], [6, Vector2i(10, 1)], [1, Vector2i(10, 2)], [6, Vector2i(10, 2)], [1, Vector2i(10, 3)], [6, Vector2i(10, 3)], [1, Vector2i(11, 0)], [6, Vector2i(11, 0)], [1, Vector2i(11, 1)], [6, Vector2i(11, 1)], [1, Vector2i(11, 2)], [6, Vector2i(11, 2)], [1, Vector2i(11, 3)], [6, Vector2i(11, 3)], [2, Vector2i(0, 0)], [6, Vector2i(0, 4)], [2, Vector2i(0, 1)], [6, Vector2i(0, 5)], [2, Vector2i(0, 2)], [6, Vector2i(0, 6)], [2, Vector2i(0, 3)], [6, Vector2i(0, 7)], [2, Vector2i(1, 0)], [6, Vector2i(1, 4)], [2, Vector2i(1, 1)], [6, Vector2i(1, 5)], [2, Vector2i(1, 2)], [6, Vector2i(1, 6)], [2, Vector2i(1, 3)], [6, Vector2i(1, 7)], [2, Vector2i(2, 0)], [6, Vector2i(2, 4)], [2, Vector2i(2, 1)], [6, Vector2i(2, 5)], [2, Vector2i(2, 2)], [6, Vector2i(2, 6)], [2, Vector2i(2, 3)], [6, Vector2i(2, 7)], [2, Vector2i(3, 0)], [6, Vector2i(3, 4)], [2, Vector2i(3, 1)], [6, Vector2i(3, 5)], [2, Vector2i(3, 2)], [6, Vector2i(3, 6)], [2, Vector2i(3, 3)], [6, Vector2i(3, 7)], [2, Vector2i(4, 0)], [6, Vector2i(4, 4)], [2, Vector2i(4, 1)], [6, Vector2i(4, 5)], [2, Vector2i(4, 2)], [6, Vector2i(4, 6)], [2, Vector2i(4, 3)], [6, Vector2i(4, 7)], [2, Vector2i(5, 0)], [6, Vector2i(5, 4)], [2, Vector2i(5, 1)], [6, Vector2i(5, 5)], [2, Vector2i(5, 2)], [6, Vector2i(5, 6)], [2, Vector2i(5, 3)], [6, Vector2i(5, 7)], [2, Vector2i(6, 0)], [6, Vector2i(6, 4)], [2, Vector2i(6, 1)], [6, Vector2i(6, 5)], [2, Vector2i(6, 2)], [6, Vector2i(6, 6)], [2, Vector2i(6, 3)], [6, Vector2i(6, 7)], [2, Vector2i(7, 0)], [6, Vector2i(7, 4)], [2, Vector2i(7, 1)], [6, Vector2i(7, 5)], [2, Vector2i(7, 2)], [6, Vector2i(7, 6)], [2, Vector2i(7, 3)], [6, Vector2i(7, 7)], [2, Vector2i(8, 0)], [6, Vector2i(8, 4)], [2, Vector2i(8, 1)], [6, Vector2i(8, 5)], [2, Vector2i(8, 2)], [6, Vector2i(8, 6)], [2, Vector2i(8, 3)], [6, Vector2i(8, 7)], [2, Vector2i(9, 0)], [6, Vector2i(9, 4)], [2, Vector2i(9, 1)], [6, Vector2i(9, 5)], [2, Vector2i(9, 3)], [6, Vector2i(9, 7)], [2, Vector2i(10, 0)], [6, Vector2i(10, 4)], [2, Vector2i(10, 1)], [6, Vector2i(10, 5)], [2, Vector2i(10, 2)], [6, Vector2i(10, 6)], [2, Vector2i(10, 3)], [6, Vector2i(10, 7)], [2, Vector2i(11, 0)], [6, Vector2i(11, 4)], [2, Vector2i(11, 1)], [6, Vector2i(11, 5)], [2, Vector2i(11, 2)], [6, Vector2i(11, 6)], [2, Vector2i(11, 3)], [6, Vector2i(11, 7)], [3, Vector2i(0, 0)], [6, Vector2i(0, 8)], [3, Vector2i(0, 1)], [6, Vector2i(0, 9)], [3, Vector2i(0, 2)], [6, Vector2i(0, 10)], [3, Vector2i(0, 3)], [6, Vector2i(0, 11)], [3, Vector2i(1, 0)], [6, Vector2i(1, 8)], [3, Vector2i(1, 1)], [6, Vector2i(1, 9)], [3, Vector2i(1, 2)], [6, Vector2i(1, 10)], [3, Vector2i(1, 3)], [6, Vector2i(1, 11)], [3, Vector2i(2, 0)], [6, Vector2i(2, 8)], [3, Vector2i(2, 1)], [6, Vector2i(2, 9)], [3, Vector2i(2, 2)], [6, Vector2i(2, 10)], [3, Vector2i(2, 3)], [6, Vector2i(2, 11)], [3, Vector2i(3, 0)], [6, Vector2i(3, 8)], [3, Vector2i(3, 1)], [6, Vector2i(3, 9)], [3, Vector2i(3, 2)], [6, Vector2i(3, 10)], [3, Vector2i(3, 3)], [6, Vector2i(3, 11)], [3, Vector2i(4, 0)], [6, Vector2i(4, 8)], [3, Vector2i(4, 1)], [6, Vector2i(4, 9)], [3, Vector2i(4, 2)], [6, Vector2i(4, 10)], [3, Vector2i(4, 3)], [6, Vector2i(4, 11)], [3, Vector2i(5, 0)], [6, Vector2i(5, 8)], [3, Vector2i(5, 1)], [6, Vector2i(5, 9)], [3, Vector2i(5, 2)], [6, Vector2i(5, 10)], [3, Vector2i(5, 3)], [6, Vector2i(5, 11)], [3, Vector2i(6, 0)], [6, Vector2i(6, 8)], [3, Vector2i(6, 1)], [6, Vector2i(6, 9)], [3, Vector2i(6, 2)], [6, Vector2i(6, 10)], [3, Vector2i(6, 3)], [6, Vector2i(6, 11)], [3, Vector2i(7, 0)], [6, Vector2i(7, 8)], [3, Vector2i(7, 1)], [6, Vector2i(7, 9)], [3, Vector2i(7, 2)], [6, Vector2i(7, 10)], [3, Vector2i(7, 3)], [6, Vector2i(7, 11)], [3, Vector2i(8, 0)], [6, Vector2i(8, 8)], [3, Vector2i(8, 1)], [6, Vector2i(8, 9)], [3, Vector2i(8, 2)], [6, Vector2i(8, 10)], [3, Vector2i(8, 3)], [6, Vector2i(8, 11)], [3, Vector2i(9, 0)], [6, Vector2i(9, 8)], [3, Vector2i(9, 1)], [6, Vector2i(9, 9)], [3, Vector2i(9, 3)], [6, Vector2i(9, 11)], [3, Vector2i(10, 0)], [6, Vector2i(10, 8)], [3, Vector2i(10, 1)], [6, Vector2i(10, 9)], [3, Vector2i(10, 2)], [6, Vector2i(10, 10)], [3, Vector2i(10, 3)], [6, Vector2i(10, 11)], [3, Vector2i(11, 0)], [6, Vector2i(11, 8)], [3, Vector2i(11, 1)], [6, Vector2i(11, 9)], [3, Vector2i(11, 2)], [6, Vector2i(11, 10)], [3, Vector2i(11, 3)], [6, Vector2i(11, 11)], [4, Vector2i(0, 0)], [6, Vector2i(0, 12)], [4, Vector2i(0, 1)], [6, Vector2i(0, 13)], [4, Vector2i(0, 2)], [6, Vector2i(0, 14)], [4, Vector2i(0, 3)], [6, Vector2i(0, 15)], [4, Vector2i(1, 0)], [6, Vector2i(1, 12)], [4, Vector2i(1, 1)], [6, Vector2i(1, 13)], [4, Vector2i(1, 2)], [6, Vector2i(1, 14)], [4, Vector2i(1, 3)], [6, Vector2i(1, 15)], [4, Vector2i(2, 0)], [6, Vector2i(2, 12)], [4, Vector2i(2, 1)], [6, Vector2i(2, 13)], [4, Vector2i(2, 2)], [6, Vector2i(2, 14)], [4, Vector2i(2, 3)], [6, Vector2i(2, 15)], [4, Vector2i(3, 0)], [6, Vector2i(3, 12)], [4, Vector2i(3, 1)], [6, Vector2i(3, 13)], [4, Vector2i(3, 2)], [6, Vector2i(3, 14)], [4, Vector2i(3, 3)], [6, Vector2i(3, 15)], [4, Vector2i(4, 0)], [6, Vector2i(4, 12)], [4, Vector2i(4, 1)], [6, Vector2i(4, 13)], [4, Vector2i(4, 2)], [6, Vector2i(4, 14)], [4, Vector2i(4, 3)], [6, Vector2i(4, 15)], [4, Vector2i(5, 0)], [6, Vector2i(5, 12)], [4, Vector2i(5, 1)], [6, Vector2i(5, 13)], [4, Vector2i(5, 2)], [6, Vector2i(5, 14)], [4, Vector2i(5, 3)], [6, Vector2i(5, 15)], [4, Vector2i(6, 0)], [6, Vector2i(6, 12)], [4, Vector2i(6, 1)], [6, Vector2i(6, 13)], [4, Vector2i(6, 2)], [6, Vector2i(6, 14)], [4, Vector2i(6, 3)], [6, Vector2i(6, 15)], [4, Vector2i(7, 0)], [6, Vector2i(7, 12)], [4, Vector2i(7, 1)], [6, Vector2i(7, 13)], [4, Vector2i(7, 2)], [6, Vector2i(7, 14)], [4, Vector2i(7, 3)], [6, Vector2i(7, 15)], [4, Vector2i(8, 0)], [6, Vector2i(8, 12)], [4, Vector2i(8, 1)], [6, Vector2i(8, 13)], [4, Vector2i(8, 2)], [6, Vector2i(8, 14)], [4, Vector2i(8, 3)], [6, Vector2i(8, 15)], [4, Vector2i(9, 0)], [6, Vector2i(9, 12)], [4, Vector2i(9, 1)], [6, Vector2i(9, 13)], [4, Vector2i(9, 3)], [6, Vector2i(9, 15)], [4, Vector2i(10, 0)], [6, Vector2i(10, 12)], [4, Vector2i(10, 1)], [6, Vector2i(10, 13)], [4, Vector2i(10, 2)], [6, Vector2i(10, 14)], [4, Vector2i(10, 3)], [6, Vector2i(10, 15)], [4, Vector2i(11, 0)], [6, Vector2i(11, 12)], [4, Vector2i(11, 1)], [6, Vector2i(11, 13)], [4, Vector2i(11, 2)], [6, Vector2i(11, 14)], [4, Vector2i(11, 3)], [6, Vector2i(11, 15)], [5, Vector2i(0, 0)], [6, Vector2i(0, 16)], [5, Vector2i(0, 1)], [6, Vector2i(0, 17)], [5, Vector2i(0, 2)], [6, Vector2i(0, 18)], [5, Vector2i(0, 3)], [6, Vector2i(0, 19)], [5, Vector2i(1, 0)], [6, Vector2i(1, 16)], [5, Vector2i(1, 1)], [6, Vector2i(1, 17)], [5, Vector2i(1, 2)], [6, Vector2i(1, 18)], [5, Vector2i(1, 3)], [6, Vector2i(1, 19)], [5, Vector2i(2, 0)], [6, Vector2i(2, 16)], [5, Vector2i(2, 1)], [6, Vector2i(2, 17)], [5, Vector2i(2, 2)], [6, Vector2i(2, 18)], [5, Vector2i(2, 3)], [6, Vector2i(2, 19)], [5, Vector2i(3, 0)], [6, Vector2i(3, 16)], [5, Vector2i(3, 1)], [6, Vector2i(3, 17)], [5, Vector2i(3, 2)], [6, Vector2i(3, 18)], [5, Vector2i(3, 3)], [6, Vector2i(3, 19)], [5, Vector2i(4, 0)], [6, Vector2i(4, 16)], [5, Vector2i(4, 1)], [6, Vector2i(4, 17)], [5, Vector2i(4, 2)], [6, Vector2i(4, 18)], [5, Vector2i(4, 3)], [6, Vector2i(4, 19)], [5, Vector2i(5, 0)], [6, Vector2i(5, 16)], [5, Vector2i(5, 1)], [6, Vector2i(5, 17)], [5, Vector2i(5, 2)], [6, Vector2i(5, 18)], [5, Vector2i(5, 3)], [6, Vector2i(5, 19)], [5, Vector2i(6, 0)], [6, Vector2i(6, 16)], [5, Vector2i(6, 1)], [6, Vector2i(6, 17)], [5, Vector2i(6, 2)], [6, Vector2i(6, 18)], [5, Vector2i(6, 3)], [6, Vector2i(6, 19)], [5, Vector2i(7, 0)], [6, Vector2i(7, 16)], [5, Vector2i(7, 1)], [6, Vector2i(7, 17)], [5, Vector2i(7, 2)], [6, Vector2i(7, 18)], [5, Vector2i(7, 3)], [6, Vector2i(7, 19)], [5, Vector2i(8, 0)], [6, Vector2i(8, 16)], [5, Vector2i(8, 1)], [6, Vector2i(8, 17)], [5, Vector2i(8, 2)], [6, Vector2i(8, 18)], [5, Vector2i(8, 3)], [6, Vector2i(8, 19)], [5, Vector2i(9, 0)], [6, Vector2i(9, 16)], [5, Vector2i(9, 1)], [6, Vector2i(9, 17)], [5, Vector2i(9, 2)], [6, Vector2i(9, 18)], [5, Vector2i(9, 3)], [6, Vector2i(9, 19)], [5, Vector2i(10, 0)], [6, Vector2i(10, 16)], [5, Vector2i(10, 2)], [6, Vector2i(10, 18)], [5, Vector2i(10, 3)], [6, Vector2i(10, 19)], [5, Vector2i(11, 0)], [6, Vector2i(11, 16)], [5, Vector2i(11, 1)], [6, Vector2i(11, 17)], [5, Vector2i(11, 2)], [6, Vector2i(11, 18)], [5, Vector2i(11, 3)], [6, Vector2i(11, 19)]]
 
 [node name="Outside" type="Node" groups=["levels"]]
+script = ExtResource("1_eck8o")
 
-[node name="puddle_big" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(661.445, 950.947)
-texture = ExtResource("10")
-
-[node name="puddle_small" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1329.08, 687.921)
-scale = Vector2(0.995735, 0.995735)
-texture = ExtResource("11")
-
-[node name="puddle_small2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(441.76, 1575.24)
-scale = Vector2(0.995735, 0.995735)
-texture = ExtResource("11")
-
-[node name="puddle_big2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1782.78, 1096.72)
-scale = Vector2(1.97507, 1.97507)
-texture = ExtResource("10")
-
-[node name="level" type="Node2D" parent="."]
+[node name="level" type="Node2D" parent="." groups=["levels"]]
 y_sort_enabled = true
 position = Vector2(208.024, -128.355)
 
-[node name="Jorgito" parent="level" instance=ExtResource("13")]
+[node name="Jorgito" parent="level" groups=["saved"] instance=ExtResource("13")]
 position = Vector2(2062.51, 2957.82)
 character_name = "Jorgito"
 
@@ -967,195 +938,57 @@ required_amount = 3
 initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
-[node name="Character" parent="level" instance=ExtResource("8")]
+[node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
 position = Vector2(898.976, 1541.35)
 
-[node name="house" parent="level" instance=ExtResource("5")]
-visible = false
-position = Vector2(908.151, 406.509)
-to_scene = "res://scenes/levels/HouseInside.tscn"
-
-[node name="house_outside" type="Marker2D" parent="level/house" groups=["spawnpoints"]]
-position = Vector2(-2.12201, 173.199)
-
-[node name="flower" parent="level" instance=ExtResource("7")]
-visible = false
-position = Vector2(-495.829, 1186.5)
-
-[node name="flower2" parent="level" instance=ExtResource("7")]
-visible = false
-position = Vector2(2000.14, 283.939)
-
-[node name="flower3" parent="level" instance=ExtResource("7")]
-visible = false
-position = Vector2(3047.55, 841.074)
-
-[node name="grass" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(1454.14, 1621.06)
-
-[node name="grass2" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(1610.14, 1777.06)
-
-[node name="grass3" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(1721.57, 2011.06)
-
-[node name="grass4" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(1844.14, 1598.78)
-
-[node name="grass5" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(1977.85, 1821.63)
-
-[node name="grass6" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(2278.7, 1520.78)
-
-[node name="grass7" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(807.868, 1777.06)
-
-[node name="grass8" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(741.012, 2011.06)
-
-[node name="grass9" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(484.729, 1765.92)
-
-[node name="grass10" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(295.304, 2022.2)
-
-[node name="grass11" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(540.443, 2111.34)
-
-[node name="grass12" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(61.3066, 1788.2)
-
-[node name="grass13" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(-217.261, 2122.48)
-
-[node name="mushroom_big" parent="level" instance=ExtResource("1")]
-visible = false
-position = Vector2(2278.7, 2345.34)
-
-[node name="mushroom_small" parent="level" instance=ExtResource("9")]
-visible = false
-position = Vector2(1955.56, 2467.91)
-
-[node name="mushroom_small2" parent="level" instance=ExtResource("9")]
-visible = false
-position = Vector2(2546.13, 2601.62)
-
-[node name="grass14" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(-369.359, -286.035)
-
-[node name="grass15" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(-921.388, -934.964)
-
-[node name="grass16" parent="level" instance=ExtResource("3")]
-visible = false
-position = Vector2(-1711.26, -1401.84)
-
-[node name="enemy" parent="level" instance=ExtResource("4")]
+[node name="enemy" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5193.98, 3512.35)
 
-[node name="enemy2" parent="level" instance=ExtResource("4")]
+[node name="enemy2" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5340.98, 1420.35)
 
-[node name="enemy3" parent="level" instance=ExtResource("4")]
+[node name="enemy3" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5230.98, 205.355)
 
-[node name="enemy4" parent="level" instance=ExtResource("4")]
+[node name="enemy4" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5289.98, 3254.35)
 
-[node name="enemy5" parent="level" instance=ExtResource("4")]
+[node name="enemy5" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(-197.024, 1854.35)
 
-[node name="enemy6" parent="level" instance=ExtResource("4")]
+[node name="enemy6" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(556.976, 243.355)
 
-[node name="enemy7" parent="level" instance=ExtResource("4")]
+[node name="enemy7" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(2596.98, 3980.35)
 
-[node name="enemy8" parent="level" instance=ExtResource("4")]
+[node name="enemy8" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(3284.98, 3549.35)
 
-[node name="Item" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(1032.97, 1956.3)
-
-[node name="Item2" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(1234.96, 1710.6)
-item_type = "Magic Sword"
-
-[node name="Item3" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(969.666, 1659.36)
-item_type = "Coso"
-
-[node name="Item6" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(2636.78, 2137.18)
-
-[node name="Item5" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(2838.76, 1891.49)
-item_type = "Magic Sword"
-
-[node name="Item4" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(2573.47, 1840.24)
-item_type = "Coso"
-
-[node name="Item9" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(2911.12, 2411.52)
-
-[node name="Item8" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(3113.1, 2165.82)
-item_type = "Magic Sword"
-
-[node name="Item7" parent="level" instance=ExtResource("12")]
-visible = false
-position = Vector2(2847.81, 2114.57)
-item_type = "Coso"
-
-[node name="Amplitude" parent="level" instance=ExtResource("13_33be8")]
+[node name="Amplitude" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
 position = Vector2(710.976, 2132.35)
 
-[node name="Amplitude2" parent="level" instance=ExtResource("13_33be8")]
+[node name="Amplitude2" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
 position = Vector2(711.976, 2369.35)
 amount = 1.75
 
-[node name="Cosine" parent="level" instance=ExtResource("14_ctil3")]
+[node name="Cosine" parent="level" groups=["saved"] instance=ExtResource("14_ctil3")]
 position = Vector2(1332.98, 2516.35)
 
-[node name="Cosine2" parent="level" instance=ExtResource("14_ctil3")]
+[node name="Cosine2" parent="level" groups=["saved"] instance=ExtResource("14_ctil3")]
 position = Vector2(1131.98, 2515.35)
 
-[node name="Frequency" parent="level" instance=ExtResource("15_xsvti")]
+[node name="Frequency" parent="level" groups=["saved"] instance=ExtResource("15_xsvti")]
 position = Vector2(1770.98, 2500.35)
 
-[node name="Frequency2" parent="level" instance=ExtResource("15_xsvti")]
+[node name="Frequency2" parent="level" groups=["saved"] instance=ExtResource("15_xsvti")]
 position = Vector2(1982.98, 2480.35)
 amount = 1.5
 
-[node name="Sine" parent="level" instance=ExtResource("16_cr781")]
+[node name="Sine" parent="level" groups=["saved"] instance=ExtResource("16_cr781")]
 position = Vector2(1794.98, 2169.35)
 
-[node name="Sine2" parent="level" instance=ExtResource("16_cr781")]
+[node name="Sine2" parent="level" groups=["saved"] instance=ExtResource("16_cr781")]
 position = Vector2(1993.98, 2165.35)
 
 [node name="Forest" type="TileMap" parent="level"]

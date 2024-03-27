@@ -52,3 +52,12 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body is Player:
 		active = false
+
+
+func getSaveStats():
+	return {
+		'fileName': get_scene_file_path(),
+		'parent': get_parent().get_path(),
+		'posX': position.x,
+		'posY': position.y
+	}

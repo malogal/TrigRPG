@@ -94,6 +94,8 @@ func _ready():
 		printerr("Error connecting to dialog system")
 	$anims.play()
 	
+
+	
 	# Probably a better way to do this incase running reinit causes items to be 'dropped'
 	Inventory.item_changed.connect(_on_item_changed)
 	freq_cooldown_modifier = Inventory.get_item("frequency", 1)
@@ -285,8 +287,8 @@ func _on_item_changed(action: String, type: String, amount: float) -> void:
 		set_cooldowns()
 	# When an item is dropped, place it on the ground with the item spawner
 	if action == "removed":
-		$item_spawner.spawn(type, amount)
-
+		$item_spawner.spawn(type, amount, position)
+		
 func get_pie_available_signal() -> Signal:
 	return $PieThrowing.get_pie_available_signal()
 
@@ -306,3 +308,11 @@ func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(time_to_teleport).timeout
 	position.x += pos.x
 	position.y += pos.y
+
+func getSaveStats():
+	return {
+		'fileName': get_scene_file_path(),
+		'parent': get_parent().get_path(),
+		'posX': position.x,
+		'posY': position.y
+	}

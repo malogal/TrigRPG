@@ -26,6 +26,7 @@ var inputActions = {
 	"move_down": {"label": "Move Down", "keycode": KEY_S, "modifierKey": ""},
 	"move_left": {"label": "Move Left", "keycode": KEY_A, "modifierKey": ""},
 	"move_right": {"label": "Move Right", "keycode": KEY_D, "modifierKey": ""},
+	"interact": {"label": "Interact", "keycode": KEY_E, "modifierKey": ""},	
 	"throw_pie": {"label": "Throw Pie", "keycode": MOUSE_BUTTON_LEFT, "modifierKey": MOUSE_BUTTON_LEFT},
 	"teleport": {"label": "Teleport", "keycode": KEY_TAB, "modifierKey": ""},
 	"wave": {"label": "Wave", "keycode": KEY_F, "modifierKey": ""},

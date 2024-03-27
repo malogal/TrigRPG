@@ -27,7 +27,7 @@ func _on_item_changed(action: String, type: String, amount: float):
 			$Modifier.texture = sine
 		"cosine":
 			$ModifierLabel.text = "Cosine"
-			$Modifier.texture = cosine			
+			$Modifier.texture = cosine		
 		"frequency":
 			$Frequency.visible = true
 			if amount == 0:

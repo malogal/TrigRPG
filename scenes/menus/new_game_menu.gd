@@ -45,13 +45,24 @@ func saveNewSave():
 	var timeSpent = "Time spent: 00:00"
 
 	var file = FileAccess.open(currentSaveSlot, FileAccess.WRITE)
-	file.store_var(saveName)	
-	file.store_var(lastPlayed)	
-	file.store_var(timeSpent)
+	
+	var saveData = {
+		"saveName": saveName,
+		"lastPlayed": lastPlayed,
+		"timeSpent": timeSpent
+	}
+	
+	
+	var json_string = JSON.stringify(saveData)
+
+	# Store the save dictionary as a new line in the save file.
+	file.store_line(json_string)
+	file.close()
 	
 	# set global variable to new save
 	Globals.currentSavePath = currentSaveSlot
 	Inventory.reset()
+
 	# load game with that save
 	get_tree().change_scene_to_file(mainGamePath)
 
