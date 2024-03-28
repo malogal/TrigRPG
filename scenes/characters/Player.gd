@@ -289,7 +289,7 @@ func _on_item_changed(action: String, type: String, amount: float) -> void:
 		set_cooldowns()
 	# When an item is dropped, place it on the ground with the item spawner
 	if action == "removed":
-		$item_spawner.spawn(type, amount, position)
+		$item_spawner.spawn(type, amount)
 		
 func get_pie_available_signal() -> Signal:
 	return $PieThrowing.get_pie_available_signal()

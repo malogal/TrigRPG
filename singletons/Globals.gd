@@ -17,6 +17,14 @@ var timeSpent
 var loadGameToggle = false
 var inventory
 
+var loadNodeIgnoreTypes = {
+	"fileName": true,
+	"filePath": true,
+	"parent": true,
+	"posX": true,
+	"posY": true
+}
+
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
 
@@ -98,10 +106,10 @@ func load_game():
 				
 			var nodeData = json.get_data()
 			
-			if nodeData.has("saveName") or nodeData.has("lastPlayed") or nodeData.has("timeSpent"):
+			if isSaveData(nodeData):
 				continue
 				
-			if nodeData == {} or nodeData.has("frequency") or nodeData.has("amplitude") or nodeData.has("sine") or nodeData.has("cosine"):
+			if isInventoryData(nodeData):
 				Inventory.init_inventory(nodeData)
 				continue
 
@@ -113,8 +121,15 @@ func load_game():
 
 			## Now we set the remaining variables.
 			for i in nodeData.keys():
-				if i == "fileName" or i == "filePath" or i == "parent" or i == "posX" or i == "posY":
+				if loadNodeIgnoreTypes.has(i) and loadNodeIgnoreTypes[i]:
 					continue
 				newObject.set(i, nodeData[i])
 			
 		saveFile.close()
+
+
+func isSaveData(nodeData):
+	return nodeData.has("saveName") or nodeData.has("lastPlayed") or nodeData.has("timeSpent")
+	
+func isInventoryData(nodeData):
+	return nodeData == {} or nodeData.has("frequency") or nodeData.has("amplitude") or nodeData.has("sine") or nodeData.has("cosine")
