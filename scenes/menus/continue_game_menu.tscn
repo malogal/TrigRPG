@@ -60,8 +60,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 123.0
+offset_top = 61.0
+offset_right = 123.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.265996, 0.241)
 script = ExtResource("1_86vw1")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -175,10 +180,10 @@ horizontal_alignment = 1
 
 [node name="BackButton" parent="." instance=ExtResource("1_3p1x3")]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 42.0
-offset_right = 226.0
-offset_bottom = 92.0
+offset_left = 71.4297
+offset_top = 365.145
+offset_right = 252.43
+offset_bottom = 415.145
 scale = Vector2(0.998866, 1)
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../ContinueGameButton")
@@ -191,28 +196,28 @@ referencePath = "res://scenes/menus/main_menu.tscn"
 
 [node name="Save1DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 886.0
-offset_top = 266.0
-offset_right = 1406.0
-offset_bottom = 786.0
+offset_left = 334.0
+offset_top = -45.0
+offset_right = 854.0
+offset_bottom = 475.0
 scale = Vector2(0.1, 0.1)
 icon = ExtResource("4_hujv6")
 
 [node name="Save2DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 437.0
-offset_right = 1408.0
-offset_bottom = 957.0
+offset_left = 336.0
+offset_top = 126.0
+offset_right = 856.0
+offset_bottom = 646.0
 scale = Vector2(0.1, 0.1)
 icon = ExtResource("4_hujv6")
 
 [node name="Save3DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 604.0
-offset_right = 1408.0
-offset_bottom = 1124.0
+offset_left = 336.0
+offset_top = 293.0
+offset_right = 856.0
+offset_bottom = 813.0
 scale = Vector2(0.1, 0.1)
 icon = ExtResource("4_hujv6")
 

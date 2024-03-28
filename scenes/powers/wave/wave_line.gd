@@ -1,5 +1,5 @@
 extends Line2D
-
+#
 #@export var point_density := 1
 #@export var frequency := .01
 #@export var length := 2000
@@ -23,7 +23,7 @@ extends Line2D
 #func apply(trans: Vector2):
 	#for i in range(array.size()): 
 		#array[i] = array[i]*trans
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+##
+### Called every frame. 'delta' is the elapsed time since the previous frame.
+##func _process(delta: float) -> void:
+	##pass

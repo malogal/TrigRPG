@@ -62,8 +62,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = 61.0
+offset_right = 98.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.351979, 0.327849)
 script = ExtResource("1_18dkr")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

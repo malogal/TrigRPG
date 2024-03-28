@@ -14,8 +14,12 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_ibg8s")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -24,12 +28,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 530.0
+scale = Vector2(1.00571, 0.333724)
 theme_override_styles/panel = SubResource("StyleBoxFlat_eepip")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -60,7 +62,9 @@ theme = ExtResource("1_ibg8s")
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 24
 alignment = 1
 
@@ -75,6 +79,8 @@ layout_mode = 2
 
 [node name="NewGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../ContinueGameButton")
 theme = ExtResource("1_ibg8s")
@@ -91,6 +97,8 @@ layout_mode = 2
 
 [node name="ContinueGameButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
 focus_neighbor_top = NodePath("../NewGameButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 theme = ExtResource("1_ibg8s")
@@ -107,6 +115,8 @@ layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
 focus_neighbor_top = NodePath("../ContinueGameButton")
 focus_neighbor_bottom = NodePath("../AchievementsButton")
 theme = ExtResource("1_ibg8s")
@@ -122,6 +132,8 @@ layout_mode = 2
 
 [node name="AchievementsButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme = ExtResource("1_ibg8s")
@@ -137,6 +149,8 @@ layout_mode = 2
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
 focus_neighbor_top = NodePath("../AchievementsButton")
 focus_neighbor_bottom = NodePath("../NewGameButton")
 theme = ExtResource("1_ibg8s")

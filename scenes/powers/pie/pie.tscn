@@ -15,7 +15,6 @@ script = ExtResource("1_4a6u7")
 
 [node name="AnimatedPie" type="AnimatedSprite2D" parent="."]
 z_index = 3
-scale = Vector2(6, 6)
 sprite_frames = ExtResource("2_wn5b8")
 animation = &"amount_1"
 script = ExtResource("6_kx5dj")

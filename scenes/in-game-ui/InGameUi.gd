@@ -10,8 +10,6 @@ func _ready() -> void:
 			player = player_group.pop_front()
 		else:
 			await get_tree().idle_frame
-
-	player.pie_changed.connect(_on_pie_changed)
 	
 #	player.health_changed.connect(_on_health_changed)
 #	_on_health_changed(player.hitpoints)

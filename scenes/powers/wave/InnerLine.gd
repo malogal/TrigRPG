@@ -7,7 +7,7 @@ func _ready():
 var wave_points_positive: PackedVector2Array 
 var wave_points_negative: PackedVector2Array 
 
-var inner_wave_speed: int = 10
+var inner_wave_speed: int = 4
 var inner_wave_index: int = 0
 var inner_wave_color_pos: Color = Color(0.42985674738884, 0.05698623508215, 0.70890939235687)
 var inner_wave_color_neg: Color = Color(0.60181617736816, 0, 0.28337466716766)
@@ -17,9 +17,9 @@ signal teleport_player(point: Vector2)
 
 func _draw():
 	if inner_wave_index > 0: 
-		draw_polyline(wave_points_positive.slice(0, inner_wave_index), inner_wave_color_pos, 10, true)
+		draw_polyline(wave_points_positive.slice(0, inner_wave_index), inner_wave_color_pos, 2, true)
 	else:
-		draw_polyline(wave_points_negative.slice(0, abs(inner_wave_index)), inner_wave_color_neg, 10, true)
+		draw_polyline(wave_points_negative.slice(0, abs(inner_wave_index)), inner_wave_color_neg, 2, true)
 
 func new_inner_wave(positive: PackedVector2Array, negative: PackedVector2Array):
 	wave_points_positive = positive

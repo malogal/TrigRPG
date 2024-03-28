@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="9_pp2gc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3s64t"]
-font_size = 35
+font_size = 15
 font_color = Color(0.419608, 0.180392, 0.180392, 1)
 
 [sub_resource type="GDScript" id="GDScript_vexre"]
@@ -51,9 +51,15 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -169.0
+offset_left = 60.0
+offset_top = -57.0
+offset_right = 134.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.505674, 0.505674)
+size_flags_horizontal = 4
+size_flags_vertical = 8
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -62,9 +68,10 @@ script = ExtResource("1_w3s35")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="PieSection" type="GridContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -163,11 +170,9 @@ columns = 3
 
 [node name="TabButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
-theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_6xd5i")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ispom")
 toggle_mode = true
@@ -182,7 +187,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
-theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_jejwj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
 toggle_mode = true
@@ -193,11 +197,9 @@ expand_icon = true
 
 [node name="ClickButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
-theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_kogbh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
 toggle_mode = true
