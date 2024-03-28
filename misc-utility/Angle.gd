@@ -62,4 +62,4 @@ func get_str_rad() -> String:
 		if abs(numerator-round(numerator))<ERROR:
 			return prefix+str(round(numerator))+"π"+("/"+str(denominator) if denominator>1 else "")+suffix
 	#fails to approximate
-	return prefix+str(rads)+suffix
+	return prefix+str(round(rads*100)/100)+suffix

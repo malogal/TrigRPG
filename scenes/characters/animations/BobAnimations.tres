@@ -1,8 +1,93 @@
-[gd_resource type="SpriteFrames" load_steps=52 format=3 uid="uid://qthuelnhcpk5"]
+[gd_resource type="SpriteFrames" load_steps=74 format=3 uid="uid://qthuelnhcpk5"]
 
+[ext_resource type="Texture2D" uid="uid://cs23j2f4feyt5" path="res://textures/bob/bob_special.png" id="1_gvtgo"]
 [ext_resource type="Texture2D" uid="uid://8ntvar0ymwfo" path="res://textures/bob/bob_idle.png" id="1_r0pkt"]
 [ext_resource type="Texture2D" uid="uid://begnu4m6v8mmp" path="res://textures/bob/bob_throw.png" id="2_qf3mt"]
 [ext_resource type="Texture2D" uid="uid://o2e8y5gudwu6" path="res://textures/bob/bob_walk.png" id="3_v5jg2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epma7"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4igh6"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57y1s"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lo2q"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v44dy"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1blbq"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s68wf"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmy75"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tq22"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqltr"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odocv"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q64u6"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu2g6"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwugl"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3xen"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4j63"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nflre"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvbja"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grcew"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgkp4"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqd6m"]
+atlas = ExtResource("1_gvtgo")
+region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufl6a"]
 atlas = ExtResource("1_r0pkt")
@@ -200,6 +285,94 @@ region = Rect2(64, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_epma7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4igh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57y1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lo2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v44dy")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1blbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s68wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmy75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tq22")
+}],
+"loop": true,
+"name": &"hurt_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqltr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odocv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q64u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu2g6")
+}],
+"loop": true,
+"name": &"hurt_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwugl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3xen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4j63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nflre")
+}],
+"loop": true,
+"name": &"hurt_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvbja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grcew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgkp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqd6m")
+}],
+"loop": true,
+"name": &"hurt_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ufl6a")
 }, {
 "duration": 1.0,
@@ -264,26 +437,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"special_down",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"special_left",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"special_right",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"special_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -369,7 +522,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -386,7 +539,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -403,7 +556,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -420,5 +573,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 7.0
 }]
