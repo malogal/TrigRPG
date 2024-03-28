@@ -58,20 +58,18 @@ motion_mode = 1
 script = ExtResource("2")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 23)
 rotation = 1.5708
+scale = Vector2(0.2, 0.2)
 shape = SubResource("1")
 
 [node name="player_sword" type="Area2D" parent="."]
-position = Vector2(6.30249, -86.9744)
+scale = Vector2(0.2, 0.2)
 
 [node name="slash" type="CollisionPolygon2D" parent="player_sword"]
 polygon = PackedVector2Array(-134.513, -92.9393, -124.246, 19.4555, -59.4026, 109.155, 76.2278, 112.938, 75.147, 26.4802, -2.66479, 20.5363, -36.1671, -8.64319, -57.2411, -40.5244)
 disabled = true
 
 [node name="camera" type="Camera2D" parent="."]
-position = Vector2(6.30249, -86.9744)
-zoom = Vector2(0.5, 0.5)
 
 [node name="debug" parent="." instance=ExtResource("3")]
 path_to_node = NodePath("..")
@@ -79,16 +77,14 @@ properties = ["linear_vel", "roll_direction", "facing"]
 enabled = false
 
 [node name="hurtbox" type="Area2D" parent="."]
-position = Vector2(0, 21)
 
 [node name="col" type="CollisionShape2D" parent="hurtbox"]
+scale = Vector2(0.2, 0.2)
 shape = SubResource("18")
 
 [node name="anims" type="AnimatedSprite2D" parent="."]
-scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_n3wkj")
-animation = &"idle_right"
-frame_progress = 0.239447
+animation = &"idle_down"
 script = ExtResource("6_2jx58")
 
 [node name="PieThrowing" parent="." instance=ExtResource("4_ysf0e")]
@@ -102,7 +98,6 @@ script = ExtResource("6_2jx58")
 [node name="TeleportAnimated" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 3
-scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_mhn75")
 animation = &"teleport"
 frame = 3

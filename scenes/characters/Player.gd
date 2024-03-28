@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var WALK_SPEED: int = 350 # pixels per second
+@export var WALK_SPEED: int = 150 # pixels per second
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
 @export var time_invincible: float = 2.0
