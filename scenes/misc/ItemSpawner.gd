@@ -36,7 +36,11 @@ func spawn(_item_type: String = "", _amount: float = 1.0):
 		level = level.get_parent()
 	if level == null:
 		return
+
 	# Must set amount before adding child or it will default to 1
 	item.amount = _amount
+	item.add_to_group("saved", true)
 	level.add_child(item)
+
 	item.global_position = global_position
+	

@@ -36,7 +36,10 @@ func pickup() -> void:
 	Inventory.add_item(item_type, amount)
 	$anims.play("collected")
 
-
+	var parentNode = get_parent()
+	parentNode.get_parent().remove_child(parentNode)
+	parentNode.queue_free()
+	
 func _ready():
 	body_entered.connect(_on_Item_body_entered)
 	body_exited.connect(_on_Item_body_exited)

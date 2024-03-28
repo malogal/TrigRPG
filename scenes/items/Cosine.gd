@@ -8,3 +8,10 @@ func get_amount() -> float:
 func get_item_type() -> String:
 	return "cosine"
 
+func getSaveStats():
+	return {
+		'fileName': get_scene_file_path(),
+		'parent': get_parent().get_path(),
+		'posX': position.x,
+		'posY': position.y
+	}
