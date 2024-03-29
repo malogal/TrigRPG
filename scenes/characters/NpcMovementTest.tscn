@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://4c6nil367abb"]
 
 [ext_resource type="Script" path="res://scenes/characters/NpcMovementTest.gd" id="1_l76gx"]
-[ext_resource type="Texture2D" uid="uid://dscm5ic80ak2p" path="res://textures/pj/frames/idle_down0000.png" id="2_07e0u"]
+[ext_resource type="Texture2D" uid="uid://dscm5ic80ak2p" path="res://textures/temp-pj/frames/idle_down0000.png" id="2_07e0u"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "idle"

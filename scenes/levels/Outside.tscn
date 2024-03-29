@@ -1062,7 +1062,6 @@ position = Vector2(1794.98, 2169.35)
 position = Vector2(1993.98, 2165.35)
 
 [node name="Forest" type="TileMap" parent="level"]
-scale = Vector2(7, 7)
 tile_set = SubResource("TileSet_x747v")
 format = 2
 layer_0/name = "background"
