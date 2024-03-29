@@ -1,68 +1,31 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dxgoy0vbgwgyv"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dxgoy0vbgwgyv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypks6"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 128.0
-expand_margin_top = 24.0
-expand_margin_right = 128.0
-expand_margin_bottom = 24.0
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="1_3pt5y"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrxfo"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 128.0
-expand_margin_top = 24.0
-expand_margin_right = 128.0
-expand_margin_bottom = 24.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7k5l"]
-bg_color = Color(0, 0, 0, 0.780392)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 128.0
-expand_margin_top = 24.0
-expand_margin_right = 128.0
-expand_margin_bottom = 24.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbqsd"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 128.0
-expand_margin_top = 24.0
-expand_margin_right = 128.0
-expand_margin_bottom = 24.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xob8"]
+texture = ExtResource("1_3pt5y")
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufxwm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3l0r"]
-bg_color = Color(0.372549, 0.372549, 0.372549, 1)
+bg_color = Color(0, 0, 0, 0.682353)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fofw2"]
+bg_color = Color(0, 0, 0, 0.901961)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-expand_margin_left = 128.0
-expand_margin_top = 16.0
-expand_margin_right = 128.0
-expand_margin_bottom = 16.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fofw2"]
-bg_color = Color(0, 0, 0, 0.666667)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
 
 [sub_resource type="SystemFont" id="SystemFont_j2jpn"]
 font_names = PackedStringArray("Fira Code")
@@ -70,11 +33,11 @@ font_italic = true
 
 [resource]
 default_font = SubResource("SystemFont_j2jpn")
-default_font_size = 24
-Button/styles/focus = SubResource("StyleBoxFlat_ypks6")
-Button/styles/hover = SubResource("StyleBoxFlat_wrxfo")
-Button/styles/normal = SubResource("StyleBoxFlat_c7k5l")
-Button/styles/pressed = SubResource("StyleBoxFlat_cbqsd")
+default_font_size = 6
+Button/styles/focus = SubResource("StyleBoxTexture_6xob8")
+Button/styles/hover = SubResource("StyleBoxTexture_6xob8")
+Button/styles/normal = SubResource("StyleBoxTexture_6xob8")
+Button/styles/pressed = SubResource("StyleBoxTexture_6xob8")
 HSeparator/styles/separator = SubResource("StyleBoxFlat_ufxwm")
 Label/styles/normal = null
 LineEdit/colors/selection_color = Color(0, 0, 0, 0.858824)

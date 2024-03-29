@@ -1,56 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1vb24lg5l3nj"]
+[gd_scene load_steps=5 format=3 uid="uid://c1vb24lg5l3nj"]
 
+[ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="1_43eq3"]
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_ifacx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lgen"]
-bg_color = Color(0.756863, 0.756863, 0.756863, 1)
+bg_color = Color(0.756863, 0.756863, 0.756863, 0)
 
 [sub_resource type="SystemFont" id="SystemFont_m2dfh"]
 font_names = PackedStringArray("Impact")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8whaq"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dxp2"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snfbj"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn703"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
 
 [node name="AchievementsMenu" type="Control"]
 layout_mode = 3
@@ -59,6 +16,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("1_43eq3")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -73,26 +36,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4lgen")
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 60
-
-[node name="Separator" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 8
-theme_override_constants/shadow_offset_y = 8
-theme_override_constants/outline_size = 24
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = SubResource("SystemFont_m2dfh")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 16
 text = "Achievements"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -108,16 +67,10 @@ alignment = 1
 
 [node name="BackButton" parent="." instance=ExtResource("1_ifacx")]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 42.0
-offset_right = 226.0
-offset_bottom = 92.0
-scale = Vector2(0.998866, 1)
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../ContinueGameButton")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8whaq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2dxp2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_snfbj")
-theme_override_styles/focus = SubResource("StyleBoxFlat_rn703")
-text = "Back"
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 46.0
+offset_bottom = 22.0
+text = "Back
+"
 referencePath = "res://scenes/menus/main_menu.tscn"

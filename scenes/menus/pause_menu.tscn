@@ -1,60 +1,70 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgiqabo85kphg"]
+[gd_scene load_steps=18 format=3 uid="uid://dgiqabo85kphg"]
 
 [ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_18dkr"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="2_okoqv"]
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="3_a6jvk"]
+[ext_resource type="PackedScene" uid="uid://ciefwagqpg8x6" path="res://scenes/menus/volume_slider.tscn" id="3_clg2c"]
+[ext_resource type="PackedScene" uid="uid://b5ae7asa3t6gw" path="res://scenes/menus/keybind_input_button.tscn" id="4_2sayp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndyvj"]
 bg_color = Color(0, 0, 0, 0.329412)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea6a2"]
+texture = ExtResource("3_a6jvk")
+expand_margin_left = 32.0
+expand_margin_top = 12.0
+expand_margin_right = 32.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_334q8"]
+texture = ExtResource("3_a6jvk")
+expand_margin_left = 32.0
+expand_margin_top = 12.0
+expand_margin_right = 32.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aacu8"]
+texture = ExtResource("3_a6jvk")
+expand_margin_left = 32.0
+expand_margin_top = 12.0
+expand_margin_right = 32.0
+expand_margin_bottom = 12.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5s6n"]
 bg_color = Color(0, 0, 0, 0.760784)
 
-[sub_resource type="SystemFont" id="SystemFont_vypk8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jjrq"]
+bg_color = Color(0, 0, 0, 0.329412)
+
+[sub_resource type="SystemFont" id="SystemFont_wkgsf"]
 font_names = PackedStringArray("Impact")
-subpixel_positioning = 0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl3af"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbsr0"]
+bg_color = Color(0, 0, 0, 0.239216)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkxo1"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ssut"]
+bg_color = Color(0, 0, 0, 0.329412)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh4ec"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2c0ui"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("3_a6jvk")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7660"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jj8pn"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("3_a6jvk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkl5b"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("3_a6jvk")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -62,13 +72,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 98.0
-offset_top = 61.0
-offset_right = 98.0
-offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.351979, 0.327849)
 script = ExtResource("1_18dkr")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -93,27 +98,30 @@ alignment = 1
 
 [node name="ContinueButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_ea6a2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ea6a2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ea6a2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ea6a2")
 text = "Continue"
-
-[node name="Separator4" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator5" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_334q8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_334q8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_334q8")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_334q8")
 text = "Settings"
-
-[node name="Separator6" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Separator7" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="QuitButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_aacu8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aacu8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aacu8")
+theme_override_styles/focus = SubResource("StyleBoxTexture_aacu8")
 text = "Quit"
 
 [node name="SettingsContainer" type="PanelContainer" parent="."]
@@ -127,55 +135,123 @@ grow_vertical = 2
 scale = Vector2(0.998584, 1.01289)
 theme_override_styles/panel = SubResource("StyleBoxFlat_e5s6n")
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SettingsContainer"]
 layout_mode = 2
-theme = ExtResource("2_okoqv")
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_styles/panel = SubResource("StyleBoxFlat_8jjrq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
 
-[node name="Separator" type="Control" parent="SettingsContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 8
-theme_override_constants/shadow_offset_y = 8
-theme_override_constants/outline_size = 24
-theme_override_fonts/font = SubResource("SystemFont_vypk8")
-theme_override_font_sizes/font_size = 64
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = SubResource("SystemFont_wkgsf")
+theme_override_font_sizes/font_size = 16
 text = "Settings"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_okoqv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbsr0")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="MasterAudioLabel" type="Label" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "Master Audio
+"
+
+[node name="MasterAudioSlider" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_clg2c")]
+layout_mode = 2
+step = 0.01
+busName = "Master"
+defaultValue = 0.25
+
+[node name="MusicAudioLabel" type="Label" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "Music"
+
+[node name="MusicAudio" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_clg2c")]
+layout_mode = 2
+step = 0.01
+busName = "Music"
+defaultValue = 0.25
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ssut")
+
+[node name="ActionList" type="VBoxContainer" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="KeybindInputButton" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("4_2sayp")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/MarginContainer/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
-alignment = 1
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxTexture_2c0ui")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2c0ui")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2c0ui")
+theme_override_styles/focus = SubResource("StyleBoxTexture_2c0ui")
+text = "Save"
 
-[node name="BackButton" type="Button" parent="SettingsContainer/MarginContainer"]
+[node name="ResetButton" type="Button" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxTexture_jj8pn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jj8pn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jj8pn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jj8pn")
+text = "Reset"
+
+[node name="BackButton" type="Button" parent="SettingsContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("2_okoqv")
-theme_override_styles/normal = SubResource("StyleBoxFlat_yl3af")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rkxo1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qh4ec")
-theme_override_styles/focus = SubResource("StyleBoxFlat_a7660")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gkl5b")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gkl5b")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gkl5b")
+theme_override_styles/focus = SubResource("StyleBoxTexture_gkl5b")
 text = "Back"
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="SettingsContainer/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="SettingsContainer/PanelContainer/BackButton" to="." method="_on_back_button_pressed"]
