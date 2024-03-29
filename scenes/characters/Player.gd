@@ -186,7 +186,7 @@ func _physics_process(_delta):
 	match action:
 		PIE: 
 			var mouse_pos = get_local_mouse_position()
-			$PieThrowing.throw(global_position, mouse_pos, pie_amount)
+			$PieThrowing.throw(position, mouse_pos, pie_amount)
 			new_anim = "throw_"+facing
 		WAVE:
 			var is_sine = true
@@ -308,9 +308,6 @@ func get_teleport_available_signal() -> Signal:
 func _on_invincibility_timer_timeout():
 	is_invincible = false
 
-func _on_teleport_animated_animation_finished() -> void:
-	$TeleportAnimated.visible = false
-
 func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(time_to_teleport).timeout
 	position.x += pos.x
@@ -323,3 +320,11 @@ func getSaveStats():
 		'posX': position.x,
 		'posY': position.y
 	}
+
+# Stop showing teleport sparkles after it finishes animating 
+func _on_teleport_animated_animation_looped() -> void:
+	$TeleportAnimated.visible = false
+
+# Stop showing teleport sparkles after it finishes animating 
+func _on_teleport_animated_animation_finished() -> void:
+	$TeleportAnimated.visible = false

@@ -1,6 +1,10 @@
 extends Node2D
 
 """
+!!!THIS IS NO LONGER BEING USED AND IS A LEFT INCASE IT'S NEEDED !!!
+-- USE 'RandomMover.tscn' instead
+
+
 Parent must have a CharacterBody2D and an Animation to use. 
 
 Parent must have a method called set_anims(anim) where anim is the name of an animation to play.
@@ -8,6 +12,7 @@ Parent must have a method called set_anims(anim) where anim is the name of an an
 Parent must have a method called get_anims() -> String: that returns the current animation
 """
 
+"""
 var active = false
 
 @export var character_name: String = "Nameless NPC"
@@ -23,10 +28,12 @@ var facing = "down" # (String, "up", "down", "left", "right")
 var anim = ""
 var new_anim = ""
 
-@export var move_range = 150 # The distance at which the NPC can move from its starting point (default 50)
+@export var move_range = 50 # The distance at which the NPC can move from its starting point (default 50)
 @export_enum("Horizontal", "Vertical", "None") var default_move_type = "None"
 
-var start_position
+var bounding_rec: Rect2
+
+var start_position: Vector2
 
 enum { MOVESTATE_IDLE, MOVESTATE_WALKING_DEFAULT, MOVESTATE_WALKING_TOWARDS }
 enum { MOVETYPE_NONE, MOVETYPE_HORIZONTAL, MOVETYPE_VERTICAL }
@@ -41,10 +48,6 @@ var time_to_change: Timer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng = RandomNumberGenerator.new()
-	# warning-ignore:return_value_discarded
-	#body_entered.connect(_on_body_entered)
-	# warning-ignore:return_value_discarded
-	#body_exited.connect(_on_body_exited)
 	start_position = get_parent().position # The starting position of the NPC (doesn't change)
 	
 	match default_move_type:
@@ -55,8 +58,10 @@ func _ready():
 		# If no default set, pick random
 		_:
 			if rng.randi() % 2 == 0:
+				default_move_type = "Horizontal"
 				move_direction = MOVEDIR_RIGHT
-			else: 
+			else:
+				default_move_type = "Vertical" 
 				move_direction = MOVEDIR_DOWN
 	time_to_change = Timer.new()
 	add_child(time_to_change)
@@ -125,6 +130,13 @@ func _process(_delta): ##Handles movement and other physics-related functions
 						target_speed += Vector2.UP
 				
 				target_speed *= WALK_SPEED
+
+			if start_position.distance_to(target_position) > move_range: 
+				target_position = start_position
+			
+			target_speed = (goal - current).normalized()
+			target_speed *= WALK_SPEED
+			linear_vel = linear_vel.lerp(target_speed, 0.9)
 				linear_vel = target_speed
 				
 				new_anim = ""
@@ -145,9 +157,9 @@ func _process(_delta): ##Handles movement and other physics-related functions
 					move_state = MOVESTATE_IDLE
 				pass
 		MOVESTATE_WALKING_TOWARDS:
-			if position == target_position: #If the position has been reached, switch to default move type
+			if get_parent().position == target_position: #If the position has been reached, switch to default move type
 				goto_default_movetype()
-				start_position = position
+				start_position = get_parent().position
 				pass
 			
 			get_parent().set_velocity(Vector2.ZERO) #Stops any erratic movement from previous movement pattern
@@ -161,7 +173,8 @@ func _process(_delta): ##Handles movement and other physics-related functions
 			if get_parent().position.y < target_position.y:
 				facing = "down"
 			
-			get_parent().position = get_parent().position.move_toward(target_position, _delta * WALK_SPEED)
+			get_parent().set_velocity(get_parent().position.move_toward(target_position, _delta * WALK_SPEED))
+			get_parent().move_and_slide()
 			pass
 
 	if get_parent().has_node("anims"):
@@ -186,4 +199,5 @@ func move_to_point(moveX: float, moveY: float): #Sets the move state to walk tow
 func _on_change_timeout():
 	time_to_change.wait_time = rng.randi_range(2, 6)
 	time_to_change.start()
-	move_to_point(get_parent().position.x + rng.randi_range(-400,400), get_parent().position.y + rng.randi_range(-400,400))
+	move_to_point(start_position.x + rng.randi_range(-move_range,move_range), start_position.y + rng.randi_range(-move_range,move_range))
+"""

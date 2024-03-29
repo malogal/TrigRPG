@@ -18,6 +18,7 @@ radius = 30.0
 height = 144.16
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 9
 motion_mode = 1
 script = ExtResource("2")
 
@@ -41,7 +42,8 @@ properties = ["linear_vel", "roll_direction", "facing"]
 enabled = false
 
 [node name="hurtbox" type="Area2D" parent="."]
-collision_mask = 5
+collision_layer = 0
+collision_mask = 16
 
 [node name="col" type="CollisionShape2D" parent="hurtbox"]
 scale = Vector2(0.2, 0.2)
@@ -66,3 +68,5 @@ script = ExtResource("6_2jx58")
 [connection signal="animation_finished" from="anims" to="." method="_on_anims_animation_finished"]
 [connection signal="animation_looped" from="anims" to="." method="_on_anims_animation_looped"]
 [connection signal="timeout" from="invincibility_timer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="animation_finished" from="TeleportAnimated" to="." method="_on_teleport_animated_animation_finished"]
+[connection signal="animation_looped" from="TeleportAnimated" to="." method="_on_teleport_animated_animation_looped"]

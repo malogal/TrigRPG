@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6ky4fyoquhby"]
+[gd_scene load_steps=23 format=3 uid="uid://c6ky4fyoquhby"]
 
 [ext_resource type="Script" path="res://scenes/characters/Radian.gd" id="1_1twqq"]
-[ext_resource type="PackedScene" uid="uid://gq4dxyutnk75" path="res://scenes/characters/movement/RandomMovement.tscn" id="2_fanw0"]
 [ext_resource type="SpriteFrames" uid="uid://gx4fr060osg3" path="res://scenes/characters/animations/RadianAnimations.tres" id="3_lprw2"]
 [ext_resource type="Script" path="res://scenes/characters/Health.gd" id="4_smci4"]
 [ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="5_6iyfc"]
-[ext_resource type="Script" path="res://scenes/powers/wave/wave_teleport.gd" id="6_uj82q"]
+[ext_resource type="Script" path="res://scenes/powers/wave/radian_wave_teleport.gd" id="5_klrmc"]
 [ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="7_2urgn"]
-[ext_resource type="PackedScene" uid="uid://cb4dkli6dkqbt" path="res://scenes/characters/movement/TeleportAnimation.tscn" id="8_7hesv"]
+[ext_resource type="PackedScene" uid="uid://csgj02s45ctiv" path="res://scenes/characters/movement/RandomMover.tscn" id="8_8s8rt"]
+[ext_resource type="PackedScene" uid="uid://w5g542ngabum" path="res://scenes/characters/movement/DirectionalAnimationSetter.tscn" id="9_deqwn"]
 
 [sub_resource type="CapsuleShape2D" id="18"]
 
@@ -62,23 +62,60 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqeo6"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i34kt"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0011"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqd51"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhn75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqeo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i34kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0011")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqd51")
+}],
+"loop": false,
+"name": &"teleport",
+"speed": 9.0
+}]
+
 [node name="Radian" type="CharacterBody2D"]
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_1twqq")
 
 [node name="hurtbox" type="Area2D" parent="."]
-collision_mask = 3
+collision_layer = 0
+collision_mask = 2
 
 [node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
 shape = SubResource("18")
 
 [node name="sight_range" type="Area2D" parent="."]
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sight_range"]
 shape = SubResource("CircleShape2D_1gwbv")
 debug_color = Color(0.819608, 0.176471, 0.878431, 0.419608)
-
-[node name="RandomMovement" parent="." instance=ExtResource("2_fanw0")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_6xt7c")
@@ -103,7 +140,7 @@ metadata/_edit_use_anchors_ = true
 [node name="PieThrowing" parent="." instance=ExtResource("5_6iyfc")]
 
 [node name="WaveTeleport" type="Node2D" parent="."]
-script = ExtResource("6_uj82q")
+script = ExtResource("5_klrmc")
 
 [node name="WaveCooldown" type="Timer" parent="WaveTeleport"]
 one_shot = true
@@ -117,7 +154,18 @@ sprite_frames = SubResource("SpriteFrames_04tkr")
 animation = &"none"
 autoplay = "none"
 
-[node name="TeleportAnimated" parent="." instance=ExtResource("8_7hesv")]
+[node name="TeleportAnimated" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_mhn75")
+animation = &"teleport"
+frame = 3
+frame_progress = 1.0
+speed_scale = 0.5
+
+[node name="RandomMover" parent="." instance=ExtResource("8_8s8rt")]
+
+[node name="DirectionalAnimationSetter" parent="." instance=ExtResource("9_deqwn")]
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
@@ -125,3 +173,5 @@ autoplay = "none"
 [connection signal="timeout" from="WaveTeleport/WaveCooldown" to="WaveTeleport" method="_on_wave_cooldown_timeout"]
 [connection signal="timeout" from="WaveTeleport/TeleportCooldown" to="WaveTeleport" method="_on_teleport_cooldown_timeout"]
 [connection signal="animation_finished" from="WaveTeleport/TeleportAnimated" to="WaveTeleport" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="TeleportAnimated" to="." method="_on_teleport_animated_animation_finished"]
+[connection signal="animation_looped" from="TeleportAnimated" to="." method="_on_teleport_animated_animation_looped"]

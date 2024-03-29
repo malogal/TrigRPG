@@ -21,7 +21,7 @@ script = ExtResource("6_kx5dj")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="pie_collision" type="CollisionShape2D" parent="." groups=["pie"]]
+[node name="pie_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ygu5d")
 debug_color = Color(0.737255, 0.466667, 0, 0.419608)
 

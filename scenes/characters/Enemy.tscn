@@ -185,6 +185,8 @@ animation = &"walk_down"
 one_shot = true
 
 [node name="attack_range" type="Area2D" parent="." groups=["enemy_weapons"]]
+collision_layer = 0
+collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
 scale = Vector2(2, 2)

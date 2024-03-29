@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c300wo4817ca1"]
+
+[ext_resource type="Script" path="res://scenes/powers/pie/radian_pie_throwing.gd" id="1_jtx1j"]
+
+[node name="PieThrowing" type="Node2D"]
+script = ExtResource("1_jtx1j")
+
+[node name="PieCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="PieCooldown" to="." method="_on_pie_cooldown_timeout"]
