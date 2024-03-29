@@ -2,12 +2,33 @@
 
 [ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_18dkr"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="2_okoqv"]
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="3_a6jvk"]
 [ext_resource type="PackedScene" uid="uid://ciefwagqpg8x6" path="res://scenes/menus/volume_slider.tscn" id="3_clg2c"]
 [ext_resource type="PackedScene" uid="uid://b5ae7asa3t6gw" path="res://scenes/menus/keybind_input_button.tscn" id="4_2sayp"]
-[ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="5_secyi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndyvj"]
 bg_color = Color(0, 0, 0, 0.329412)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea6a2"]
+texture = ExtResource("3_a6jvk")
+expand_margin_left = 32.0
+expand_margin_top = 12.0
+expand_margin_right = 32.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_334q8"]
+texture = ExtResource("3_a6jvk")
+expand_margin_left = 32.0
+expand_margin_top = 12.0
+expand_margin_right = 32.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aacu8"]
+texture = ExtResource("3_a6jvk")
+expand_margin_left = 32.0
+expand_margin_top = 12.0
+expand_margin_right = 32.0
+expand_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5s6n"]
 bg_color = Color(0, 0, 0, 0.760784)
@@ -24,70 +45,26 @@ bg_color = Color(0, 0, 0, 0.239216)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ssut"]
 bg_color = Color(0, 0, 0, 0.329412)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsodb"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxjv2"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.772549)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl3af"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2c0ui"]
 content_margin_left = 16.0
 content_margin_top = 8.0
 content_margin_right = 16.0
 content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+texture = ExtResource("3_a6jvk")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkxo1"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jj8pn"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("3_a6jvk")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh4ec"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7660"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkl5b"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("3_a6jvk")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -122,33 +99,29 @@ alignment = 1
 [node name="ContinueButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_ea6a2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ea6a2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ea6a2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ea6a2")
 text = "Continue"
-
-[node name="Separator4" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Separator5" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_334q8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_334q8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_334q8")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_334q8")
 text = "Settings"
-
-[node name="Separator6" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Separator7" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
 
 [node name="QuitButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_aacu8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aacu8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aacu8")
+theme_override_styles/focus = SubResource("StyleBoxTexture_aacu8")
 text = "Quit"
 
 [node name="SettingsContainer" type="PanelContainer" parent="."]
@@ -250,17 +223,19 @@ alignment = 1
 [node name="SaveButton" type="Button" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
-theme_override_styles/normal = SubResource("StyleBoxFlat_vsodb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fxjv2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fxjv2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2c0ui")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2c0ui")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2c0ui")
+theme_override_styles/focus = SubResource("StyleBoxTexture_2c0ui")
 text = "Save"
 
 [node name="ResetButton" type="Button" parent="SettingsContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
-theme_override_styles/normal = SubResource("StyleBoxFlat_vsodb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fxjv2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fxjv2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jj8pn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jj8pn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jj8pn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jj8pn")
 text = "Reset"
 
 [node name="BackButton" type="Button" parent="SettingsContainer/PanelContainer"]
@@ -268,18 +243,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("2_okoqv")
-theme_override_styles/normal = SubResource("StyleBoxFlat_yl3af")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rkxo1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qh4ec")
-theme_override_styles/focus = SubResource("StyleBoxFlat_a7660")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gkl5b")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gkl5b")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gkl5b")
+theme_override_styles/focus = SubResource("StyleBoxTexture_gkl5b")
 text = "Back"
-
-[node name="BackButton" parent="SettingsContainer" instance=ExtResource("5_secyi")]
-visible = false
-layout_mode = 2
-text = "Back
-"
-referencePath = "res://scenes/menus/main_menu.tscn"
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

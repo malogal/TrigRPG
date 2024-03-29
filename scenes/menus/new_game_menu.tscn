@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxisgdeos3jw5"]
+[gd_scene load_steps=7 format=3 uid="uid://bxisgdeos3jw5"]
 
 [ext_resource type="Script" path="res://scenes/menus/new_game_menu.gd" id="1_1ha5e"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_vcq7c"]
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="2_3eei8"]
+[ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="2_uel8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk8uh"]
-bg_color = Color(0.756863, 0.756863, 0.756863, 1)
+bg_color = Color(0.756863, 0.756863, 0.756863, 0)
 
 [sub_resource type="SystemFont" id="SystemFont_vsik5"]
 font_names = PackedStringArray("Impact")
@@ -18,6 +19,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ha5e")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("2_uel8l")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

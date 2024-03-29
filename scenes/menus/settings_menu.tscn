@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd46owd33flcd"]
+[gd_scene load_steps=13 format=3 uid="uid://dd46owd33flcd"]
 
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_d71xf"]
 [ext_resource type="Script" path="res://scenes/menus/settings_menu.gd" id="1_lt7mw"]
 [ext_resource type="PackedScene" uid="uid://b5ae7asa3t6gw" path="res://scenes/menus/keybind_input_button.tscn" id="2_43k3j"]
+[ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="2_cqvrh"]
 [ext_resource type="PackedScene" uid="uid://ciefwagqpg8x6" path="res://scenes/menus/volume_slider.tscn" id="2_gmft5"]
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="4_8ucuo"]
 [ext_resource type="AudioStream" uid="uid://trlrbhagbe3s" path="res://music/a-2-3-groovy-bgm.ogg" id="5_qj6si"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrk2q"]
-bg_color = Color(0.756863, 0.756863, 0.756863, 1)
+bg_color = Color(0.756863, 0.756863, 0.756863, 0)
 
 [sub_resource type="SystemFont" id="SystemFont_m2dfh"]
 font_names = PackedStringArray("Impact")
@@ -16,28 +18,14 @@ font_names = PackedStringArray("Impact")
 bg_color = Color(0, 0, 0, 0.239216)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82rme"]
+bg_color = Color(0, 0, 0, 0.239216)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg111"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0mic"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.772549)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teatr"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("4_8ucuo")
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -47,6 +35,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lt7mw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cqvrh")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -141,25 +135,28 @@ alignment = 1
 [node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
-theme_override_styles/normal = SubResource("StyleBoxFlat_kg111")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b0mic")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b0mic")
+theme_override_styles/normal = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/focus = SubResource("StyleBoxTexture_teatr")
 text = "Exit"
 
 [node name="SaveButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
-theme_override_styles/normal = SubResource("StyleBoxFlat_kg111")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b0mic")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b0mic")
+theme_override_styles/normal = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/focus = SubResource("StyleBoxTexture_teatr")
 text = "Save"
 
 [node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
-theme_override_styles/normal = SubResource("StyleBoxFlat_kg111")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b0mic")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b0mic")
+theme_override_styles/normal = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/focus = SubResource("StyleBoxTexture_teatr")
 text = "Reset"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
