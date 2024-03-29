@@ -1,7 +1,7 @@
 extends Control
 
 @onready
-var saveNameInput = $PanelContainer/MarginContainer/Rows/LineEdit
+var saveNameInput = $PanelContainer/MarginContainer/Rows/VBoxContainer/LineEdit
 
 var save1Path = "res://save1.save"
 var save2Path = "res://save2.save"
@@ -10,10 +10,10 @@ var save3Path = "res://save3.save"
 var mainGamePath = "res://scenes/levels/Outside.tscn"
 
 @onready
-var cannotCreateSaveLabel = $PanelContainer/MarginContainer/Rows/CannotCreateSaveLabel
+var cannotCreateSaveLabel = $PanelContainer/MarginContainer/Rows/VBoxContainer/CannotCreateSaveLabel
 
 @onready
-var createSaveButton = $PanelContainer/MarginContainer/Rows/CreateSaveButton
+var createSaveButton = $PanelContainer/MarginContainer/Rows/VBoxContainer/CreateSaveButton
 
 
 # Called when the node enters the scene tree for the first time.

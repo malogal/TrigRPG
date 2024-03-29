@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjk160ytr6b8j"]
+[gd_scene load_steps=7 format=3 uid="uid://cjk160ytr6b8j"]
 
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_3p1x3"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_5thls"]
@@ -11,62 +11,13 @@ bg_color = Color(0.756863, 0.756863, 0.756863, 1)
 [sub_resource type="SystemFont" id="SystemFont_tqj7o"]
 font_names = PackedStringArray("Impact")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4xgo"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b78tv"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf8y1"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_si2ct"]
-bg_color = Color(0, 0, 0, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 4.0
-expand_margin_right = 8.0
-expand_margin_bottom = 4.0
-
 [node name="ContinueGameMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 123.0
-offset_top = 61.0
-offset_right = 123.0
-offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.265996, 0.241)
 script = ExtResource("1_86vw1")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -76,30 +27,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.01402)
 theme_override_styles/panel = SubResource("StyleBoxFlat_6fvfk")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 325
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 325
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 8
 
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 8
-theme_override_constants/shadow_offset_y = 8
-theme_override_constants/outline_size = 24
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = SubResource("SystemFont_tqj7o")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 16
 text = "Continue"
 horizontal_alignment = 1
 
@@ -110,21 +60,23 @@ theme = ExtResource("1_5thls")
 
 [node name="SaveRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
 alignment = 1
 
 [node name="SaveNameLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Save Name"
 horizontal_alignment = 1
 
 [node name="LastPlayedOnLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Last Played On:"
 horizontal_alignment = 1
 
 [node name="TimeSpentLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Time Spent:"
 horizontal_alignment = 1
 
@@ -140,16 +92,19 @@ alignment = 1
 
 [node name="SaveNameLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer2/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Save Name"
 horizontal_alignment = 1
 
 [node name="LastPlayedOnLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer2/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Last Played On:"
 horizontal_alignment = 1
 
 [node name="TimeSpentLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer2/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Time Spent:"
 horizontal_alignment = 1
 
@@ -165,61 +120,58 @@ alignment = 1
 
 [node name="SaveNameLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer3/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Save Name"
 horizontal_alignment = 1
 
 [node name="LastPlayedOnLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer3/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Last Played On:"
 horizontal_alignment = 1
 
 [node name="TimeSpentLabel" type="Label" parent="PanelContainer/MarginContainer/Rows/PanelContainer3/SaveRows"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 6
 text = "Time Spent:"
 horizontal_alignment = 1
 
-[node name="BackButton" parent="." instance=ExtResource("1_3p1x3")]
-layout_mode = 0
-offset_left = 71.4297
-offset_top = 365.145
-offset_right = 252.43
-offset_bottom = 415.145
-scale = Vector2(0.998866, 1)
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../ContinueGameButton")
-theme_override_styles/normal = SubResource("StyleBoxFlat_o4xgo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b78tv")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rf8y1")
-theme_override_styles/focus = SubResource("StyleBoxFlat_si2ct")
-text = "Back"
-referencePath = "res://scenes/menus/main_menu.tscn"
-
 [node name="Save1DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 334.0
-offset_top = -45.0
-offset_right = 854.0
-offset_bottom = 475.0
-scale = Vector2(0.1, 0.1)
+offset_left = 228.0
+offset_top = 55.0
+offset_right = 748.0
+offset_bottom = 575.0
+scale = Vector2(0.03, 0.03)
 icon = ExtResource("4_hujv6")
 
 [node name="Save2DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 336.0
-offset_top = 126.0
-offset_right = 856.0
-offset_bottom = 646.0
-scale = Vector2(0.1, 0.1)
+offset_left = 229.0
+offset_top = 98.0
+offset_right = 749.0
+offset_bottom = 618.0
+scale = Vector2(0.03, 0.03)
 icon = ExtResource("4_hujv6")
 
 [node name="Save3DeleteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 336.0
-offset_top = 293.0
-offset_right = 856.0
-offset_bottom = 813.0
-scale = Vector2(0.1, 0.1)
+offset_left = 231.0
+offset_top = 142.0
+offset_right = 751.0
+offset_bottom = 662.0
+scale = Vector2(0.03, 0.03)
 icon = ExtResource("4_hujv6")
+
+[node name="BackButton" parent="." instance=ExtResource("1_3p1x3")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 46.0
+offset_bottom = 22.0
+text = "Back
+"
+referencePath = "res://scenes/menus/main_menu.tscn"
 
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/PanelContainer" to="." method="_on_panel_container_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/Rows/PanelContainer" to="." method="_on_panel_container_mouse_exited"]

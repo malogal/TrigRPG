@@ -1,7 +1,7 @@
-{"lastPlayed":"Last played on: 2024-03-28","saveName":"ghff","timeSpent":"Time spent: 00:00"}
-{"frequency":1.5}
+{"lastPlayed":"Last played on: 2024-03-28","saveName":"test","timeSpent":"Time spent: 00:00"}
+{}
 {"fileName":"res://scenes/characters/Npc.tscn","parent":"/root/Outside/level","posX":2062.51000976562,"posY":2957.82006835938}
-{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":1969.27258300781,"posY":2401.64379882812}
+{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":898.976013183594,"posY":1541.34997558594}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5193.97998046875,"posY":3512.35009765625}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5340.97998046875,"posY":1420.34997558594}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5230.97998046875,"posY":205.354995727539}
@@ -15,5 +15,6 @@
 {"fileName":"res://scenes/items/Cosine.tscn","parent":"/root/Outside/level","posX":1332.97998046875,"posY":2516.35009765625}
 {"fileName":"res://scenes/items/Cosine.tscn","parent":"/root/Outside/level","posX":1131.97998046875,"posY":2515.35009765625}
 {"fileName":"res://scenes/items/Frequency.tscn","parent":"/root/Outside/level","posX":1770.97998046875,"posY":2500.35009765625}
+{"fileName":"res://scenes/items/Frequency.tscn","parent":"/root/Outside/level","posX":1982.97998046875,"posY":2480.35009765625}
 {"fileName":"res://scenes/items/Sine.tscn","parent":"/root/Outside/level","posX":1794.97998046875,"posY":2169.35009765625}
 {"fileName":"res://scenes/items/Sine.tscn","parent":"/root/Outside/level","posX":1993.97998046875,"posY":2165.35009765625}
