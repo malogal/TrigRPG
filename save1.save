@@ -1,7 +1,7 @@
 {"lastPlayed":"Last played on: 2024-03-28","saveName":"test","timeSpent":"Time spent: 00:00"}
 {}
 {"fileName":"res://scenes/characters/Npc.tscn","parent":"/root/Outside/level","posX":2062.51000976562,"posY":2957.82006835938}
-{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":1054.54431152344,"posY":1809.41833496094}
+{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":1540.34387207031,"posY":2305.82495117188}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5193.97998046875,"posY":3512.35009765625}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5340.97998046875,"posY":1420.34997558594}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5230.97998046875,"posY":205.354995727539}

@@ -1010,7 +1010,7 @@ initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
-position = Vector2(898.976, 1541.35)
+position = Vector2(136.976, 250.355)
 
 [node name="enemy" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5193.98, 3512.35)
@@ -1037,36 +1037,35 @@ position = Vector2(2596.98, 3980.35)
 position = Vector2(3284.98, 3549.35)
 
 [node name="Radian" parent="level" instance=ExtResource("15_11iux")]
-position = Vector2(965.976, 1559.35)
+position = Vector2(203.976, 268.36)
 
 [node name="Amplitude" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
-position = Vector2(710.976, 2132.35)
+position = Vector2(232.976, 363.355)
 
 [node name="Amplitude2" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
-position = Vector2(711.976, 2369.35)
+position = Vector2(341.976, 325.355)
 amount = 1.75
 
 [node name="Cosine" parent="level" groups=["saved"] instance=ExtResource("14_ctil3")]
-position = Vector2(1332.98, 2516.35)
+position = Vector2(327.976, 209.355)
 
 [node name="Cosine2" parent="level" groups=["saved"] instance=ExtResource("14_ctil3")]
-position = Vector2(1131.98, 2515.35)
+position = Vector2(348.976, 252.355)
 
 [node name="Frequency" parent="level" groups=["saved"] instance=ExtResource("15_xsvti")]
-position = Vector2(1770.98, 2500.35)
+position = Vector2(115.976, 346.355)
 
 [node name="Frequency2" parent="level" groups=["saved"] instance=ExtResource("15_xsvti")]
-position = Vector2(1982.98, 2480.35)
+position = Vector2(67.976, 329.355)
 amount = 1.5
 
 [node name="Sine" parent="level" groups=["saved"] instance=ExtResource("16_cr781")]
-position = Vector2(1794.98, 2169.35)
+position = Vector2(153.976, 382.355)
 
 [node name="Sine2" parent="level" groups=["saved"] instance=ExtResource("16_cr781")]
-position = Vector2(1993.98, 2165.35)
+position = Vector2(352.976, 378.355)
 
 [node name="Forest" type="TileMap" parent="level"]
-scale = Vector2(7, 7)
 tile_set = SubResource("TileSet_x747v")
 format = 2
 layer_0/name = "background"

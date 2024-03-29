@@ -132,7 +132,7 @@ func despawn():
 	queue_free()
 	pass
 
-func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_hurtbox_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
 		$DamageTimer.start()
 		health_angle.add_angle(body.pie_get_amount())
