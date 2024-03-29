@@ -1,16 +1,16 @@
-[gd_scene load_steps=28 format=3 uid="uid://bycx5snr304xk"]
+[gd_scene load_steps=27 format=3 uid="uid://bycx5snr304xk"]
 
 [ext_resource type="Script" path="res://scenes/characters/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dgmhft8dl1n3d" path="res://textures/temp-pj/pj.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://vyds0vs88ah5" path="res://scenes/characters/movement/HurtBox.tscn" id="3_tkquw"]
 [ext_resource type="Texture2D" uid="uid://qjowafifjm62" path="res://textures/enemy/zombie_walk.png" id="4_hlxtn"]
-[ext_resource type="Script" path="res://scenes/characters/Health.gd" id="5_ya5kf"]
+[ext_resource type="PackedScene" uid="uid://cblo0y3rqammv" path="res://scenes/characters/movement/Health.tscn" id="6_0o5ch"]
+[ext_resource type="PackedScene" uid="uid://bqsury0s0vq8l" path="res://scenes/characters/movement/SightRange.tscn" id="7_1ug1d"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 35.8589
 height = 71.7178
-
-[sub_resource type="CapsuleShape2D" id="18"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3wmj"]
 atlas = ExtResource("4_hlxtn")
@@ -147,16 +147,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_u823m"]
-font_size = 11
-font_color = Color(0.803922, 0.133333, 0.180392, 1)
-shadow_size = 0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_wuu5n"]
 radius = 8.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wabu1"]
-radius = 133.31
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 motion_mode = 1
@@ -178,11 +170,7 @@ frame = 9
 rotation = 1.5708
 shape = SubResource("1")
 
-[node name="hurtbox" type="Area2D" parent="."]
-collision_mask = 3
-
-[node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
-shape = SubResource("18")
+[node name="hurtbox" parent="." instance=ExtResource("3_tkquw")]
 
 [node name="item_spawner" parent="." instance=ExtResource("3")]
 item_type = "cosine"
@@ -191,18 +179,7 @@ item_type = "cosine"
 sprite_frames = SubResource("SpriteFrames_7q67h")
 animation = &"walk_down"
 
-[node name="Health" type="Label" parent="."]
-offset_left = -10.0
-offset_top = -27.0
-offset_right = 9.0
-offset_bottom = -11.0
-text = "π/2"
-label_settings = SubResource("LabelSettings_u823m")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-script = ExtResource("5_ya5kf")
-metadata/_edit_use_anchors_ = true
+[node name="Health" parent="." instance=ExtResource("6_0o5ch")]
 
 [node name="DamageTimer" type="Timer" parent="."]
 one_shot = true
@@ -213,16 +190,10 @@ one_shot = true
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_wuu5n")
 
-[node name="sight_range" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sight_range"]
-shape = SubResource("CircleShape2D_wabu1")
+[node name="sight_range" parent="." instance=ExtResource("7_1ug1d")]
 
 [node name="state_changer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
 [connection signal="area_exited" from="attack_range" to="." method="_on_exit_attack_range"]
-[connection signal="area_entered" from="sight_range" to="." method="_on_enter_sight"]
-[connection signal="area_exited" from="sight_range" to="." method="_on_exit_sight"]

@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6ky4fyoquhby"]
+
+[ext_resource type="Script" path="res://scenes/characters/Radian.gd" id="1_1twqq"]
+[ext_resource type="PackedScene" uid="uid://gq4dxyutnk75" path="res://scenes/characters/movement/RandomMovement.tscn" id="2_fanw0"]
+[ext_resource type="SpriteFrames" uid="uid://gx4fr060osg3" path="res://scenes/characters/animations/RadianAnimations.tres" id="3_lprw2"]
+[ext_resource type="Script" path="res://scenes/characters/Health.gd" id="4_smci4"]
+[ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="5_6iyfc"]
+[ext_resource type="Script" path="res://scenes/powers/wave/wave_teleport.gd" id="6_uj82q"]
+[ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="7_2urgn"]
+[ext_resource type="PackedScene" uid="uid://cb4dkli6dkqbt" path="res://scenes/characters/movement/TeleportAnimation.tscn" id="8_7hesv"]
+
+[sub_resource type="CapsuleShape2D" id="18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1gwbv"]
+radius = 278.65
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6xt7c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u823m"]
+font_size = 11
+font_color = Color(0.803922, 0.133333, 0.180392, 1)
+shadow_size = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lntsa"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nv88"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le07k"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3l56"]
+atlas = ExtResource("7_2urgn")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04tkr"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"none",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lntsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nv88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le07k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3l56")
+}],
+"loop": true,
+"name": &"teleport",
+"speed": 5.0
+}]
+
+[node name="Radian" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_1twqq")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="col" type="CollisionShape2D" parent="hurtbox" groups=["enemy"]]
+shape = SubResource("18")
+
+[node name="sight_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight_range"]
+shape = SubResource("CircleShape2D_1gwbv")
+debug_color = Color(0.819608, 0.176471, 0.878431, 0.419608)
+
+[node name="RandomMovement" parent="." instance=ExtResource("2_fanw0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6xt7c")
+
+[node name="anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_lprw2")
+animation = &"idle_down"
+
+[node name="Health" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -27.0
+offset_right = 9.0
+offset_bottom = -11.0
+text = "π/2"
+label_settings = SubResource("LabelSettings_u823m")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("4_smci4")
+metadata/_edit_use_anchors_ = true
+
+[node name="PieThrowing" parent="." instance=ExtResource("5_6iyfc")]
+
+[node name="WaveTeleport" type="Node2D" parent="."]
+script = ExtResource("6_uj82q")
+
+[node name="WaveCooldown" type="Timer" parent="WaveTeleport"]
+one_shot = true
+
+[node name="TeleportCooldown" type="Timer" parent="WaveTeleport"]
+one_shot = true
+
+[node name="TeleportAnimated" type="AnimatedSprite2D" parent="WaveTeleport"]
+top_level = true
+sprite_frames = SubResource("SpriteFrames_04tkr")
+animation = &"none"
+autoplay = "none"
+
+[node name="TeleportAnimated" parent="." instance=ExtResource("8_7hesv")]
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
+[connection signal="body_exited" from="sight_range" to="." method="_on_sight_range_body_exited"]
+[connection signal="timeout" from="WaveTeleport/WaveCooldown" to="WaveTeleport" method="_on_wave_cooldown_timeout"]
+[connection signal="timeout" from="WaveTeleport/TeleportCooldown" to="WaveTeleport" method="_on_teleport_cooldown_timeout"]
+[connection signal="animation_finished" from="WaveTeleport/TeleportAnimated" to="WaveTeleport" method="_on_animated_sprite_2d_animation_finished"]

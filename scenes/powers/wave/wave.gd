@@ -78,3 +78,6 @@ func new_wave(specs: Dictionary):
 
 func get_inner_wave_point() -> Vector2:
 	return $InnerWave.get_inner_wave_point()
+
+func move_inner_wave(is_positive): 
+	$InnerWave.move_inner_wave(is_positive)

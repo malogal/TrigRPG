@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=21 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://bikkohdpm1t2t" path="res://scenes/items/Cosine.tscn" id="14_ctil3"]
+[ext_resource type="PackedScene" uid="uid://c6ky4fyoquhby" path="res://scenes/characters/Radian.tscn" id="15_11iux"]
 [ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
@@ -1034,6 +1035,9 @@ position = Vector2(2596.98, 3980.35)
 
 [node name="enemy8" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(3284.98, 3549.35)
+
+[node name="Radian" parent="level" instance=ExtResource("15_11iux")]
+position = Vector2(965.976, 1559.35)
 
 [node name="Amplitude" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
 position = Vector2(710.976, 2132.35)

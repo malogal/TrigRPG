@@ -1,6 +1,9 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://ckf3lk76e86ni"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ckf3lk76e86ni"]
+
+[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="1_18t1b"]
 
 [resource]
-font_size = 12
+font = ExtResource("1_18t1b")
+font_size = 15
 font_color = Color(0.247059, 0.298039, 0.709804, 1)
 outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)

@@ -14,7 +14,7 @@ func _ready():
 	#$AnimatedPie.animation = "amount_"+str(1)
 	pass
 
-func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: int):
+func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: int, group_name: String = "pie"):
 	global_position = start_pos
 	linear_damp = -1
 	amount = amount_of_pie
@@ -24,6 +24,7 @@ func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: 
 	linear_velocity = global_position.direction_to(dir*500) * pie_speed
 	$AnimatedPie.setup(amount_of_pie)
 	$AnimatedPie.play()
+	add_to_group(group_name)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

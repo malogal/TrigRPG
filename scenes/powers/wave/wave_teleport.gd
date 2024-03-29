@@ -26,6 +26,9 @@ func _ready():
 	set_wave_cooldown(1.5)
 	set_teleport_cooldown(6.0)
 
+func move_inner_wave(is_positive: bool):
+	wave_main.move_inner_wave(is_positive)
+	
 func set_wave_cooldown(cd: float = 1.5):
 	$WaveCooldown.wait_time = cd
 
@@ -63,7 +66,6 @@ func is_wave_actived() -> bool:
 
 func _on_wave_cooldown_timeout() -> void:
 	wave_available.emit(true)
-
 
 func _on_teleport_cooldown_timeout() -> void:
 	teleport_available.emit(true)

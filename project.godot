@@ -49,6 +49,12 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 theme/default_font_subpixel_positioning=0
 
+[importer_defaults]
+
+font_data_dynamic={
+"subpixel_positioning": 0
+}
+
 [input]
 
 move_up={
@@ -129,6 +135,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialog
 [layer_names]
 
 2d_physics/layer_2="pie"
+2d_physics/layer_3="radian-pie"
 
 [physics]
 

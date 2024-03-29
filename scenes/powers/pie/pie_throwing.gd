@@ -1,7 +1,8 @@
 extends Node2D
 
-@export var speed = 700
+@export var speed = 350
 
+var pie_group_name: String = "pie"
 var can_throw: bool
 var pies: PackedScene
 signal turn_direction(dir: String)
@@ -15,7 +16,7 @@ func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: Angle):
 		pie_available.emit(false)
 		var pie = pies.instantiate()
 		add_child(pie)
-		pie.new_pie(char_pos, click_pos, amount_of_pie, speed)
+		pie.new_pie(char_pos, click_pos, amount_of_pie, speed, pie_group_name)
 		
 		var deg = rad_to_deg(pie.get_velocity().angle())
 		var str_dir 
@@ -49,3 +50,6 @@ func _on_pie_cooldown_timeout():
 
 func get_pie_available_signal() -> Signal:
 	return pie_available
+
+func set_pie_group_name(name: String):
+	pie_group_name = name

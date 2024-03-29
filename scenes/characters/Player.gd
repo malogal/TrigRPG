@@ -140,6 +140,11 @@ func get_input():
 			elif Input.is_action_just_pressed("change_pie_measurement_positive"):
 				pie_amount.add_angle(pie_increment)
 				pie_changed.emit(pie_amount)
+		else:
+			if Input.is_action_pressed("change_pie_measurement_negative"):
+				$WaveTeleport.move_inner_wave(false)
+			elif Input.is_action_pressed("change_pie_measurement_positive"):
+				$WaveTeleport.move_inner_wave(true)
 		if allowed_powers.teleport and Input.is_action_just_released("wave"):
 			action = WAVE
 		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
@@ -248,7 +253,7 @@ func _on_hurtbox_area_entered(area):
 	pass
 
 func damage_player(area):
-	if state != STATE_DIE and area.is_in_group("enemy_weapons") and !is_invincible:
+	if state != STATE_DIE and !is_invincible and (area.is_in_group("enemy_weapons") or area.is_in_group("radian-pie")):
 		is_invincible = true
 		invincibility_timer.wait_time = time_invincible
 		invincibility_timer.start()

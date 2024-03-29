@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dxsjw0432epve"
-path="res://.godot/imported/Candy Demo.ttf-b91de04578e8e82ab29fa5db62ce05ac.fontdata"
+uid="uid://clxlsk8kvipms"
+path="res://.godot/imported/Early GameBoy.ttf-55b71869e0f6be9efc9c0d78e4a776db.fontdata"
 
 [deps]
 
-source_file="res://fonts/Candy Demo.ttf"
-dest_files=["res://.godot/imported/Candy Demo.ttf-b91de04578e8e82ab29fa5db62ce05ac.fontdata"]
+source_file="res://fonts/Early GameBoy.ttf"
+dest_files=["res://.godot/imported/Early GameBoy.ttf-55b71869e0f6be9efc9c0d78e4a776db.fontdata"]
 
 [params]
 
