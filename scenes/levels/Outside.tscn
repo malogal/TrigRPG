@@ -1025,16 +1025,16 @@ position = Vector2(5230.98, 205.355)
 position = Vector2(5289.98, 3254.35)
 
 [node name="enemy5" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(-197.024, 1854.35)
+position = Vector2(492.976, 496.355)
 
 [node name="enemy6" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(556.976, 243.355)
+position = Vector2(591.976, 400.355)
 
 [node name="enemy7" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(2596.98, 3980.35)
+position = Vector2(110.976, 604.355)
 
 [node name="enemy8" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(3284.98, 3549.35)
+position = Vector2(-38.024, 28.355)
 
 [node name="Radian" parent="level" instance=ExtResource("15_11iux")]
 position = Vector2(203.976, 268.36)

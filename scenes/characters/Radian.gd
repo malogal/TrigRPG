@@ -53,7 +53,7 @@ func _ready():
 	
 func _physics_process(_delta: float) -> void:
 	if is_attacking:
-		$PieThrowing.throw(position, player_body.position, AngleClass.new(2*PI))
+		$PieThrowing.throw(global_position, player_body.global_position, AngleClass.new(2*PI))
 		$PieThrowing.set_cooldown(rng.randf_range(.75, 4))
 	if rng.randi() % 18 == 0 && !$WaveTeleport.is_wave_actived() && use_wave_delay.is_stopped():
 		use_wave_delay.start()

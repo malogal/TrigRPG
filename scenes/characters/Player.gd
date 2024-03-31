@@ -185,8 +185,8 @@ func _physics_process(_delta):
 			state = STATE_IDLE
 	match action:
 		PIE: 
-			var mouse_pos = get_local_mouse_position()
-			$PieThrowing.throw(position, mouse_pos, pie_amount)
+			var mouse_pos = get_global_mouse_position()
+			$PieThrowing.throw(global_position, mouse_pos, pie_amount)
 			new_anim = "throw_"+facing
 		WAVE:
 			var is_sine = true

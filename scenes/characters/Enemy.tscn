@@ -6,11 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://vyds0vs88ah5" path="res://scenes/characters/movement/HurtBox.tscn" id="3_tkquw"]
 [ext_resource type="Texture2D" uid="uid://qjowafifjm62" path="res://textures/enemy/zombie_walk.png" id="4_hlxtn"]
 [ext_resource type="PackedScene" uid="uid://cblo0y3rqammv" path="res://scenes/characters/movement/Health.tscn" id="6_0o5ch"]
-[ext_resource type="PackedScene" uid="uid://bqsury0s0vq8l" path="res://scenes/characters/movement/SightRange.tscn" id="7_1ug1d"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
-radius = 35.8589
-height = 71.7178
+height = 22.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3wmj"]
 atlas = ExtResource("4_hlxtn")
@@ -150,6 +148,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wuu5n"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wabu1"]
+radius = 133.31
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -171,6 +172,8 @@ rotation = 1.5708
 shape = SubResource("1")
 
 [node name="hurtbox" parent="." instance=ExtResource("3_tkquw")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="item_spawner" parent="." instance=ExtResource("3")]
 item_type = "cosine"
@@ -192,7 +195,12 @@ collision_mask = 24
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_wuu5n")
 
-[node name="sight_range" parent="." instance=ExtResource("7_1ug1d")]
+[node name="sight_range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight_range"]
+shape = SubResource("CircleShape2D_wabu1")
 
 [node name="state_changer" type="Timer" parent="."]
 autostart = true

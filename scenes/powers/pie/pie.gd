@@ -15,13 +15,13 @@ func _ready():
 	pass
 
 func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: int, group_name: String = "pie"):
-	position = start_pos
+	global_position = start_pos
 	linear_damp = -1
 	amount = amount_of_pie
 	speed = pie_speed
 	angular_damp = -1
 	angular_velocity = rotate_speed
-	linear_velocity = position.direction_to(dir*500) * pie_speed
+	linear_velocity = global_position.direction_to(dir) * pie_speed
 	$AnimatedPie.setup(amount_of_pie)
 	$AnimatedPie.play()
 	add_to_group(group_name)
