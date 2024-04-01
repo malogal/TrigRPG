@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bufgnm1kucj8a"]
+
+[ext_resource type="Script" path="res://scenes/minigames/unit_circle.gd" id="1_wrpfy"]
+[ext_resource type="Texture2D" uid="uid://bbjutmqw7pptj" path="res://textures/minigames/rock.png" id="2_t7r30"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rxhn"]
+
+[node name="UnitCircle" type="Area2D"]
+script = ExtResource("1_wrpfy")
+
+[node name="Center" type="Sprite2D" parent="."]
+scale = Vector2(0.0266666, 0.0266666)
+texture = ExtResource("2_t7r30")
+
+[node name="EdgeArea" type="Area2D" parent="."]
+position = Vector2(80, 0)
+
+[node name="Mover" type="Sprite2D" parent="EdgeArea"]
+scale = Vector2(0.0266666, 0.0266666)
+texture = ExtResource("2_t7r30")
+
+[node name="EdgeCollision" type="CollisionShape2D" parent="EdgeArea"]
+shape = SubResource("CircleShape2D_8rxhn")
+
+[connection signal="area_entered" from="EdgeArea" to="." method="_movement_area_entered"]

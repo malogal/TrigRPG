@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=21 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://bikkohdpm1t2t" path="res://scenes/items/Cosine.tscn" id="14_ctil3"]
+[ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="15_mnd2r"]
 [ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
@@ -994,6 +995,9 @@ tile_proxies/coords_level = [[1, Vector2i(0, 0)], [6, Vector2i(0, 0)], [1, Vecto
 [node name="Outside" type="Node" groups=["levels"]]
 script = ExtResource("1_eck8o")
 
+[node name="UnitCircle" parent="." instance=ExtResource("15_mnd2r")]
+position = Vector2(481.542, 338.611)
+
 [node name="level" type="Node2D" parent="." groups=["levels"]]
 y_sort_enabled = true
 position = Vector2(208.024, -128.355)
@@ -1009,7 +1013,7 @@ initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
-position = Vector2(898.976, 1541.35)
+position = Vector2(357.976, 488.355)
 
 [node name="enemy" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5193.98, 3512.35)
