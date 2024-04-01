@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=21 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4pu11w75h78" path="res://scenes/misc/MusicTrack.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://ddmwmsmc6ptof" path="res://scenes/misc/Cutscene.tscn" id="13_4qlox"]
 [ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="13_33be8"]
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
@@ -1009,7 +1010,7 @@ initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
-position = Vector2(898.976, 1541.35)
+position = Vector2(135.976, 221.355)
 
 [node name="enemy" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5193.98, 3512.35)
@@ -1027,7 +1028,7 @@ position = Vector2(5289.98, 3254.35)
 position = Vector2(-197.024, 1854.35)
 
 [node name="enemy6" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(556.976, 243.355)
+position = Vector2(527.976, 131.355)
 
 [node name="enemy7" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(2596.98, 3980.35)
@@ -1061,6 +1062,10 @@ position = Vector2(1794.98, 2169.35)
 [node name="Sine2" parent="level" groups=["saved"] instance=ExtResource("16_cr781")]
 position = Vector2(1993.98, 2165.35)
 
+[node name="Cutscene1" parent="level" groups=["saved"] instance=ExtResource("13_4qlox")]
+position = Vector2(135.976, 224.355)
+cutscenePath = "res://dialogue/cutscene1.dialogue"
+
 [node name="Forest" type="TileMap" parent="level"]
 tile_set = SubResource("TileSet_x747v")
 format = 2
@@ -1079,10 +1084,11 @@ layer_3/tile_data = PackedInt32Array(131094, 65542, 18, 131095, 131078, 19, 1310
 [node name="music_track" parent="." instance=ExtResource("6")]
 music_track = "res://music/310-world-map-loop.ogg"
 
-[node name="UI" parent="." instance=ExtResource("2")]
+[node name="UI" parent="." groups=["saved"] instance=ExtResource("2")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
+layer = 128
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_xavrg")]
 process_mode = 0

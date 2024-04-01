@@ -31,6 +31,10 @@ func _ready():
 	attack_hitbox = $attack_range
 
 func _physics_process(_delta):
+	if Globals.isDialogActive:
+		$anims.stop()
+		return
+		
 	match state:
 		STATE_IDLE:
 			new_anim = "idle_" + facing

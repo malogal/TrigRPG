@@ -20,6 +20,7 @@ size = Vector2(60, 200)
 script = ExtResource("1_u2823")
 
 [node name="Dialog_box" parent="." instance=ExtResource("1")]
+visible = false
 anchors_preset = 12
 expand_mode = 1
 
