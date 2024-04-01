@@ -1009,7 +1009,7 @@ initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
-position = Vector2(898.976, 1541.35)
+position = Vector2(119.976, 225.355)
 
 [node name="enemy" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5193.98, 3512.35)
