@@ -29,6 +29,7 @@ func throw(char_pos: Vector2, click_pos: Vector2, amount_of_pie: Angle):
 		if deg <= -45 && deg >= -135:
 			str_dir = "up"
 		turn_direction.emit(str_dir)
+		return true
 	
 
 # Called when the node enters the scene tree for the first time.

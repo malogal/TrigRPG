@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cb4dkli6dkqbt" path="res://scenes/characters/movement/TeleportAnimation.tscn" id="8_ets2a"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
-radius = 35.8589
-height = 71.7178
+radius = 9.0
+height = 34.0
 
 [sub_resource type="CapsuleShape2D" id="18"]
 radius = 30.0
@@ -22,9 +22,7 @@ collision_layer = 9
 motion_mode = 1
 script = ExtResource("2")
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-scale = Vector2(0.2, 0.2)
+[node name="player_body" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
 
 [node name="player_sword" type="Area2D" parent="."]
@@ -42,8 +40,8 @@ properties = ["linear_vel", "roll_direction", "facing"]
 enabled = false
 
 [node name="hurtbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
+collision_layer = 16
+collision_mask = 20
 
 [node name="col" type="CollisionShape2D" parent="hurtbox"]
 scale = Vector2(0.2, 0.2)
@@ -65,6 +63,7 @@ script = ExtResource("6_2jx58")
 [node name="TeleportAnimated" parent="." instance=ExtResource("8_ets2a")]
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="animation_finished" from="anims" to="." method="_on_anims_animation_finished"]
 [connection signal="animation_looped" from="anims" to="." method="_on_anims_animation_looped"]
 [connection signal="timeout" from="invincibility_timer" to="." method="_on_invincibility_timer_timeout"]

@@ -1,15 +1,15 @@
-{"lastPlayed":"Last played on: 2024-03-31","saveName":"2","timeSpent":"Time spent: 00:00"}
+{"lastPlayed":"Last played on: 2024-03-31","saveName":"1","timeSpent":"Time spent: 00:00"}
 {}
 {"fileName":"res://scenes/characters/Npc.tscn","parent":"/root/Outside/level","posX":2062.51000976562,"posY":2957.82006835938}
-{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":-24.75222778320312,"posY":-170.08711242675781}
+{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":385.800231933594,"posY":170.879364013672}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5193.97998046875,"posY":3512.35009765625}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5340.97998046875,"posY":1420.34997558594}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5230.97998046875,"posY":205.354995727539}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5289.97998046875,"posY":3254.35009765625}
-{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":-197.02400207519531,"posY":1854.34997558594}
-{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":556.976013183594,"posY":243.354995727539}
-{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":2596.97998046875,"posY":3980.35009765625}
-{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":3284.97998046875,"posY":3549.35009765625}
+{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":492.976013183594,"posY":496.355010986328}
+{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":591.976013183594,"posY":400.355010986328}
+{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":110.975997924805,"posY":604.35498046875}
+{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":311.822692871094,"posY":157.456726074219}
 {"fileName":"res://scenes/items/Amplitude.tscn","parent":"/root/Outside/level","posX":232.975997924805,"posY":363.355010986328}
 {"fileName":"res://scenes/items/Amplitude.tscn","parent":"/root/Outside/level","posX":341.976013183594,"posY":325.355010986328}
 {"fileName":"res://scenes/items/Cosine.tscn","parent":"/root/Outside/level","posX":327.976013183594,"posY":209.354995727539}

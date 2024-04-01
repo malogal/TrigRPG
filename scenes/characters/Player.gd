@@ -186,8 +186,9 @@ func _physics_process(_delta):
 	match action:
 		PIE: 
 			var mouse_pos = get_global_mouse_position()
-			$PieThrowing.throw(global_position, mouse_pos, pie_amount)
-			new_anim = "throw_"+facing
+			# Only update animation if pie is actually thrown
+			if $PieThrowing.throw(global_position, mouse_pos, pie_amount):
+				new_anim = "throw_"+facing
 		WAVE:
 			var is_sine = true
 			# To make sine the default in all cases except cosine picked up,
@@ -328,3 +329,7 @@ func _on_teleport_animated_animation_looped() -> void:
 # Stop showing teleport sparkles after it finishes animating 
 func _on_teleport_animated_animation_finished() -> void:
 	$TeleportAnimated.visible = false
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	damage_player(body)
