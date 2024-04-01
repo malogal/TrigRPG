@@ -29,7 +29,7 @@ All collisions have a bitmask layer and mask. The layer is where the collision s
 the mask is what the collision shape looks for. Below is a list of the current bitmasks:
 
 | Name    | Bit | Description |
-| -------- | ------- |
+| -------- | ------- |---------|
 | General  | 1    | Collisions between tiles and bodies |
 | Pie | 2     | Pie thrown by the player |
 | Radian Pie | 3 | Pie thrown by Lord Radian |
