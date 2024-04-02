@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bufgnm1kucj8a"]
+
+[ext_resource type="Script" path="res://scenes/minigames/unit_circle.gd" id="1_wrpfy"]
+[ext_resource type="Texture2D" uid="uid://bbjutmqw7pptj" path="res://textures/minigames/rock.png" id="2_t7r30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3436s"]
+size = Vector2(22, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcque"]
+size = Vector2(22, 20)
+
+[node name="UnitCircle" type="StaticBody2D"]
+script = ExtResource("1_wrpfy")
+
+[node name="Gate" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3436s")
+
+[node name="Center" type="Sprite2D" parent="."]
+scale = Vector2(0.0266666, 0.0266666)
+texture = ExtResource("2_t7r30")
+
+[node name="EdgeArea" type="RigidBody2D" parent="." groups=["moveable"]]
+position = Vector2(80, 0)
+collision_layer = 8
+collision_mask = 9
+lock_rotation = true
+linear_damp = 10.0
+
+[node name="Mover" type="Sprite2D" parent="EdgeArea"]
+scale = Vector2(0.0266666, 0.0266666)
+texture = ExtResource("2_t7r30")
+
+[node name="EdgeCollision" type="CollisionShape2D" parent="EdgeArea"]
+shape = SubResource("RectangleShape2D_vcque")
+
+[connection signal="body_shape_entered" from="EdgeArea" to="." method="_on_edge_area_body_shape_entered"]

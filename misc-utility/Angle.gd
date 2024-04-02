@@ -8,7 +8,17 @@ var rads:float
 var prefix:String
 var suffix:String
 
-func _init(val:float,is_deg:bool = false, pre:String = "",suf:String = ""):
+#makes angle from (0,0) to (x,y) if (x,y)!=(0,0). in this case, val is ignored. otherwise, makes angle val.
+func _init(val:float,x:float = 0,y:float = 0,is_deg:bool = false, pre:String = "",suf:String = ""):
+	if x or y:
+		if x==0 and y>0:
+			val = PI/2
+		elif x==0:
+			val = -PI/2
+		elif x>0:
+			val = atan(y/x)
+		else:
+			val = atan(y/x)+PI
 	rads = 0
 	if is_deg:
 		add_deg(val)
