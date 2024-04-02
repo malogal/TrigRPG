@@ -54,7 +54,7 @@ func _ready():
 			$Label.text += str(amount) 
 		item_type = name
 		
-func _process( delta: float, ) -> void:
+func _process( _delta: float, ) -> void:
 	if pickup_able and Input.is_action_just_pressed("interact"):
 		pickup_able = false
 		pickup()

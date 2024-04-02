@@ -11,5 +11,5 @@ func set_angle_text(angle: Angle):
 	else:
 		text = angle.get_str_deg()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

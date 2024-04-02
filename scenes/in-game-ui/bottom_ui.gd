@@ -15,7 +15,7 @@ func assign_player(p: Player):
 	player.get_wave_available_signal().connect(_on_wave_available)
 	player.get_teleport_available_signal().connect(_on_teleport_available)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_pie_changed(pie_amount: Angle):

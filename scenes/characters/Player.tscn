@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctd3mgp0s172q"]
+[gd_scene load_steps=11 format=3 uid="uid://ctd3mgp0s172q"]
 
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bk42yg5aycg0t" path="res://scenes/characters/debug_character.tscn" id="3"]
@@ -7,59 +7,22 @@
 [ext_resource type="Script" path="res://scenes/characters/anims.gd" id="6_2jx58"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="7_7ept5"]
 [ext_resource type="PackedScene" uid="uid://co8ecubpep20b" path="res://scenes/powers/wave/wave_teleport.tscn" id="7_y8k3y"]
-[ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="8_sel5q"]
+[ext_resource type="PackedScene" uid="uid://cb4dkli6dkqbt" path="res://scenes/characters/movement/TeleportAnimation.tscn" id="8_ets2a"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
-radius = 35.8589
-height = 71.7178
+radius = 9.0
+height = 34.0
 
 [sub_resource type="CapsuleShape2D" id="18"]
 radius = 30.0
 height = 144.16
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lntsa"]
-atlas = ExtResource("8_sel5q")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1nv88"]
-atlas = ExtResource("8_sel5q")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_le07k"]
-atlas = ExtResource("8_sel5q")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3l56"]
-atlas = ExtResource("8_sel5q")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mhn75"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lntsa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1nv88")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_le07k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q3l56")
-}],
-"loop": false,
-"name": &"teleport",
-"speed": 9.0
-}]
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 9
 motion_mode = 1
 script = ExtResource("2")
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-scale = Vector2(0.2, 0.2)
+[node name="player_body" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
 
 [node name="player_sword" type="Area2D" parent="."]
@@ -77,6 +40,8 @@ properties = ["linear_vel", "roll_direction", "facing"]
 enabled = false
 
 [node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 20
 
 [node name="col" type="CollisionShape2D" parent="hurtbox"]
 scale = Vector2(0.2, 0.2)
@@ -95,17 +60,12 @@ script = ExtResource("6_2jx58")
 
 [node name="invincibility_timer" type="Timer" parent="."]
 
-[node name="TeleportAnimated" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 3
-sprite_frames = SubResource("SpriteFrames_mhn75")
-animation = &"teleport"
-frame = 3
-frame_progress = 1.0
-speed_scale = 0.5
+[node name="TeleportAnimated" parent="." instance=ExtResource("8_ets2a")]
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="animation_finished" from="anims" to="." method="_on_anims_animation_finished"]
 [connection signal="animation_looped" from="anims" to="." method="_on_anims_animation_looped"]
 [connection signal="timeout" from="invincibility_timer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="animation_finished" from="TeleportAnimated" to="." method="_on_teleport_animated_animation_finished"]
+[connection signal="animation_looped" from="TeleportAnimated" to="." method="_on_teleport_animated_animation_looped"]
