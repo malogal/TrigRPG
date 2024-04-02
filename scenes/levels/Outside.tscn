@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4pu11w75h78" path="res://scenes/misc/MusicTrack.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="13"]
-[ext_resource type="PackedScene" uid="uid://ddmwmsmc6ptof" path="res://scenes/misc/Cutscene.tscn" id="13_4qlox"]
+[ext_resource type="PackedScene" path="res://scenes/misc/Cutscene.tscn" id="13_4qlox"]
 [ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="13_33be8"]
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
