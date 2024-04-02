@@ -4,7 +4,7 @@ class_name Enemy
 
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
-@export var WALK_SPEED: int = 350
+var WALK_SPEED: int = 100
 @export var ROLL_SPEED: int = 1000
 @export var hitpoints: int = 3
 @export var health: float = PI/2
@@ -18,7 +18,7 @@ var anim = ""
 var new_anim = ""
 
 var player
-var attack_hitbox
+
 
 enum { STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT }
 
@@ -28,7 +28,7 @@ func _ready():
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
 	player = get_tree().get_nodes_in_group("player")[0]
-	attack_hitbox = $attack_range
+
 
 func _physics_process(_delta):
 	match state:
@@ -63,7 +63,6 @@ func _physics_process(_delta):
 			pass
 		STATE_ATTACK:
 			new_anim = "attack_" + facing
-			player.damage_player(attack_hitbox)
 			pass
 		STATE_ROLL:
 			set_velocity(linear_vel)
@@ -100,18 +99,6 @@ func _physics_process(_delta):
 func goto_idle():
 	state = STATE_IDLE
 
-## Triggers when entering line of sight
-func _on_enter_sight(body):
-	if body.get_parent().is_in_group("player"):
-		state = STATE_WALKING
-	pass
-		
-## Triggers when exiting line of sight
-func _on_exit_sight(body):
-	if body.get_parent().is_in_group("player"):
-		state = STATE_IDLE
-	pass
-
 ## Triggers when entering attack range
 func _on_enter_attack_range(body):
 	if body.get_parent().is_in_group("player"):
@@ -132,12 +119,12 @@ func despawn():
 	queue_free()
 	pass
 
-func _on_hurtbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_hurtbox_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
 		$DamageTimer.start()
 		health_angle.add_angle(body.pie_get_amount())
 		var pushback_direction = body.linear_velocity.normalized()
-		set_velocity(pushback_direction * 5000)
+		set_velocity(pushback_direction * 30)
 		move_and_slide()
 		#state = STATE_HURT
 		$state_changer.start()
@@ -155,3 +142,13 @@ func getSaveStats():
 		'posX': position.x,
 		'posY': position.y
 	}
+
+
+func _on_sight_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		state = STATE_WALKING
+
+
+func _on_sight_range_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		state = STATE_IDLE

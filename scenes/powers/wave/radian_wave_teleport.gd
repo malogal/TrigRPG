@@ -1,9 +1,5 @@
 extends Node2D
 
-@export var speed = 350
-
-signal wave_available(is_available: bool)
-signal teleport_available(is_available: bool)
 
 var is_wave_active: bool = false
 var waves: PackedScene
@@ -11,14 +7,13 @@ var wave_main: Node
 
 func create_stop_wave(wave_specs: Dictionary):
 	if is_wave_active:
-			stop_wave()
+		stop_wave()
 	elif $WaveCooldown.is_stopped():
 		$WaveCooldown.start()
 		is_wave_active = true			
 		wave_main = waves.instantiate()
 		wave_main.new_wave(wave_specs)
 		add_child(wave_main)
-		wave_available.emit(false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,7 +47,6 @@ func get_teleport_to() -> Vector2:
 	if point.is_zero_approx():
 		return point
 	$TeleportCooldown.start()
-	teleport_available.emit(false)
 	return wave_main.get_inner_wave_point()
 
 func stop_wave():
@@ -63,9 +57,3 @@ func stop_wave():
 	
 func is_wave_actived() -> bool:
 	return is_wave_active
-
-func _on_wave_cooldown_timeout() -> void:
-	wave_available.emit(true)
-
-func _on_teleport_cooldown_timeout() -> void:
-	teleport_available.emit(true)

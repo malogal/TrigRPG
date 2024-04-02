@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqycefgysaibg"]
+
+[ext_resource type="Script" path="res://scenes/powers/wave/radian_wave_teleport.gd" id="1_bf1fe"]
+[ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="2_cdefg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lntsa"]
+atlas = ExtResource("2_cdefg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nv88"]
+atlas = ExtResource("2_cdefg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le07k"]
+atlas = ExtResource("2_cdefg")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3l56"]
+atlas = ExtResource("2_cdefg")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04tkr"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"none",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lntsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nv88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le07k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3l56")
+}],
+"loop": true,
+"name": &"teleport",
+"speed": 5.0
+}]
+
+[node name="WaveTeleport" type="Node2D"]
+script = ExtResource("1_bf1fe")
+
+[node name="WaveCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TeleportCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TeleportAnimated" type="AnimatedSprite2D" parent="."]
+top_level = true
+sprite_frames = SubResource("SpriteFrames_04tkr")
+animation = &"none"
+autoplay = "none"
+
+[connection signal="timeout" from="WaveCooldown" to="." method="_on_wave_cooldown_timeout"]
+[connection signal="timeout" from="TeleportCooldown" to="." method="_on_teleport_cooldown_timeout"]
+[connection signal="animation_finished" from="TeleportAnimated" to="." method="_on_animated_sprite_2d_animation_finished"]

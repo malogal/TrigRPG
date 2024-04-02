@@ -140,6 +140,11 @@ func get_input():
 			elif Input.is_action_just_pressed("change_pie_measurement_positive"):
 				pie_amount.add_angle(pie_increment)
 				pie_changed.emit(pie_amount)
+		else:
+			if Input.is_action_pressed("change_pie_measurement_negative"):
+				$WaveTeleport.move_inner_wave(false)
+			elif Input.is_action_pressed("change_pie_measurement_positive"):
+				$WaveTeleport.move_inner_wave(true)
 		if allowed_powers.teleport and Input.is_action_just_released("wave"):
 			action = WAVE
 		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
@@ -180,9 +185,10 @@ func _physics_process(_delta):
 			state = STATE_IDLE
 	match action:
 		PIE: 
-			var mouse_pos = get_local_mouse_position()
-			$PieThrowing.throw(global_position, mouse_pos, pie_amount)
-			new_anim = "throw_"+facing
+			var mouse_pos = get_global_mouse_position()
+			# Only update animation if pie is actually thrown
+			if $PieThrowing.throw(global_position, mouse_pos, pie_amount):
+				new_anim = "throw_"+facing
 		WAVE:
 			var is_sine = true
 			# To make sine the default in all cases except cosine picked up,
@@ -248,7 +254,7 @@ func _on_hurtbox_area_entered(area):
 	pass
 
 func damage_player(area):
-	if state != STATE_DIE and area.is_in_group("enemy_weapons") and !is_invincible:
+	if state != STATE_DIE and !is_invincible and (area.is_in_group("enemy_weapons") or area.is_in_group("radian-pie")):
 		is_invincible = true
 		invincibility_timer.wait_time = time_invincible
 		invincibility_timer.start()
@@ -303,9 +309,6 @@ func get_teleport_available_signal() -> Signal:
 func _on_invincibility_timer_timeout():
 	is_invincible = false
 
-func _on_teleport_animated_animation_finished() -> void:
-	$TeleportAnimated.visible = false
-
 func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(time_to_teleport).timeout
 	position.x += pos.x
@@ -318,3 +321,15 @@ func getSaveStats():
 		'posX': position.x,
 		'posY': position.y
 	}
+
+# Stop showing teleport sparkles after it finishes animating 
+func _on_teleport_animated_animation_looped() -> void:
+	$TeleportAnimated.visible = false
+
+# Stop showing teleport sparkles after it finishes animating 
+func _on_teleport_animated_animation_finished() -> void:
+	$TeleportAnimated.visible = false
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	damage_player(body)

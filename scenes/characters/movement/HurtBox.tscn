@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://vyds0vs88ah5"]
+
+[sub_resource type="CapsuleShape2D" id="18"]
+
+[node name="hurtbox" type="Area2D"]
+collision_mask = 3
+
+[node name="col" type="CollisionShape2D" parent="." groups=["enemy"]]
+shape = SubResource("18")
