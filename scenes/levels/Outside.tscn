@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bllq7mij5cpil" path="res://scenes/misc/Cutscene.tscn" id="13_4qlox"]
 [ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="13_33be8"]
 [ext_resource type="Texture2D" uid="uid://hsad7depgeqo" path="res://textures/tiles/forest_atlas.png" id="13_y2m5v"]
-[ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="15_mnd2r"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://bikkohdpm1t2t" path="res://scenes/items/Cosine.tscn" id="14_ctil3"]
 [ext_resource type="PackedScene" uid="uid://c6ky4fyoquhby" path="res://scenes/characters/Radian.tscn" id="15_11iux"]
+[ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="15_mnd2r"]
 [ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
@@ -1030,19 +1030,19 @@ position = Vector2(5230.98, 205.355)
 position = Vector2(5289.98, 3254.35)
 
 [node name="enemy5" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(492.976, 496.355)
+position = Vector2(603.976, 557.355)
 
 [node name="enemy6" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(527.976, 131.355)
 
 [node name="enemy7" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(110.976, 604.355)
+position = Vector2(31.976, 603.355)
 
 [node name="enemy8" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(-38.024, 28.355)
 
 [node name="Radian" parent="level" instance=ExtResource("15_11iux")]
-position = Vector2(203.976, 268.36)
+position = Vector2(554.976, -204.645)
 
 [node name="Amplitude" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
 position = Vector2(232.976, 363.355)

@@ -6,6 +6,9 @@ class_name Player
 @export var ROLL_SPEED: int = 1000 # pixels per second
 @export var hitpoints: int = 3
 @export var time_invincible: float = 2.0
+# impulse_power is used to push objects. Is multiplied by delta
+@export var impulse_power: float = 1000
+
 const time_to_teleport = .75
 
 #const AngleClass = preload("res://misc-utility/Angle.gd")
@@ -155,7 +158,7 @@ func get_input():
 			# Get out of wave teleport mode 
 			$WaveTeleport.stop_wave()
 			 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if Globals.isDialogActive:
 		$anims.stop()
 		return
@@ -216,7 +219,15 @@ func _physics_process(_delta):
 		if new_anim.begins_with("throw") or new_anim.begins_with("hurt") or new_anim=="die":
 			can_transition_animation = false
 		assign_animation(new_anim)
-		
+	
+	# Push objects without the object clipping out 
+	for i in get_slide_collision_count():
+		var col = get_slide_collision(i)
+		if col.get_collider() is RigidBody2D \
+			and col.get_collider().get_groups().has("moveable"):
+			
+			col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
+
 
 
 func assign_animation(a: String):
@@ -265,7 +276,7 @@ func damage_player(area):
 		hitpoints -= 1
 		emit_signal("health_changed", hitpoints)
 		var pushback_direction = (global_position - area.global_position).normalized()
-		set_velocity(pushback_direction * 5000)
+		set_velocity(pushback_direction * 1000)
 		move_and_slide()
 		state = STATE_HURT
 		if hitpoints <= 0:

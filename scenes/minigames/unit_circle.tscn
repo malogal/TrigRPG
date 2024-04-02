@@ -7,6 +7,7 @@
 size = Vector2(22, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcque"]
+size = Vector2(22, 20)
 
 [node name="UnitCircle" type="StaticBody2D"]
 script = ExtResource("1_wrpfy")
@@ -18,11 +19,12 @@ shape = SubResource("RectangleShape2D_3436s")
 scale = Vector2(0.0266666, 0.0266666)
 texture = ExtResource("2_t7r30")
 
-[node name="EdgeArea" type="Area2D" parent="."]
+[node name="EdgeArea" type="RigidBody2D" parent="." groups=["moveable"]]
 position = Vector2(80, 0)
-collision_layer = 9
+collision_layer = 8
 collision_mask = 9
-input_pickable = false
+lock_rotation = true
+linear_damp = 10.0
 
 [node name="Mover" type="Sprite2D" parent="EdgeArea"]
 scale = Vector2(0.0266666, 0.0266666)
@@ -31,4 +33,4 @@ texture = ExtResource("2_t7r30")
 [node name="EdgeCollision" type="CollisionShape2D" parent="EdgeArea"]
 shape = SubResource("RectangleShape2D_vcque")
 
-[connection signal="area_entered" from="EdgeArea" to="." method="_movement_area_entered"]
+[connection signal="body_shape_entered" from="EdgeArea" to="." method="_on_edge_area_body_shape_entered"]
