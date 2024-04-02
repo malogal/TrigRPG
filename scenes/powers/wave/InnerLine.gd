@@ -12,6 +12,8 @@ var inner_wave_index: int = 0
 var inner_wave_color_pos: Color = Color(0.42985674738884, 0.05698623508215, 0.70890939235687)
 var inner_wave_color_neg: Color = Color(0.60181617736816, 0, 0.28337466716766)
 
+# If 0 do nothing, if 1 go in positive dir, if -1 go in negative dir
+var queue_wave_change: int = 0
 
 signal teleport_player(point: Vector2)
 
@@ -25,14 +27,19 @@ func new_inner_wave(positive: PackedVector2Array, negative: PackedVector2Array):
 	wave_points_positive = positive
 	wave_points_negative = negative
 		
+func move_inner_wave(is_positive):
+	if is_positive:
+		queue_wave_change = 1
+	else:
+		queue_wave_change = -1
+	
+
 func _process(delta):
-	var direction = 1
-	if Input.is_action_pressed("change_pie_measurement_negative"):
-		calc_index(-1, delta)
-		queue_redraw()
-	elif Input.is_action_pressed("change_pie_measurement_positive"):
-		calc_index(1, delta)
-		queue_redraw()
+	if queue_wave_change == 0:
+		return
+	calc_index(queue_wave_change, delta)
+	queue_redraw()
+	queue_wave_change = 0
 	
 func calc_index(dir, delta: float):
 	inner_wave_index += inner_wave_speed * dir * roundi(delta * 100)

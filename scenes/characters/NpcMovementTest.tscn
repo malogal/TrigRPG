@@ -44,7 +44,8 @@ size = Vector2(163.651, 144.825)
 script = ExtResource("1_l76gx")
 
 [node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0.564087, 2.50995)
+position = Vector2(0.564087, 4.06035)
+scale = Vector2(1, 0.955284)
 texture = ExtResource("2_07e0u")
 offset = Vector2(3.3446, -93.3282)
 

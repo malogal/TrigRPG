@@ -16,8 +16,9 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_area_2d_area_entered(body):	
-	if not visited and body.get_parent().is_in_group("player"):
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if not visited and body.is_in_group("player"):
 		visited = true
 
 		var balloon = Balloon.instantiate()
@@ -38,4 +39,6 @@ func getSaveStats():
 		'visited': visited,
 		'cutscenePath': cutscenePath
 	}
+
+
 

@@ -49,7 +49,8 @@ func saveNewSave():
 	var saveData = {
 		"saveName": saveName,
 		"lastPlayed": lastPlayed,
-		"timeSpent": timeSpent
+		"timeSpent": timeSpent,
+		"timeSpentInSeconds": 0
 	}
 	
 	
@@ -62,6 +63,7 @@ func saveNewSave():
 	# set global variable to new save
 	Globals.currentSavePath = currentSaveSlot
 	Inventory.reset()
+	Globals.startTimeInMs = Time.get_unix_time_from_system()
 
 	# load game with that save
 	get_tree().change_scene_to_file(mainGamePath)

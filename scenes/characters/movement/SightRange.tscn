@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqsury0s0vq8l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wabu1"]
+radius = 133.31
+
+[node name="sight_range" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wabu1")

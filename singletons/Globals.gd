@@ -26,6 +26,9 @@ var loadNodeIgnoreTypes = {
 }
 var isDialogActive = false
 
+var currentTimeInMs
+var startTimeInMs
+
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
 
@@ -34,13 +37,31 @@ Really simple save file implementation. Just saving some variables to a dictiona
 """
 func save_game(): 
 	if currentSavePath != "":
-		
+		currentTimeInMs = Time.get_unix_time_from_system()
+		var diffInTimes = currentTimeInMs - startTimeInMs
+	
 		#getting base save info
 		var saveFileW = FileAccess.open(currentSavePath, FileAccess.READ)
 		var json = JSON.new()
 		json.parse(saveFileW.get_line())
-		var saveData = json.get_data()
 		saveFileW.close()
+		
+		var saveData = json.get_data()
+		
+		var timeSpentInSeconds = saveData.timeSpentInSeconds
+		timeSpentInSeconds += diffInTimes
+
+		var h = floor(timeSpentInSeconds / 3600)
+		var m = floor((int(timeSpentInSeconds) % 3600) / 60)
+		var s = floor((int(timeSpentInSeconds) % 60))
+	
+		var formattedElapsedTime = "%02d:%02d:%02d" % [h, m, s]
+		var timeSpent = "Time spent: " + formattedElapsedTime
+		var lastPlayed = "Last played on: " + Time.get_date_string_from_system(false)
+		
+		saveData.timeSpentInSeconds = int(timeSpentInSeconds)
+		saveData.timeSpent = timeSpent		
+		saveData.lastPlayed = lastPlayed
 		
 		#getting stuff to save to file
 		var saveFile = FileAccess.open(currentSavePath, FileAccess.WRITE)
@@ -77,12 +98,15 @@ func save_game():
 			saveFile.store_line(jsonString)
 		
 		saveFile.close()
+		
+		startTimeInMs = Time.get_unix_time_from_system()
 
 """
 If check_only is true it will only check for a valid save file and return true or false without
 restoring any data
 """
 func load_game():
+	startTimeInMs = Time.get_unix_time_from_system()
 	loadGameToggle = false
 	
 	if currentSavePath != "":
