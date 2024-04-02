@@ -1,14 +1,14 @@
-{"lastPlayed":"Last played on: 2024-03-31","saveName":"name","timeSpent":"Time spent: 00:00"}
+{"lastPlayed":"Last played on: 2024-04-01","saveName":"dd","timeSpent":"Time spent: 00:00"}
 {}
 {"fileName":"res://scenes/characters/Npc.tscn","parent":"/root/Outside/level","posX":2062.51000976563,"posY":2957.82006835938}
-{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":236.888534545898,"posY":419.958557128906}
+{"fileName":"res://scenes/characters/Player.tscn","parent":"/root/Outside/level","posX":267.594604492188,"posY":464.846496582031}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5193.97998046875,"posY":3512.35009765625}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5340.97998046875,"posY":1420.34997558594}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5230.97998046875,"posY":205.354995727539}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":5289.97998046875,"posY":3254.35009765625}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":-197.024002075195,"posY":1854.34997558594}
-{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":556.976013183594,"posY":243.354995727539}
-{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":2596.97998046875,"posY":3980.35009765625}
+{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":526.792175292969,"posY":242.988525390625}
+{"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":634.4638671875,"posY":166.765869140625}
 {"fileName":"res://scenes/characters/Enemy.tscn","parent":"/root/Outside/level","posX":3284.97998046875,"posY":3549.35009765625}
 {"fileName":"res://scenes/items/Amplitude.tscn","parent":"/root/Outside/level","posX":710.976013183594,"posY":2132.35009765625}
 {"fileName":"res://scenes/items/Amplitude.tscn","parent":"/root/Outside/level","posX":711.976013183594,"posY":2369.35009765625}

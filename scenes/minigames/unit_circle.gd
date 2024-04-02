@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 class_name UnitCircle
 
@@ -10,8 +10,11 @@ var success = false
 var angle = AngleClass.new(0)
 var radius = 80
 
+var minAngle = 0
+var maxAngle = PI/2
+
 enum { SIN, COS, TAN, SEC, CSC, COT }
-@export var type = SIN
+@export var type := SIN
 
 var player
 var detection
@@ -42,20 +45,24 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	evaluate_return()
+	$Gate.disabled = success
 
 
 func _movement_area_entered(area):
 	if area.get_parent().is_in_group("player"):
-		var x = global_position.x-area.global_position.x+radius*cos(angle.rads)
-		var y = global_position.y-area.global_position.y+radius*sin(angle.rads)
+		var x = -(global_position.x-area.global_position.x+radius*cos(angle.rads))
+		var y = global_position.y-area.global_position.y-radius*sin(angle.rads)
+		print(x,"\t",y)
 		var a = AngleClass.new(0,x,y)
 		var rel_a = AngleClass.new(angle.rads-a.rads)
 		if(rel_a.rads<PI):
-			angle.sub_rad(PI/12)
+			if(angle.rads+PI/12<=maxAngle):
+				angle.add_rad(PI/12)
 		else:
-			angle.add_rad(PI/12)
+			if(angle.rads-PI/12>=minAngle):
+				angle.sub_rad(PI/12)
 		detection.position.x = radius*cos(angle.rads)
-		detection.position.y = radius*sin(angle.rads)
+		detection.position.y = -radius*sin(angle.rads)
 
 
 

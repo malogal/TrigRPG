@@ -995,9 +995,6 @@ tile_proxies/coords_level = [[1, Vector2i(0, 0)], [6, Vector2i(0, 0)], [1, Vecto
 [node name="Outside" type="Node" groups=["levels"]]
 script = ExtResource("1_eck8o")
 
-[node name="UnitCircle" parent="." instance=ExtResource("15_mnd2r")]
-position = Vector2(481.542, 338.611)
-
 [node name="level" type="Node2D" parent="." groups=["levels"]]
 y_sort_enabled = true
 position = Vector2(208.024, -128.355)
@@ -1011,6 +1008,9 @@ quest_name = "Life as a Delivery Guy"
 required_amount = 3
 initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
+
+[node name="UnitCircle" parent="level" instance=ExtResource("15_mnd2r")]
+position = Vector2(273.518, 466.966)
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
 position = Vector2(357.976, 488.355)
@@ -1034,7 +1034,7 @@ position = Vector2(-197.024, 1854.35)
 position = Vector2(556.976, 243.355)
 
 [node name="enemy7" parent="level" groups=["saved"] instance=ExtResource("4")]
-position = Vector2(2596.98, 3980.35)
+position = Vector2(272.976, 235.355)
 
 [node name="enemy8" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(3284.98, 3549.35)
