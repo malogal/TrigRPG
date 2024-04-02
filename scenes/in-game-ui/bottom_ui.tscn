@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dsr6iiolheh1f"]
+[gd_scene load_steps=21 format=3 uid="uid://dsr6iiolheh1f"]
 
 [ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
 [ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="2_1min0"]
+[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="2_ngp2j"]
 [ext_resource type="Script" path="res://scenes/in-game-ui/Inventory.gd" id="3_d8tjt"]
 [ext_resource type="StyleBox" uid="uid://u0klvjtwyoju" path="res://fonts/grey_style_box_bg.tres" id="4_i7vl6"]
 [ext_resource type="LabelSettings" uid="uid://du3fepabgj3y2" path="res://fonts/modifier_label_settings.tres" id="4_r7aal"]
@@ -12,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="9_pp2gc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3s64t"]
-font_size = 15
+font = ExtResource("2_ngp2j")
+font_size = 18
 font_color = Color(0.419608, 0.180392, 0.180392, 1)
 
 [sub_resource type="GDScript" id="GDScript_vexre"]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dxsjw0432epve"
-path="res://.godot/imported/Candy Demo.ttf-b91de04578e8e82ab29fa5db62ce05ac.fontdata"
+uid="uid://cn0v3fxbam4l0"
+path="res://.godot/imported/Minecraft.ttf-e6722a4c8b9733825dcf3450454c3442.fontdata"
 
 [deps]
 
-source_file="res://fonts/Candy Demo.ttf"
-dest_files=["res://.godot/imported/Candy Demo.ttf-b91de04578e8e82ab29fa5db62ce05ac.fontdata"]
+source_file="res://fonts/Minecraft.ttf"
+dest_files=["res://.godot/imported/Minecraft.ttf-e6722a4c8b9733825dcf3450454c3442.fontdata"]
 
 [params]
 

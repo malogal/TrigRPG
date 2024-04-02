@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dxsjw0432epve"
-path="res://.godot/imported/Candy Demo.ttf-b91de04578e8e82ab29fa5db62ce05ac.fontdata"
+uid="uid://ckacveixib62"
+path="res://.godot/imported/zxSpectrumExpanded.ttf-35e3436337d1023b5091954d08adbac1.fontdata"
 
 [deps]
 
-source_file="res://fonts/Candy Demo.ttf"
-dest_files=["res://.godot/imported/Candy Demo.ttf-b91de04578e8e82ab29fa5db62ce05ac.fontdata"]
+source_file="res://fonts/zxSpectrumExpanded.ttf"
+dest_files=["res://.godot/imported/zxSpectrumExpanded.ttf-35e3436337d1023b5091954d08adbac1.fontdata"]
 
 [params]
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cblo0y3rqammv"]
+
+[ext_resource type="Script" path="res://scenes/characters/Health.gd" id="1_f1lsj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u823m"]
+font_size = 11
+font_color = Color(0.803922, 0.133333, 0.180392, 1)
+shadow_size = 0
+
+[node name="Health" type="Label"]
+offset_left = -10.0
+offset_top = -27.0
+offset_right = 9.0
+offset_bottom = -11.0
+text = "π/2"
+label_settings = SubResource("LabelSettings_u823m")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("1_f1lsj")
+metadata/_edit_use_anchors_ = true
