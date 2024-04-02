@@ -24,6 +24,7 @@ var loadNodeIgnoreTypes = {
 	"posX": true,
 	"posY": true
 }
+var isDialogActive = false
 
 var currentTimeInMs
 var startTimeInMs
@@ -141,7 +142,8 @@ func load_game():
 			var newObject = load(nodeData.fileName).instantiate()
 			newObject.add_to_group("saved", true)
 			get_node(nodeData.parent).add_child(newObject)
-			newObject.position = Vector2(nodeData.posX, nodeData.posY)
+			if nodeData.has("posX") and nodeData.has("posY"):
+				newObject.position = Vector2(nodeData.posX, nodeData.posY)
 
 			## Now we set the remaining variables.
 			for i in nodeData.keys():

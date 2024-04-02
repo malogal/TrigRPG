@@ -156,6 +156,10 @@ func get_input():
 			$WaveTeleport.stop_wave()
 			 
 func _physics_process(_delta):
+	if Globals.isDialogActive:
+		$anims.stop()
+		return
+		
 	## PROCESS STATES
 	get_input()
 	match state:

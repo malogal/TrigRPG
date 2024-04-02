@@ -66,7 +66,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 8
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 8
 text = "Cannot create new save, all slots are filled! Please delete an existing save"
 horizontal_alignment = 1
 
