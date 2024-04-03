@@ -62,5 +62,11 @@ position = Vector2(84.0333, -50)
 shape = SubResource("RectangleShape2D_vcque")
 debug_color = Color(0.972549, 0.0784314, 0.384314, 0.419608)
 
+[node name="Label" type="Label" parent="."]
+offset_left = 126.0
+offset_top = -38.0
+offset_right = 166.0
+offset_bottom = -15.0
+
 [connection signal="body_shape_entered" from="EdgeArea" to="." method="_on_edge_area_body_shape_entered"]
 [connection signal="item_rect_changed" from="EdgeArea" to="." method="_on_edge_area_item_rect_changed"]
