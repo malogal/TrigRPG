@@ -38,6 +38,7 @@ bg_color = Color(0, 0, 0, 0.329412)
 
 [sub_resource type="SystemFont" id="SystemFont_wkgsf"]
 font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbsr0"]
 bg_color = Color(0, 0, 0, 0.239216)

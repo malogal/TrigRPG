@@ -29,6 +29,8 @@ var isDialogActive = false
 var currentTimeInMs
 var startTimeInMs
 
+var showGameOverScreen = false
+
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
 

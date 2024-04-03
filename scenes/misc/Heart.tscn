@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbue8p0cttono"]
 
-[ext_resource type="Texture2D" uid="uid://d0ixmmo0xq2ua" path="res://textures/misc/heart.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dfy62utqqnxy1" path="res://textures/menu/full_heart.png" id="1_wgstp"]
 
 [node name="heart" type="TextureRect"]
-offset_right = 33.0
-offset_bottom = 28.0
-texture = ExtResource("1")
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("1_wgstp")

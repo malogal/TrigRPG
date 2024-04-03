@@ -85,6 +85,18 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()
 
+func _input(_event):
+	if _event.is_action_pressed("skip_cutscene"):
+		var prevLine = dialogue_line.text
+		dialogue_label.skip_typing()
+		next(dialogue_line.next_id)
+		var currentLine = ""
+		while currentLine != prevLine:
+			prevLine = dialogue_line.text
+			dialogue_label.skip_typing()
+			next(dialogue_line.next_id)
+			currentLine = dialogue_line.text
+		queue_free()
 
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:

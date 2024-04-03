@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=24 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
 [ext_resource type="Texture2D" uid="uid://b4euv5gkqegde" path="res://textures/tiles/animation_laketile.png" id="17_ofc14"]
+[ext_resource type="PackedScene" uid="uid://cncncv5ktcu7i" path="res://scenes/menus/GameOverScreen.tscn" id="18_rv8t7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jbarr"]
 
@@ -1094,10 +1095,16 @@ music_track = "res://music/310-world-map-loop.ogg"
 
 [node name="UI" parent="." groups=["saved"] instance=ExtResource("2")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
-layer = 128
+layer = 100
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_xavrg")]
+[node name="PauseMenu" parent="PauseMenu" instance=ExtResource("15_xavrg")]
 process_mode = 0
+visible = false
+
+[node name="GameOverMenu" type="CanvasLayer" parent="."]
+layer = 110
+
+[node name="GameOverScreen" parent="GameOverMenu" instance=ExtResource("18_rv8t7")]
 visible = false

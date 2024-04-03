@@ -32,6 +32,7 @@ var inputActions = {
 	"wave": {"label": "Wave", "keycode": KEY_F, "modifierKey": ""},
 	"change_pie_measurement_positive": {"label": "Change Pie Measurement (Positive)", "keycode": KEY_SPACE, "modifierKey": ""},
 	"change_pie_measurement_negative": {"label": "Change Pie Measurement (Negative)", "keycode": KEY_SPACE, "modifierKey": KEY_SHIFT},
+	"skip_cutscene": {"label": "Skip Cutscene", "keycode": KEY_X, "modifierKey": ""}
 }
 
 var settingsDictionary = {}
