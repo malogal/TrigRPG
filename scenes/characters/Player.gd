@@ -281,6 +281,9 @@ func damage_player(area):
 		state = STATE_HURT
 		if hitpoints <= 0:
 			state = STATE_DIE
+			# toggle death screen
+			Globals.showGameOverScreen = true
+
 	pass
 	
 
@@ -334,7 +337,8 @@ func getSaveStats():
 		'fileName': get_scene_file_path(),
 		'parent': get_parent().get_path(),
 		'posX': position.x,
-		'posY': position.y
+		'posY': position.y,
+		'hitpoints': hitpoints
 	}
 
 # Stop showing teleport sparkles after it finishes animating 

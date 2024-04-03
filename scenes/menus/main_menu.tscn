@@ -3,12 +3,10 @@
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_ibg8s"]
 [ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="2_h3wix"]
 [ext_resource type="Script" path="res://scenes/misc/ui elements/menu_button.gd" id="2_qgf5k"]
+[ext_resource type="Texture2D" uid="uid://cvhclmuk3yjmq" path="res://textures/menu/title.png" id="3_vamem"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eepip"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="SystemFont" id="SystemFont_fd8dt"]
-font_names = PackedStringArray("Impact")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -43,24 +41,17 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = -2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Title" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/outline_size = 12
-theme_override_fonts/font = SubResource("SystemFont_fd8dt")
-theme_override_font_sizes/font_size = 16
-text = "TrigRPG"
-horizontal_alignment = 1
+texture = ExtResource("3_vamem")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Separator" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]

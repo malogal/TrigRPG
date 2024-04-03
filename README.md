@@ -121,7 +121,7 @@ The following method is used in the `_process_physics()` method of the Player cl
 for i in get_slide_collision_count():
   var col = get_slide_collision(i)
   if col.get_collider() is RigidBody2D and col.get_collider().get_groups().has("moveable"):
-    col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
+	col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
 ```
 In the above code block, we get all collisions between the player and a RB. We then apply an impulse in a vector opposite
 the collision vector. From `collision.get_normal()` documentation: 

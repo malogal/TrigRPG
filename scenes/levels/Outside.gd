@@ -5,3 +5,4 @@ extends Node
 func _ready():
 	if Globals.loadGameToggle:	
 		Globals.load_game()
+		Globals.showGameOverScreen = false
