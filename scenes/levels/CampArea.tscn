@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://pafqjv8250j3"]
+[gd_scene load_steps=28 format=3 uid="uid://pafqjv8250j3"]
 
 [ext_resource type="TileSet" uid="uid://m662xqbwgt3q" path="res://scenes/tilesets/ForestTileSet.tres" id="1_n15ah"]
 [ext_resource type="Texture2D" uid="uid://cntn0nx7smxv2" path="res://textures/props/summon_circle.png" id="3_rs8kw"]
@@ -42,6 +42,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucgqh"]
+size = Vector2(32, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqxbi"]
 atlas = ExtResource("4_645yd")
@@ -203,10 +206,10 @@ layer_2/tile_data = PackedInt32Array(262153, 655366, 1, 196617, 655366, 1, 13108
 layer_3/name = "Flowers1"
 layer_3/z_index = 4
 layer_3/navigation_enabled = false
-layer_3/tile_data = PackedInt32Array(-65525, 131075, 0, 393230, 131075, 0, 262154, 3, 2, 327684, 3, 2, 524290, 3, 2, -327671, 65539, 1, -393211, 65539, 1, -131080, 65539, 1, 262132, 65539, 1, 524273, 65539, 5, -131086, 65539, 5, -393230, 65539, 5, 11, 65539, 5, -393212, 3, 6, -327684, 3, 6, -458760, 3, 6, -65547, 3, 1, -327694, 3, 1, -327696, 3, 1, -458753, 3, 7, -524283, 3, 7, 458744, 327684, 25, -196621, 1048580, 0, -458738, 4, 0, 131086, 4, 0, 14, 4, 0, -327666, 4, 0, -65522, 655364, 18, 65548, 4, 0, -393204, 655364, 18, 458759, 524292, 0, 524281, 524292, 0, 393222, 655364, 18, -65531, 524292, 805306411)
+layer_3/tile_data = PackedInt32Array(-65525, 131075, 0, 393230, 131075, 0, 262154, 3, 2, 327684, 3, 2, 524290, 3, 2, -327671, 65539, 1, -393211, 65539, 1, -131080, 65539, 1, 262132, 65539, 1, 524273, 65539, 5, -131086, 65539, 5, -393230, 65539, 5, 11, 65539, 5, -393212, 3, 6, -327684, 3, 6, -458760, 3, 6, -65547, 3, 1, -327694, 3, 1, -327696, 3, 1, -458753, 3, 7, -524283, 3, 7, 458744, 327684, 25, -196621, 1048580, 0, -458738, 4, 0, 131086, 4, 0, 14, 4, 0, -327666, 4, 0, -65522, 655364, 18, 65548, 4, 0, -393204, 655364, 18, 458759, 524292, 0, 524281, 524292, 0, 393222, 655364, 18, -65531, 524292, 805306411, 196597, 65539, 1)
 layer_4/name = "Camp Materials"
 layer_4/z_index = 5
-layer_4/tile_data = PackedInt32Array(-6, 5, 2, -131067, 5, 2, -327679, 131077, 2, 458742, 131077, 6, 458743, 131077, 805306374, 458741, 131077, 805306374, -262142, 131077, 6, -65527, 196613, 5, -327678, 196613, 6, 589821, 131077, 4, 589822, 196613, 4, 589823, 5, 4, 524288, 65541, 4, 524289, 131077, 4, 524290, 196613, 4, 589819, 5, 4, 589820, 65541, 4, 589818, 5, 1610612740, 524291, 5, 4, -196613, 131077, 5, -196612, 65541, 5, 65529, 5, 6, -65530, 5, 805306374, 524293, 196613, 268435460, 524292, 196613, 4, 196601, 5, 0, 196603, 131077, 0, 196602, 131077, 5, 131083, 131077, 4, 196617, 131077, 4, 131084, 196613, 4, 131085, 5, 4, 65547, 5, 4, 65546, 196613, 4, 131080, 196613, 4, 196616, 65541, 4, 458752, 196613, 4, 196611, 131077, 0, 458755, 65541, 268435460, 393219, 5, 4, 393218, 5, 268435460, 262129, 131077, 805306374, 262130, 131077, 805306374, 262131, 131077, 805306374, 327665, 131077, 805306374, 327666, 131077, 805306374, 327667, 131077, 805306374, 131063, 196613, 268500997, 196593, 1703940, 29, 196594, 1703940, 29, 196595, 1703940, 29, 589831, 917508, 25, 589834, 589828, 25, 655369, 4, 24, 458763, 1703940, 29, 458764, 1703940, 29, 393227, 1703940, 29, 393228, 1703940, 29, 327691, 1703940, 29, 327692, 1703940, 29, -458749, 2752516, 31, 196598, 2621444, 34, 393213, 2490372, 36, 327668, 65540, 29, 458760, 1048580, 17, 196618, 1048580, 17, 65549, 1048580, 17, 327687, 1048580, 17, 458758, 1048580, 20, -458756, 589828, 13, -393229, 589828, 13, -524286, 8, 0, 196613, 131077, 268435456, 196612, 65541, 6)
+layer_4/tile_data = PackedInt32Array(-6, 5, 2, -131067, 5, 2, -327679, 131077, 2, 458742, 131077, 6, 458743, 131077, 805306374, 458741, 131077, 805306374, -262142, 131077, 6, -65527, 196613, 5, -327678, 196613, 6, 589821, 131077, 4, 589822, 196613, 4, 589823, 5, 4, 524288, 65541, 4, 524289, 131077, 4, 524290, 196613, 4, 589819, 5, 4, 589820, 65541, 4, 589818, 5, 1610612740, 524291, 5, 4, -196613, 131077, 5, -196612, 65541, 5, 65529, 5, 6, 524293, 196613, 268435460, 524292, 196613, 4, 196601, 5, 0, 196603, 131077, 0, 196602, 131077, 5, 131083, 131077, 4, 196617, 131077, 4, 131084, 196613, 4, 131085, 5, 4, 65547, 5, 4, 65546, 196613, 4, 131080, 196613, 4, 196616, 65541, 4, 458752, 196613, 4, 196611, 131077, 0, 458755, 65541, 268435460, 393219, 5, 4, 393218, 5, 268435460, 262129, 131077, 805306374, 262130, 131077, 805306374, 262131, 131077, 805306374, 327665, 131077, 805306374, 327666, 131077, 805306374, 327667, 131077, 805306374, 131063, 196613, 268500997, 196593, 1703940, 29, 196594, 1703940, 29, 196595, 1703940, 29, 589831, 917508, 25, 589834, 589828, 25, 655369, 4, 24, 458763, 1703940, 29, 458764, 1703940, 29, 393227, 1703940, 29, 393228, 1703940, 29, 327691, 1703940, 29, 327692, 1703940, 29, -458749, 2752516, 31, 196598, 2621444, 34, 393213, 2490372, 36, 327668, 65540, 29, 458760, 1048580, 17, 196618, 1048580, 17, 65549, 1048580, 17, 327687, 1048580, 17, 458758, 1048580, 20, -458756, 589828, 13, -393229, 589828, 13, -524286, 8, 0, 196613, 131077, 268435456, 196612, 65541, 6, -65530, 5, 268435462)
 layer_5/name = "Flowers2"
 layer_5/z_index = 5
 layer_5/tile_data = PackedInt32Array(196615, 1048580, 0, 327689, 1048580, 0, 196620, 524292, 0, 589823, 1048580, 0, 589827, 1048580, 0, 655357, 1048580, 0, 655355, 1048580, 0, 720889, 1048580, 0, 655351, 1048580, 0, 589813, 1048580, 0, 589812, 524292, 0, 524275, 4, 0)
@@ -221,35 +224,47 @@ texture = ExtResource("3_rs8kw")
 
 [node name="CampFire" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kcl08")
-frame_progress = 0.268649
+autoplay = "default"
+frame_progress = 0.613944
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CampFire"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CampFire/StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ucgqh")
 
 [node name="TallGrass" type="AnimatedSprite2D" parent="."]
 position = Vector2(-200, -48)
 sprite_frames = SubResource("SpriteFrames_tx8i1")
 animation = &"new_animation"
-frame_progress = 0.693216
+autoplay = "new_animation"
+frame_progress = 0.038509
 
 [node name="TallGrass2" type="AnimatedSprite2D" parent="."]
 position = Vector2(424, 8)
 sprite_frames = SubResource("SpriteFrames_tx8i1")
 animation = &"new_animation"
-frame_progress = 0.825156
+autoplay = "new_animation"
+frame_progress = 0.170449
 
 [node name="TallGrass3" type="AnimatedSprite2D" parent="."]
 position = Vector2(72, -168)
 sprite_frames = SubResource("SpriteFrames_tx8i1")
 animation = &"new_animation"
-frame_progress = 0.887663
+autoplay = "new_animation"
+frame_progress = 0.232956
 
 [node name="SlowTeleport" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 104)
 sprite_frames = SubResource("SpriteFrames_pv0gg")
-frame_progress = 0.216449
+autoplay = "default"
+frame_progress = 0.69277
 
 [node name="AnimatedClothesLine" type="AnimatedSprite2D" parent="."]
 position = Vector2(320, 80)
 sprite_frames = SubResource("SpriteFrames_um4gm")
-frame_progress = 0.194566
+autoplay = "default"
+frame_progress = 0.539862
 
 [node name="StaticBody2D" type="StaticBody2D" parent="AnimatedClothesLine"]
 
@@ -260,7 +275,8 @@ shape = SubResource("RectangleShape2D_w26my")
 [node name="AnimatedClothesLine2" type="AnimatedSprite2D" parent="."]
 position = Vector2(64, 240)
 sprite_frames = SubResource("SpriteFrames_um4gm")
-frame_progress = 0.342027
+autoplay = "default"
+frame_progress = 0.687322
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="AnimatedClothesLine2"]
 
