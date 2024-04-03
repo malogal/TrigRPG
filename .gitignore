@@ -3,3 +3,4 @@
 ./save*.save
 
 ./idea/
+**/.idea
