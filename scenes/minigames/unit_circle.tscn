@@ -1,36 +1,66 @@
-[gd_scene load_steps=5 format=3 uid="uid://bufgnm1kucj8a"]
+[gd_scene load_steps=9 format=3 uid="uid://bufgnm1kucj8a"]
 
 [ext_resource type="Script" path="res://scenes/minigames/unit_circle.gd" id="1_wrpfy"]
 [ext_resource type="Texture2D" uid="uid://bbjutmqw7pptj" path="res://textures/minigames/rock.png" id="2_t7r30"]
+[ext_resource type="Texture2D" uid="uid://dfy62utqqnxy1" path="res://textures/menu/full_heart.png" id="3_5yiex"]
+[ext_resource type="Script" path="res://scenes/minigames/Pivot.gd" id="3_c0owi"]
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="4_1x440"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3436s"]
-size = Vector2(22, 22)
+size = Vector2(25, 22)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0px2w"]
+radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcque"]
-size = Vector2(22, 20)
+size = Vector2(69.75, 6)
 
 [node name="UnitCircle" type="StaticBody2D"]
 script = ExtResource("1_wrpfy")
 
 [node name="Gate" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_3436s")
 
 [node name="Center" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.0266666, 0.0266666)
 texture = ExtResource("2_t7r30")
+
+[node name="Pivot" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot"]
+position = Vector2(134.033, -50)
+shape = SubResource("CircleShape2D_0px2w")
+debug_color = Color(0.564706, 0.0705882, 0.254902, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+z_index = 100
+position = Vector2(134, -50)
+texture = ExtResource("3_5yiex")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Pivot"]
+position = Vector2(134.033, -50)
+node_a = NodePath("..")
+node_b = NodePath("../../EdgeArea")
 
 [node name="EdgeArea" type="RigidBody2D" parent="." groups=["moveable"]]
 position = Vector2(80, 0)
 collision_layer = 8
 collision_mask = 9
-lock_rotation = true
 linear_damp = 10.0
+script = ExtResource("3_c0owi")
 
 [node name="Mover" type="Sprite2D" parent="EdgeArea"]
-scale = Vector2(0.0266666, 0.0266666)
-texture = ExtResource("2_t7r30")
+position = Vector2(85.0333, -50)
+scale = Vector2(0.875833, 0.3125)
+texture = ExtResource("4_1x440")
 
 [node name="EdgeCollision" type="CollisionShape2D" parent="EdgeArea"]
+position = Vector2(84.0333, -50)
 shape = SubResource("RectangleShape2D_vcque")
+debug_color = Color(0.972549, 0.0784314, 0.384314, 0.419608)
 
 [connection signal="body_shape_entered" from="EdgeArea" to="." method="_on_edge_area_body_shape_entered"]
+[connection signal="item_rect_changed" from="EdgeArea" to="." method="_on_edge_area_item_rect_changed"]
