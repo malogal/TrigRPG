@@ -34,6 +34,7 @@ will be chosen.
 """
 
 var last_direction: Vector2 = Vector2(99,99)
+var deactivate: bool = false
 
 func _ready():
 	parent_body = get_parent()
@@ -61,7 +62,9 @@ func get_last_direction() -> Vector2:
 	return last_direction
 	
 func get_movement_direction() -> Vector2:
-	var velocity = parent_body.velocity  
+	var velocity: Vector2 = parent_body.velocity  
+	if velocity.is_zero_approx():
+		return Vector2.ZERO
 	return velocity.normalized()
 
 func get_animation_for_direction(direction: Vector2) -> Vector2:
@@ -83,3 +86,8 @@ func get_animation_for_direction(direction: Vector2) -> Vector2:
 
 	return best_match
 
+func set_deactivate(is_deactivated: bool):
+	deactivate = is_deactivated
+	# Disable the _process() function if deactivated 
+	set_process(!deactivate)
+		

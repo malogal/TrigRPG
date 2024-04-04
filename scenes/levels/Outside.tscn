@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=21 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2"]
@@ -17,7 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="15_xavrg"]
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="15_xsvti"]
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="16_cr781"]
+[ext_resource type="Script" path="res://scenes/levels/WizardAtStart.gd" id="16_tmsa0"]
 [ext_resource type="PackedScene" uid="uid://cncncv5ktcu7i" path="res://scenes/menus/GameOverScreen.tscn" id="18_rv8t7"]
+[ext_resource type="PackedScene" uid="uid://4c6nil367abb" path="res://scenes/characters/BaseNpc.tscn" id="19_0fsok"]
 
 [node name="Outside" type="Node" groups=["levels"]]
 script = ExtResource("1_eck8o")
@@ -40,7 +42,7 @@ pending_text = "You forgot? I want 3 Generic Items"
 position = Vector2(273.518, 466.966)
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
-position = Vector2(135.976, 221.355)
+position = Vector2(162.976, 1232.35)
 
 [node name="enemy" parent="level" groups=["saved"] instance=ExtResource("4")]
 position = Vector2(5193.98, 3512.35)
@@ -67,7 +69,7 @@ position = Vector2(31.976, 603.355)
 position = Vector2(-38.024, 28.355)
 
 [node name="Radian" parent="level" instance=ExtResource("15_11iux")]
-position = Vector2(554.976, -204.645)
+position = Vector2(216.976, 646.355)
 
 [node name="Amplitude" parent="level" groups=["saved"] instance=ExtResource("13_33be8")]
 position = Vector2(232.976, 363.355)
@@ -96,13 +98,45 @@ position = Vector2(153.976, 382.355)
 position = Vector2(352.976, 378.355)
 
 [node name="Cutscene1" parent="level" groups=["saved"] instance=ExtResource("13_4qlox")]
-position = Vector2(135.976, 224.355)
+position = Vector2(162.976, 1221.35)
 cutscenePath = "res://dialogue/cutscene1.dialogue"
+
+[node name="Zard" parent="level" instance=ExtResource("19_0fsok")]
+position = Vector2(113.976, 966.355)
+character_name = "Npc1"
+default_move_type = "Vertical"
+
+[node name="BaseNpc" parent="level" instance=ExtResource("19_0fsok")]
+position = Vector2(-23.024, 1144.35)
+npc_type = 0
+character_name = "NPC at the Tents"
+start_animation = 1
+
+[node name="BaseNpc2" parent="level" instance=ExtResource("19_0fsok")]
+position = Vector2(353.976, 1125.35)
+npc_type = 1
+character_name = "NPC Facing Right"
+start_animation = 3
+
+[node name="BaseNpc3" parent="level" instance=ExtResource("19_0fsok")]
+position = Vector2(-36.024, 1265.35)
+npc_type = 0
+character_name = "Npc At the Logs"
+pause_movement_time = 3.5
+WALK_SPEED = 1300
+default_move_type = "Horizontal"
 
 [node name="CampArea" parent="level" instance=ExtResource("13_rijx7")]
 position = Vector2(164.029, 1120)
 
 [node name="Forest" parent="level" instance=ExtResource("13_ppdt3")]
+
+[node name="WizardAtStart" type="Node" parent="level"]
+script = ExtResource("16_tmsa0")
+
+[node name="BaseNpc" parent="level/WizardAtStart" instance=ExtResource("19_0fsok")]
+position = Vector2(370, 1024)
+character_name = "Temporary Wizard at Start"
 
 [node name="music_track" parent="." instance=ExtResource("6")]
 music_track = "res://music/310-world-map-loop.ogg"

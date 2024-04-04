@@ -12,7 +12,7 @@
 [sub_resource type="CapsuleShape2D" id="18"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1gwbv"]
-radius = 278.65
+radius = 197.162
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6xt7c"]
 
@@ -121,7 +121,7 @@ shape = SubResource("CapsuleShape2D_6xt7c")
 
 [node name="anims" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_lprw2")
-animation = &"idle_down"
+animation = &"throw_down"
 
 [node name="Health" type="Label" parent="."]
 offset_left = -10.0

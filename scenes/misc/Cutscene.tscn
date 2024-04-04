@@ -1,8 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://bllq7mij5cpil"]
+[gd_scene load_steps=11 format=3 uid="uid://bllq7mij5cpil"]
 
 [ext_resource type="Script" path="res://scenes/misc/Cutscene.gd" id="1_ejxkm"]
+[ext_resource type="Texture2D" uid="uid://cxekfo0c521s" path="res://textures/props/animation_summon_circle.png" id="2_opd7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxx2b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1p7u"]
+atlas = ExtResource("2_opd7r")
+region = Rect2(0, 0, 234, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7v0f"]
+atlas = ExtResource("2_opd7r")
+region = Rect2(234, 0, 234, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv533"]
+atlas = ExtResource("2_opd7r")
+region = Rect2(468, 0, 234, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4p7u"]
+atlas = ExtResource("2_opd7r")
+region = Rect2(702, 0, 234, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aca5"]
+atlas = ExtResource("2_opd7r")
+region = Rect2(936, 0, 234, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c4bk"]
+atlas = ExtResource("2_opd7r")
+region = Rect2(1170, 0, 234, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_in5ox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1p7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7v0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv533")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4p7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aca5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c4bk")
+}],
+"loop": true,
+"name": &"teleport",
+"speed": 6.0
+}]
 
 [node name="Cutscene" type="Node2D"]
 script = ExtResource("1_ejxkm")
@@ -14,5 +65,11 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_cxx2b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_in5ox")
+animation = &"teleport"
+frame_progress = 0.710781
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
