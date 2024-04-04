@@ -19,7 +19,7 @@ size = Vector2(69.75, 6)
 script = ExtResource("1_wrpfy")
 
 [node name="Gate" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 0)
+position = Vector2(0, 35)
 shape = SubResource("RectangleShape2D_3436s")
 
 [node name="Center" type="Sprite2D" parent="."]
@@ -31,17 +31,14 @@ texture = ExtResource("2_t7r30")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot"]
-position = Vector2(134.033, -50)
 shape = SubResource("CircleShape2D_0px2w")
 debug_color = Color(0.564706, 0.0705882, 0.254902, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 z_index = 100
-position = Vector2(134, -50)
 texture = ExtResource("3_5yiex")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Pivot"]
-position = Vector2(134.033, -50)
 node_a = NodePath("..")
 node_b = NodePath("../../EdgeArea")
 
@@ -53,12 +50,12 @@ linear_damp = 10.0
 script = ExtResource("3_c0owi")
 
 [node name="Mover" type="Sprite2D" parent="EdgeArea"]
-position = Vector2(85.0333, -50)
+position = Vector2(-48.967, 0)
 scale = Vector2(0.875833, 0.3125)
 texture = ExtResource("4_1x440")
 
 [node name="EdgeCollision" type="CollisionShape2D" parent="EdgeArea"]
-position = Vector2(84.0333, -50)
+position = Vector2(-49.967, 0)
 shape = SubResource("RectangleShape2D_vcque")
 debug_color = Color(0.972549, 0.0784314, 0.384314, 0.419608)
 

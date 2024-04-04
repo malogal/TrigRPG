@@ -1,7 +1,5 @@
 extends StaticBody2D
 
-class_name UnitCircle
-
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
 @export var return_value: float = 0

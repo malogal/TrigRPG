@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://deeunt0djf62e"]
+
+[ext_resource type="Script" path="res://scenes/minigames/trig_lock.gd" id="1_h6b1g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kx17"]
+
+[node name="TrigLock" type="StaticBody2D"]
+script = ExtResource("1_h6b1g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5kx17")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Goal" type="Line2D" parent="."]
+
+[node name="Current" type="Line2D" parent="."]
