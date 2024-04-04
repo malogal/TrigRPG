@@ -30,6 +30,11 @@ func _init(val:float,x:float = 0,y:float = 0,is_deg:bool = false, pre:String = "
 func gcd(a:int,b:int) -> int:
 	return a if b==0 else gcd(b,a%b)
 
+func round(nearest,degrees=false):
+	if degrees:
+		nearest = nearest*PI/180
+	rads = nearest*round(rads/nearest)
+
 func mod_2pi(val) -> float:
 	#print("before: "+str(val))
 	var modifier:=TAU if val<0 else -TAU
