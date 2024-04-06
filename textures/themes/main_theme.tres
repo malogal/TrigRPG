@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://dxgoy0vbgwgyv"]
 
 [ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="1_3pt5y"]
+[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="2_axl6p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xob8"]
 texture = ExtResource("1_3pt5y")
@@ -27,13 +28,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="SystemFont" id="SystemFont_j2jpn"]
-font_names = PackedStringArray("Fira Code")
-font_italic = true
-
 [resource]
-default_font = SubResource("SystemFont_j2jpn")
-default_font_size = 6
+default_font = ExtResource("2_axl6p")
+default_font_size = 10
 Button/styles/focus = SubResource("StyleBoxTexture_6xob8")
 Button/styles/hover = SubResource("StyleBoxTexture_6xob8")
 Button/styles/normal = SubResource("StyleBoxTexture_6xob8")
