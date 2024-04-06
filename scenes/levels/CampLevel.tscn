@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbu6mil7v5eja"]
+
+[ext_resource type="PackedScene" uid="uid://bllq7mij5cpil" path="res://scenes/misc/Cutscene.tscn" id="1_7wwu8"]
+[ext_resource type="PackedScene" uid="uid://4c6nil367abb" path="res://scenes/characters/BaseNpc.tscn" id="2_pdcn4"]
+[ext_resource type="PackedScene" uid="uid://pafqjv8250j3" path="res://scenes/levels/CampArea.tscn" id="3_l1tcx"]
+[ext_resource type="Script" path="res://scenes/levels/WizardAtStart.gd" id="4_1epp4"]
+
+[node name="Camp" type="Node2D"]
+
+[node name="Cutscene1" parent="." groups=["saved"] instance=ExtResource("1_7wwu8")]
+position = Vector2(162.976, 1221.35)
+cutscenePath = "res://dialogue/cutscene1.dialogue"
+
+[node name="Zard" parent="." instance=ExtResource("2_pdcn4")]
+position = Vector2(113.976, 966.355)
+character_name = "Npc1"
+default_move_type = "Vertical"
+
+[node name="BaseNpc" parent="." instance=ExtResource("2_pdcn4")]
+position = Vector2(-23.024, 1144.35)
+npc_type = 0
+character_name = "NPC at the Tents"
+start_animation = 1
+
+[node name="BaseNpc2" parent="." instance=ExtResource("2_pdcn4")]
+position = Vector2(353.976, 1125.35)
+npc_type = 1
+character_name = "NPC Facing Right"
+start_animation = 3
+
+[node name="BaseNpc3" parent="." instance=ExtResource("2_pdcn4")]
+position = Vector2(-36.024, 1265.35)
+npc_type = 0
+character_name = "Npc At the Logs"
+pause_movement_time = 3.5
+WALK_SPEED = 1300
+default_move_type = "Horizontal"
+
+[node name="CampArea" parent="." instance=ExtResource("3_l1tcx")]
+position = Vector2(164.029, 1120)
+
+[node name="WizardAtStart" type="Node" parent="."]
+script = ExtResource("4_1epp4")
+
+[node name="BaseNpc" parent="WizardAtStart" instance=ExtResource("2_pdcn4")]
+position = Vector2(370, 1024)
+character_name = "Temporary Wizard at Start"
