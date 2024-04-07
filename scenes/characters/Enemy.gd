@@ -45,7 +45,7 @@ func _physics_process(_delta):
 			linear_vel = velocity
 			
 			var target_speed = Vector2()
-			target_speed = (player.position - position).normalized()
+			target_speed = (player.global_position - global_position).normalized()
 			target_speed *= WALK_SPEED
 			linear_vel = linear_vel.lerp(target_speed, 0.9)
 			

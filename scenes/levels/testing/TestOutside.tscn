@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpla3mhdscr2u"]
 
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="2_mpf0t"]
-[ext_resource type="PackedScene" uid="uid://cfreiv68yjjm" path="res://scenes/levels/TestLevel.tscn" id="3_0wy0x"]
+[ext_resource type="PackedScene" uid="uid://cfreiv68yjjm" path="res://scenes/levels/testing/TestLevel.tscn" id="3_0wy0x"]
 [ext_resource type="PackedScene" uid="uid://dhuip71vgb1dm" path="res://scenes/menus/in_game_interfaces.tscn" id="4_oeo80"]
 
 [node name="TestOutside" type="Node"]
