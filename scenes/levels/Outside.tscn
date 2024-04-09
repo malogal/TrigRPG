@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=6 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
+[ext_resource type="PackedScene" uid="uid://kobmrlvjg8np" path="res://scenes/levels/forest/ForestLevel.tscn" id="3_rrx2f"]
 [ext_resource type="PackedScene" uid="uid://dhuip71vgb1dm" path="res://scenes/menus/in_game_interfaces.tscn" id="5_430nq"]
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://bbu6mil7v5eja" path="res://scenes/levels/CampLevel.tscn" id="13_tp5cw"]
+[ext_resource type="PackedScene" uid="uid://bbu6mil7v5eja" path="res://scenes/levels/camp/CampLevel.tscn" id="13_tp5cw"]
 
 [node name="Outside" type="Node" groups=["levels"]]
 script = ExtResource("1_eck8o")
@@ -13,6 +14,9 @@ y_sort_enabled = true
 position = Vector2(208.024, -128.355)
 
 [node name="CampLevel" parent="level" instance=ExtResource("13_tp5cw")]
+
+[node name="ForestLevel" parent="level" instance=ExtResource("3_rrx2f")]
+position = Vector2(1515.98, -1179.65)
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
 position = Vector2(6.976, -7.645)

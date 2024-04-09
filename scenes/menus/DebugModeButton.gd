@@ -1,6 +1,6 @@
 extends Button
 
-var testGamePath = "res://scenes/levels/TestOutside.tscn"
+var testGamePath = "res://scenes/levels/testing/TestOutside.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
