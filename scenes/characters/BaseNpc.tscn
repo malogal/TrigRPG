@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://4c6nil367abb"]
+
+[ext_resource type="Script" path="res://scenes/characters/BaseNpc.gd" id="1_l76gx"]
+[ext_resource type="SpriteFrames" uid="uid://fokfh7v0uemm" path="res://scenes/characters/animations/NpcAnimationFrames.tres" id="2_n8hdq"]
+[ext_resource type="PackedScene" uid="uid://w5g542ngabum" path="res://scenes/characters/movement/DirectionalAnimationSetter.tscn" id="2_oe1nv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6xyu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebwpw"]
+radius = 38.0
+
+[node name="BaseNpc" type="CharacterBody2D"]
+script = ExtResource("1_l76gx")
+npc_type = 2
+character_name = "Wiz Zard"
+
+[node name="NpcBody" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_q6xyu")
+
+[node name="DirectionalAnimationSetter" parent="." instance=ExtResource("2_oe1nv")]
+
+[node name="anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_n8hdq")
+animation = &"idle_down_z"
+
+[node name="interact_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="trigger" type="CollisionShape2D" parent="interact_area"]
+z_index = -1
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ebwpw")
+debug_color = Color(0.278431, 0.631373, 0, 0.419608)
+
+[connection signal="body_entered" from="interact_area" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="interact_area" to="." method="_on_interact_area_body_exited"]

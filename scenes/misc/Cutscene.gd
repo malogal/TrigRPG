@@ -19,17 +19,22 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not visited and body.is_in_group("player"):
-		visited = true
+		start_intro()
 
-		var balloon = Balloon.instantiate()
-		get_tree().current_scene.add_child(balloon)
-		balloon.start(load(cutscenePath), "start")
-
-		Globals.isDialogActive = true
+func start_intro():
+	# Start teleportation circle animation 
+	$AnimatedSprite2D.visible = true
+	$AnimatedSprite2D.play("teleport")
+	visited = true
+	var balloon = Balloon.instantiate()
+	get_tree().current_scene.add_child(balloon)
+	balloon.start(load(cutscenePath), "start")
+	Globals.isDialogActive = true
 		
 func _on_dialogue_ended(_resource: DialogueResource):
 	Globals.isDialogActive = false
-	
+	$AnimatedSprite2D.stop()
+	$AnimatedSprite2D.visible = false
 func getSaveStats():
 	return {
 		'fileName': get_scene_file_path(),

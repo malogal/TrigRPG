@@ -11,40 +11,40 @@ var radius = 80
 var minAngle = 0
 var maxAngle = PI/2
 
-enum { SIN, COS, TAN, SEC, CSC, COT }
-@export var type := SIN
+enum TrigFunc{ SIN, COS, TAN, SEC, CSC, COT }
+@export var type := TrigFunc.SIN
 
 var player
 var detection
 
 func evaluate_return():
 	var theta = angle.rads
-	if type==SIN:
+	if type==TrigFunc.SIN:
 		return_value = sin(theta)
-	elif type==COS:
+	elif type==TrigFunc.COS:
 		return_value = cos(theta)
-	elif type==TAN and cos(theta)!=0:
+	elif type==TrigFunc.TAN and cos(theta)!=0:
 		return_value = tan(theta)
-	elif type==SEC and cos(theta)!=0:
+	elif type==TrigFunc.SEC and cos(theta)!=0:
 		return_value = 1./cos(theta)
-	elif type==CSC and sin(theta)!=0:
+	elif type==TrigFunc.CSC and sin(theta)!=0:
 		return_value = 1./sin(theta)
-	elif type==COT and sin(theta!=0):
+	elif type==TrigFunc.COT and sin(theta!=0):
 		return_value = cos(theta)/sin(theta)
 	success = abs(return_value-goal_value)<0.00001
 
 func type_to_str():
-	if type==SIN:
+	if type==TrigFunc.SIN:
 		return "sin"
-	elif type==COS:
+	elif type==TrigFunc.COS:
 		return "cos"
-	elif type==TAN:
+	elif type==TrigFunc.TAN:
 		return "tan"
-	elif type==SEC:
+	elif type==TrigFunc.SEC:
 		return "sec"
-	elif type==CSC:
+	elif type==TrigFunc.CSC:
 		return "csc"
-	elif type==COT:
+	elif type==TrigFunc.COT:
 		return "cot"
 
 # Called when the node enters the scene tree for the first time.
@@ -52,7 +52,7 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	detection = $EdgeArea
 	evaluate_return()
-	$Label.text = type_to_str()+"(θ)=0.5"
+	$TextureRect/Label.text = type_to_str()+"(θ)=0.5"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,10 +62,11 @@ func _process(delta):
 	evaluate_return()
 	$Gate.disabled = success
 	if success:
-		$Label.set("theme_override_colors/font_color",Color(0,1,0,1))
+		$TextureRect/Label.label_settings.font_color = Color(0, 0.61960786581039, 0, 0.88627451658249)
+		$Gate/AnimatedSprite2D.visible = false
 	else:
-		$Label.set("theme_override_colors/font_color",Color(1,0,0,1))
-
+		$TextureRect/Label.label_settings.font_color = Color(1, 0.1176470592618, 0.37647059559822, 0.8941176533699)
+		$Gate/AnimatedSprite2D.visible = true
 
 #func _on_edge_area_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	#if body.is_in_group("player"):

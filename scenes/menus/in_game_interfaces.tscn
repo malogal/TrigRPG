@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhuip71vgb1dm"]
+
+[ext_resource type="PackedScene" uid="uid://cw4pu11w75h78" path="res://scenes/misc/MusicTrack.tscn" id="1_dgjhb"]
+[ext_resource type="PackedScene" uid="uid://deqgnj30xx13t" path="res://scenes/misc/UI.tscn" id="2_hqvnq"]
+[ext_resource type="PackedScene" uid="uid://dgiqabo85kphg" path="res://scenes/menus/pause_menu.tscn" id="3_f4bwy"]
+[ext_resource type="PackedScene" uid="uid://cncncv5ktcu7i" path="res://scenes/menus/GameOverScreen.tscn" id="4_yom0v"]
+
+[node name="Interfaces" type="CanvasLayer"]
+
+[node name="music_track" parent="." instance=ExtResource("1_dgjhb")]
+music_track = "res://music/310-world-map-loop.ogg"
+
+[node name="UI" parent="." groups=["saved"] instance=ExtResource("2_hqvnq")]
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 100
+
+[node name="PauseMenu" parent="PauseMenu" instance=ExtResource("3_f4bwy")]
+process_mode = 0
+visible = false
+
+[node name="GameOverMenu" type="CanvasLayer" parent="."]
+layer = 110
+
+[node name="GameOverScreen" parent="GameOverMenu" instance=ExtResource("4_yom0v")]
+visible = false

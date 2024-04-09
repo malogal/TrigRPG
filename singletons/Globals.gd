@@ -17,6 +17,8 @@ var timeSpent
 var loadGameToggle = false
 var inventory
 
+var debug_mode: bool = false
+
 var loadNodeIgnoreTypes = {
 	"fileName": true,
 	"filePath": true,
@@ -38,7 +40,7 @@ func _ready():
 Really simple save file implementation. Just saving some variables to a dictionary
 """
 func save_game(): 
-	if currentSavePath != "":
+	if currentSavePath != "" and !debug_mode:
 		currentTimeInMs = Time.get_unix_time_from_system()
 		var diffInTimes = currentTimeInMs - startTimeInMs
 	
@@ -111,7 +113,7 @@ func load_game():
 	startTimeInMs = Time.get_unix_time_from_system()
 	loadGameToggle = false
 	
-	if currentSavePath != "":
+	if currentSavePath != "" and !debug_mode:
 		if not FileAccess.file_exists(currentSavePath):
 			return
 			

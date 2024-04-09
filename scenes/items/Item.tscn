@@ -180,6 +180,8 @@ _data = {
 }
 
 [node name="Item" type="Area2D" groups=["items"]]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("2")
 
 [node name="sprite" type="Sprite2D" parent="."]

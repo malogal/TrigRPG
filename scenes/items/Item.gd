@@ -60,11 +60,12 @@ func _process( _delta: float, ) -> void:
 		pickup()
 		
 func _on_Item_body_entered(body):
-	if body is Player:
+	if body.is_in_group("player"):
 		$anims.queue("flashing")
 		pickup_able = true
 		
 func _on_Item_body_exited(body):
-	if body is Player:
+	if body.is_in_group("player"):
 		pickup_able = false
 		$anims.stop()
+

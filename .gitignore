@@ -1,6 +1,8 @@
 *.translation
 .godot/
 ./save*.save
-
+save1.save # Why do these keep getting added by my IDE despite it being ignored in the line above? 
+save2.save
+save3.save
 ./idea/
 **/.idea
