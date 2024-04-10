@@ -85,9 +85,12 @@ func get_rich_str_rad() -> String:
 	for denominator in range(1,100):
 		var numerator:=decimal*denominator
 		if abs(numerator-round(numerator))<ERROR:
+			var num_str: String = str(round(numerator))
+			if round(numerator) == 1:
+				num_str = ""
 			if denominator>1:
-				return prefix+"[u]"+str(round(numerator))+"π[/u]\n"+str(denominator)+suffix
+				return prefix+"[u]"+num_str+"π[/u]\n"+str(denominator)+suffix
 			else:
-				return prefix+str(round(numerator))+"π"+suffix
+				return prefix+num_str+"π"+suffix
 	#fails to approximate
 	return prefix+str(round(rads*100)/100)+suffix

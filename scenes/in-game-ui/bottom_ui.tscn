@@ -1,37 +1,32 @@
-[gd_scene load_steps=21 format=3 uid="uid://dsr6iiolheh1f"]
+[gd_scene load_steps=23 format=3 uid="uid://dsr6iiolheh1f"]
 
 [ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
-[ext_resource type="Texture2D" uid="uid://cihittrmd7t2i" path="res://textures/projectile/pixel-pie-400.png" id="2_1min0"]
 [ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="2_ngp2j"]
 [ext_resource type="Script" path="res://scenes/in-game-ui/Inventory.gd" id="3_d8tjt"]
+[ext_resource type="Texture2D" uid="uid://c46o1shg1dril" path="res://textures/projectile/pie-1.png" id="3_wqq4e"]
+[ext_resource type="Texture2D" uid="uid://bpdsm2tj6ngci" path="res://textures/projectile/pie-2.png" id="4_euxpt"]
 [ext_resource type="StyleBox" uid="uid://u0klvjtwyoju" path="res://fonts/grey_style_box_bg.tres" id="4_i7vl6"]
 [ext_resource type="LabelSettings" uid="uid://du3fepabgj3y2" path="res://fonts/modifier_label_settings.tres" id="4_r7aal"]
+[ext_resource type="Texture2D" uid="uid://dq2jytr7ugvqx" path="res://textures/projectile/pie-3.png" id="5_a70y8"]
 [ext_resource type="LabelSettings" uid="uid://ckf3lk76e86ni" path="res://fonts/frequency_label_settings.tres" id="5_j3mav"]
 [ext_resource type="LabelSettings" uid="uid://db0svtjv6o8j2" path="res://fonts/amplitude_label_settings.tres" id="6_aka0c"]
+[ext_resource type="Texture2D" uid="uid://d2h8h41ap7tri" path="res://textures/projectile/pie-4.png" id="6_houpj"]
 [ext_resource type="Texture2D" uid="uid://btf40c3p0dmmu" path="res://textures/power-ups/power_sin.png" id="7_ijb4x"]
+[ext_resource type="Script" path="res://scenes/in-game-ui/DrawCircle.gd" id="7_qi11f"]
 [ext_resource type="Texture2D" uid="uid://c601v4let1yjk" path="res://textures/power-ups/power_freq.png" id="8_jxyj6"]
 [ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="9_pp2gc"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_3s64t"]
-font = ExtResource("2_ngp2j")
-font_size = 18
-font_color = Color(0.419608, 0.180392, 0.180392, 1)
-
-[sub_resource type="GDScript" id="GDScript_vexre"]
-script/source = "extends TextureRect
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvjlu"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_m6bhy"]
+frames = 4
+pause = true
+speed_scale = 3.33067e-15
+frame_0/texture = ExtResource("3_wqq4e")
+frame_1/texture = ExtResource("4_euxpt")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_a70y8")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_houpj")
+frame_3/duration = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsmwt"]
 
@@ -48,25 +43,18 @@ bg_color = Color(0.286275, 0.67451, 0.145098, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kogbh"]
 bg_color = Color(0.317647, 0.490196, 0.937255, 1)
 
-[node name="BottomUi" type="MarginContainer"]
-anchors_preset = 12
-anchor_top = 1.0
+[node name="BottomUi" type="HFlowContainer"]
+anchors_preset = -1
+anchor_top = 0.733333
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = -57.0
-offset_right = 134.0
-offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.505674, 0.505674)
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+alignment = 1
 script = ExtResource("1_w3s35")
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -75,24 +63,59 @@ size_flags_vertical = 8
 
 [node name="PieSection" type="GridContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
 
-[node name="PieNumber" type="Label" parent="HBoxContainer/PieSection"]
-custom_minimum_size = Vector2(40, 30)
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PieSection"]
 layout_mode = 2
-text = "π/2: 90º"
-label_settings = SubResource("LabelSettings_3s64t")
-justification_flags = 35
-
-[node name="PieDisplay" type="BoxContainer" parent="HBoxContainer/PieSection"]
-layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PieSection/PieDisplay"]
+[node name="PieNumberRad" type="RichTextLabel" parent="HBoxContainer/PieSection/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(25, 28)
 layout_mode = 2
-texture = ExtResource("2_1min0")
-expand_mode = 2
-stretch_mode = 4
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_ngp2j")
+bbcode_enabled = true
+text = "[center][color=Crimson][u]33π[/u]
+2[/color][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="PieNumberDeg" type="RichTextLabel" parent="HBoxContainer/PieSection/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(32, 11)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_ngp2j")
+bbcode_enabled = true
+text = "[center][color=Crimson]180º[/color][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PieSection"]
+layout_mode = 2
+
+[node name="CircleSegment" type="Control" parent="HBoxContainer/PieSection/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("7_qi11f")
+
+[node name="PieSprite" type="TextureRect" parent="HBoxContainer/PieSection/HBoxContainer2"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("AnimatedTexture_m6bhy")
+stretch_mode = 2
 
 [node name="Divider" type="Panel" parent="HBoxContainer"]
 visible = false
@@ -105,41 +128,13 @@ size_flags_horizontal = 6
 columns = 3
 script = ExtResource("3_d8tjt")
 
-[node name="ModifierLabel" type="Label" parent="HBoxContainer/Inventory"]
-layout_mode = 2
-theme_override_styles/normal = ExtResource("4_i7vl6")
-text = "Sine
-"
-label_settings = ExtResource("4_r7aal")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FrequencyLabel" type="Label" parent="HBoxContainer/Inventory"]
-layout_mode = 2
-theme_override_styles/normal = ExtResource("4_i7vl6")
-text = "Freq: 1
-"
-label_settings = ExtResource("5_j3mav")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AmplitudeLabel" type="Label" parent="HBoxContainer/Inventory"]
-layout_mode = 2
-theme_override_styles/normal = ExtResource("4_i7vl6")
-text = "Amp: 1
-"
-label_settings = ExtResource("6_aka0c")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Modifier" type="TextureRect" parent="HBoxContainer/Inventory"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Sine or Cosine Wave Modifier
 "
 texture = ExtResource("7_ijb4x")
-expand_mode = 2
-stretch_mode = 4
+stretch_mode = 3
 
 [node name="Frequency" type="TextureRect" parent="HBoxContainer/Inventory"]
 layout_mode = 2
@@ -147,34 +142,61 @@ size_flags_vertical = 3
 tooltip_text = "Frequency Power-Up"
 texture = ExtResource("8_jxyj6")
 expand_mode = 2
-stretch_mode = 4
+stretch_mode = 3
 
 [node name="Amplitude" type="TextureRect" parent="HBoxContainer/Inventory"]
 layout_mode = 2
 tooltip_text = "Amplitude Power-Up"
 texture = ExtResource("9_pp2gc")
 expand_mode = 2
-stretch_mode = 4
-script = SubResource("GDScript_vexre")
+stretch_mode = 3
+
+[node name="ModifierLabel" type="Label" parent="HBoxContainer/Inventory"]
+custom_minimum_size = Vector2(32, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
+text = "Sin
+"
+label_settings = ExtResource("4_r7aal")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FrequencyLabel" type="Label" parent="HBoxContainer/Inventory"]
+custom_minimum_size = Vector2(72, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
+text = "Freq:1.75
+"
+label_settings = ExtResource("5_j3mav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmplitudeLabel" type="Label" parent="HBoxContainer/Inventory"]
+custom_minimum_size = Vector2(72, 2.08165e-12)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
+text = "Amp:1.75
+"
+label_settings = ExtResource("6_aka0c")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Cooldowns" type="GridContainer" parent="HBoxContainer"]
 layout_mode = 2
-
-[node name="CooldownLabel" type="Label" parent="HBoxContainer/Cooldowns"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_nvjlu")
-text = "Cool Downs"
-horizontal_alignment = 1
+size_flags_vertical = 8
 
 [node name="Buttons" type="GridContainer" parent="HBoxContainer/Cooldowns"]
 layout_mode = 2
-columns = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
 
 [node name="TabButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_ngp2j")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6xd5i")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ispom")
 toggle_mode = true
@@ -185,16 +207,18 @@ expand_icon = true
 
 [node name="FBtutton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_ngp2j")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jejwj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
 toggle_mode = true
 action_mode = 0
 button_mask = 0
-text = "  F  "
+text = " F "
 expand_icon = true
 
 [node name="ClickButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
@@ -202,9 +226,17 @@ material = SubResource("ShaderMaterial_hsmwt")
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_ngp2j")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kogbh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
 toggle_mode = true
 action_mode = 0
 button_mask = 0
-text = "Click"
+text = "Pie"
+
+[node name="CooldownLabel" type="Label" parent="HBoxContainer/Cooldowns"]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_i7vl6")
+text = "Timer"
+label_settings = ExtResource("5_j3mav")
+horizontal_alignment = 1

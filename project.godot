@@ -51,6 +51,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
+theme/custom_font="res://fonts/zxSpectrumExpanded.ttf"
 theme/default_font_subpixel_positioning=0
 
 [importer_defaults]

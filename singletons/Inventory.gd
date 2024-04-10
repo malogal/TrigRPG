@@ -16,11 +16,20 @@ func reset():
 	
 func init_inventory(inv: Dictionary):
 	inventory = inv
+	emit_current()
+
+func emit_current():
 	for type in inventory:
 		if inventory[type] != 0:
-			item_changed.emit("added", type, inv[type])
+			item_changed.emit("added", type, inventory[type])
 
-
+# Only relevant for amplitude and freq
+func emit_missing():
+	if !inventory.has("amplitude") || inventory["amplitude"] == 0:
+		item_changed.emit("missing", "amplitude", 0)
+	if !inventory.has("frequency") || inventory["frequency"] == 0:
+		item_changed.emit("missing", "frequency", 0)
+		
 func get_item(type:String, default: float = 0) -> float:
 	if inventory.has(type):
 		return inventory[type]

@@ -86,7 +86,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"amount_1",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -103,7 +103,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"amount_2",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -120,7 +120,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"amount_3",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -137,5 +137,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"amount_4",
-"speed": 5.0
+"speed": 3.0
 }]
