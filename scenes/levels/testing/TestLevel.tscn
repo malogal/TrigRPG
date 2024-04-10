@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfreiv68yjjm"]
+[gd_scene load_steps=13 format=3 uid="uid://cfreiv68yjjm"]
 
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="1_m3soy"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="2_lw3a1"]
 [ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="3_oxgth"]
+[ext_resource type="PackedScene" uid="uid://cgtjso2i7rwxh" path="res://scenes/minigames/minigame_gate.tscn" id="3_ybv1v"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="4_uw6yn"]
 [ext_resource type="PackedScene" uid="uid://c6ky4fyoquhby" path="res://scenes/characters/Radian.tscn" id="5_gd1vv"]
 [ext_resource type="PackedScene" uid="uid://pwubbh68vpku" path="res://scenes/items/Amplitude.tscn" id="6_y8q7n"]
@@ -24,8 +25,12 @@ required_amount = 3
 initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
-[node name="UnitCircle" parent="." instance=ExtResource("3_oxgth")]
-position = Vector2(269.976, 448.355)
+[node name="UnitCircleGate" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("3_ybv1v")]
+position = Vector2(365, 510)
+puzzle = NodePath("UnitCircle")
+
+[node name="UnitCircle" parent="UnitCircleGate" instance=ExtResource("3_oxgth")]
+position = Vector2(-95.024, -61.645)
 
 [node name="enemy" parent="." groups=["saved"] instance=ExtResource("4_uw6yn")]
 position = Vector2(5193.98, 3512.35)
@@ -52,7 +57,7 @@ position = Vector2(31.976, 603.355)
 position = Vector2(-38.024, 28.355)
 
 [node name="Radian" parent="." instance=ExtResource("5_gd1vv")]
-position = Vector2(216.976, 646.355)
+position = Vector2(-169, 535)
 
 [node name="Amplitude" parent="." groups=["saved"] instance=ExtResource("6_y8q7n")]
 position = Vector2(232.976, 363.355)
