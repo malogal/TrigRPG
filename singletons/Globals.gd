@@ -194,7 +194,6 @@ func handleAchievementConfig():
 	var player = get_tree().get_nodes_in_group("player")[0]
 	if player:
 		var nodeAchievementStats = player.getAchievementStats()
-		print(nodeAchievementStats.thrownPieCount)
 		achievementStatuses.seenWizard = nodeAchievementStats.hasVisitedCamp
 		achievementStatuses.enteredForest = nodeAchievementStats.hasVisitedForest
 		achievementStatuses.thrown100Pies = nodeAchievementStats.thrownPieCount >= 100
