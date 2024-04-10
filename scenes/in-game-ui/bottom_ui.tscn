@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dsr6iiolheh1f"]
+[gd_scene load_steps=24 format=3 uid="uid://dsr6iiolheh1f"]
 
 [ext_resource type="Script" path="res://scenes/in-game-ui/bottom_ui.gd" id="1_w3s35"]
 [ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="2_ngp2j"]
@@ -15,6 +15,16 @@
 [ext_resource type="Script" path="res://scenes/in-game-ui/DrawCircle.gd" id="7_qi11f"]
 [ext_resource type="Texture2D" uid="uid://c601v4let1yjk" path="res://textures/power-ups/power_freq.png" id="8_jxyj6"]
 [ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="9_pp2gc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lapqn"]
+bg_color = Color(0.6, 0.454902, 0.6, 0.443137)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.411765, 0.411765, 0.411765, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_m6bhy"]
 frames = 4
@@ -56,22 +66,31 @@ alignment = 1
 script = ExtResource("1_w3s35")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 48)
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lapqn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 309.0
+offset_bottom = 48.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="PieSection" type="GridContainer" parent="HBoxContainer"]
+[node name="PieSection" type="GridContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PieSection"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/PieSection"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="PieNumberRad" type="RichTextLabel" parent="HBoxContainer/PieSection/HBoxContainer"]
+[node name="PieNumberRad" type="RichTextLabel" parent="Panel/HBoxContainer/PieSection/HBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(25, 28)
 layout_mode = 2
@@ -87,7 +106,7 @@ autowrap_mode = 0
 shortcut_keys_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="PieNumberDeg" type="RichTextLabel" parent="HBoxContainer/PieSection/HBoxContainer"]
+[node name="PieNumberDeg" type="RichTextLabel" parent="Panel/HBoxContainer/PieSection/HBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(32, 11)
 layout_mode = 2
@@ -102,33 +121,33 @@ autowrap_mode = 0
 shortcut_keys_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PieSection"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/PieSection"]
 layout_mode = 2
 
-[node name="CircleSegment" type="Control" parent="HBoxContainer/PieSection/HBoxContainer2"]
+[node name="CircleSegment" type="Control" parent="Panel/HBoxContainer/PieSection/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("7_qi11f")
 
-[node name="PieSprite" type="TextureRect" parent="HBoxContainer/PieSection/HBoxContainer2"]
+[node name="PieSprite" type="TextureRect" parent="Panel/HBoxContainer/PieSection/HBoxContainer2"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 6
 texture = SubResource("AnimatedTexture_m6bhy")
 stretch_mode = 2
 
-[node name="Divider" type="Panel" parent="HBoxContainer"]
+[node name="Divider" type="Panel" parent="Panel/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Inventory" type="GridContainer" parent="HBoxContainer"]
+[node name="Inventory" type="GridContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 columns = 3
 script = ExtResource("3_d8tjt")
 
-[node name="Modifier" type="TextureRect" parent="HBoxContainer/Inventory"]
+[node name="Modifier" type="TextureRect" parent="Panel/HBoxContainer/Inventory"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Sine or Cosine Wave Modifier
@@ -136,7 +155,7 @@ tooltip_text = "Sine or Cosine Wave Modifier
 texture = ExtResource("7_ijb4x")
 stretch_mode = 3
 
-[node name="Frequency" type="TextureRect" parent="HBoxContainer/Inventory"]
+[node name="Frequency" type="TextureRect" parent="Panel/HBoxContainer/Inventory"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Frequency Power-Up"
@@ -144,14 +163,14 @@ texture = ExtResource("8_jxyj6")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Amplitude" type="TextureRect" parent="HBoxContainer/Inventory"]
+[node name="Amplitude" type="TextureRect" parent="Panel/HBoxContainer/Inventory"]
 layout_mode = 2
 tooltip_text = "Amplitude Power-Up"
 texture = ExtResource("9_pp2gc")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="ModifierLabel" type="Label" parent="HBoxContainer/Inventory"]
+[node name="ModifierLabel" type="Label" parent="Panel/HBoxContainer/Inventory"]
 custom_minimum_size = Vector2(32, 2.08165e-12)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("4_i7vl6")
@@ -161,7 +180,7 @@ label_settings = ExtResource("4_r7aal")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FrequencyLabel" type="Label" parent="HBoxContainer/Inventory"]
+[node name="FrequencyLabel" type="Label" parent="Panel/HBoxContainer/Inventory"]
 custom_minimum_size = Vector2(72, 2.08165e-12)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("4_i7vl6")
@@ -171,7 +190,7 @@ label_settings = ExtResource("5_j3mav")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AmplitudeLabel" type="Label" parent="HBoxContainer/Inventory"]
+[node name="AmplitudeLabel" type="Label" parent="Panel/HBoxContainer/Inventory"]
 custom_minimum_size = Vector2(72, 2.08165e-12)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("4_i7vl6")
@@ -181,17 +200,17 @@ label_settings = ExtResource("6_aka0c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Cooldowns" type="GridContainer" parent="HBoxContainer"]
+[node name="Cooldowns" type="GridContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Buttons" type="GridContainer" parent="HBoxContainer/Cooldowns"]
+[node name="Buttons" type="GridContainer" parent="Panel/HBoxContainer/Cooldowns"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 2
 
-[node name="TabButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
+[node name="TabButton" type="Button" parent="Panel/HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
 layout_mode = 2
 mouse_filter = 2
@@ -205,7 +224,7 @@ button_mask = 0
 text = "Tab"
 expand_icon = true
 
-[node name="FBtutton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
+[node name="FBtutton" type="Button" parent="Panel/HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
 layout_mode = 2
 size_flags_horizontal = 4
@@ -221,7 +240,7 @@ button_mask = 0
 text = " F "
 expand_icon = true
 
-[node name="ClickButton" type="Button" parent="HBoxContainer/Cooldowns/Buttons"]
+[node name="ClickButton" type="Button" parent="Panel/HBoxContainer/Cooldowns/Buttons"]
 material = SubResource("ShaderMaterial_hsmwt")
 layout_mode = 2
 mouse_filter = 2
@@ -234,7 +253,7 @@ action_mode = 0
 button_mask = 0
 text = "Pie"
 
-[node name="CooldownLabel" type="Label" parent="HBoxContainer/Cooldowns"]
+[node name="CooldownLabel" type="Label" parent="Panel/HBoxContainer/Cooldowns"]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("4_i7vl6")
 text = "Timer"

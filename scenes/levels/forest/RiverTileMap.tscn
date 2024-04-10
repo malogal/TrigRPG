@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmsi2h2p0biut"]
+[gd_scene load_steps=6 format=3 uid="uid://cmsi2h2p0biut"]
 
 [ext_resource type="TileSet" uid="uid://m662xqbwgt3q" path="res://scenes/tilesets/ForestTileSet.tres" id="1_ailn8"]
 [ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="2_fn5n3"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="3_6nnko"]
+[ext_resource type="TileSet" uid="uid://burecsy73055r" path="res://textures/tiles/InvisiblePhysicsTiles_set_vis_false.tres" id="4_4uv5t"]
+[ext_resource type="Script" path="res://scenes/tilesets/InvisBoundary.gd" id="5_tit8p"]
 
 [node name="RiverTilemap" type="TileMap"]
 tile_set = ExtResource("1_ailn8")
@@ -42,3 +44,12 @@ health_in_radian = false
 
 [node name="Enemy2" parent="." instance=ExtResource("3_6nnko")]
 position = Vector2(1319, -334)
+
+[node name="InvisBoundary" type="TileMap" parent="."]
+light_mask = 0
+visibility_layer = 0
+tile_set = ExtResource("4_4uv5t")
+collision_visibility_mode = 1
+format = 2
+layer_0/tile_data = PackedInt32Array(-589837, 262144, 805306372, -655373, 262144, 1342177283, -589839, 262144, 1342177284, -655375, 262144, 1610612739, -655374, 262144, 805306371, 65533, 0, 0, 2, 0, 0, -786446, 0, 1610612738, -786445, 0, 2, -786447, 0, 805306370)
+script = ExtResource("5_tit8p")
