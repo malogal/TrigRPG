@@ -60,13 +60,13 @@ func _process(delta):
 	angle.rads = -$EdgeArea.rotation
 	angle.round(5,true)
 	evaluate_return()
-	$Gate.disabled = success
+	#$Gate.disabled = success
 	if success:
 		$TextureRect/Label.label_settings.font_color = Color(0, 0.61960786581039, 0, 0.88627451658249)
-		$Gate/AnimatedSprite2D.visible = false
+		#$Gate/AnimatedSprite2D.visible = false
 	else:
 		$TextureRect/Label.label_settings.font_color = Color(1, 0.1176470592618, 0.37647059559822, 0.8941176533699)
-		$Gate/AnimatedSprite2D.visible = true
+		#$Gate/AnimatedSprite2D.visible = true
 
 #func _on_edge_area_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	#if body.is_in_group("player"):

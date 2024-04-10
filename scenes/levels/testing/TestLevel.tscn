@@ -25,13 +25,6 @@ required_amount = 3
 initial_text = "TLDR; bring me 3 Generic Items"
 pending_text = "You forgot? I want 3 Generic Items"
 
-[node name="UnitCircleGate" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("3_ybv1v")]
-position = Vector2(365, 510)
-puzzle = NodePath("UnitCircle")
-
-[node name="UnitCircle" parent="UnitCircleGate" instance=ExtResource("3_oxgth")]
-position = Vector2(-95.024, -61.645)
-
 [node name="enemy" parent="." groups=["saved"] instance=ExtResource("4_uw6yn")]
 position = Vector2(5193.98, 3512.35)
 
@@ -89,3 +82,10 @@ position = Vector2(352.976, 378.355)
 
 [node name="TrigLock" parent="." instance=ExtResource("11_talpw")]
 position = Vector2(164.976, 205.355)
+
+[node name="MinigameGate" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("3_ybv1v")]
+position = Vector2(524, 323)
+puzzle = NodePath("UnitCircle")
+
+[node name="UnitCircle" parent="MinigameGate" instance=ExtResource("3_oxgth")]
+position = Vector2(-176, 118)
