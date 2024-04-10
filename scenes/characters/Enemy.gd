@@ -8,6 +8,7 @@ var WALK_SPEED: int = 100
 @export var ROLL_SPEED: int = 1000
 @export var hitpoints: int = 3
 @export var health: float = PI/2
+@export var health_in_radian: bool = true
 var health_angle = AngleClass.new(health)
 var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
@@ -28,7 +29,8 @@ func _ready():
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
 	player = get_tree().get_nodes_in_group("player")[0]
-
+	$Health.is_radian = health_in_radian
+	$Health.set_angle_text(health_angle)
 
 func _physics_process(_delta):
 	if Globals.isDialogActive:

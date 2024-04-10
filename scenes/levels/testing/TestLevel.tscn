@@ -89,3 +89,7 @@ puzzle = NodePath("UnitCircle")
 
 [node name="UnitCircle" parent="MinigameGate" instance=ExtResource("3_oxgth")]
 position = Vector2(-176, 118)
+
+[node name="Enemy" parent="." instance=ExtResource("4_uw6yn")]
+position = Vector2(291, 594)
+health_in_radian = false

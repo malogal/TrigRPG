@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmsi2h2p0biut"]
+[gd_scene load_steps=4 format=3 uid="uid://cmsi2h2p0biut"]
 
 [ext_resource type="TileSet" uid="uid://m662xqbwgt3q" path="res://scenes/tilesets/ForestTileSet.tres" id="1_ailn8"]
 [ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="2_fn5n3"]
+[ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="3_6nnko"]
 
 [node name="RiverTilemap" type="TileMap"]
 tile_set = ExtResource("1_ailn8")
@@ -33,3 +34,11 @@ position = Vector2(-463, -283)
 sign_type = 4
 sign_text = "This bridge is maintained by the Bridge Owner's Association.\\nScheduled for maintaince April 1st, 3012.\\nIn the event of flooding, teleport across or take the forest route."
 sign_name = "Bridge Sign"
+
+[node name="Enemy" parent="." instance=ExtResource("3_6nnko")]
+position = Vector2(1455, -403)
+health = 3.142
+health_in_radian = false
+
+[node name="Enemy2" parent="." instance=ExtResource("3_6nnko")]
+position = Vector2(1319, -334)
