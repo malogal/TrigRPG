@@ -9,7 +9,7 @@
 [node name="ForestLevel" type="Node2D"]
 position = Vector2(52, -637)
 
-[node name="Enemy" parent="." instance=ExtResource("1_wdw5i")]
+[node name="Enemy" parent="." groups=["saved"] instance=ExtResource("1_wdw5i")]
 position = Vector2(-277, -1159)
 
 [node name="ForestTileMap" parent="." instance=ExtResource("1_rxt4u")]

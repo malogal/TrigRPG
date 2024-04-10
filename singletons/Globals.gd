@@ -36,6 +36,14 @@ var startTimeInMs
 
 var showGameOverScreen = false
 
+var achievementsPath = "res://achievements.save"
+var currentAchievements = []
+var achievementStatuses = {
+	"seenWizard": false,
+	"enteredForest": false,
+	"thrown100Pies": false,
+}
+
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
 		
@@ -43,6 +51,7 @@ func _ready():
 Really simple save file implementation. Just saving some variables to a dictionary
 """
 func save_game(): 
+	handleAchievementConfig()
 	if currentSavePath != "" and !debug_mode:
 		currentTimeInMs = Time.get_unix_time_from_system()
 		var diffInTimes = currentTimeInMs - startTimeInMs
@@ -83,7 +92,8 @@ func save_game():
 		saveFile.store_line(jsonString)
 
 		var savedNodes = get_tree().get_nodes_in_group("saved")
-		
+		savedNodes.reverse()
+
 		for node in savedNodes:
 			# Check the node is an instanced scene so it can be instanced again during load.
 			if node.scene_file_path.is_empty():
@@ -107,7 +117,7 @@ func save_game():
 		saveFile.close()
 		
 		startTimeInMs = Time.get_unix_time_from_system()
-
+		
 """
 If check_only is true it will only check for a valid save file and return true or false without
 restoring any data
@@ -137,7 +147,7 @@ func load_game():
 				continue
 				
 			var nodeData = json.get_data()
-			
+
 			if isSaveData(nodeData):
 				continue
 				
@@ -167,35 +177,80 @@ func isSaveData(nodeData):
 func isInventoryData(nodeData):
 	return nodeData == {} or nodeData.has("frequency") or nodeData.has("amplitude") or nodeData.has("sine") or nodeData.has("cosine")
 
+
+func handleAchievementConfig():
+	currentAchievements = []
+	#get existing achievements
+	if FileAccess.file_exists(achievementsPath):
+		var achievementsFile = FileAccess.open(achievementsPath, FileAccess.READ)
+		
+		while achievementsFile.get_position() < achievementsFile.get_length():
+			var json = JSON.new()
+			json.parse(achievementsFile.get_line())
+			var data = json.get_data()
+			
+			currentAchievements.append(data)
+
+		achievementsFile.close()
+
+	#get player achievements
+	var player = get_tree().get_nodes_in_group("player")[0]
+	if player:
+		var nodeAchievementStats = player.getAchievementStats()
+		achievementStatuses.seenWizard = nodeAchievementStats.hasVisitedCamp
+		achievementStatuses.enteredForest = nodeAchievementStats.hasVisitedForest
+		achievementStatuses.thrown100Pies = nodeAchievementStats.thrownPieCount >= 100
+	
+	# update current achievements
+	var updatedAchievements = []
+	for achievement in currentAchievements:
+		if achievement.name == "Wiz...Zard":
+			achievement.completed = achievementStatuses.seenWizard
+		if achievement.name == "The Forest":
+			achievement.completed = achievementStatuses.enteredForest
+		if achievement.name == "In Yo Face":
+			achievement.completed = achievementStatuses.thrown100Pies
+		updatedAchievements.append(achievement)
+	
+	# save updated achievements
+	var file = FileAccess.open(achievementsPath, FileAccess.WRITE)
+
+	for achievement in updatedAchievements:
+		currentAchievements.append(achievement)
+		var json_string = JSON.stringify(achievement)
+
+		file.store_line(json_string)
+	file.close()
+
 func _get_dialogue_manager():
-	dialogue_manager = Engine.get_singleton("DialogueManager")
-	dialogue_manager.dialogue_ended.connect(_set_is_dialog_active_false)
+    dialogue_manager = Engine.get_singleton("DialogueManager")
+    dialogue_manager.dialogue_ended.connect(_set_is_dialog_active_false)
 
 # Go to this URL for examples: https://github.com/nathanhoad/godot_dialogue_manager/blob/main/docs/Using_Dialogue.md#generating-dialogue-resources-at-runtime
 # startDialogue will create a dialogue bubble with the characters name. 
 # Use \n in your text for new lines. Make the title unique 
 func startDialogue(title: String, character: String, text: String):
-	if dialogue_manager == null:
-		_get_dialogue_manager()
-	if isDialogActive:
-		return false
-	var balloon = Balloon.instantiate()
-	get_tree().current_scene.add_child(balloon)
-	var resource = dialogue_manager.create_resource_from_text("~ " + title + "\n" + character + ": " + text)
-	balloon.start(resource, title)
-	isDialogActive = true
-	return true;
+    if dialogue_manager == null:
+        _get_dialogue_manager()
+    if isDialogActive:
+        return false
+    var balloon = Balloon.instantiate()
+    get_tree().current_scene.add_child(balloon)
+    var resource = dialogue_manager.create_resource_from_text("~ " + title + "\n" + character + ": " + text)
+    balloon.start(resource, title)
+    isDialogActive = true
+    return true;
 
 func startDialogueStored(cutscene_resource: Resource, title: String):
-	if dialogue_manager == null:
-		_get_dialogue_manager()
-	if isDialogActive:
-		return false
-	var balloon = Balloon.instantiate()
-	get_tree().current_scene.add_child(balloon)
-	balloon.start(cutscene_resource, title)
-	isDialogActive = true
-	return true;
+    if dialogue_manager == null:
+        _get_dialogue_manager()
+    if isDialogActive:
+        return false
+    var balloon = Balloon.instantiate()
+    get_tree().current_scene.add_child(balloon)
+    balloon.start(cutscene_resource, title)
+    isDialogActive = true
+    return true;
 
 func _set_is_dialog_active_false():
-	isDialogActive = false
+    isDialogActive = false

@@ -29,6 +29,7 @@ signal health_changed(current_hp)
 # Signal new amount of pie
 signal pie_changed(amount: Angle)
 
+var thrownPieCount: int = 0
 
 @export var facing: String = "down" # (String, "up", "down", "left", "right")
 
@@ -83,6 +84,9 @@ var movement_map: Dictionary = {
 	   direction = Vector2(0,0)
    },
 }
+
+var hasVisitedCamp = false
+var hasVisitedForest = false
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
@@ -161,7 +165,7 @@ func get_input():
 			# Get out of wave teleport mode 
 			$WaveTeleport.stop_wave()
 			 
-func _physics_process(delta):
+func _physics_process(delta):		
 	if Globals.isDialogActive:
 		$anims.stop()
 		return
@@ -199,6 +203,7 @@ func _physics_process(delta):
 			# Only update animation if pie is actually thrown
 			if $PieThrowing.throw(global_position, mouse_pos, pie_amount):
 				new_anim = "throw_"+facing
+				thrownPieCount = thrownPieCount + 1
 		WAVE:
 			var is_sine = true
 			# To make sine the default in all cases except cosine picked up,
@@ -231,7 +236,13 @@ func _physics_process(delta):
 			
 			col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
 
-
+	#checking coordinates to see where in map for achievements
+	if not hasVisitedCamp:
+		if position.y > -390:
+			hasVisitedCamp = true
+	if not hasVisitedForest:
+		if position.y < -390:
+			hasVisitedForest = true
 
 func assign_animation(a: String):
 	anim = new_anim
@@ -343,7 +354,17 @@ func getSaveStats():
 		'parent': get_parent().get_path(),
 		'posX': position.x,
 		'posY': position.y,
-		'hitpoints': hitpoints
+		'hitpoints': hitpoints,
+		'thrownPieCount': thrownPieCount,
+		'hasVisitedCamp': hasVisitedCamp,
+		'hasVisitedForest': hasVisitedForest
+	}
+	
+func getAchievementStats():
+	return {
+		'thrownPieCount': thrownPieCount,
+		'hasVisitedCamp': hasVisitedCamp,
+		'hasVisitedForest': hasVisitedForest
 	}
 
 # Stop showing teleport sparkles after it finishes animating 
