@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbu6mil7v5eja"]
+[gd_scene load_steps=6 format=3 uid="uid://bbu6mil7v5eja"]
 
 [ext_resource type="PackedScene" uid="uid://bllq7mij5cpil" path="res://scenes/misc/Cutscene.tscn" id="1_7wwu8"]
 [ext_resource type="PackedScene" uid="uid://4c6nil367abb" path="res://scenes/characters/BaseNpc.tscn" id="2_pdcn4"]
 [ext_resource type="PackedScene" uid="uid://pafqjv8250j3" path="res://scenes/levels/camp/CampArea.tscn" id="3_l1tcx"]
 [ext_resource type="Script" path="res://scenes/levels/camp/WizardAtStart.gd" id="4_1epp4"]
+[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="5_ikxva"]
 
 [node name="Camp" type="Node2D"]
 
@@ -46,3 +47,16 @@ script = ExtResource("4_1epp4")
 [node name="BaseNpc" parent="WizardAtStart" instance=ExtResource("2_pdcn4")]
 position = Vector2(0, -4)
 character_name = "Temporary Wizard at Start"
+
+[node name="Signs" parent="." instance=ExtResource("5_ikxva")]
+z_index = 3
+position = Vector2(-26, -349)
+sign_text = "I am a helpful sine. My cosine to the right is a lazy sign.\\nIf you see a zombie, run.\\nIf you teleport and get stuck, teleport out.\\nRebels Rule! Lord Radian Droolz!"
+sign_name = "Helpful Sign"
+
+[node name="Signs2" parent="." instance=ExtResource("5_ikxva")]
+position = Vector2(91, -350)
+sign_type = 3
+sign_text = ""
+sign_name = "Unhelpful Sign"
+is_interactable = false

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmsi2h2p0biut"]
+[gd_scene load_steps=3 format=3 uid="uid://cmsi2h2p0biut"]
 
 [ext_resource type="TileSet" uid="uid://m662xqbwgt3q" path="res://scenes/tilesets/ForestTileSet.tres" id="1_ailn8"]
+[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="2_fn5n3"]
 
 [node name="RiverTilemap" type="TileMap"]
 tile_set = ExtResource("1_ailn8")
@@ -20,3 +21,15 @@ layer_3/tile_data = PackedInt32Array(-2, 589830, 3, -1, 589830, 3, -65536, 58983
 layer_4/name = "ExtraExtraLow-7"
 layer_4/z_index = -7
 layer_4/tile_data = PackedInt32Array(2, 655366, 9, 65533, 655366, 9, 65534, 655366, 9, 65535, 655366, 9, 0, 655366, 9, 1, 655366, 9, -65534, 589830, 3, -65535, 393222, 2, -2, 327686, 2, -3, 589830, 3, -589838, 1, 0, -655374, 1, 0, -720910, 1, 0, -786446, 1, 0, -589837, 1, 0, -655373, 1, 0, -720909, 1, 0, -786445, 1, 0, -786447, 0, 0, -851983, 0, 0, -589839, 0, 0)
+
+[node name="Signs" parent="." instance=ExtResource("2_fn5n3")]
+position = Vector2(0, -148)
+sign_type = 5
+sign_text = "Left- Temple of Amplitude\\nRight - Peaceful Forest"
+sign_name = "Sign outside camp"
+
+[node name="Signs2" parent="." instance=ExtResource("2_fn5n3")]
+position = Vector2(-463, -283)
+sign_type = 4
+sign_text = "This bridge is maintained by the Bridge Owner's Association.\\nScheduled for maintaince April 1st, 3012.\\nIn the event of flooding, teleport across or take the forest route."
+sign_name = "Bridge Sign"
