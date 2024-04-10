@@ -40,8 +40,9 @@ default_move_type = "Horizontal"
 position = Vector2(7.00002, -111)
 
 [node name="WizardAtStart" type="Node2D" parent="."]
+position = Vector2(6, -70)
 script = ExtResource("4_1epp4")
 
 [node name="BaseNpc" parent="WizardAtStart" instance=ExtResource("2_pdcn4")]
-position = Vector2(212.971, -207)
+position = Vector2(0, -4)
 character_name = "Temporary Wizard at Start"

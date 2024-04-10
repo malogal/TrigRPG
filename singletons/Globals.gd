@@ -19,6 +19,9 @@ var inventory
 
 var debug_mode: bool = false
 
+const Balloon = preload("res://dialogue/balloon.tscn")
+var dialogue_manager: Object 
+
 var loadNodeIgnoreTypes = {
 	"fileName": true,
 	"filePath": true,
@@ -35,7 +38,7 @@ var showGameOverScreen = false
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
-
+		
 """
 Really simple save file implementation. Just saving some variables to a dictionary
 """
@@ -163,3 +166,36 @@ func isSaveData(nodeData):
 	
 func isInventoryData(nodeData):
 	return nodeData == {} or nodeData.has("frequency") or nodeData.has("amplitude") or nodeData.has("sine") or nodeData.has("cosine")
+
+func _get_dialogue_manager():
+	dialogue_manager = Engine.get_singleton("DialogueManager")
+	dialogue_manager.dialogue_ended.connect(_set_is_dialog_active_false)
+
+# Go to this URL for examples: https://github.com/nathanhoad/godot_dialogue_manager/blob/main/docs/Using_Dialogue.md#generating-dialogue-resources-at-runtime
+# startDialogue will create a dialogue bubble with the characters name. 
+# Use \n in your text for new lines. Make the title unique 
+func startDialogue(title: String, character: String, text: String):
+	if dialogue_manager == null:
+		_get_dialogue_manager()
+	if isDialogActive:
+		return false
+	var balloon = Balloon.instantiate()
+	get_tree().current_scene.add_child(balloon)
+	var resource = dialogue_manager.create_resource_from_text("~ " + title + "\n" + character + ": " + text)
+	balloon.start(resource, title)
+	isDialogActive = true
+	return true;
+
+func startDialogueStored(cutscene_resource: Resource, title: String):
+	if dialogue_manager == null:
+		_get_dialogue_manager()
+	if isDialogActive:
+		return false
+	var balloon = Balloon.instantiate()
+	get_tree().current_scene.add_child(balloon)
+	balloon.start(cutscene_resource, title)
+	isDialogActive = true
+	return true;
+
+func _set_is_dialog_active_false():
+	isDialogActive = false

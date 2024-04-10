@@ -6,7 +6,7 @@ which should be an instance of Quest.gd it'll become a quest giver and show what
 text Quest.process() returns
 """
 
-var active = false
+var is_player_present = false
 enum NPC_TYPE {NPC_A, NPC_B, NPC_WIZARD}
 enum START_ANIMATION_DIR {DOWN, UP, LEFT, RIGHT}
 
@@ -60,30 +60,21 @@ func _ready():
 # This scene only looks for input when the player is in the interact area
 func _input(event): #Handles quests and other events
 	# Bail if npc not active (player not inside the collider)
-	if not active:
-		return
-	# Bail if Dialogs singleton is showing another dialog
-	if Dialogs.active:
+	if not is_player_present:
 		return
 	# Bail if the event is not a pressed "interact" action
 	if not event.is_action_pressed("interact"):
 		return
 	
-	# If the character is a questgiver delegate getting the text
-	# to the Quest node, show it and end the function
-	if has_node("Quest"):
-		var quest_dialog = get_node("Quest").process()
-		if quest_dialog != "":
-			Dialogs.show_dialog(quest_dialog, character_name)
-			return
-	
-	# If we reached here and there are generic dialogs to show, rotate among them
 	if not dialogs.is_empty():
-		Dialogs.show_dialog(dialogs[current_dialog], character_name)
-		current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())
+		var title = name + str(get_rid().get_id())
+		# If starting dialogue suceeds, increment current dialogue 
+		if Globals.startDialogue(title, name, dialogs[current_dialog]):
+			current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())
 		
 #Runs every frame
 func _physics_process(delta: float): ## Handles movement and other physics-related functions
+	# Stop moving if there is a dialogue present 
 	if 	Globals.isDialogActive:
 		return
 	match move_state:
@@ -201,15 +192,15 @@ func move_to_point(moveX: float, moveY: float): #Sets the move state to walk tow
 	target_position = Vector2(moveX, moveY)
 
 func _on_interact_area_body_entered(body: Node2D) -> void:
-	if body is Player:
-		active = true
+	if body.is_in_group("player"):
+		is_player_present = true
 		# Start listening for key binds now that the player is in the interact area
 		set_process_input(true)
 
 
 func _on_interact_area_body_exited(body: Node2D) -> void:
-	if body is Player:
-		active = false
+	if body.is_in_group("player"):
+		is_player_present = false
 		# Stop listening for key binds now that the player has left the interact area
 		set_process_input(false)
 
