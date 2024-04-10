@@ -215,3 +215,11 @@ func _on_interact_area_body_exited(body: Node2D) -> void:
 
 func _on_timer_stop():
 	move_state = MOVESTATE_WALKING_DEFAULT
+
+func getSaveStats():
+	return {
+		'fileName': get_scene_file_path(),
+		'parent': get_parent().get_path(),
+		'posX': position.x,
+		'posY': position.y
+	}

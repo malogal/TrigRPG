@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1vb24lg5l3nj"]
+[gd_scene load_steps=10 format=3 uid="uid://c1vb24lg5l3nj"]
 
+[ext_resource type="Script" path="res://scenes/menus/achievements_menu.gd" id="1_33u3r"]
 [ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="1_43eq3"]
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_ifacx"]
+[ext_resource type="PackedScene" uid="uid://bp67adbf8cx41" path="res://scenes/menus/achievement_item_panel.tscn" id="3_bns1j"]
+[ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="3_vcp2u"]
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="4_wgab7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lgen"]
 bg_color = Color(0.756863, 0.756863, 0.756863, 0)
 
 [sub_resource type="SystemFont" id="SystemFont_m2dfh"]
 font_names = PackedStringArray("Impact")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eenr6"]
+texture = ExtResource("4_wgab7")
+texture_margin_top = 16.0
+texture_margin_bottom = 16.0
 
 [node name="AchievementsMenu" type="Control"]
 layout_mode = 3
@@ -16,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_33u3r")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -42,6 +52,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 4
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -56,13 +67,42 @@ text = "Achievements"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-alignment = 1
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="AchievementsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
+size_flags_horizontal = 3
+theme_override_constants/separation = -6
+
+[node name="AchievementItemPanel" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AchievementsList" instance=ExtResource("3_bns1j")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AchievementsList"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_vcp2u")
+theme_override_styles/panel = SubResource("StyleBoxTexture_eenr6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AchievementsList/PanelContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AchievementsList/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Name"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AchievementsList/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Description"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
 alignment = 1
 
 [node name="BackButton" parent="." instance=ExtResource("1_ifacx")]
@@ -74,3 +114,15 @@ offset_bottom = 22.0
 text = "Back
 "
 referencePath = "res://scenes/menus/main_menu.tscn"
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 13.0
+offset_right = 301.0
+offset_bottom = 21.0
+theme = ExtResource("3_vcp2u")
+text = "Reset
+"
+
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

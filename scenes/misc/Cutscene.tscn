@@ -55,7 +55,7 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Cutscene" type="Node2D"]
+[node name="Cutscene" type="Node2D" groups=["cutscene"]]
 script = ExtResource("1_ejxkm")
 
 [node name="Area2D" type="Area2D" parent="."]
