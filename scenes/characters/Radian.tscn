@@ -1,6 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://c6ky4fyoquhby"]
 
 [ext_resource type="Script" path="res://scenes/characters/Radian.gd" id="1_1twqq"]
+[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="2_4m7rb"]
 [ext_resource type="SpriteFrames" uid="uid://gx4fr060osg3" path="res://scenes/characters/animations/RadianAnimations.tres" id="3_lprw2"]
 [ext_resource type="Script" path="res://scenes/characters/Health.gd" id="4_smci4"]
 [ext_resource type="PackedScene" uid="uid://rkna6btqj6ea" path="res://scenes/powers/pie/pie_throwing.tscn" id="5_6iyfc"]
@@ -15,11 +16,6 @@
 radius = 197.162
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6xt7c"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_u823m"]
-font_size = 11
-font_color = Color(0.803922, 0.133333, 0.180392, 1)
-shadow_size = 0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lntsa"]
 atlas = ExtResource("7_2urgn")
@@ -102,6 +98,24 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_1twqq")
 
+[node name="Health" type="RichTextLabel" parent="."]
+offset_left = -28.0
+offset_top = -48.0
+offset_right = 29.0
+offset_bottom = -8.0
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("2_4m7rb")
+bbcode_enabled = true
+text = "[center][color=Crimson][u]3π[/u]
+2
+[/color][/center]
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+script = ExtResource("4_smci4")
+
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -122,19 +136,6 @@ shape = SubResource("CapsuleShape2D_6xt7c")
 [node name="anims" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_lprw2")
 animation = &"throw_down"
-
-[node name="Health" type="Label" parent="."]
-offset_left = -10.0
-offset_top = -27.0
-offset_right = 9.0
-offset_bottom = -11.0
-text = "π/2"
-label_settings = SubResource("LabelSettings_u823m")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-script = ExtResource("4_smci4")
-metadata/_edit_use_anchors_ = true
 
 [node name="PieThrowing" parent="." instance=ExtResource("5_6iyfc")]
 

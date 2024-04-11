@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmsi2h2p0biut"]
+[gd_scene load_steps=6 format=3 uid="uid://cmsi2h2p0biut"]
 
 [ext_resource type="TileSet" uid="uid://m662xqbwgt3q" path="res://scenes/tilesets/ForestTileSet.tres" id="1_ailn8"]
+[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="2_fn5n3"]
+[ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="3_6nnko"]
+[ext_resource type="TileSet" uid="uid://burecsy73055r" path="res://textures/tiles/InvisiblePhysicsTiles_set_vis_false.tres" id="4_4uv5t"]
+[ext_resource type="Script" path="res://scenes/tilesets/InvisBoundary.gd" id="5_tit8p"]
 
 [node name="RiverTilemap" type="TileMap"]
 tile_set = ExtResource("1_ailn8")
@@ -20,3 +24,32 @@ layer_3/tile_data = PackedInt32Array(-2, 589830, 3, -1, 589830, 3, -65536, 58983
 layer_4/name = "ExtraExtraLow-7"
 layer_4/z_index = -7
 layer_4/tile_data = PackedInt32Array(2, 655366, 9, 65533, 655366, 9, 65534, 655366, 9, 65535, 655366, 9, 0, 655366, 9, 1, 655366, 9, -65534, 589830, 3, -65535, 393222, 2, -2, 327686, 2, -3, 589830, 3, -589838, 1, 0, -655374, 1, 0, -720910, 1, 0, -786446, 1, 0, -589837, 1, 0, -655373, 1, 0, -720909, 1, 0, -786445, 1, 0, -786447, 0, 0, -851983, 0, 0, -589839, 0, 0)
+
+[node name="Signs" parent="." instance=ExtResource("2_fn5n3")]
+position = Vector2(0, -148)
+sign_type = 5
+sign_text = "Left- Temple of Amplitude\\nRight - Peaceful Forest"
+sign_name = "Sign outside camp"
+
+[node name="Signs2" parent="." instance=ExtResource("2_fn5n3")]
+position = Vector2(-463, -283)
+sign_type = 4
+sign_text = "This bridge is maintained by the Bridge Owner's Association.\\nScheduled for maintaince April 1st, 3012.\\nIn the event of flooding, teleport across or take the forest route."
+sign_name = "Bridge Sign"
+
+[node name="Enemy" parent="." instance=ExtResource("3_6nnko")]
+position = Vector2(1455, -403)
+health = 3.142
+health_in_radian = false
+
+[node name="Enemy2" parent="." instance=ExtResource("3_6nnko")]
+position = Vector2(1319, -334)
+
+[node name="InvisBoundary" type="TileMap" parent="."]
+light_mask = 0
+visibility_layer = 0
+tile_set = ExtResource("4_4uv5t")
+collision_visibility_mode = 1
+format = 2
+layer_0/tile_data = PackedInt32Array(-589837, 262144, 805306372, -655373, 262144, 1342177283, -589839, 262144, 1342177284, -655375, 262144, 1610612739, -655374, 262144, 805306371, 65533, 0, 0, 2, 0, 0, -786446, 0, 1610612738, -786445, 0, 2, -786447, 0, 805306370)
+script = ExtResource("5_tit8p")

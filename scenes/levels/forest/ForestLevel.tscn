@@ -49,3 +49,36 @@ npc_type = 1
 character_name = "Guy At House"
 move_range = 20
 default_move_type = "Vertical"
+
+[node name="Enemy2" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-232, -207)
+health = 4.712
+
+[node name="Enemy3" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-186, -240)
+health = 0.785
+
+[node name="Enemy4" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-403, -698)
+
+[node name="Enemy5" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-80, -714)
+health = 3.142
+health_in_radian = false
+
+[node name="Enemy6" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-556, -1370)
+
+[node name="Enemy7" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-176, -1474)
+
+[node name="Enemy8" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-331, -1711)
+
+[node name="Enemy9" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-242, -1735)
+
+[node name="Enemy10" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-286, -1667)
+health = 4.712
+health_in_radian = false

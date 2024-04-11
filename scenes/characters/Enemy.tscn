@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vyds0vs88ah5" path="res://scenes/characters/movement/HurtBox.tscn" id="3_tkquw"]
 [ext_resource type="Texture2D" uid="uid://qjowafifjm62" path="res://textures/enemy/zombie_walk.png" id="4_hlxtn"]
 [ext_resource type="Script" path="res://scenes/characters/Health.gd" id="5_a7wje"]
+[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="6_03jtg"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 height = 22.0
@@ -144,11 +145,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_u823m"]
-font_size = 11
-font_color = Color(0.803922, 0.133333, 0.180392, 1)
-shadow_size = 0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_wuu5n"]
 radius = 8.0
 
@@ -177,19 +173,6 @@ item_type = "cosine"
 sprite_frames = SubResource("SpriteFrames_7q67h")
 animation = &"walk_down"
 
-[node name="Health" type="Label" parent="."]
-offset_left = -10.0
-offset_top = -27.0
-offset_right = 9.0
-offset_bottom = -11.0
-text = "π/2"
-label_settings = SubResource("LabelSettings_u823m")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-script = ExtResource("5_a7wje")
-metadata/_edit_use_anchors_ = true
-
 [node name="DamageTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -211,6 +194,24 @@ shape = SubResource("CircleShape2D_wabu1")
 
 [node name="state_changer" type="Timer" parent="."]
 autostart = true
+
+[node name="Health" type="RichTextLabel" parent="."]
+offset_left = -28.0
+offset_top = -48.0
+offset_right = 29.0
+offset_bottom = -8.0
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("6_03jtg")
+bbcode_enabled = true
+text = "[center][color=Crimson][u]3π[/u]
+2
+[/color][/center]
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+script = ExtResource("5_a7wje")
 
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]

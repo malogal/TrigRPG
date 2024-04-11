@@ -18,6 +18,7 @@ radius = 30.0
 height = 144.16
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 2
 collision_layer = 8
 collision_mask = 9
 motion_mode = 1
@@ -34,6 +35,7 @@ polygon = PackedVector2Array(-134.513, -92.9393, -124.246, 19.4555, -59.4026, 10
 disabled = true
 
 [node name="camera" type="Camera2D" parent="."]
+editor_draw_limits = true
 
 [node name="debug" parent="." instance=ExtResource("3")]
 path_to_node = NodePath("..")

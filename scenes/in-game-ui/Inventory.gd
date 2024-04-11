@@ -12,26 +12,30 @@ func _ready() -> void:
 		_on_item_changed("added", type, inv[type])
 
 func _on_item_changed(action: String, type: String, amount: float): 
+	if action == "missing":
+		# Gray out amplitude
+		if type == "amplitude":
+			$Amplitude.modulate = Color8(92,92,92)
+			$AmplitudeLabel.text = "Amp:N/A"
+		if type == "frequency":
+			$Frequency.modulate = Color8(92,92,92)
+			$FrequencyLabel.text = "Freq:N/A" #TODO figure out sine/cosine starting text 
+		return
+	# Ignore 'removed' messages. We will wait for 'added' actions. 
 	if action != "added":
 		return
 	match type:
 		"amplitude":
-			$Amplitude.visible = true
-			if amount == 0:
-				amount = 1
-				$Amplitude.visible = false
-			$AmplitudeLabel.text = "Amp: " + str(amount)
-			$Amplitude.texture = amplitude
+			$Amplitude.modulate = Color8(255,255,255)
+			$AmplitudeLabel.text = "Amp:" + str(amount)
+			#$Amplitude.texture = amplitude
 		"sine":
-			$ModifierLabel.text = "Sine"
+			$ModifierLabel.text = "Sin"
 			$Modifier.texture = sine
 		"cosine":
-			$ModifierLabel.text = "Cosine"
+			$ModifierLabel.text = "Cos"
 			$Modifier.texture = cosine		
 		"frequency":
-			$Frequency.visible = true
-			if amount == 0:
-				amount = 1
-				$Frequency.visible = false
-			$FrequencyLabel.text = "Freq: " + str(amount)
-			$Frequency.texture = frequency
+			$Frequency.modulate = Color8(255,255,255)
+			$FrequencyLabel.text = "Freq:" + str(amount)
+			#$Frequency.texture = frequency

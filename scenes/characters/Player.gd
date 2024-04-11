@@ -120,7 +120,10 @@ func _ready():
 	# Set up invincibility timer
 	invincibility_timer = $invincibility_timer
 	is_invincible = false
-
+	
+	# Assuming inventory loaded before dependent nodes, re-emit it's current state (for player, UI, ect.)
+	Inventory.emit_current()
+	Inventory.emit_missing()
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 
@@ -318,6 +321,8 @@ func _on_pie_throwing_turn_direction(dir: String):
 	assign_animation("throw_" + facing)
 	
 func _on_item_changed(action: String, type: String, amount: float) -> void:
+	# Even if item_changed action is "missing" or "removed" we should still set frequency
+	# cooldown to the base value of '1'. It will only not be 1 when the Inventory has Freq and it's 1+
 	if type == "frequency":
 		# Default frequency to 0 using 'get_item' instead of 'amount'
 		freq_cooldown_modifier = Inventory.get_item("frequency", 1)
@@ -373,3 +378,6 @@ func _on_teleport_animated_animation_finished() -> void:
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	damage_player(body)
+
+func emit_pie_changed():
+	pie_changed.emit(pie_amount)

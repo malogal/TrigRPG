@@ -31,6 +31,7 @@ corner_radius_bottom_left = 8
 [resource]
 default_font = ExtResource("2_axl6p")
 default_font_size = 10
+Button/fonts/font = ExtResource("2_axl6p")
 Button/styles/focus = SubResource("StyleBoxTexture_6xob8")
 Button/styles/hover = SubResource("StyleBoxTexture_6xob8")
 Button/styles/normal = SubResource("StyleBoxTexture_6xob8")
