@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfreiv68yjjm"]
+[gd_scene load_steps=14 format=3 uid="uid://cfreiv68yjjm"]
 
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="1_m3soy"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="2_lw3a1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="9_i2xag"]
 [ext_resource type="PackedScene" uid="uid://8es5ys7h6wjh" path="res://scenes/levels/testing/TestForestTilemap.tscn" id="10_il8pk"]
 [ext_resource type="PackedScene" uid="uid://deeunt0djf62e" path="res://scenes/minigames/trig_lock.tscn" id="11_talpw"]
+[ext_resource type="PackedScene" uid="uid://cxr7ra7yo3eqt" path="res://scenes/minigames/transformation.tscn" id="13_dm2ew"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -93,3 +94,8 @@ position = Vector2(-176, 118)
 [node name="Enemy" parent="." instance=ExtResource("4_uw6yn")]
 position = Vector2(291, 594)
 health_in_radian = false
+
+[node name="Transformation" parent="." instance=ExtResource("13_dm2ew")]
+position = Vector2(246, 217)
+type = null
+amount = null
