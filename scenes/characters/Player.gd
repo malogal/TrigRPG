@@ -243,6 +243,13 @@ func _physics_process(delta):
 	if not hasVisitedForest:
 		if position.y < -390:
 			hasVisitedForest = true
+	
+	#pushing rigidbodies
+	#move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider().is_in_group("transformation"):
+			c.get_collider().apply_central_impulse(-c.get_normal() * 100)
 
 func assign_animation(a: String):
 	anim = new_anim

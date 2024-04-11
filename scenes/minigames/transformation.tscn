@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxr7ra7yo3eqt"]
+[gd_scene load_steps=4 format=3 uid="uid://cxr7ra7yo3eqt"]
+
+[ext_resource type="Script" path="res://scenes/minigames/transformation.gd" id="1_78fob"]
+[ext_resource type="Texture2D" uid="uid://d4bbh84d3glwc" path="res://textures/pj/frames/roll0000.png" id="2_6arre"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh1h7"]
 
-[node name="Transformation" type="StaticBody2D"]
+[node name="Transformation" type="RigidBody2D" groups=["transformation"]]
+lock_rotation = true
+script = ExtResource("1_78fob")
+type = null
+amount = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oh1h7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.625001, -10)
+scale = Vector2(0.15332, 0.211914)
+texture = ExtResource("2_6arre")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = 10.0
+offset_right = 30.0
+offset_bottom = 21.0
+text = "shift π"

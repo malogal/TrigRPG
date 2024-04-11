@@ -3,6 +3,7 @@ extends StaticBody2D
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
 var success = false
+enum { AMPLITUDE, FREQUENCY, SHIFT_LR, SHIFT_UD }
 var transformations = []
 
 enum { SIN, COS, TAN, SEC, CSC, COT }
@@ -44,15 +45,23 @@ func _draw():
 	$Current.clear_points()
 	for x in range(-80,80):
 		var y = TAU/80*x
-		#for t in transformations:
-			#if(t.type==INSIDE):
-				#y = t.evaluate(y)
+		for t in transformations:
+			if(t.type==FREQUENCY or t.type==SHIFT_UD):
+				y = t.evaluate(y)
 		y = trig_func(y)
-		#for t in transformations:
-			#if(t.type==OUTSIDE):
-				#y = t.evaluate(y)
+		for t in transformations:
+			if(t.type==AMPLITUDE or t.type==SHIFT_LR):
+				y = t.evaluate(y)
 		y *= -15
 		$Current.add_point(Vector2(x,y))
 
 
 
+
+
+func _on_body_entered(body):
+	var trans = body.get_parent()
+	print("agsdfadasfg")
+	if body.is_in_group("transformation"):
+		transformations.append(body)
+		body.reset()
