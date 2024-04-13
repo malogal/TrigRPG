@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfreiv68yjjm"]
+[gd_scene load_steps=15 format=3 uid="uid://cfreiv68yjjm"]
 
 [ext_resource type="PackedScene" uid="uid://kbl0tflfjgmc" path="res://scenes/characters/Npc.tscn" id="1_m3soy"]
 [ext_resource type="PackedScene" uid="uid://dwu2tlrkse1kh" path="res://scenes/misc/Quest.tscn" id="2_lw3a1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://8es5ys7h6wjh" path="res://scenes/levels/testing/TestForestTilemap.tscn" id="10_il8pk"]
 [ext_resource type="PackedScene" uid="uid://deeunt0djf62e" path="res://scenes/minigames/trig_lock.tscn" id="11_talpw"]
 [ext_resource type="PackedScene" uid="uid://cxr7ra7yo3eqt" path="res://scenes/minigames/transformation.tscn" id="13_dm2ew"]
+[ext_resource type="TileSet" uid="uid://w461id1s2io7" path="res://textures/tiles/InvisibleTeleportationBlockingTiles.tres" id="14_vtsbq"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -97,5 +98,9 @@ health_in_radian = false
 
 [node name="Transformation" parent="." instance=ExtResource("13_dm2ew")]
 position = Vector2(246, 217)
-type = null
-amount = null
+
+[node name="BlockTeleportLines" type="TileMap" parent="."]
+tile_set = ExtResource("14_vtsbq")
+format = 2
+layer_0/name = "BlockTeleport"
+layer_0/tile_data = PackedInt32Array(655360, 0, 2, 589824, 0, 2, 524288, 0, 2, 458752, 0, 2, 393216, 0, 2, 720896, 0, 4)
