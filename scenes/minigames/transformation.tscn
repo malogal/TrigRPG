@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxr7ra7yo3eqt"]
 
 [ext_resource type="Script" path="res://scenes/minigames/transformation.gd" id="1_78fob"]
-[ext_resource type="Texture2D" uid="uid://d4bbh84d3glwc" path="res://textures/pj/frames/roll0000.png" id="2_6arre"]
+[ext_resource type="Texture2D" uid="uid://d4bbh84d3glwc" path="res://textures/temp-pj/frames/roll0000.png" id="2_6arre"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh1h7"]
 
