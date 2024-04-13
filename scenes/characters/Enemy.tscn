@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bycx5snr304xk"]
+[gd_scene load_steps=30 format=3 uid="uid://bycx5snr304xk"]
 
 [ext_resource type="Script" path="res://scenes/characters/Enemy.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="3"]
@@ -151,9 +151,44 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_wabu1"]
 radius = 133.31
 
+[sub_resource type="Animation" id="Animation_xd10r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_70yc3"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.3, 0.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.14902, 0.14902, 0.14902, 1), Color(1, 1, 1, 1), Color(0.14902, 0.14902, 0.14902, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f048m"]
+_data = {
+"RESET": SubResource("Animation_xd10r"),
+"attack": SubResource("Animation_70yc3")
+}
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_mask = 3
-motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1")
 metadata/_edit_horizontal_guides_ = [-71.0]
@@ -213,8 +248,23 @@ autowrap_mode = 0
 shortcut_keys_enabled = false
 script = ExtResource("5_a7wje")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f048m")
+}
+autoplay = "RESET"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+debug_path_custom_color = Color(0.913725, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="NavigationAgent2D"]
+wait_time = 0.1
+
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
 [connection signal="area_exited" from="attack_range" to="." method="_on_exit_attack_range"]
 [connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
 [connection signal="body_exited" from="sight_range" to="." method="_on_sight_range_body_exited"]
+[connection signal="timeout" from="NavigationAgent2D/Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0nxrsvrqwpru"]
+
+[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="2_54wai"]
+[ext_resource type="Script" path="res://scenes/in-game-ui/InGamePopUp.gd" id="3_s0le0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2n5k"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.431373, 0.278431, 0.329412, 0.631373)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.431373, 0.368627, 0.431373, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 14
+shadow_offset = Vector2(-8, 15)
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="LabelSettings" id="LabelSettings_ou0dc"]
+font = ExtResource("2_54wai")
+font_size = 15
+font_color = Color(0.988235, 0.980392, 0.976471, 1)
+outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+
+[node name="PopupPanel" type="PopupPanel"]
+transparent_bg = true
+handle_input_locally = false
+position = Vector2i(100, 0)
+size = Vector2i(100, 20)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2n5k")
+script = ExtResource("3_s0le0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 15.0
+text = "No can do"
+label_settings = SubResource("LabelSettings_ou0dc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 35

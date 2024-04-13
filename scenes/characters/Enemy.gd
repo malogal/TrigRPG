@@ -4,7 +4,7 @@ class_name Enemy
 
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
-var WALK_SPEED: int = 100
+var WALK_SPEED: int = 3800
 @export var ROLL_SPEED: int = 1000
 @export var hitpoints: int = 3
 @export var health: float = PI/2
@@ -25,31 +25,59 @@ enum { STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HUR
 
 var state = STATE_IDLE
 
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 func _ready():
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
 	player = get_tree().get_nodes_in_group("player")[0]
 	$Health.is_radian = health_in_radian
 	$Health.set_angle_text(health_angle)
+	# Connect the navigation agent's 	signal for path readiness
+	navigation_agent.path_desired_distance = 4.0
+	navigation_agent.target_desired_distance = 4.0
+	call_deferred("actor_setup")
 
+
+func actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+
+	# Now that the navigation map is no longer empty, set the movement target.
+	set_movement_target(player.global_position)
+
+func set_movement_target(movement_target: Vector2):
+	navigation_agent.target_position = movement_target
+			
 func _physics_process(_delta):
 	if Globals.isDialogActive:
 		$anims.stop()
 		return
 		
+
+	
+	
 	match state:
 		STATE_IDLE:
 			new_anim = "idle_" + facing
 		
 		STATE_WALKING:
-			set_velocity(linear_vel)
+
+			var current_agent_position: Vector2 = global_position
+			var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+
+			velocity = current_agent_position.direction_to(next_path_position) * WALK_SPEED*_delta
 			move_and_slide()
 			linear_vel = velocity
-			
-			var target_speed = Vector2()
-			target_speed = (player.global_position - global_position).normalized()
-			target_speed *= WALK_SPEED
-			linear_vel = linear_vel.lerp(target_speed, 0.9)
+			#var collisions = move_and_collide(velocity, true)
+			##collisions.get_collider()
+			#set_velocity(linear_vel)
+			#move_and_slide()
+			#linear_vel = velocity
+			#
+			#var target_speed = Vector2()
+			#target_speed = (player.global_position - global_position).normalized()
+			#target_speed *= WALK_SPEED*_delta
+			#linear_vel = linear_vel.lerp(target_speed, 0.9)
 			
 			if linear_vel != Vector2.ZERO:
 				new_anim = "walk_" + facing
@@ -67,9 +95,9 @@ func _physics_process(_delta):
 				if linear_vel.y > 0:
 					facing = "down"
 			pass
-		STATE_ATTACK:
-			new_anim = "attack_" + facing
-			pass
+		#STATE_ATTACK:
+			#new_anim = "attack_" + facing
+			#pass
 		STATE_ROLL:
 			set_velocity(linear_vel)
 			move_and_slide()
@@ -108,12 +136,15 @@ func goto_idle():
 ## Triggers when entering attack range
 func _on_enter_attack_range(body):
 	if body.get_parent().is_in_group("player"):
-		state = STATE_ATTACK
+		#state = STATE_ATTACK
+		$AnimationPlayer.play("attack")
 	pass
 ## Triggers when exiting attack range
 func _on_exit_attack_range(body):
 	if body.get_parent().is_in_group("player"):
-		state = STATE_WALKING
+		await get_tree().create_timer(0.5).timeout
+		$AnimationPlayer.play("RESET")
+		#state = STATE_WALKING
 	pass
 
 func despawn():
@@ -153,8 +184,14 @@ func getSaveStats():
 func _on_sight_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		state = STATE_WALKING
+		$NavigationAgent2D/Timer.start()
 
 
 func _on_sight_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		state = STATE_IDLE
+		$NavigationAgent2D/Timer.stop()
+
+
+func _on_timer_timeout() -> void:
+	actor_setup()

@@ -47,6 +47,8 @@ func can_teleport() -> bool:
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(start, dest, collision_mask, [])
 		var result = space_state.intersect_ray(query)
+		if !result.is_empty():
+			Globals.create_popup_window("Can't teleport here.", 1)
 		return result.is_empty()
 	return false
 
