@@ -67,3 +67,33 @@ func _process(delta):
 	else:
 		$TextureRect/Label.label_settings.font_color = Color(1, 0.1176470592618, 0.37647059559822, 0.8941176533699)
 
+var player_first_entry: bool = true
+var is_player_present: bool = false
+func _input(event): #Handles quests and other events
+	# Bail if npc not active (player not inside the collider)
+	if not is_player_present:
+		return
+	# Bail if the event is not a pressed "interact" action
+	if not event.is_action_pressed("interact"):
+		return
+	# reverse visibility
+	$hint.visible = not $hint.visible 
+	
+func _on_sight_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		is_player_present = true
+		# Start listening for key binds now that the player is in the interact area
+		set_process_input(true)
+		# The first time the player enters this Unit Circle give a pop-up reminding them of the hint
+		if player_first_entry:
+			Globals.create_popup_window("Press 'E' for a hint.", 2.5)
+			player_first_entry = false
+			
+
+
+func _on_sight_range_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		is_player_present = false
+		# Stop listening for key binds now that the player has left the interact area
+		set_process_input(false)
+		$hint.visible = false

@@ -38,9 +38,18 @@ func _ready():
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 
-
+var num_reloads := 3
 func actor_setup():
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
+		if player == null:
+			num_reloads += 1
+			if num_reloads < 3:
+				call_deferred("actor_setup")
+			printerr("No player found in scene")
+			return
 	set_movement_target(player.global_position)
+
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target

@@ -93,3 +93,13 @@ position = Vector2(-968, 674)
 dialogs = []
 stored_dialogs_file = "res://dialogue/unit_circle_explanation.dialogue"
 puzzle = NodePath("../UnitCircle")
+
+[node name="Priestess2" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("6_bui67")]
+position = Vector2(-657, -782)
+dialogs = []
+puzzle = NodePath("../UnitCircle2")
+
+[node name="UnitCircle2" parent="." instance=ExtResource("7_l7x13")]
+position = Vector2(-464, -129)
+goal_value = 2.08165e-12
+type = 1
