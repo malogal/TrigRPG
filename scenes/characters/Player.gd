@@ -47,6 +47,8 @@ var movement
 
 var invincibility_timer
 var is_invincible
+var shapes_in_hurtbox: Dictionary = {}
+
 
 var allowed_powers = {
 	pie = true,
@@ -287,8 +289,31 @@ func set_cooldowns():
 
 func _on_hurtbox_area_entered(area):
 	damage_player(area)
+	shapes_in_hurtbox[area] = true
 	pass
 
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	damage_player(body)
+	shapes_in_hurtbox[body] = true
+		
+func emit_pie_changed():
+	pie_changed.emit(pie_amount)
+
+
+func _on_hurtbox_area_exited(area: Area2D) -> void:
+	shapes_in_hurtbox.erase(area)
+	
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	shapes_in_hurtbox.erase(body)
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false
+	# If nodes that hurt the player are still in shapes_in_hurtbox, then they have not yet left 
+	# the area. So attempt to damage the player again. 
+	for key in shapes_in_hurtbox:
+		damage_player(key)
+	
+# Returns true if the player was allowed to be damaged 
 func damage_player(area):
 	if state != STATE_DIE and !is_invincible and (area.is_in_group("enemy_weapons") or area.is_in_group("radian-pie")):
 		is_invincible = true
@@ -304,8 +329,8 @@ func damage_player(area):
 			state = STATE_DIE
 			# toggle death screen
 			Globals.showGameOverScreen = true
-
-	pass
+		return true
+	return false
 	
 
 func is_facing_horizontal() -> bool:
@@ -347,8 +372,6 @@ func get_wave_available_signal() -> Signal:
 func get_teleport_available_signal() -> Signal:
 	return $WaveTeleport.teleport_available
 
-func _on_invincibility_timer_timeout():
-	is_invincible = false
 
 func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(time_to_teleport).timeout
@@ -383,8 +406,3 @@ func _on_teleport_animated_animation_finished() -> void:
 	$TeleportAnimated.visible = false
 
 
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	damage_player(body)
-
-func emit_pie_changed():
-	pie_changed.emit(pie_amount)

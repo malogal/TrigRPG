@@ -1,24 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://bufgnm1kucj8a"]
+[gd_scene load_steps=12 format=3 uid="uid://bufgnm1kucj8a"]
 
 [ext_resource type="Script" path="res://scenes/minigames/unit_circle.gd" id="1_wrpfy"]
-[ext_resource type="Texture2D" uid="uid://dfy62utqqnxy1" path="res://textures/menu/full_heart.png" id="3_5yiex"]
+[ext_resource type="Texture2D" uid="uid://b2f3u4q4rs2u6" path="res://textures/minigames/lockpoint.png" id="2_4c8ie"]
 [ext_resource type="Script" path="res://scenes/minigames/Pivot.gd" id="3_c0owi"]
 [ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="4_1x440"]
+[ext_resource type="Texture2D" uid="uid://g6uf0d3g1t4o" path="res://textures/minigames/lockhand.png" id="4_ymqa6"]
 [ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="6_p2n1e"]
+[ext_resource type="Texture2D" uid="uid://btdf82yfbbey7" path="res://textures/minigames/unit_circle_with_funcs.png" id="7_anm53"]
+[ext_resource type="PackedScene" uid="uid://bqsury0s0vq8l" path="res://scenes/characters/movement/SightRange.tscn" id="8_pi62q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0px2w"]
 radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcque"]
-size = Vector2(159.842, 6)
+size = Vector2(140.842, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_teisd"]
 font = ExtResource("6_p2n1e")
-font_size = 13
+font_size = 10
 font_color = Color(1, 0.117647, 0.376471, 0.894118)
 shadow_size = 0
 
-[node name="UnitCircle" type="StaticBody2D"]
+[node name="UnitCircle" type="StaticBody2D" groups=["minigame"]]
 script = ExtResource("1_wrpfy")
 
 [node name="Pivot" type="StaticBody2D" parent="."]
@@ -29,45 +32,51 @@ shape = SubResource("CircleShape2D_0px2w")
 debug_color = Color(0.564706, 0.0705882, 0.254902, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
-z_index = 100
-texture = ExtResource("3_5yiex")
+texture = ExtResource("2_4c8ie")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Pivot"]
 node_a = NodePath("..")
 node_b = NodePath("../../EdgeArea")
 
 [node name="EdgeArea" type="RigidBody2D" parent="." groups=["moveable"]]
-position = Vector2(80, 0)
+position = Vector2(86, 0)
 collision_layer = 8
 collision_mask = 9
 linear_damp = 10.0
 script = ExtResource("3_c0owi")
 
 [node name="Mover" type="Sprite2D" parent="EdgeArea"]
-position = Vector2(-4.50016, 0)
-scale = Vector2(1.9875, 0.3125)
-texture = ExtResource("4_1x440")
+position = Vector2(-14.0001, 0)
+texture = ExtResource("4_ymqa6")
+
+[node name="Degrees" type="Label" parent="EdgeArea/Mover"]
+offset_left = 79.0001
+offset_right = 119.0
+offset_bottom = 11.0
+text = "90º"
 
 [node name="EdgeCollision" type="CollisionShape2D" parent="EdgeArea"]
-position = Vector2(-4.92101, 0)
+position = Vector2(-14.421, 0)
 shape = SubResource("RectangleShape2D_vcque")
 debug_color = Color(0.972549, 0.0784314, 0.384314, 0.419608)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -176.0
-offset_top = -30.0
-offset_right = -96.0
-offset_bottom = 10.0
+z_as_relative = false
+offset_left = -152.0
+offset_top = -28.0
+offset_right = -88.0
+offset_bottom = -1.0
 scale = Vector2(2, 2)
 texture = ExtResource("4_1x440")
-stretch_mode = 2
+expand_mode = 1
 
 [node name="Label" type="Label" parent="TextureRect"]
+z_as_relative = false
 layout_mode = 0
-offset_left = 2.0
-offset_top = 8.0
-offset_right = 78.0
-offset_bottom = 26.0
+offset_left = 1.5
+offset_top = 6.0
+offset_right = 61.5
+offset_bottom = 21.0
 text = "123"
 label_settings = SubResource("LabelSettings_teisd")
 horizontal_alignment = 1
@@ -75,5 +84,19 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
 
+[node name="hint" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(68, -75)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("7_anm53")
+region_enabled = true
+region_rect = Rect2(402.858, 0, 621.142, 626.29)
+
+[node name="sight_range" parent="." instance=ExtResource("8_pi62q")]
+visible = false
+
 [connection signal="body_shape_entered" from="EdgeArea" to="." method="_on_edge_area_body_shape_entered"]
 [connection signal="item_rect_changed" from="EdgeArea" to="." method="_on_edge_area_item_rect_changed"]
+[connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
+[connection signal="body_exited" from="sight_range" to="." method="_on_sight_range_body_exited"]

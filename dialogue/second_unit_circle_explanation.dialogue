@@ -1,0 +1,16 @@
+~ start
+
+Priestess: Welcome to the forest.\nI'm gald you made it passed the pie starved citzens. Not so long ago, those zombies were just like you and me. Look what Lord Radain has done to us.
+
+Bob the Baker: What do I need to do to get past you this time?
+
+Priestess: Did you notice the new unit circle challenge just to the south? You must also become an expert in cosine. \nThis one is an easier identity to learn, but it is an important one. Do you need an explanation of cosine?
+
+- Yes, explain cosine.
+	Priestess: Imagine a pie with a single cut made towards the center. This pie is the unit circle. \n This single cut is the lever that you will move. If this line was the hypotenuse of a right triangle formed from the x-axis ... 
+	
+	Priestess: ... cosine of theta would be the length of the base of the triangle. Cosine of theta is the length of the edge adjacent to theta. The challenge provides the function, which is cosine, and then the desired length of the adjacent edge. \nAdjust the angle to find the correct value.
+- No
+	Priestess: Very well, I'll be here if you need more help. 
+
+=> END
