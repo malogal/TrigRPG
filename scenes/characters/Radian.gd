@@ -52,6 +52,8 @@ func _ready():
 	add_child(teleport_timer)
 	
 func _physics_process(_delta: float) -> void:
+	if Globals.isDialogActive:
+		return
 	if is_attacking:
 		$PieThrowing.throw(global_position, player_body.global_position, AngleClass.new(2*PI))
 		$PieThrowing.set_cooldown(rng.randf_range(.75, 4))

@@ -94,7 +94,7 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Radian" type="CharacterBody2D"]
+[node name="Radian" type="CharacterBody2D" groups=["radian"]]
 motion_mode = 1
 script = ExtResource("1_1twqq")
 
