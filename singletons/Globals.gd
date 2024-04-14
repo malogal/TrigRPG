@@ -131,7 +131,7 @@ func load_game():
 	if currentSavePath != "" and !debug_mode:
 		if not FileAccess.file_exists(currentSavePath):
 			return
-			
+		var x := get_tree()
 		var savedNodes = get_tree().get_nodes_in_group("saved")
 		for node in savedNodes:
 			node.get_parent().remove_child(node)

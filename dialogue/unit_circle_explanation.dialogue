@@ -1,0 +1,21 @@
+~ start
+
+Priestess: I am the Priestess. I will help guide you to defeat Lord Radian.\nYou must become a master in Pi as well as pie.\nTo pass further into the forest you must learn of the unit circle. 
+
+Bob the Baker: Do I have a choice?
+
+Priestess: No. To the left, there is a magical machine.\nYou must raise the lever, with the right rotation, to pass.\nThe equation on left shows the trig function applied to the angle. Show me you are capable of calculating this, and you may pass. 
+
+Bob the Baker: That sounds reasonable. No chance of death? 
+
+Priestess: Probably? Do you need a more detailed explanation? 
+
+- Yes
+	Priestess: Imagine a pie with a single slice made towards the center of the pie (unit circle). \n This cut is the lever that you will move. If this line was the hypotenuse of a right triangle formed from the x-axis ... 
+	
+	Priestess: ... sine of the angle would be the length of the base of the triangle. You are given the length of the base, the adjacent side of the righ triangle. Adjust the angle to find the correct value.
+- No
+	Priestess: I'll be here if you need more help. 
+
+Bob the Baker: I’ll go on my way then. Thanks!
+=> END

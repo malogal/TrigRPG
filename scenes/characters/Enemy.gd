@@ -26,6 +26,8 @@ enum { STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HUR
 var state = STATE_IDLE
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var give_up_timer = $GiveUpFollowingTimer
+
 func _ready():
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
@@ -35,14 +37,9 @@ func _ready():
 	# Connect the navigation agent's 	signal for path readiness
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
-	call_deferred("actor_setup")
 
 
 func actor_setup():
-	# Wait for the first physics frame so the NavigationServer can sync.
-	await get_tree().physics_frame
-
-	# Now that the navigation map is no longer empty, set the movement target.
 	set_movement_target(player.global_position)
 
 func set_movement_target(movement_target: Vector2):
@@ -52,9 +49,6 @@ func _physics_process(_delta):
 	if Globals.isDialogActive:
 		$anims.stop()
 		return
-		
-
-	
 	
 	match state:
 		STATE_IDLE:
@@ -183,15 +177,24 @@ func getSaveStats():
 
 func _on_sight_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		give_up_timer.stop()
 		state = STATE_WALKING
+		actor_setup()
 		$NavigationAgent2D/Timer.start()
 
 
 func _on_sight_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		state = STATE_IDLE
-		$NavigationAgent2D/Timer.stop()
+		# Don't stop following the player right away 
+		give_up_timer.start()
+
 
 
 func _on_timer_timeout() -> void:
 	actor_setup()
+
+
+
+func _on_give_up_following_timer_timeout() -> void:
+	state = STATE_IDLE
+	$NavigationAgent2D/Timer.stop()

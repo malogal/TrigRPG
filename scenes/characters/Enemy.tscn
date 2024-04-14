@@ -262,9 +262,14 @@ debug_path_custom_color = Color(0.913725, 0, 0, 1)
 [node name="Timer" type="Timer" parent="NavigationAgent2D"]
 wait_time = 0.1
 
+[node name="GiveUpFollowingTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
 [connection signal="area_exited" from="attack_range" to="." method="_on_exit_attack_range"]
 [connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
 [connection signal="body_exited" from="sight_range" to="." method="_on_sight_range_body_exited"]
 [connection signal="timeout" from="NavigationAgent2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="GiveUpFollowingTimer" to="." method="_on_give_up_following_timer_timeout"]

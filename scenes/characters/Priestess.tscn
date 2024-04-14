@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://be1vtu124ssft"]
+
+[ext_resource type="Script" path="res://scenes/characters/Priestess.gd" id="1_vgehm"]
+[ext_resource type="Texture2D" uid="uid://2r7k24wic65v" path="res://textures/npcs/priestess_idle.png" id="2_g6xdh"]
+[ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="3_ewfxu"]
+[ext_resource type="Texture2D" uid="uid://cntn0nx7smxv2" path="res://textures/props/summon_circle.png" id="4_ncl3g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6xyu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3gb5"]
+atlas = ExtResource("2_g6xdh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6ywo"]
+atlas = ExtResource("2_g6xdh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmilb"]
+atlas = ExtResource("2_g6xdh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc1lo"]
+atlas = ExtResource("2_g6xdh")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_288bv"]
+atlas = ExtResource("3_ewfxu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tow1g"]
+atlas = ExtResource("3_ewfxu")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4638"]
+atlas = ExtResource("3_ewfxu")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w3fg"]
+atlas = ExtResource("3_ewfxu")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7xxq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3gb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6ywo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmilb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc1lo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_288bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tow1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4638")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w3fg")
+}],
+"loop": false,
+"name": &"teleport",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebwpw"]
+radius = 38.0
+
+[node name="Priestess" type="CharacterBody2D" groups=["saved"]]
+script = ExtResource("1_vgehm")
+
+[node name="NpcBody" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_q6xyu")
+
+[node name="anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g7xxq")
+autoplay = "default"
+
+[node name="interact_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="trigger" type="CollisionShape2D" parent="interact_area"]
+z_index = -1
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ebwpw")
+debug_color = Color(0.278431, 0.631373, 0, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 13)
+texture = ExtResource("4_ncl3g")
+
+[connection signal="body_entered" from="interact_area" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="interact_area" to="." method="_on_interact_area_body_exited"]
