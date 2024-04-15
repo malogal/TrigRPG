@@ -6,7 +6,7 @@ var achievementsList = $PanelContainer/MarginContainer/VBoxContainer/ScrollConta
 @onready
 var achievementItemPanelScene = preload("res://scenes/menus/achievement_item_panel.tscn")
 
-var achievementsPath = "res://achievements.save"
+var achievementsPath = "user://achievements.save"
 
 var defaultAchievements = [
 	{
