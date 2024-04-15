@@ -39,7 +39,19 @@ func can_teleport() -> bool:
 	if wave_main == null:
 		return false
 	var point: Vector2 = wave_main.get_inner_wave_point()
-	return is_wave_active && $TeleportCooldown.is_stopped() && !point.is_zero_approx()
+	if is_wave_active && $TeleportCooldown.is_stopped() && !point.is_zero_approx():
+		 # Check if wave crosses the 'you shall not teleport' physics tilemap 
+		var collision_mask = pow(2, 8-1)  # Layer 8
+		var dest = to_global(point)
+		var start = get_parent().global_position
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(start, dest, collision_mask, [])
+		var result = space_state.intersect_ray(query)
+		if !result.is_empty():
+			Globals.create_popup_window("Can't teleport here.", 1)
+		return result.is_empty()
+	return false
+
 	
 # Returns (0,0) if wave_main has not been initatited yet, it is freed, or 
 # teleport teleport is on CD. Should not be used if user is not teleporting. 

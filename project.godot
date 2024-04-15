@@ -140,7 +140,7 @@ skip_cutscene={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialogue", "res://dialogue/cutscene1.dialogue", "res://dialogue/cutscene3.dialogue", "res://dialogue/cutscene4.dialogue", "res://dialogue/cutscene7.dialogue", "res://dialogue/cutscene6.dialogue", "res://dialogue/cutscene5.dialogue", "res://dialogue/cutscene8.dialogue", "res://dialogue/cutscene9.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialogue", "res://dialogue/cutscene1.dialogue", "res://dialogue/cutscene3.dialogue", "res://dialogue/cutscene4.dialogue", "res://dialogue/cutscene7.dialogue", "res://dialogue/cutscene6.dialogue", "res://dialogue/cutscene5.dialogue", "res://dialogue/cutscene8.dialogue", "res://dialogue/cutscene9.dialogue", "res://dialogue/unit_circle_explanation.dialogue", "res://dialogue/second_unit_circle_explanation.dialogue")
 
 [layer_names]
 

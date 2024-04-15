@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct72iogi3bugp"]
+
+[ext_resource type="PackedScene" uid="uid://dmi0nvtxjgoro" path="res://scenes/levels/temple/TempleArea.tscn" id="1_b3vh0"]
+[ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="2_k1mbc"]
+[ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="3_fqpxs"]
+[ext_resource type="Texture2D" uid="uid://bpygla41styhv" path="res://textures/props/temple/temple_lock_locked.png" id="5_4h8x4"]
+
+[node name="TempleScene" type="Node2D"]
+
+[node name="TempleArea" parent="." instance=ExtResource("1_b3vh0")]
+
+[node name="Character" parent="." groups=["saved"] instance=ExtResource("2_k1mbc")]
+position = Vector2(0, 59)
+
+[node name="Enemy" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-719, 306)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1326, 282)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1271, 443)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1383, 442)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1435, 602)
+
+[node name="Enemy6" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1322, 603)
+
+[node name="Enemy7" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1217, 604)
+
+[node name="TempleLock" type="Sprite2D" parent="."]
+position = Vector2(-1064, 644)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_4h8x4")
+
+[node name="TempleLock2" type="Sprite2D" parent="."]
+position = Vector2(-608, 1709)
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_4h8x4")

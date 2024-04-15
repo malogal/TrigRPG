@@ -13,6 +13,7 @@ var maxAngle = PI/2
 
 enum TrigFunc{ SIN, COS, TAN, SEC, CSC, COT }
 @export var type := TrigFunc.SIN
+@onready var lever := $EdgeArea/Mover
 
 var player
 var detection
@@ -52,7 +53,7 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	detection = $EdgeArea
 	evaluate_return()
-	$TextureRect/Label.text = type_to_str()+"(θ)=0.5"
+	$TextureRect/Label.text = type_to_str()+"(θ)=" + str(goal_value)
 	$sin.default_color = Color(1,0,0,1)
 	$sin.width = 2
 	$cos.default_color = Color(0,0,1,1)
@@ -64,10 +65,10 @@ func _ready():
 		var theta = PI*t/20
 		$arc.add_point(Vector2(radius*cos(theta),-radius*sin(theta)))
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	angle.rads = -$EdgeArea.rotation
+	$EdgeArea/Mover/Degrees.text = str(roundi(float(angle.get_str_deg()))) + "º"
 	angle.round(5,true)
 	evaluate_return()
 	if success:
@@ -84,35 +85,33 @@ func _draw():
 	$cos.add_point(Vector2(0,0))
 	$cos.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
 
-#func _on_edge_area_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
-	#if body.is_in_group("player"):
-		#var x = -(global_position.x-body.global_position.x+radius*cos(angle.rads))
-		#var y = global_position.y-body.global_position.y-radius*sin(angle.rads)
-		#print(x,"\t",y)
-		#var a = AngleClass.new(0,x,y)
-		#var rel_a = AngleClass.new(angle.rads-a.rads)
-		#if(rel_a.rads<PI):
-			#if(angle.rads+PI/12<=maxAngle):
-				#angle.add_rad(PI/12)
-		#else:
-			#if(angle.rads-PI/12>=minAngle):
-				#angle.sub_rad(PI/12)
-		#detection.position.x = radius*cos(angle.rads)
-		#detection.position.y = -radius*sin(angle.rads)
+var player_first_entry: bool = true
+var is_player_present: bool = false
+func _input(event): #Handles quests and other events
+	# Bail if npc not active (player not inside the collider)
+	if not is_player_present:
+		return
+	# Bail if the event is not a pressed "interact" action
+	if not event.is_action_pressed("interact"):
+		return
+	# reverse visibility
+	$hint.visible = not $hint.visible 
+	
+func _on_sight_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		is_player_present = true
+		# Start listening for key binds now that the player is in the interact area
+		set_process_input(true)
+		# The first time the player enters this Unit Circle give a pop-up reminding them of the hint
+		if player_first_entry:
+			Globals.create_popup_window("Press 'E' for a hint.", 2.5)
+			player_first_entry = false
+			
 
 
-func _on_edge_area_item_rect_changed() -> void:
-	var body: Node = player
-	var x = -(global_position.x-body.global_position.x+radius*cos(angle.rads))
-	var y = global_position.y-body.global_position.y-radius*sin(angle.rads)
-	print(x,"\t",y)
-	var a = AngleClass.new(0,x,y)
-	var rel_a = AngleClass.new(angle.rads-a.rads)
-	if(rel_a.rads<PI):
-		if(angle.rads+PI/12<=maxAngle):
-			angle.add_rad(PI/12)
-	else:
-		if(angle.rads-PI/12>=minAngle):
-			angle.sub_rad(PI/12)
-	detection.position.x = radius*cos(angle.rads)
-	detection.position.y = -radius*sin(angle.rads)
+func _on_sight_range_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		is_player_present = false
+		# Stop listening for key binds now that the player has left the interact area
+		set_process_input(false)
+		$hint.visible = false

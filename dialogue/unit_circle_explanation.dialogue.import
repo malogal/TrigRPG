@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://4gkjj50l3s2v"
+path="res://.godot/imported/unit_circle_explanation.dialogue-adb318cb2ce03bc74bba9fb7a564fd1e.tres"
+
+[deps]
+
+source_file="res://dialogue/unit_circle_explanation.dialogue"
+dest_files=["res://.godot/imported/unit_circle_explanation.dialogue-adb318cb2ce03bc74bba9fb7a564fd1e.tres"]
+
+[params]
+
+defaults=true

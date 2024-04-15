@@ -20,6 +20,8 @@ var inventory
 var debug_mode: bool = false
 
 const Balloon = preload("res://dialogue/balloon.tscn")
+const PopUpScene = preload("res://scenes/in-game-ui/InGamePopUp.tscn")
+
 var dialogue_manager: Object 
 
 var loadNodeIgnoreTypes = {
@@ -129,7 +131,7 @@ func load_game():
 	if currentSavePath != "" and !debug_mode:
 		if not FileAccess.file_exists(currentSavePath):
 			return
-			
+		var x := get_tree()
 		var savedNodes = get_tree().get_nodes_in_group("saved")
 		for node in savedNodes:
 			node.get_parent().remove_child(node)
@@ -254,3 +256,8 @@ func startDialogueStored(cutscene_resource: Resource, title: String):
 
 func _set_is_dialog_active_false():
 	isDialogActive = false
+
+func create_popup_window(text: String, time_out: int = 0):
+	var popup: Node = PopUpScene.instantiate()
+	get_tree().current_scene.add_child(popup)
+	popup.show_message(text, time_out)
