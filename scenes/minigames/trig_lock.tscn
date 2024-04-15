@@ -6,7 +6,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufcdb"]
 
-[node name="TrigLock" type="StaticBody2D"]
+[node name="TrigLock" type="StaticBody2D" groups=["minigame"]]
 script = ExtResource("1_h6b1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

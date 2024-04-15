@@ -253,6 +253,11 @@ func _physics_process(delta):
 		if c.get_collider().is_in_group("transformation"):
 			c.get_collider().apply_central_impulse(-c.get_normal() * 100)
 
+# Used by external nodes that need to teleport the player. Example, a ladder that moves the character 
+# To another area. 
+func teleport(out_location: Vector2): 
+	global_position = out_location
+
 func assign_animation(a: String):
 	anim = new_anim
 	$anims.stop()
