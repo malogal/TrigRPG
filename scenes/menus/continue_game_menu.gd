@@ -1,9 +1,8 @@
 extends Control
 
-#TODO: change to save://save1.save for actual game
-var save1Path = "res://save1.save"
-var save2Path = "res://save2.save"
-var save3Path = "res://save3.save"
+var save1Path = "user://save1.save"
+var save2Path = "user://save2.save"
+var save3Path = "user://save3.save"
 var saveName
 var lastPlayed
 var timeSpent

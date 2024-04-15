@@ -1,5 +1,5 @@
 extends Control
-var settingsPath = "res://settings.save"
+var settingsPath = "user://settings.save"
 
 @onready
 var inputButtonScene = preload("res://scenes/menus/keybind_input_button.tscn")
@@ -49,6 +49,7 @@ func _ready():
 	createActionList()
 
 func getSettingsFromFile():
+	print(FileAccess.file_exists(settingsPath))
 	if FileAccess.file_exists(settingsPath):
 		var savefile = FileAccess.open(settingsPath, FileAccess.READ)
 		
@@ -62,6 +63,10 @@ func getSettingsFromFile():
 		#set keybinds
 		keybinds = settingsDictionary.keybinds
 
+	else:
+		resetSettings()
+
+		
 	decodeKeybinds()
 	mapKeybindsToProject(keybinds)
 
@@ -175,7 +180,10 @@ func remapActionInProjectSettings(actionToRemap, newEvent):
 
 
 func _on_reset_button_pressed():
+	resetSettings()
 
+
+func resetSettings():
 	# reset audio
 	musicAudioSlider.value = defaultMusicAudio
 	masterAudioSlider.value = defaultMasterAudio
@@ -185,8 +193,9 @@ func _on_reset_button_pressed():
 
 	#update action list
 	createActionList()
-
-
+	
+	
+	
 func _on_exit_button_pressed():
 	get_tree().change_scene_to_file(mainMenuScene)
 
@@ -232,15 +241,14 @@ func resetKeybinds():
 
 
 func saveSettings():
-	if FileAccess.file_exists(settingsPath):
-		var settingsFile = FileAccess.open(settingsPath, FileAccess.WRITE)
+	var settingsFile = FileAccess.open(settingsPath, FileAccess.WRITE)
+
+	settingsDictionary.musicAudio = musicAudioSlider.value
+	settingsDictionary.masterAudio = masterAudioSlider.value
+	settingsDictionary.keybinds = getCurrentKeybinds()
 	
-		settingsDictionary.musicAudio = musicAudioSlider.value
-		settingsDictionary.masterAudio = masterAudioSlider.value
-		settingsDictionary.keybinds = getCurrentKeybinds()
-		
-		settingsFile.store_var(settingsDictionary)
-		settingsFile.close()
+	settingsFile.store_var(settingsDictionary)
+	settingsFile.close()
 	
 	
 func getKeybindModifier(keybind):

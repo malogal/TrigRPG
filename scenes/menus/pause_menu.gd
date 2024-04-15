@@ -3,7 +3,7 @@ extends Control
 @onready
 var settingsContainer = $SettingsContainer
 
-var settingsPath = "res://settings.save"
+var settingsPath = "user://settings.save"
 
 @onready
 var inputButtonScene = preload("res://scenes/menus/keybind_input_button.tscn")
@@ -271,15 +271,14 @@ func resetKeybinds():
 
 
 func saveSettings():
-	if FileAccess.file_exists(settingsPath):
-		var settingsFile = FileAccess.open(settingsPath, FileAccess.WRITE)
+	var settingsFile = FileAccess.open(settingsPath, FileAccess.WRITE)
+
+	settingsDictionary.musicAudio = musicAudioSlider.value
+	settingsDictionary.masterAudio = masterAudioSlider.value
+	settingsDictionary.keybinds = getCurrentKeybinds()
 	
-		settingsDictionary.musicAudio = musicAudioSlider.value
-		settingsDictionary.masterAudio = masterAudioSlider.value
-		settingsDictionary.keybinds = getCurrentKeybinds()
-		
-		settingsFile.store_var(settingsDictionary)
-		settingsFile.close()
+	settingsFile.store_var(settingsDictionary)
+	settingsFile.close()
 	
 	
 func getKeybindModifier(keybind):
