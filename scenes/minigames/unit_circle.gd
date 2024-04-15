@@ -6,7 +6,7 @@ const AngleClass = preload("res://misc-utility/Angle.gd")
 @export var goal_value: float = 0.5
 var success = false
 var angle = AngleClass.new(0)
-var radius = 80
+var radius = 154
 
 var minAngle = 0
 var maxAngle = PI/2
@@ -31,7 +31,7 @@ func evaluate_return():
 		return_value = 1./sin(theta)
 	elif type==TrigFunc.COT and sin(theta!=0):
 		return_value = cos(theta)/sin(theta)
-	success = abs(return_value-goal_value)<0.00001
+	success = abs(return_value-goal_value)<0.0001
 
 func type_to_str():
 	if type==TrigFunc.SIN:
@@ -53,6 +53,16 @@ func _ready():
 	detection = $EdgeArea
 	evaluate_return()
 	$TextureRect/Label.text = type_to_str()+"(θ)=0.5"
+	$sin.default_color = Color(1,0,0,1)
+	$sin.width = 2
+	$cos.default_color = Color(0,0,1,1)
+	$cos.width = 2
+	$arc.default_color = Color(0,0,0,1)
+	$arc.width = 1
+	$arc.clear_points()
+	for t in range(-1,12):
+		var theta = PI*t/20
+		$arc.add_point(Vector2(radius*cos(theta),-radius*sin(theta)))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,13 +70,19 @@ func _process(delta):
 	angle.rads = -$EdgeArea.rotation
 	angle.round(5,true)
 	evaluate_return()
-	#$Gate.disabled = success
 	if success:
 		$TextureRect/Label.label_settings.font_color = Color(0, 0.61960786581039, 0, 0.88627451658249)
-		#$Gate/AnimatedSprite2D.visible = false
 	else:
 		$TextureRect/Label.label_settings.font_color = Color(1, 0.1176470592618, 0.37647059559822, 0.8941176533699)
-		#$Gate/AnimatedSprite2D.visible = true
+	queue_redraw()
+
+func _draw():
+	$sin.clear_points()
+	$sin.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
+	$sin.add_point(Vector2(radius*cos($EdgeArea.rotation),radius*sin($EdgeArea.rotation)))
+	$cos.clear_points()
+	$cos.add_point(Vector2(0,0))
+	$cos.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
 
 #func _on_edge_area_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	#if body.is_in_group("player"):

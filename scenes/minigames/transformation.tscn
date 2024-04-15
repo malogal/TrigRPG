@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxr7ra7yo3eqt"]
+[gd_scene load_steps=5 format=3 uid="uid://cxr7ra7yo3eqt"]
 
 [ext_resource type="Script" path="res://scenes/minigames/transformation.gd" id="1_78fob"]
-[ext_resource type="Texture2D" uid="uid://d4bbh84d3glwc" path="res://textures/pj/frames/roll0000.png" id="2_6arre"]
+[ext_resource type="Texture2D" uid="uid://d4bbh84d3glwc" path="res://textures/temp-pj/frames/roll0000.png" id="2_6arre"]
+[ext_resource type="PackedScene" uid="uid://vyds0vs88ah5" path="res://scenes/characters/movement/HurtBox.tscn" id="3_p6goc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh1h7"]
 
-[node name="Transformation" type="RigidBody2D" groups=["transformation"]]
+[node name="Transformation" type="RigidBody2D" groups=["moveable", "transformation"]]
+mass = 0.3
 lock_rotation = true
 script = ExtResource("1_78fob")
-type = null
-amount = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oh1h7")
@@ -24,4 +24,8 @@ offset_left = -10.0
 offset_top = 10.0
 offset_right = 30.0
 offset_bottom = 21.0
-text = "shift π"
+text = "shift π/6"
+
+[node name="hurtbox" parent="." instance=ExtResource("3_p6goc")]
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_body_entered"]
