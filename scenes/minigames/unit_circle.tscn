@@ -24,6 +24,12 @@ shadow_size = 0
 [node name="UnitCircle" type="StaticBody2D" groups=["minigame"]]
 script = ExtResource("1_wrpfy")
 
+[node name="arc" type="Line2D" parent="."]
+
+[node name="sin" type="Line2D" parent="."]
+
+[node name="cos" type="Line2D" parent="."]
+
 [node name="Pivot" type="StaticBody2D" parent="."]
 collision_mask = 0
 

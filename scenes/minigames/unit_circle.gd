@@ -10,7 +10,7 @@ const AngleClass = preload("res://misc-utility/Angle.gd")
 			str_goal_value_override = value
 var success = false
 var angle = AngleClass.new(0)
-var radius = 80
+var radius = 154
 
 var minAngle = 0
 var maxAngle = PI/2
@@ -22,6 +22,7 @@ enum TrigFunc{ SIN, COS, TAN, SEC, CSC, COT }
 
 var player
 var detection
+var prev_rotation: float = 0.0
 
 func evaluate_return():
 	var theta = angle.rads
@@ -37,7 +38,7 @@ func evaluate_return():
 		return_value = 1./sin(theta)
 	elif type==TrigFunc.COT and sin(theta!=0):
 		return_value = cos(theta)/sin(theta)
-	success = abs(return_value-goal_value)<0.00001
+	success = abs(return_value-goal_value)<0.0001
 
 func type_to_str():
 	if type==TrigFunc.SIN:
@@ -59,10 +60,21 @@ func _ready():
 	detection = $EdgeArea
 	evaluate_return()
 	$TextureRect/Label.text = type_to_str()+"(θ)=" + ( str(goal_value) if str_goal_value_override.is_empty() else str_goal_value_override )
-	queue_redraw()
+	$sin.default_color = Color(1,0,0,1)
+	$sin.width = 2
+	$cos.default_color = Color(0,0,1,1)
+	$cos.width = 2
+	$arc.default_color = Color(0,0,0,1)
+	$arc.width = 1
+	$arc.clear_points()
+	for t in range(-1,12):
+		var theta = PI*t/20
+		$arc.add_point(Vector2(radius*cos(theta),-radius*sin(theta)))
+    queue_redraw()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    
 	angle.rads = -$EdgeArea.rotation
 	$EdgeArea/Mover/Degrees.text = str(roundi(float(angle.get_str_deg()))) + "º" 
 	angle.round(5,true)
@@ -71,6 +83,17 @@ func _process(delta):
 		$TextureRect/Label.label_settings.font_color = Color(0, 0.61960786581039, 0, 0.88627451658249)
 	else:
 		$TextureRect/Label.label_settings.font_color = Color(1, 0.1176470592618, 0.37647059559822, 0.8941176533699)
+	if prev_rotation != $EdgeArea.rotation:
+        prev_rotation = $EdgeArea.rotation
+        queue_redraw()
+
+func _draw():
+	$sin.clear_points()
+	$sin.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
+	$sin.add_point(Vector2(radius*cos($EdgeArea.rotation),radius*sin($EdgeArea.rotation)))
+	$cos.clear_points()
+	$cos.add_point(Vector2(0,0))
+	$cos.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
 
 var player_first_entry: bool = true
 var is_player_present: bool = false
