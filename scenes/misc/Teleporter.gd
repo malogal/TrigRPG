@@ -7,7 +7,19 @@ class_name Teleporter
 @export var require_no_enemies: bool = false
 @export var require_minigame_completion: bool = false
 @export var requirement_distance: float = 250.0
+## If enemies (or minigames) are in this direction relative to the teleporter, do not consider them for 'require_*'
+@export var ignore_direction: Direction = Direction.NONE 
 @export var provide_hint: bool = false
+
+enum Direction {
+	NONE, ## No restriction, consider all directions
+	NORTH, ## Ignore enemies above
+	EAST, ## Ignore enemies to the right
+	SOUTH, ## Ignore enemies below
+	WEST ## Ignore enemies to the left
+}
+
+
 
 var is_player_present = false
 
@@ -18,7 +30,7 @@ func _ready():
 # This scene only looks for input when the player is in the interact area
 func _input(event): #Handles quests and other events
 	# Bail if npc not active (player not inside the collider)
-	if not is_player_present:
+	if not is_player_present || paired_teleporter == null:
 		return
 	# Bail if the event is not a pressed "interact" action
 	if not event.is_action_pressed("interact"):
@@ -42,7 +54,9 @@ func is_enemy_nearby() -> bool:
 	var nodes_in_group = get_tree().get_nodes_in_group("enemies")
 	
 	for node in nodes_in_group:
-		var distance = position.distance_to(node.position)  # Calculate the distance to each node
+		if _is_direction_ignored(node.global_position):
+			continue  # Skip node based on ignore_direction 
+		var distance = global_position.distance_to(node.global_position)  # Calculate the distance to each node
 		if distance < min_distance:
 			min_distance = distance
 	
@@ -55,13 +69,27 @@ func is_incomplete_minigame_nearby() -> bool:
 	var nodes_in_group = get_tree().get_nodes_in_group("minigame")
 	
 	for node in nodes_in_group:
-		var distance = position.distance_to(node.position)  # Calculate the distance to each node
+		if _is_direction_ignored(node.global_position):
+			continue  # Skip node based on ignore_direction 
+		var distance = global_position.distance_to(node.global_position)  # Calculate the distance to each node
 		if distance < min_distance:
 			min_distance = distance
 			game_complete = node.success
 	
 	return min_distance < requirement_distance && !game_complete
 
+func _is_direction_ignored(node_pos: Vector2) -> bool:
+	match ignore_direction:
+		Direction.NORTH:
+			return node_pos.y < position.y  # above the teleporter
+		Direction.EAST:
+			return node_pos.x > position.x  # right of the teleporter
+		Direction.SOUTH:
+			return node_pos.y > position.y  # below the teleporter
+		Direction.WEST:
+			return node_pos.x < position.x  # left of the teleporter
+		_:
+			return false  # No direction is ignored
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

@@ -254,7 +254,7 @@ func startDialogueStored(cutscene_resource: Resource, title: String):
 	isDialogActive = true
 	return true;
 
-func _set_is_dialog_active_false():
+func _set_is_dialog_active_false(any_: Variant = null):
 	isDialogActive = false
 
 func create_popup_window(text: String, time_out: int = 0):

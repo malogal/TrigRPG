@@ -4,6 +4,10 @@ const AngleClass = preload("res://misc-utility/Angle.gd")
 
 @export var return_value: float = 0
 @export var goal_value: float = 0.5
+@export var str_goal_value_override: String = "":
+	set(value):
+			$TextureRect/Label.text = type_to_str()+"(θ)=" + ( str(goal_value) if str_goal_value_override.is_empty() else value )
+			str_goal_value_override = value
 var success = false
 var angle = AngleClass.new(0)
 var radius = 80
@@ -13,6 +17,7 @@ var maxAngle = PI/2
 
 enum TrigFunc{ SIN, COS, TAN, SEC, CSC, COT }
 @export var type := TrigFunc.SIN
+@export var allow_hints := true
 @onready var lever := $EdgeArea/Mover
 
 var player
@@ -53,13 +58,13 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	detection = $EdgeArea
 	evaluate_return()
-	$TextureRect/Label.text = type_to_str()+"(θ)=" + str(goal_value)
+	$TextureRect/Label.text = type_to_str()+"(θ)=" + ( str(goal_value) if str_goal_value_override.is_empty() else str_goal_value_override )
 	queue_redraw()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	angle.rads = -$EdgeArea.rotation
-	$EdgeArea/Mover/Degrees.text = str(roundi(float(angle.get_str_deg()))) + "º"
+	$EdgeArea/Mover/Degrees.text = str(roundi(float(angle.get_str_deg()))) + "º" 
 	angle.round(5,true)
 	evaluate_return()
 	if success:
@@ -80,7 +85,7 @@ func _input(event): #Handles quests and other events
 	$hint.visible = not $hint.visible 
 	
 func _on_sight_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and allow_hints:
 		is_player_present = true
 		# Start listening for key binds now that the player is in the interact area
 		set_process_input(true)
@@ -92,7 +97,7 @@ func _on_sight_range_body_entered(body: Node2D) -> void:
 
 
 func _on_sight_range_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and allow_hints:
 		is_player_present = false
 		# Stop listening for key binds now that the player has left the interact area
 		set_process_input(false)

@@ -94,7 +94,6 @@ region_enabled = true
 region_rect = Rect2(402.858, 0, 621.142, 626.29)
 
 [node name="sight_range" parent="." instance=ExtResource("8_pi62q")]
-visible = false
 
 [connection signal="body_shape_entered" from="EdgeArea" to="." method="_on_edge_area_body_shape_entered"]
 [connection signal="item_rect_changed" from="EdgeArea" to="." method="_on_edge_area_item_rect_changed"]
