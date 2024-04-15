@@ -234,7 +234,8 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var col = get_slide_collision(i)
 		if col.get_collider() is RigidBody2D \
-			and col.get_collider().get_groups().has("moveable"):
+			and col.get_collider().get_groups().has("moveable") \
+			and not col.get_collider().is_sleeping():
 			
 			col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
 
@@ -248,10 +249,10 @@ func _physics_process(delta):
 	
 	#pushing rigidbodies
 	#move_and_slide()
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider().is_in_group("transformation"):
-			c.get_collider().apply_central_impulse(-c.get_normal() * 100)
+	#for i in get_slide_collision_count():
+		#var c = get_slide_collision(i)
+		#if c.get_collider().is_in_group("transformation"):
+			#c.get_collider().apply_central_impulse(-c.get_normal() * 100)
 
 func assign_animation(a: String):
 	anim = new_anim
