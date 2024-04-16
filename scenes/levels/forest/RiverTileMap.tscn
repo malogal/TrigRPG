@@ -45,6 +45,7 @@ health_in_radian = false
 
 [node name="Enemy2" parent="." instance=ExtResource("3_6nnko")]
 position = Vector2(1319, -334)
+health = 3.142
 
 [node name="InvisBoundary" type="TileMap" parent="."]
 light_mask = 0

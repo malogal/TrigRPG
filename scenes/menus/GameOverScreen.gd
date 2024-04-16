@@ -5,26 +5,26 @@ extends Control
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	hide()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Globals.showGameOverScreen:
-		pause()
+	Globals.game_over_screen_status.connect(func(is_active: bool): if is_active: pause())
+	$PanelContainer/HBoxContainer/VBoxContainer/ContinueButton.disabled = !Globals.demo_mode
 
 func _input(event):
 	#print(event)
 	pass
 	
 func pause():
-	Globals.save_game() 
+	# Only save in demo mode. Otherwise saving would leave the player with no health
+	if Globals.demo_mode:
+		Globals.save_game() 
+	var btn1 = $PanelContainer/HBoxContainer/VBoxContainer/ContinueButton
+	$PanelContainer/HBoxContainer/VBoxContainer/ContinueButton.disabled = !Globals.demo_mode
+	var btn2 = $PanelContainer/HBoxContainer/VBoxContainer/ContinueButton
+	var stat = btn1.disabled
+	var stat2 = btn2.disabled
 	get_tree().paused = true
 	show()
 	
-func _on_quit_button_pressed():
-	resetPlayerHealth()
-	
-	Globals.save_game() 
+func _on_quit_button_pressed():	
 	get_tree().paused = false
 	hide()
 	Globals.showGameOverScreen = false
@@ -33,7 +33,6 @@ func _on_quit_button_pressed():
 
 func _on_continue_button_pressed():
 	resetPlayerHealth()
-
 	get_tree().paused = false
 	hide()
 	Globals.showGameOverScreen = false

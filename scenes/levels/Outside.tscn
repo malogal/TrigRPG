@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://damx5ema0gns7"]
+[gd_scene load_steps=9 format=3 uid="uid://damx5ema0gns7"]
 
 [ext_resource type="Script" path="res://scenes/levels/Outside.gd" id="1_eck8o"]
 [ext_resource type="PackedScene" uid="uid://kobmrlvjg8np" path="res://scenes/levels/forest/ForestLevel.tscn" id="3_rrx2f"]
 [ext_resource type="PackedScene" uid="uid://ct72iogi3bugp" path="res://scenes/levels/temple/TempleLevel.tscn" id="4_jdwcc"]
 [ext_resource type="PackedScene" uid="uid://bx1csvj1hnkjp" path="res://scenes/misc/Teleporter.tscn" id="4_st1jc"]
 [ext_resource type="PackedScene" uid="uid://dhuip71vgb1dm" path="res://scenes/menus/in_game_interfaces.tscn" id="5_430nq"]
+[ext_resource type="PackedScene" uid="uid://dgdp1nr7gmfgw" path="res://scenes/misc/DebugTeleport.tscn" id="7_f7pd3"]
 [ext_resource type="PackedScene" uid="uid://ctd3mgp0s172q" path="res://scenes/characters/Player.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://bbu6mil7v5eja" path="res://scenes/levels/camp/CampLevel.tscn" id="13_tp5cw"]
 
@@ -43,5 +44,39 @@ paired_teleporter = NodePath("../TeleporterExitTempleIn")
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
 position = Vector2(6.976, -7.645)
+
+[node name="DebugTeleportLocations" type="Node2D" parent="level"]
+
+[node name="DebugTeleport" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(-40.024, -41.645)
+location_name = "Camp"
+
+[node name="DebugTeleport2" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(1491.98, -1179.65)
+location_name = "Forest Entrance"
+
+[node name="DebugTeleport3" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(1367.98, -3231.65)
+location_name = "Forest Middle"
+
+[node name="DebugTeleport4" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(1180.98, -5294.65)
+location_name = "Forest Connection"
+
+[node name="DebugTeleport5" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(-396.024, -2637.65)
+location_name = "Forest End"
+
+[node name="DebugTeleport6" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(-327.024, -859.645)
+location_name = "Temple River"
+
+[node name="DebugTeleport7" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(-1779.02, -3664.65)
+location_name = "Outer Temple"
+
+[node name="DebugTeleport8" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
+position = Vector2(-3698.02, -4031.65)
+location_name = "Inner Temple"
 
 [node name="InGameInterfaces" parent="." instance=ExtResource("5_430nq")]

@@ -19,7 +19,6 @@ layer_2/tile_data = PackedInt32Array(196602, 131076, 2, 262138, 131076, 2, 32767
 [node name="Enemy" parent="TempleArea" instance=ExtResource("3_fqpxs")]
 position = Vector2(-1438, 620)
 scale = Vector2(2, 2)
-ROLL_SPEED = 500
 health = 90.0
 health_in_radian = false
 

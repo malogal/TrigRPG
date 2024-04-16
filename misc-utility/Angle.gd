@@ -93,4 +93,4 @@ func get_rich_str_rad() -> String:
 			else:
 				return prefix+num_str+"π"+suffix
 	#fails to approximate
-	return prefix+str(round(rads*100)/100)+suffix
+	return prefix+ ("%.2f"%rads) +suffix

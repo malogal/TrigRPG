@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bou4pn1kp8x1k"]
+[gd_scene load_steps=10 format=3 uid="uid://bou4pn1kp8x1k"]
 
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_ibg8s"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="2_awvr0"]
 [ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="2_h3wix"]
 [ext_resource type="Script" path="res://scenes/misc/ui elements/menu_button.gd" id="2_qgf5k"]
+[ext_resource type="StyleBox" uid="uid://b810qpxsljk5w" path="res://scenes/menus/flat_gray_style_box.tres" id="3_0jnxc"]
 [ext_resource type="Script" path="res://scenes/menus/DebugModeButton.gd" id="3_lqsem"]
 [ext_resource type="Texture2D" uid="uid://cvhclmuk3yjmq" path="res://textures/menu/title.png" id="3_vamem"]
+[ext_resource type="PackedScene" uid="uid://dtho37f2kbafb" path="res://scenes/menus/DemoFeaturesLabel.tscn" id="4_td0ji"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eepip"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -17,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ibg8s")
+script = ExtResource("2_awvr0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -24,9 +28,24 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_h3wix")
 
-[node name="DebugModeButton" type="Button" parent="."]
+[node name="DemoLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 7.0
+grow_horizontal = 0
+theme_override_styles/normal = ExtResource("3_0jnxc")
+text = "Demo Release: v0.1.4"
+
+[node name="DemoFeaturesLabel" parent="TextureRect" instance=ExtResource("4_td0ji")]
+layout_mode = 1
+offset_left = -52.0
+offset_top = -9.0
+
+[node name="TestLevelButton" type="Button" parent="."]
 top_level = true
-z_index = 1
 layout_mode = 2
 offset_left = 10.0
 offset_top = 140.0
@@ -36,8 +55,9 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 1
 theme = ExtResource("1_ibg8s")
+theme_override_font_sizes/font_size = 8
 action_mode = 0
-text = "Test Level"
+text = "Playground"
 script = ExtResource("3_lqsem")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -133,8 +153,8 @@ script = ExtResource("2_qgf5k")
 [node name="Separator2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[connection signal="mouse_entered" from="DebugModeButton" to="DebugModeButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="DebugModeButton" to="DebugModeButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="TestLevelButton" to="TestLevelButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="TestLevelButton" to="TestLevelButton" method="_on_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NewGameButton" to="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/NewGameButton" method="_on_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ContinueGameButton" to="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ContinueGameButton" method="_on_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SettingsButton" to="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SettingsButton" method="_on_pressed"]

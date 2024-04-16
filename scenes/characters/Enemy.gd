@@ -5,10 +5,10 @@ class_name Enemy
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
 var WALK_SPEED: int = 3800
-@export var ROLL_SPEED: int = 1000
-@export var hitpoints: int = 3
 @export var health: float = PI/2
 @export var health_in_radian: bool = true
+@export var allow_2x_amplitude_drop: bool = false
+
 var health_angle
 var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
@@ -19,7 +19,9 @@ var anim = ""
 var new_anim = ""
 
 var player
-
+# A crude way to do a rarity of drop set-up
+var drop_array = ["sine", "sine", "sine", "cosine", "cosine", "frequency", "frequency", "frequency", "amplitude"]
+var drop_ammount_array = [1.0, 1.0, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2, 1.5, 1.5, 1.5, 1.75, 1.75, 2.0]
 
 enum { STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_ROLL, STATE_DIE, STATE_HURT }
 
@@ -102,23 +104,6 @@ func _physics_process(_delta):
 		#STATE_ATTACK:
 			#new_anim = "attack_" + facing
 			#pass
-		STATE_ROLL:
-			set_velocity(linear_vel)
-			move_and_slide()
-			linear_vel = velocity
-			var target_speed = Vector2()
-			if facing == "up":
-				target_speed.y = -1
-			if facing == "down":
-				target_speed.y = 1
-			if facing == "left":
-				target_speed.x = -1
-			if facing == "right":
-				target_speed.x = 1
-			target_speed *= ROLL_SPEED
-			linear_vel = linear_vel.lerp(target_speed, 0.9)
-			new_anim = "roll"
-			pass
 		STATE_DIE:
 			new_anim = "die"
 		#STATE_HURT:
@@ -155,8 +140,12 @@ func despawn():
 	var despawn_particles = despawn_fx.instantiate()
 	get_parent().add_child(despawn_particles)
 	despawn_particles.global_position = global_position
+	var drop_item: String= drop_array[randi() % drop_array.size()]
+	var drop_amount: float = drop_ammount_array[randi() % drop_ammount_array.size()]
+	if drop_item == "amplitude" && allow_2x_amplitude_drop && drop_amount > 1.75:
+		drop_amount = 1.75
 	if has_node("item_spawner"):
-		get_node("item_spawner").spawn()
+		get_node("item_spawner").spawn(drop_item, drop_amount)
 	queue_free()
 	pass
 

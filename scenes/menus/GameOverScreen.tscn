@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cncncv5ktcu7i"]
+[gd_scene load_steps=9 format=3 uid="uid://cncncv5ktcu7i"]
 
 [ext_resource type="Script" path="res://scenes/menus/GameOverScreen.gd" id="1_h42eq"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="2_hxq7r"]
 [ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="3_eankm"]
+[ext_resource type="PackedScene" uid="uid://dtho37f2kbafb" path="res://scenes/menus/DemoFeaturesLabel.tscn" id="4_amwgi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okqu4"]
 bg_color = Color(0, 0, 0, 0.329412)
@@ -86,6 +87,14 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_5f2gf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5f2gf")
 theme_override_styles/focus = SubResource("StyleBoxTexture_5f2gf")
 text = "Quit"
+
+[node name="DemoFeaturesLabel" parent="." instance=ExtResource("4_amwgi")]
+top_level = true
+layout_mode = 1
+offset_left = -128.0
+offset_top = -84.0
+offset_right = -49.0
+offset_bottom = -71.0
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

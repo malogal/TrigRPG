@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kobmrlvjg8np"]
+[gd_scene load_steps=9 format=3 uid="uid://kobmrlvjg8np"]
 
 [ext_resource type="PackedScene" uid="uid://c32qtamlal1ob" path="res://scenes/levels/forest/ForestTileMap.tscn" id="1_rxt4u"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="1_wdw5i"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://4c6nil367abb" path="res://scenes/characters/BaseNpc.tscn" id="5_o77d0"]
 [ext_resource type="PackedScene" uid="uid://be1vtu124ssft" path="res://scenes/characters/Priestess.tscn" id="6_bui67"]
 [ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="7_l7x13"]
+[ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="8_b2v0g"]
 
 [node name="ForestLevel" type="Node2D"]
 position = Vector2(52, -637)
@@ -88,6 +89,8 @@ health_in_radian = false
 [node name="UnitCircle" parent="." instance=ExtResource("7_l7x13")]
 position = Vector2(-1230, 744)
 unique_name = "first"
+str_goal_numerator = "1"
+str_goal_denominator = "2"
 
 [node name="Priestess" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("6_bui67")]
 position = Vector2(-968, 674)
@@ -98,9 +101,19 @@ puzzle = NodePath("../UnitCircle")
 [node name="Priestess2" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("6_bui67")]
 position = Vector2(-657, -782)
 dialogs = []
+stored_dialogs_file = "res://dialogue/second_unit_circle_explanation.dialogue"
 puzzle = NodePath("../UnitCircle2")
 
 [node name="UnitCircle2" parent="." instance=ExtResource("7_l7x13")]
 position = Vector2(-464, -129)
 goal_value = 2.08165e-12
 type = 1
+
+[node name="item_spawner" parent="." instance=ExtResource("8_b2v0g")]
+position = Vector2(-23, -1954)
+amount = 2.0
+spawn_location = Vector2(60, 2.08165e-12)
+radius = 50.0
+
+[node name="Enemy11" parent="." instance=ExtResource("1_wdw5i")]
+position = Vector2(-69, -2225)

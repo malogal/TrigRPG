@@ -6,21 +6,27 @@ const AngleClass = preload("res://misc-utility/Angle.gd")
 @export var goal_value: float = 0.5
 @export var unique_name: String = ""
 @export var str_goal_value_override: String = ""
-var success = false
-var angle = AngleClass.new(0)
-var radius = 154
+@export var str_goal_numerator: String = ""
+@export var str_goal_denominator: String = ""
 
-var minAngle = 0
-var maxAngle = PI/2
+var success: bool          = false
+var previous_success: bool = false
+var angle       		   = AngleClass.new(0)
+var radius: int            = 154
+var minAngle: int          = 0
+var maxAngle: float        = PI/2
 
 enum TrigFunc{ SIN, COS, TAN, SEC, CSC, COT }
 @export var type := TrigFunc.SIN
 @export var allow_hints := true
-@onready var lever := $EdgeArea/Mover
+@onready var label_type: RichTextLabel = $TextureRect/LabelType
+@onready var label_value: RichTextLabel = $TextureRect/LabelValue
 
 var player
 var detection
-var prev_rotation: float = 0.0
+var prev_rotation: float    = 0.0
+const success_color: String = "Greenyellow"
+const ERROR: float = 0.001
 
 func evaluate_return():
 	var theta = angle.rads
@@ -36,31 +42,79 @@ func evaluate_return():
 		return_value = 1./sin(theta)
 	elif type==TrigFunc.COT and sin(theta!=0):
 		return_value = cos(theta)/sin(theta)
-	success = abs(return_value-goal_value)<0.001
+	success = abs(return_value-goal_value) < ERROR
 	if success == true:
 		print_debug("unit circle success")
 
-func type_to_str():
-	if type==TrigFunc.SIN:
-		return "sin"
-	elif type==TrigFunc.COS:
-		return "cos"
-	elif type==TrigFunc.TAN:
-		return "tan"
-	elif type==TrigFunc.SEC:
-		return "sec"
-	elif type==TrigFunc.CSC:
-		return "csc"
-	elif type==TrigFunc.COT:
-		return "cot"
-
+func type_to_str() -> String:
+	match type:
+		TrigFunc.SIN:
+			return "sin"
+		TrigFunc.COS:
+			return "cos"
+		TrigFunc.TAN:
+			return "tan"
+		TrigFunc.SEC:
+			return "sec"
+		TrigFunc.CSC:
+			return "csc"
+		TrigFunc.COT:
+			return "cot"
+	return "sin"
+	
+func get_current_bb_color() -> String:
+	if success: return success_color
+	# Convert to switch case:
+	match type:
+		TrigFunc.SIN:
+			return "Crimson"
+		TrigFunc.COS:
+			return "Mediumblue"
+		TrigFunc.TAN:
+			return "Orange"
+		TrigFunc.SEC:
+			return "Crimson"
+		TrigFunc.CSC:
+			return "Crimson"
+		TrigFunc.COT:
+			return "Crimson"
+	return "Crimson"
+	
+func bb_code_color_text(text: String) -> String:
+	return "[color="+get_current_bb_color()+"]"+text+"[/color]"
+func bb_code_underline_text(text: String) -> String:
+	return "[u]"+text+"[/u]"
+func bb_code_center_text(text: String) -> String:
+	return "[center]"+text+"[/center]"
+func bb_code_left_text(text: String) -> String:
+	return "[left]"+text+"[/left]"
+func bb_code_right_text(text: String) -> String:
+	return "[right]"+text+"[/right]"
+func set_type_label() -> void:
+	label_type.text = bb_code_left_text(bb_code_color_text(type_to_str() + "(Ø)="))
+	
+# Example formated fraction string: [center][color=red][u]√2[/u]/n2[/color][/center]
+func set_value_label() -> void:
+	var text := ""
+	# If override is set, use that
+	if !str_goal_value_override.is_empty():
+		text = str_goal_value_override
+	elif !str_goal_numerator.is_empty() and !str_goal_denominator.is_empty():
+		text = bb_code_underline_text(str_goal_numerator) + "\n" + str_goal_denominator
+	elif abs(goal_value) < ERROR :
+		text = "0"
+	else:
+		text = "%.2f" % goal_value
+	label_value.text = bb_code_center_text(bb_code_color_text(text))
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$hint.visible = false
 	player = get_tree().get_nodes_in_group("player")[0]
 	detection = $EdgeArea
 	evaluate_return()
-	$TextureRect/Label.text = type_to_str()+"(θ)=" + ( str(goal_value) if str_goal_value_override.is_empty() else str_goal_value_override )
+	set_type_label()
+	set_value_label()
 	$sin.default_color = Color(1,0,0,1)
 	$sin.width = 2
 	$cos.default_color = Color(0,0,1,1)
@@ -75,24 +129,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if unique_name == "first":
-		var erx = 1
 	angle.rads = -$EdgeArea.rotation
 	$EdgeArea/Mover/Degrees.text = str(roundi(float(angle.get_str_deg()))) + "º" 
 	angle.round(5,true)
+	# Only update lines when the rotation changes
 	if abs(prev_rotation - $EdgeArea.rotation) > 0.005:
 		prev_rotation = $EdgeArea.rotation
 		evaluate_return()
 		queue_redraw()
-		
-	#var text_rect = $TextureRect
-	#if success:
-		#text_rect.modulate = Color(0.20106519758701, 0.62987112998962, 0.00000864161939)
-		#$Label2.label_settings.font_color = Color(0.20153121650219, 0.62822264432907, 0.12438380718231)
-	#else:
-		#$Label2.label_settings.font_color = Color(0.91036748886108, 0.15973426401615, 0.53727507591248)
-		#text_rect.modulate = Color(255,255,255,255)
+	# Do not display the arc if the hint is visible, their circles are slightly offset
 	$arc.visible = !$hint.visible
+	# Only update text when the success state changes
+	if success != previous_success:
+		set_type_label()
+		set_value_label()
+		previous_success = success
 	
 func _draw():
 	$sin.clear_points()
@@ -104,7 +155,7 @@ func _draw():
 
 var player_first_entry: bool = true
 var is_player_present: bool = false
-func _input(event): #Handles quests and other events
+func _input(event) -> void: #Handles quests and other events
 	# Bail if npc not active (player not inside the collider)
 	if not is_player_present:
 		return

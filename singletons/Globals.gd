@@ -16,7 +16,12 @@ var timeSpent
 var loadGameToggle = false
 var inventory
 
-var debug_mode: bool = false
+signal demo_mode_changed
+var in_test_mode: bool = false
+var demo_mode: bool = false:
+	set(value):
+		demo_mode = value
+		demo_mode_changed.emit(value)
 
 const Balloon = preload("res://dialogue/balloon.tscn")
 const PopUpScene = preload("res://scenes/in-game-ui/InGamePopUp.tscn")
@@ -35,8 +40,12 @@ var isDialogActive = false
 var currentTimeInMs
 var startTimeInMs
 
-var showGameOverScreen = false
-
+signal game_over_screen_status
+var showGameOverScreen: bool = false:
+	set(value):
+		showGameOverScreen = value
+		game_over_screen_status.emit(value)
+		
 var achievementsPath = "user://achievements.save"
 var currentAchievements = []
 var achievementStatuses = {
@@ -44,6 +53,8 @@ var achievementStatuses = {
 	"enteredForest": false,
 	"thrown100Pies": false,
 }
+
+var player: Player
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
@@ -53,7 +64,7 @@ Really simple save file implementation. Just saving some variables to a dictiona
 """
 func save_game(): 
 	handleAchievementConfig()
-	if currentSavePath != "" and !debug_mode:
+	if currentSavePath != "" and !in_test_mode:
 		currentTimeInMs = Time.get_unix_time_from_system()
 		var diffInTimes = currentTimeInMs - startTimeInMs
 	
@@ -127,7 +138,7 @@ func load_game():
 	startTimeInMs = Time.get_unix_time_from_system()
 	loadGameToggle = false
 	
-	if currentSavePath != "" and !debug_mode:
+	if currentSavePath != "" and !in_test_mode:
 		if not FileAccess.file_exists(currentSavePath):
 			return
 		var x := get_tree()
@@ -260,3 +271,9 @@ func create_popup_window(text: String, time_out: int = 0):
 	var popup: Node = PopUpScene.instantiate()
 	get_tree().current_scene.add_child(popup)
 	popup.show_message(text, time_out)
+	
+func register_player(player_in: Player):
+	player = player_in
+
+func get_player() -> Player:
+	return player

@@ -9,7 +9,7 @@ func set_angle_text(angle: Angle):
 	if is_radian:
 		text = "[center][color=Crimson]" + angle.get_rich_str_rad() + "[/color][/center]"
 	else:
-		text = "[center][color=Crimson]" + angle.get_str_deg() + "º[/color][/center]"
+		text = "[center][color=Crimson]" + ("%.f" % rad_to_deg(angle.rads)) + "º[/color][/center]"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
