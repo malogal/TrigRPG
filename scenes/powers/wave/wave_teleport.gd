@@ -8,9 +8,11 @@ signal teleport_available(is_available: bool)
 var is_wave_active: bool = false
 var waves: PackedScene
 var wave_main: Node
+@onready var wave_cooldown: Timer = $WaveCooldown
 
 func create_stop_wave(wave_specs: Dictionary):
-	if is_wave_active:
+	# If the wave was just started, don't cancel it yet. Likely a double trigger on keypress
+	if is_wave_active and wave_cooldown.wait_time - wave_cooldown.time_left  > .1:
 			stop_wave()
 	elif $WaveCooldown.is_stopped():
 		$WaveCooldown.start()

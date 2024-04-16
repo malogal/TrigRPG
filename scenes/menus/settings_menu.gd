@@ -62,7 +62,10 @@ func getSettingsFromFile():
 		
 		#set keybinds
 		keybinds = settingsDictionary.keybinds
-
+		
+		#set demo_mode
+		if settingsDictionary.has("demo_mode"):
+			Globals.demo_mode = settingsDictionary.demo_mode
 	else:
 		resetSettings()
 
@@ -188,6 +191,8 @@ func resetSettings():
 	musicAudioSlider.value = defaultMusicAudio
 	masterAudioSlider.value = defaultMasterAudio
 	
+	Globals.demo_mode = false
+	
 	#reset keybinds
 	resetKeybinds()
 
@@ -246,7 +251,7 @@ func saveSettings():
 	settingsDictionary.musicAudio = musicAudioSlider.value
 	settingsDictionary.masterAudio = masterAudioSlider.value
 	settingsDictionary.keybinds = getCurrentKeybinds()
-	
+	settingsDictionary.demo_mode = Globals.demo_mode
 	settingsFile.store_var(settingsDictionary)
 	settingsFile.close()
 	

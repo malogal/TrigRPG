@@ -15,8 +15,10 @@ config/version="v0.0.1"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.2")
-boot_splash/image="res://textures/menu/title.png"
+boot_splash/image="res://textures/menu/splash-screen.png"
+boot_splash/fullsize=false
 config/icon="res://textures/menu/title.png"
+boot_splash/minimum_display_time=1400
 
 [autoload]
 

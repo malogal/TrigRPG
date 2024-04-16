@@ -18,7 +18,7 @@ var createSaveButton = $PanelContainer/MarginContainer/Rows/VBoxContainer/Create
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
-	Globals.debug_mode = false
+	Globals.in_test_mode = false
 	# load text box and stuff
 	if canNewSaveCanBeMade():
 		cannotCreateSaveLabel.hide()

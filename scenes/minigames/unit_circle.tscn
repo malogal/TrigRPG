@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scenes/minigames/Pivot.gd" id="3_c0owi"]
 [ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="4_1x440"]
 [ext_resource type="Texture2D" uid="uid://g6uf0d3g1t4o" path="res://textures/minigames/lockhand.png" id="4_ymqa6"]
-[ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="6_p2n1e"]
 [ext_resource type="Texture2D" uid="uid://btdf82yfbbey7" path="res://textures/minigames/unit_circle_with_funcs.png" id="7_anm53"]
+[ext_resource type="Shader" path="res://scenes/minigames/unit_circle.gdshader" id="7_m2dbg"]
 [ext_resource type="PackedScene" uid="uid://bqsury0s0vq8l" path="res://scenes/characters/movement/SightRange.tscn" id="8_pi62q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0px2w"]
@@ -15,16 +15,50 @@ radius = 14.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcque"]
 size = Vector2(140.842, 6)
 
-[sub_resource type="LabelSettings" id="LabelSettings_teisd"]
-font = ExtResource("6_p2n1e")
-font_size = 10
-font_color = Color(1, 0.117647, 0.376471, 0.894118)
-shadow_size = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nelns"]
+shader = ExtResource("7_m2dbg")
 
 [node name="UnitCircle" type="StaticBody2D" groups=["minigame"]]
 script = ExtResource("1_wrpfy")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_as_relative = false
+offset_left = -152.0
+offset_top = -28.0
+offset_right = -88.0
+offset_bottom = -1.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_1x440")
+expand_mode = 1
+
+[node name="LabelType" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "sin(ø)="
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LabelValue" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 6.0
+offset_right = 61.0
+offset_bottom = 27.0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center][color=Crimson]sin(ø)=0.5[/color][/center]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
 [node name="arc" type="Line2D" parent="."]
+round_precision = 20
+antialiased = true
 
 [node name="sin" type="Line2D" parent="."]
 
@@ -34,6 +68,7 @@ script = ExtResource("1_wrpfy")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot"]
+visible = false
 shape = SubResource("CircleShape2D_0px2w")
 debug_color = Color(0.564706, 0.0705882, 0.254902, 0.419608)
 
@@ -66,35 +101,11 @@ position = Vector2(-14.421, 0)
 shape = SubResource("RectangleShape2D_vcque")
 debug_color = Color(0.972549, 0.0784314, 0.384314, 0.419608)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_as_relative = false
-offset_left = -152.0
-offset_top = -28.0
-offset_right = -88.0
-offset_bottom = -1.0
-scale = Vector2(2, 2)
-texture = ExtResource("4_1x440")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="TextureRect"]
-z_as_relative = false
-layout_mode = 0
-offset_left = 1.5
-offset_top = 6.0
-offset_right = 61.5
-offset_bottom = 21.0
-text = "123"
-label_settings = SubResource("LabelSettings_teisd")
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-text_overrun_behavior = 1
-
 [node name="hint" type="Sprite2D" parent="."]
-visible = false
 z_index = 1
-position = Vector2(68, -75)
-scale = Vector2(0.32, 0.32)
+material = SubResource("ShaderMaterial_nelns")
+position = Vector2(86, -88)
+scale = Vector2(0.368, 0.368)
 texture = ExtResource("7_anm53")
 region_enabled = true
 region_rect = Rect2(402.858, 0, 621.142, 626.29)

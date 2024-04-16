@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd46owd33flcd"]
+[gd_scene load_steps=15 format=3 uid="uid://dd46owd33flcd"]
 
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="1_d71xf"]
 [ext_resource type="Script" path="res://scenes/menus/settings_menu.gd" id="1_lt7mw"]
 [ext_resource type="PackedScene" uid="uid://b5ae7asa3t6gw" path="res://scenes/menus/keybind_input_button.tscn" id="2_43k3j"]
 [ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="2_cqvrh"]
 [ext_resource type="PackedScene" uid="uid://ciefwagqpg8x6" path="res://scenes/menus/volume_slider.tscn" id="2_gmft5"]
+[ext_resource type="PackedScene" uid="uid://dtho37f2kbafb" path="res://scenes/menus/DemoFeaturesLabel.tscn" id="3_qowp5"]
 [ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="4_8ucuo"]
 [ext_resource type="AudioStream" uid="uid://trlrbhagbe3s" path="res://music/a-2-3-groovy-bgm.ogg" id="5_qj6si"]
+[ext_resource type="PackedScene" uid="uid://cybqcuokudff3" path="res://scenes/menus/EnableDebugButton.tscn" id="6_3bapl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrk2q"]
 bg_color = Color(0.756863, 0.756863, 0.756863, 0)
@@ -41,6 +43,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_cqvrh")
+
+[node name="DemoFeaturesLabel" parent="TextureRect" instance=ExtResource("3_qowp5")]
+layout_mode = 1
+offset_left = -55.0
+offset_top = -11.0
+offset_right = 24.0
+offset_bottom = 2.0
+scale = Vector2(0.7, 0.7)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -158,6 +168,9 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_teatr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_teatr")
 theme_override_styles/focus = SubResource("StyleBoxTexture_teatr")
 text = "Reset"
+
+[node name="EnableDebug" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_3bapl")]
+layout_mode = 2
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qj6si")

@@ -9,7 +9,7 @@ size = Vector2(160, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufcdb"]
 size = Vector2(160, 30)
 
-[node name="TrigLock" type="StaticBody2D"]
+[node name="TrigLock" type="StaticBody2D" groups=["minigame"]]
 script = ExtResource("1_h6b1g")
 
 [node name="xaxis" type="Line2D" parent="."]
