@@ -1,7 +1,7 @@
 class_name Angle extends RefCounted
 
 #rounding precision required
-const ERROR:=0.000001
+const ERROR:=0.001
 
 var rads:float
 #for display

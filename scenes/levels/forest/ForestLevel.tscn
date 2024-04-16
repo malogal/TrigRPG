@@ -87,6 +87,7 @@ health_in_radian = false
 
 [node name="UnitCircle" parent="." instance=ExtResource("7_l7x13")]
 position = Vector2(-1230, 744)
+unique_name = "first"
 
 [node name="Priestess" parent="." node_paths=PackedStringArray("puzzle") instance=ExtResource("6_bui67")]
 position = Vector2(-968, 674)

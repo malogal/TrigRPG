@@ -67,9 +67,8 @@ func _input(event): #Handles quests and other events
 	if not is_player_present:
 		return
 	# Bail if the event is not a pressed "interact" action
-	if not event.is_action_pressed("interact"):
-		return
-	spawn()
+	if Input.is_action_just_released("interact"):
+		spawn()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

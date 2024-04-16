@@ -234,8 +234,8 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var col = get_slide_collision(i)
 		if col.get_collider() is RigidBody2D \
-			and col.get_collider().get_groups().has("moveable") \
-			and not col.get_collider().is_sleeping():
+			and col.get_collider().get_groups().has("moveable"):
+#			and not col.get_collider().is_sleeping():
 			
 			col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
 

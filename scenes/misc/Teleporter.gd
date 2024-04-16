@@ -33,7 +33,7 @@ func _input(event): #Handles quests and other events
 	if not is_player_present || paired_teleporter == null:
 		return
 	# Bail if the event is not a pressed "interact" action
-	if not event.is_action_pressed("interact"):
+	if !Input.is_action_just_released("interact"):
 		return
 	# If teleportation is disabled until enemies are defeated, check if any are close by 
 	if require_no_enemies && is_enemy_nearby():

@@ -9,7 +9,7 @@ var WALK_SPEED: int = 3800
 @export var hitpoints: int = 3
 @export var health: float = PI/2
 @export var health_in_radian: bool = true
-var health_angle = AngleClass.new(health)
+var health_angle
 var despawn_fx = preload("res://scenes/misc/DespawnFX.tscn")
 
 var linear_vel = Vector2()
@@ -29,6 +29,7 @@ var state = STATE_IDLE
 @onready var give_up_timer = $GiveUpFollowingTimer
 
 func _ready():
+	health_angle = AngleClass.new(health)
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
 	player = get_tree().get_nodes_in_group("player")[0]
