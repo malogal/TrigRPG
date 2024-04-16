@@ -32,6 +32,7 @@ texture = ExtResource("4_1x440")
 expand_mode = 1
 
 [node name="LabelType" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 10.0
 offset_right = 40.0
