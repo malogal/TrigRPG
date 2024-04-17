@@ -86,6 +86,8 @@ func set_anims(anim: String):
 func get_anims() -> String:
 	return $anims.get_animation()
 
+func get_shape() -> Shape2D:
+	return $CollisionShape2D.shape	
 
 func _on_sight_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

@@ -209,6 +209,7 @@ health = 5.498
 position = Vector2(505, 330)
 health = 45.0
 health_in_radian = false
+allow_2x_amplitude_drop = true
 
 [node name="Enemy7" parent="." instance=ExtResource("3_fqpxs")]
 position = Vector2(312, 470)

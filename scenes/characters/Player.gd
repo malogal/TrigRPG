@@ -393,6 +393,8 @@ func get_wave_available_signal() -> Signal:
 func get_teleport_available_signal() -> Signal:
 	return $WaveTeleport.teleport_available
 
+func get_shape() -> Shape2D:
+	return $player_body.shape
 
 func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(time_to_teleport).timeout

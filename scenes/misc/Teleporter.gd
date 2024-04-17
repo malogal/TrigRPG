@@ -25,11 +25,13 @@ var is_player_present = false
 
 func _ready():
 	$Area2D/CollisionShape2D.shape.radius = radius
-	set_process_input(false)
-
+	set_process(false)
+	
 # This scene only looks for input when the player is in the interact area
-func _input(event): #Handles quests and other events
+func _process( delta: float, ) -> void:
 	# Bail if npc not active (player not inside the collider)
+	if !is_player_present:
+		return
 	if not is_player_present || paired_teleporter == null:
 		return
 	# Bail if the event is not a pressed "interact" action
@@ -43,6 +45,7 @@ func _input(event): #Handles quests and other events
 		Globals.create_popup_window("Incomplete minigame", 1.5)
 		return
 	paired_teleporter.emit_teleport()
+	
 	
 func emit_teleport():
 	get_tree().call_group("player", "teleport", to_global(exit_location))
@@ -95,7 +98,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_player_present = true
 		# Start listening for key binds now that the player is in the interact area
-		set_process_input(true)
+		set_process(true)
 		if provide_hint:
 			Globals.create_popup_window("'E' to interact", 1)
 
@@ -103,4 +106,4 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_player_present = false
 		# Stop listening for key binds now that the player has left the interact area
-		set_process_input(false)
+		set_process(false)

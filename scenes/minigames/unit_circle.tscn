@@ -24,9 +24,9 @@ script = ExtResource("1_wrpfy")
 [node name="TextureRect" type="TextureRect" parent="."]
 z_as_relative = false
 offset_left = -152.0
-offset_top = -28.0
+offset_top = -32.0
 offset_right = -88.0
-offset_bottom = -1.0
+offset_bottom = -5.0
 scale = Vector2(2, 2)
 texture = ExtResource("4_1x440")
 expand_mode = 1
@@ -37,21 +37,36 @@ offset_left = 4.0
 offset_top = 10.0
 offset_right = 40.0
 offset_bottom = 18.0
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "sin(ø)="
 scroll_active = false
 autowrap_mode = 0
 
-[node name="LabelValue" type="RichTextLabel" parent="TextureRect"]
+[node name="LabelValueFraction" type="RichTextLabel" parent="TextureRect"]
+visible = false
 layout_mode = 0
 offset_left = 41.0
 offset_top = 6.0
 offset_right = 61.0
-offset_bottom = 27.0
-theme_override_font_sizes/normal_font_size = 10
+offset_bottom = 20.0
+theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "[center][color=Crimson]sin(ø)=0.5[/color][/center]"
+text = "[center][color=Crimson][u]0.5[/u]\\n12[/color][/center]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="LabelValue" type="RichTextLabel" parent="TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 16.0
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][color=Crimson]sqrt2[/color][/center]"
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false

@@ -6,3 +6,4 @@ func _ready():
 	if Globals.loadGameToggle:	
 		Globals.load_game()
 		Globals.showGameOverScreen = false
+	Input.set_use_accumulated_input(false)
