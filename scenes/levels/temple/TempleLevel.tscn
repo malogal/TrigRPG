@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct72iogi3bugp"]
+[gd_scene load_steps=10 format=3 uid="uid://ct72iogi3bugp"]
 
 [ext_resource type="PackedScene" uid="uid://4kmlr0w3dsqs" path="res://scenes/levels/temple/TempleInteriorTileMap.tscn" id="1_x1cx3"]
 [ext_resource type="PackedScene" uid="uid://ty1i41u3pskb" path="res://scenes/levels/temple/TempleEntranceTileMap.tscn" id="2_re271"]
@@ -6,13 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://bx1csvj1hnkjp" path="res://scenes/misc/Teleporter.tscn" id="6_wa81u"]
 [ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="7_52lqv"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="8_bgfun"]
+[ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="8_q54nn"]
 [ext_resource type="PackedScene" uid="uid://be1vtu124ssft" path="res://scenes/characters/Priestess.tscn" id="8_qlwuq"]
+[ext_resource type="PackedScene" uid="uid://b30u0l32vtcwv" path="res://scenes/items/Sine.tscn" id="9_7wyby"]
 
 [node name="TempleScene" type="Node2D" groups=["levels"]]
 
 [node name="TempleInteriorTilemap" parent="." instance=ExtResource("1_x1cx3")]
 
 [node name="TempleEntranceTileMap" parent="." instance=ExtResource("2_re271")]
+position = Vector2(15, 2.08165e-12)
 
 [node name="TeleporterLadder1" parent="." node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("6_wa81u")]
 position = Vector2(608, 373)
@@ -169,21 +172,38 @@ paired_teleporter = NodePath("../TeleporterDeep6In")
 exit_location = Vector2(2.08165e-12, 20)
 
 [node name="TeleporterDeep7In" parent="." node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("6_wa81u")]
-position = Vector2(-2314, 368)
+position = Vector2(-2329, 384)
 paired_teleporter = NodePath("../TeleporterDeep7Out")
 exit_location = Vector2(2.08165e-12, 20)
 require_minigame_completion = true
 requirement_distance = 470.0
 
 [node name="TeleporterDeep7Out" parent="." node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("6_wa81u")]
-position = Vector2(-1992, 368)
+position = Vector2(-3183, 1677)
 paired_teleporter = NodePath("../TeleporterDeep7In")
-exit_location = Vector2(2.08165e-12, 20)
+exit_location = Vector2(2.08165e-12, -20)
+
+[node name="TeleporterDeep8In" parent="." node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("6_wa81u")]
+position = Vector2(-3272, 1146)
+paired_teleporter = NodePath("../TeleporterDeep8Out")
+exit_location = Vector2(2.08165e-12, -20)
+
+[node name="TeleporterDeep8Out" parent="." node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("6_wa81u")]
+position = Vector2(-1992, 870)
+paired_teleporter = NodePath("../TeleporterDeep8In")
+exit_location = Vector2(5, -20)
 
 [node name="item_spawner" parent="." instance=ExtResource("8_bgfun")]
 z_index = 3
 position = Vector2(-1860, 1137)
 item_type = "amplitude"
+amount = 2.0
+spawn_location = Vector2(2.08165e-12, 50)
+radius = 35.0
+
+[node name="item_spawner2" parent="." instance=ExtResource("8_bgfun")]
+z_index = 3
+position = Vector2(-452, 1105)
 amount = 2.0
 spawn_location = Vector2(2.08165e-12, 50)
 radius = 35.0
@@ -198,7 +218,7 @@ health = 180.0
 health_in_radian = false
 
 [node name="Enemy4" parent="." instance=ExtResource("3_fqpxs")]
-position = Vector2(85, 1172)
+position = Vector2(80, 1130)
 health = 0.785
 
 [node name="Enemy5" parent="." instance=ExtResource("3_fqpxs")]
@@ -245,10 +265,86 @@ health_in_radian = false
 [node name="UnitCircle2" parent="." instance=ExtResource("7_52lqv")]
 position = Vector2(152, 1198)
 goal_value = 0.707
-str_goal_value_override = "√2/2"
+str_goal_numerator = "√2"
+str_goal_denominator = "2"
 type = 1
 
 [node name="UnitCircle3" parent="." instance=ExtResource("7_52lqv")]
 position = Vector2(-2524, 561)
 goal_value = 0.707
-str_goal_value_override = "√2/2"
+str_goal_numerator = "√2"
+str_goal_denominator = "2"
+
+[node name="Enemy14" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-274, 619)
+
+[node name="Enemy15" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-145, 603)
+health = 4.712
+
+[node name="Enemy16" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-272, 595)
+health = 45.0
+health_in_radian = false
+
+[node name="Enemy17" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-401, 1118)
+health = 0.785
+
+[node name="Enemy18" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-505, 909)
+
+[node name="Enemy19" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-130, 813)
+health = 3.142
+
+[node name="Enemy20" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-356, 831)
+health = 270.0
+health_in_radian = false
+
+[node name="Enemy21" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-102, 1250)
+health = 4.712
+
+[node name="Enemy22" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-94, 1033)
+health = 180.0
+health_in_radian = false
+
+[node name="Enemy23" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(504, 2258)
+health = 180.0
+health_in_radian = false
+
+[node name="Enemy24" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(716, 2097)
+health = 0.785
+
+[node name="Enemy25" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(952, 2054)
+health = 90.0
+health_in_radian = false
+
+[node name="Enemy26" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-1056, 2290)
+health = 180.0
+health_in_radian = false
+
+[node name="Enemy27" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-844, 2129)
+health = 0.785
+
+[node name="Enemy28" parent="." instance=ExtResource("3_fqpxs")]
+position = Vector2(-608, 2086)
+health = 90.0
+health_in_radian = false
+
+[node name="Frequency" parent="." instance=ExtResource("8_q54nn")]
+position = Vector2(-3106, 1687)
+amount = 2.0
+should_save = false
+
+[node name="Sine" parent="." instance=ExtResource("9_7wyby")]
+position = Vector2(-3069, 1687)
+should_save = false

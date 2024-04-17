@@ -31,7 +31,7 @@ var state = STATE_IDLE
 @onready var give_up_timer = $GiveUpFollowingTimer
 
 func _ready():
-	health_angle = AngleClass.new(health)
+	health_angle = AngleClass.new(health, 0, 0, !health_in_radian)
 	randomize()
 	$anims.speed_scale = randf_range(0.25,2)
 	player = get_tree().get_nodes_in_group("player")[0]

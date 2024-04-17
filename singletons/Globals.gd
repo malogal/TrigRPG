@@ -15,7 +15,7 @@ var timeSpent
 
 var loadGameToggle = false
 var inventory
-
+signal player_class_reloaded
 signal demo_mode_changed
 ## This indicates the user is in the 'play-test' area and the game should not make saves
 var in_test_mode: bool = false
@@ -56,7 +56,10 @@ var achievementStatuses = {
 	"thrown100Pies": false,
 }
 
-var player: Player
+var player: Player:
+	set(value):
+		player = value
+		player_class_reloaded.emit()
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
@@ -116,12 +119,12 @@ func save_game():
 
 			# Check the node has a save function.
 			if !node.has_method("getSaveStats"):
-				print("persistent node '%s' is missing a getSaveStats() function, skipped" % node.name)
 				continue
 
 			# Call the node's save function.
 			var nodeData = node.getSaveStats()
-
+			if nodeData == null:
+				continue
 			# JSON provides a static method to serialized JSON string.
 			jsonString = JSON.stringify(nodeData)
 

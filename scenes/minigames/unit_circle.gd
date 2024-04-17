@@ -99,13 +99,15 @@ func bb_code_left_text(text: String) -> String:
 func bb_code_right_text(text: String) -> String:
 	return "[right]"+text+"[/right]"
 func set_type_label() -> void:
-	label_type.text = bb_code_left_text(bb_code_color_text(type_to_str() + "(Ø)="))
+	label_type.text = bb_code_right_text(bb_code_color_text(type_to_str() + "(Ø)="))
 	
 # Example formated fraction string: [center][color=red][u]√2[/u]/n2[/color][/center]
 func set_value_label() -> void:
 	# If fraction set, display that instead of value
 	if !str_goal_numerator.is_empty() and !str_goal_denominator.is_empty():
-		label_value_fraction.text = bb_code_underline_text(str_goal_numerator) + "\n" + str_goal_denominator
+		label_value_fraction.text = bb_code_left_text(
+			bb_code_color_text(
+				bb_code_underline_text(str_goal_numerator) + "\n" + str_goal_denominator))
 		label_value_fraction.visible = true
 		return
 	var text := ""
@@ -117,7 +119,7 @@ func set_value_label() -> void:
 	else:
 		text = "%.2f" % goal_value
 	label_value.visible = true
-	label_value.text = text
+	label_value.text = bb_code_left_text(bb_code_color_text(text))
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -159,6 +161,10 @@ func _process(delta):
 		set_type_label()
 		set_value_label()
 		previous_success = success
+		if success:
+			$AnimationPlayer.play("success")
+		else:
+			$AnimationPlayer.play("RESET")
 	if is_player_present && Input.is_action_just_pressed("interact"):
 		$hint.visible = !$hint.visible
 		
