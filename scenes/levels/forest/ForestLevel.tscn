@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kobmrlvjg8np"]
+[gd_scene load_steps=11 format=3 uid="uid://kobmrlvjg8np"]
 
 [ext_resource type="PackedScene" uid="uid://c32qtamlal1ob" path="res://scenes/levels/forest/ForestTileMap.tscn" id="1_rxt4u"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="1_wdw5i"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://be1vtu124ssft" path="res://scenes/characters/Priestess.tscn" id="6_bui67"]
 [ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="7_l7x13"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="8_b2v0g"]
+[ext_resource type="PackedScene" uid="uid://bllq7mij5cpil" path="res://scenes/misc/Cutscene.tscn" id="9_otqhb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bcxf"]
+size = Vector2(91, 13.5)
 
 [node name="ForestLevel" type="Node2D"]
 position = Vector2(52, -637)
@@ -117,3 +121,17 @@ radius = 50.0
 
 [node name="Enemy11" parent="." instance=ExtResource("1_wdw5i")]
 position = Vector2(-69, -2225)
+
+[node name="Cutscene2" parent="." instance=ExtResource("9_otqhb")]
+position = Vector2(-1476, 717)
+cutscenePath = "res://dialogue/cutscene2.dialogue"
+
+[node name="CollisionShape2D" parent="Cutscene2/Area2D" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_4bcxf")
+
+[node name="Cutscene3" parent="." instance=ExtResource("9_otqhb")]
+cutscenePath = "res://dialogue/cutscene3.dialogue"
+
+[editable path="Cutscene2"]
+[editable path="Cutscene3"]

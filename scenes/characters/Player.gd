@@ -340,7 +340,12 @@ func damage_player(area):
 		is_invincible = true
 		invincibility_timer.wait_time = time_invincible
 		invincibility_timer.start()
-		hitpoints -= 1
+		# Check if cutscene 2 is done and cutscene 3 isn't (meaning player is in first Radian fight), and play cutscene 3 instead of the game over screen if so
+		if hitpoints == 1 and get_node("/root/Outside/level/ForestLevel/Cutscene2").finished == true and get_node("/root/Outside/level/ForestLevel/Cutscene3").visited == false:
+			get_node("/root/Outside/level/ForestLevel/Cutscene3").start_intro()
+			hitpoints = 1
+		else: # Otherwise, lower health
+			hitpoints -= 1
 		emit_signal("health_changed", hitpoints)
 		var pushback_direction = (global_position - area.global_position).normalized()
 		set_velocity(pushback_direction * 1000)
