@@ -36,13 +36,14 @@ func start_intro():
 	elif cutscenePath == cutsceneList[1]:
 		var radian = Radian.instantiate()
 		radian.position = Vector2(-1476, 700) # Put Radian in front of player
+		radian.name = "Scene2Radian"
 		get_parent().add_child(radian)
 		var c2Arena = InvisArena.instantiate()
 		c2Arena.position = position
 		c2Arena.visible = false
 		get_parent().add_child(c2Arena)
 	elif cutscenePath == cutsceneList[2]:
-		get_node("/root/Outside/level/ForestLevel/Radian").queue_free() # Delete Radian
+		get_node("/root/Outside/level/ForestLevel/Scene2Radian").queue_free() # Delete Radian
 		get_node("/root/Outside/level/ForestLevel/Cutscene2FightBoundary").queue_free() # Delete fight boundary
 	visited = true
 	var balloon = Balloon.instantiate()
