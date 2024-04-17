@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cybqcuokudff3"]
+
+[ext_resource type="Texture2D" uid="uid://0wxslqtmao3e" path="res://textures/menu/menu_button.png" id="1_qvugs"]
+[ext_resource type="Texture2D" uid="uid://4we4wmdix7i6" path="res://textures/props/temple/temple_key.png" id="2_b3y3b"]
+[ext_resource type="Script" path="res://scenes/menus/EnableDebugBtn.gd" id="3_jj7tb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teatr"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_qvugs")
+
+[node name="EnableDebug" type="Button"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 2
+theme_override_constants/icon_max_width = 9
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_teatr")
+theme_override_styles/focus = SubResource("StyleBoxTexture_teatr")
+text = "Enable
+Debug"
+icon = ExtResource("2_b3y3b")
+icon_alignment = 2
+script = ExtResource("3_jj7tb")

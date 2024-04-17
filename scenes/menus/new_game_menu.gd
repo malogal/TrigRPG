@@ -3,9 +3,9 @@ extends Control
 @onready
 var saveNameInput = $PanelContainer/MarginContainer/Rows/VBoxContainer/LineEdit
 
-var save1Path = "res://save1.save"
-var save2Path = "res://save2.save"
-var save3Path = "res://save3.save"
+var save1Path = "user://save1.save"
+var save2Path = "user://save2.save"
+var save3Path = "user://save3.save"
 
 var mainGamePath = "res://scenes/levels/Outside.tscn"
 
@@ -18,7 +18,7 @@ var createSaveButton = $PanelContainer/MarginContainer/Rows/VBoxContainer/Create
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
-	Globals.debug_mode = false
+	Globals.in_test_mode = false
 	# load text box and stuff
 	if canNewSaveCanBeMade():
 		cannotCreateSaveLabel.hide()

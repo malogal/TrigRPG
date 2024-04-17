@@ -40,7 +40,7 @@ position = Vector2(5230.98, 205.355)
 position = Vector2(5289.98, 3254.35)
 
 [node name="enemy5" parent="." groups=["saved"] instance=ExtResource("4_uw6yn")]
-position = Vector2(603.976, 557.355)
+position = Vector2(-64, 359)
 
 [node name="enemy6" parent="." groups=["saved"] instance=ExtResource("4_uw6yn")]
 position = Vector2(527.976, 131.355)
@@ -90,14 +90,14 @@ position = Vector2(524, 323)
 puzzle = NodePath("UnitCircle")
 
 [node name="UnitCircle" parent="MinigameGate" instance=ExtResource("3_oxgth")]
-position = Vector2(-176, 118)
+position = Vector2(-176, 161)
 
 [node name="Enemy" parent="." instance=ExtResource("4_uw6yn")]
-position = Vector2(291, 594)
+position = Vector2(-98, 309)
 health_in_radian = false
 
 [node name="Transformation" parent="." instance=ExtResource("13_dm2ew")]
-position = Vector2(246, 217)
+position = Vector2(233, 275)
 
 [node name="BlockTeleportLines" type="TileMap" parent="."]
 tile_set = ExtResource("14_vtsbq")

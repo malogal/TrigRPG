@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bis0s1bu5ihot"]
+
+[ext_resource type="StyleBox" uid="uid://b810qpxsljk5w" path="res://scenes/menus/flat_gray_style_box.tres" id="1_ya8yk"]
+[ext_resource type="StyleBox" uid="uid://mv3p1aqdbsow" path="res://scenes/menus/flat_gray_stylebox_hover.tres" id="2_rqpqp"]
+[ext_resource type="StyleBox" uid="uid://dsyx1bmeitgsc" path="res://scenes/menus/gray_flat_stylebox_pressed.tres" id="3_c1gv5"]
+[ext_resource type="StyleBox" uid="uid://p8gwnrqft3go" path="res://scenes/menus/flat_gray_stylebox_focus.tres" id="4_ojlyr"]
+
+[node name="Button1" type="Button"]
+z_as_relative = false
+custom_minimum_size = Vector2(40, 14)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("1_ya8yk")
+theme_override_styles/hover = ExtResource("2_rqpqp")
+theme_override_styles/pressed = ExtResource("3_c1gv5")
+theme_override_styles/focus = ExtResource("4_ojlyr")
+text = "Camp"
+alignment = 0

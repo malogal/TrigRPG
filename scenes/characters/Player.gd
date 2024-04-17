@@ -47,10 +47,13 @@ var movement
 
 var invincibility_timer
 var is_invincible
+var shapes_in_hurtbox: Dictionary = {}
 
+
+## Teleport is unlocked through demo mode or through priestess. If unlocked naturally, save it
 var allowed_powers = {
 	pie = true,
-	teleport = true,
+	teleport = false,
 }
 
 var movement_map: Dictionary = {
@@ -87,9 +90,11 @@ var movement_map: Dictionary = {
 
 var hasVisitedCamp = false
 var hasVisitedForest = false
+var hasVisitedTemple = false
 
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
+	Globals.register_player(self)
 	var spawnpoints: Array[Variant] = get_tree().get_nodes_in_group("spawnpoints")
 	for spawnpoint in spawnpoints:
 		if spawnpoint.name == Globals.spawnpoint:
@@ -126,8 +131,16 @@ func _ready():
 	Inventory.emit_missing()
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
-
-# Updates state, action, and velocity
+	
+	allowed_powers.teleport = hasVisitedTemple
+	if !hasVisitedTemple:
+		# Only allow teleport powers in debug mode (unless player has unlocked it)
+		allowed_powers.teleport = Globals.demo_mode
+		# If we had received teleportation naturally, we wouldn't want to subscribe to this signal
+		Globals.demo_mode_changed.connect(func(is_active: bool): allowed_powers.teleport = is_active)
+	health_changed.emit(hitpoints)
+		
+# Handles only movement
 func get_input(): 
 		var input_direction: Vector2 = Input.get_vector(movement_map.left.input, movement_map.right.input, movement_map.up.input, movement_map.down.input)
 		velocity = input_direction * WALK_SPEED
@@ -155,16 +168,23 @@ func get_input():
 				$WaveTeleport.move_inner_wave(false)
 			elif Input.is_action_pressed("change_pie_measurement_positive"):
 				$WaveTeleport.move_inner_wave(true)
-		if allowed_powers.teleport and Input.is_action_just_released("wave"):
-			action = WAVE
-		if allowed_powers.teleport and Input.is_action_just_pressed("teleport") && $WaveTeleport.can_teleport():
-			$TeleportAnimated.visible = true
-			$TeleportAnimated.play("teleport")
-			# Start countdown until we teleport
-			delayed_teleport($WaveTeleport.get_teleport_to())
-			# Get out of wave teleport mode 
-			$WaveTeleport.stop_wave()
-			 
+		if Input.is_action_just_released("wave"):
+			if allowed_powers.teleport:
+				action = WAVE
+			else:
+				Globals.create_popup_window("Must unlock teleport", 1.5)
+		if Input.is_action_just_pressed("teleport"):
+			if allowed_powers.teleport:
+				if $WaveTeleport.can_teleport():
+					$TeleportAnimated.visible = true
+					$TeleportAnimated.play("teleport")
+					# Start countdown until we teleport
+					delayed_teleport($WaveTeleport.get_teleport_to())
+					# Get out of wave teleport mode 
+					$WaveTeleport.stop_wave()
+			else:
+				Globals.create_popup_window("Must unlock teleport", 1.5)
+
 func _physics_process(delta):		
 	if Globals.isDialogActive:
 		$anims.stop()
@@ -233,23 +253,26 @@ func _physics_process(delta):
 		var col = get_slide_collision(i)
 		if col.get_collider() is RigidBody2D \
 			and col.get_collider().get_groups().has("moveable"):
+#			and not col.get_collider().is_sleeping():
 			
 			col.get_collider().apply_central_impulse(-col.get_normal()*impulse_power*delta)
 
 	#checking coordinates to see where in map for achievements
 	if not hasVisitedCamp:
-		if position.y > -390:
+		if global_position.y > -1250:
 			hasVisitedCamp = true
 	if not hasVisitedForest:
-		if position.y < -390:
+		if position.y < -1250:
 			hasVisitedForest = true
-	
-	#pushing rigidbodies
-	#move_and_slide()
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider().is_in_group("transformation"):
-			c.get_collider().apply_central_impulse(-c.get_normal() * 100)
+	if not hasVisitedTemple:
+		if global_position.x < -1000:
+			hasVisitedTemple = true
+			allowed_powers.teleportation = true
+
+# Used by external nodes that need to teleport the player. Example, a ladder that moves the character 
+# To another area. 
+func teleport(out_location: Vector2): 
+	global_position = out_location
 
 func assign_animation(a: String):
 	anim = new_anim
@@ -287,8 +310,31 @@ func set_cooldowns():
 
 func _on_hurtbox_area_entered(area):
 	damage_player(area)
+	shapes_in_hurtbox[area] = true
 	pass
 
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	damage_player(body)
+	shapes_in_hurtbox[body] = true
+		
+func emit_pie_changed():
+	pie_changed.emit(pie_amount)
+
+
+func _on_hurtbox_area_exited(area: Area2D) -> void:
+	shapes_in_hurtbox.erase(area)
+	
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	shapes_in_hurtbox.erase(body)
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false
+	# If nodes that hurt the player are still in shapes_in_hurtbox, then they have not yet left 
+	# the area. So attempt to damage the player again. 
+	for key in shapes_in_hurtbox:
+		damage_player(key)
+	
+# Returns true if the player was allowed to be damaged 
 func damage_player(area):
 	if state != STATE_DIE and !is_invincible and (area.is_in_group("enemy_weapons") or area.is_in_group("radian-pie")):
 		is_invincible = true
@@ -304,8 +350,8 @@ func damage_player(area):
 			state = STATE_DIE
 			# toggle death screen
 			Globals.showGameOverScreen = true
-
-	pass
+		return true
+	return false
 	
 
 func is_facing_horizontal() -> bool:
@@ -347,8 +393,6 @@ func get_wave_available_signal() -> Signal:
 func get_teleport_available_signal() -> Signal:
 	return $WaveTeleport.teleport_available
 
-func _on_invincibility_timer_timeout():
-	is_invincible = false
 
 func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(time_to_teleport).timeout
@@ -364,7 +408,8 @@ func getSaveStats():
 		'hitpoints': hitpoints,
 		'thrownPieCount': thrownPieCount,
 		'hasVisitedCamp': hasVisitedCamp,
-		'hasVisitedForest': hasVisitedForest
+		'hasVisitedForest': hasVisitedForest,
+		'hasVisitedTemple': hasVisitedTemple,
 	}
 	
 func getAchievementStats():
@@ -383,8 +428,3 @@ func _on_teleport_animated_animation_finished() -> void:
 	$TeleportAnimated.visible = false
 
 
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	damage_player(body)
-
-func emit_pie_changed():
-	pie_changed.emit(pie_amount)

@@ -8,9 +8,11 @@ signal teleport_available(is_available: bool)
 var is_wave_active: bool = false
 var waves: PackedScene
 var wave_main: Node
+@onready var wave_cooldown: Timer = $WaveCooldown
 
 func create_stop_wave(wave_specs: Dictionary):
-	if is_wave_active:
+	# If the wave was just started, don't cancel it yet. Likely a double trigger on keypress
+	if is_wave_active and wave_cooldown.wait_time - wave_cooldown.time_left  > .1:
 			stop_wave()
 	elif $WaveCooldown.is_stopped():
 		$WaveCooldown.start()
@@ -47,6 +49,8 @@ func can_teleport() -> bool:
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(start, dest, collision_mask, [])
 		var result = space_state.intersect_ray(query)
+		if !result.is_empty():
+			Globals.create_popup_window("Can't teleport here.", 1)
 		return result.is_empty()
 	return false
 

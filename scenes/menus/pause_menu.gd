@@ -3,7 +3,7 @@ extends Control
 @onready
 var settingsContainer = $SettingsContainer
 
-var settingsPath = "res://settings.save"
+var settingsPath = "user://settings.save"
 
 @onready
 var inputButtonScene = preload("res://scenes/menus/keybind_input_button.tscn")
@@ -45,6 +45,8 @@ var keybinds = []
 var defaultMusicAudio = 0.25
 var defaultMasterAudio = 0.25
 
+var debug_teleport_btn = preload("res://scenes/menus/repeatable_button.tscn")
+
 func continueGame():
 	hide()
 	get_tree().paused = false
@@ -60,10 +62,13 @@ func pause():
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	hide()
-
+	$SettingsContainer.hide()
 	# for settings/remapping
 	getSettingsFromFile()
 	createActionList()
+	load_menu_button()
+	$PanelContainer/Grid/DropDownMenu.visible = Globals.demo_mode
+	Globals.demo_mode_changed.connect(func(is_active: bool): $PanelContainer/Grid/DropDownMenu.visible=is_active)
 
 
 func _input(event):
@@ -94,7 +99,40 @@ func _input(event):
 				actionToRemap = null
 				remappingButton = null
 				accept_event()
+				
+## Create a list of places to teleport and display the buttons as an option from pause menu.
+## Buttons disapear when not in demo-mode. 
+func load_menu_button():
+	var menuButton = $PanelContainer/Grid/DropDownMenu
+	menuButton.button_down.connect(
+		func():
+			$PanelContainer/Grid/DropDownMenu/VBoxContainer.visible = !$PanelContainer/Grid/DropDownMenu/VBoxContainer.visible 
+	)
+	$PanelContainer/Grid/DropDownMenu/VBoxContainer.visible = false
+	var container = $PanelContainer/Grid/DropDownMenu/VBoxContainer
+	var nodes: Array =  get_tree().get_nodes_in_group("debug_teleport")
+	var prev_btn: Button = null
+	for node in nodes:
+		var btn: Button = debug_teleport_btn.instantiate()
+		btn.text = node.location_name
+		btn.set_meta("location", node.global_position)
+		# When a teleport location is pressed, unpause the game,teleport player, 
+		# and then call re-pause the next frame. 
+		btn.button_down.connect(
+			func(): 
+				node.teleport_player()
+				pause_game(false)
+				call_deferred("pause_game", true)
+		)
+		if prev_btn == null:
+			container.add_child(btn)
+		else:
+			prev_btn.add_sibling(btn)
+		prev_btn = btn
 
+func pause_game(pause: bool):
+	get_tree().paused = pause
+						
 func _on_continue_button_pressed():
 	continueGame()
 	
@@ -271,15 +309,14 @@ func resetKeybinds():
 
 
 func saveSettings():
-	if FileAccess.file_exists(settingsPath):
-		var settingsFile = FileAccess.open(settingsPath, FileAccess.WRITE)
+	var settingsFile = FileAccess.open(settingsPath, FileAccess.WRITE)
+
+	settingsDictionary.musicAudio = musicAudioSlider.value
+	settingsDictionary.masterAudio = masterAudioSlider.value
+	settingsDictionary.keybinds = getCurrentKeybinds()
 	
-		settingsDictionary.musicAudio = musicAudioSlider.value
-		settingsDictionary.masterAudio = masterAudioSlider.value
-		settingsDictionary.keybinds = getCurrentKeybinds()
-		
-		settingsFile.store_var(settingsDictionary)
-		settingsFile.close()
+	settingsFile.store_var(settingsDictionary)
+	settingsFile.close()
 	
 	
 func getKeybindModifier(keybind):

@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes/in-game-ui/DrawCircle.gd" id="7_qi11f"]
 [ext_resource type="Texture2D" uid="uid://c601v4let1yjk" path="res://textures/power-ups/power_freq.png" id="8_jxyj6"]
 [ext_resource type="Texture2D" uid="uid://cdtghodn42cj1" path="res://textures/power-ups/power_amp.png" id="9_pp2gc"]
+[ext_resource type="StyleBox" uid="uid://dd85htbdbpjfy" path="res://scenes/in-game-ui/rounded_pressed_style_box_flat.tres" id="16_bxpfb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lapqn"]
 bg_color = Color(0.6, 0.454902, 0.6, 0.443137)
@@ -40,18 +41,33 @@ frame_3/duration = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsmwt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xd5i"]
-bg_color = Color(0.929412, 0.203922, 0.145098, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rph2r"]
+bg_color = Color(1, 0.247059, 0.290196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.537255)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ispom"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jejwj"]
-bg_color = Color(0.286275, 0.67451, 0.145098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg364"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kogbh"]
 bg_color = Color(0.317647, 0.490196, 0.937255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.537255)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="BottomUi" type="HFlowContainer"]
 anchors_preset = -1
@@ -208,6 +224,8 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 1
 columns = 2
 
 [node name="TabButton" type="Button" parent="Panel/HBoxContainer/Cooldowns/Buttons"]
@@ -216,7 +234,7 @@ layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("2_ngp2j")
-theme_override_styles/normal = SubResource("StyleBoxFlat_6xd5i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rph2r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ispom")
 toggle_mode = true
 action_mode = 0
@@ -232,7 +250,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("2_ngp2j")
-theme_override_styles/normal = SubResource("StyleBoxFlat_jejwj")
+theme_override_styles/normal = ExtResource("16_bxpfb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sg364")
 toggle_mode = true
 action_mode = 0

@@ -1,9 +1,8 @@
 extends Control
 
-#TODO: change to save://save1.save for actual game
-var save1Path = "res://save1.save"
-var save2Path = "res://save2.save"
-var save3Path = "res://save3.save"
+var save1Path = "user://save1.save"
+var save2Path = "user://save2.save"
+var save3Path = "user://save3.save"
 var saveName
 var lastPlayed
 var timeSpent
@@ -56,7 +55,7 @@ var savesData = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Globals.debug_mode = false
+	Globals.in_test_mode = false
 	var saveSlot1 = SaveSlot.new(save1Path, saveNameLabel1, lastPlayedLabel1, timeSpentLabel1, panel1, deleteButton1)	
 	var saveSlot2 = SaveSlot.new(save2Path, saveNameLabel2, lastPlayedLabel2, timeSpentLabel2, panel2, deleteButton2)
 	var saveSlot3 = SaveSlot.new(save3Path, saveNameLabel3, lastPlayedLabel3, timeSpentLabel3, panel3, deleteButton3)

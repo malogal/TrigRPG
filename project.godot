@@ -15,7 +15,10 @@ config/version="v0.0.1"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.2")
-config/icon="res://icon.png"
+boot_splash/image="res://textures/menu/splash-screen.png"
+boot_splash/fullsize=false
+config/icon="res://textures/menu/title.png"
+boot_splash/minimum_display_time=1400
 
 [autoload]
 
@@ -140,7 +143,7 @@ skip_cutscene={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialogue", "res://dialogue/cutscene1.dialogue", "res://dialogue/cutscene3.dialogue", "res://dialogue/cutscene4.dialogue", "res://dialogue/cutscene7.dialogue", "res://dialogue/cutscene6.dialogue", "res://dialogue/cutscene5.dialogue", "res://dialogue/cutscene8.dialogue", "res://dialogue/cutscene9.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialogue", "res://dialogue/cutscene1.dialogue", "res://dialogue/cutscene3.dialogue", "res://dialogue/cutscene4.dialogue", "res://dialogue/cutscene7.dialogue", "res://dialogue/cutscene6.dialogue", "res://dialogue/cutscene5.dialogue", "res://dialogue/cutscene8.dialogue", "res://dialogue/cutscene9.dialogue", "res://dialogue/unit_circle_explanation.dialogue", "res://dialogue/second_unit_circle_explanation.dialogue")
 
 [layer_names]
 
@@ -157,5 +160,6 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/cutscene2.dialog
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_s3tc_bptc=true
 textures/lossless_compression/force_png=true
 environment/defaults/default_environment="res://default_env.tres"

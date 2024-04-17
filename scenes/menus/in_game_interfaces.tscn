@@ -10,7 +10,7 @@
 [node name="music_track" parent="." instance=ExtResource("1_dgjhb")]
 music_track = "res://music/310-world-map-loop.ogg"
 
-[node name="UI" parent="." groups=["saved"] instance=ExtResource("2_hqvnq")]
+[node name="UI" parent="." instance=ExtResource("2_hqvnq")]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3

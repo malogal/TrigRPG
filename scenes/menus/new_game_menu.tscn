@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxisgdeos3jw5"]
+[gd_scene load_steps=8 format=3 uid="uid://bxisgdeos3jw5"]
 
 [ext_resource type="Script" path="res://scenes/menus/new_game_menu.gd" id="1_1ha5e"]
 [ext_resource type="Theme" uid="uid://dxgoy0vbgwgyv" path="res://textures/themes/main_theme.tres" id="1_vcq7c"]
 [ext_resource type="PackedScene" uid="uid://c7hba61yvpilc" path="res://scenes/misc/ui elements/menu_button.tscn" id="2_3eei8"]
 [ext_resource type="Texture2D" uid="uid://c6lbh1yyl5bkv" path="res://textures/menu/menu_bkg.png" id="2_uel8l"]
+[ext_resource type="PackedScene" uid="uid://dtho37f2kbafb" path="res://scenes/menus/DemoFeaturesLabel.tscn" id="5_d30ps"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk8uh"]
 bg_color = Color(0.756863, 0.756863, 0.756863, 0)
@@ -93,5 +94,13 @@ offset_bottom = 22.0
 text = "Back
 "
 referencePath = "res://scenes/menus/main_menu.tscn"
+
+[node name="DemoFeaturesLabel" parent="." instance=ExtResource("5_d30ps")]
+layout_mode = 1
+offset_left = -55.0
+offset_top = -179.0
+offset_right = 24.0
+offset_bottom = -166.0
+scale = Vector2(0.7, 0.7)
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/VBoxContainer/CreateSaveButton" to="." method="_on_create_save_button_pressed"]
