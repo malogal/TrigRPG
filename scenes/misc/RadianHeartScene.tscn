@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs783v8a5y3v0"]
+
+[ext_resource type="Texture2D" uid="uid://dfy62utqqnxy1" path="res://textures/menu/full_heart.png" id="1_ayopu"]
+
+[node name="Heart" type="TextureRect"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ayopu")
+expand_mode = 3

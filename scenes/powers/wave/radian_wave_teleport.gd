@@ -61,7 +61,6 @@ func can_teleport() -> bool:
 
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	if is_disallowed_point(space_state) || is_disallowed_line(space_state):
-		Globals.create_popup_window("Can't teleport here.", 1)
 		return false
 	return true
 	
