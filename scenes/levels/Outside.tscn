@@ -21,26 +21,9 @@ position = Vector2(208.024, -128.355)
 [node name="ForestLevel" parent="level" instance=ExtResource("3_rrx2f")]
 position = Vector2(1515.98, -1179.65)
 
-[node name="TeleporterToTempleStart" parent="level" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
-position = Vector2(-394.024, -2586.65)
-paired_teleporter = NodePath("../TeleporterFromTempleStart")
-provide_hint = true
-
-[node name="TeleporterFromTempleStart" parent="level" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
-position = Vector2(-1880.02, -3738.65)
-paired_teleporter = NodePath("../TeleporterToTempleStart")
-provide_hint = true
-
 [node name="TempleScene" parent="level" instance=ExtResource("4_jdwcc")]
-position = Vector2(-2424.02, -3862.65)
-
-[node name="TeleporterExitTempleIn" parent="level" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
-position = Vector2(-4280.02, -2626.65)
-paired_teleporter = NodePath("../TeleporterExitTempleOut")
-
-[node name="TeleporterExitTempleOut" parent="level" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
-position = Vector2(-361.024, -858.645)
-paired_teleporter = NodePath("../TeleporterExitTempleIn")
+visible = false
+position = Vector2(-3251.02, -3898.65)
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
 position = Vector2(6.976, -7.645)
@@ -72,11 +55,45 @@ position = Vector2(-327.024, -859.645)
 location_name = "Temple River"
 
 [node name="DebugTeleport7" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
-position = Vector2(-1779.02, -3664.65)
+position = Vector2(-2606.02, -3700.65)
 location_name = "Outer Temple"
 
 [node name="DebugTeleport8" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
-position = Vector2(-3698.02, -4031.65)
+position = Vector2(-4525.02, -4067.65)
 location_name = "Inner Temple"
+
+[node name="LiveTeleportLocations" type="Node2D" parent="level"]
+
+[node name="TeleporterForestEndIn" parent="level/LiveTeleportLocations" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
+position = Vector2(-425.024, -2734.65)
+paired_teleporter = NodePath("../TeleporterForestEndOut")
+exit_location = Vector2(2.08165e-12, 20)
+provide_hint = true
+
+[node name="TeleporterForestEndOut" parent="level/LiveTeleportLocations" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
+position = Vector2(-809.024, -1064.65)
+paired_teleporter = NodePath("../TeleporterForestEndIn")
+exit_location = Vector2(2.08165e-12, 20)
+
+[node name="TeleporterRiverToTemple" parent="level/LiveTeleportLocations" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
+position = Vector2(-250.024, -1103.65)
+radius = 35
+paired_teleporter = NodePath("../TeleporterFromTempleStartToRiver")
+provide_hint = true
+
+[node name="TeleporterFromTempleStartToRiver" parent="level/LiveTeleportLocations" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
+position = Vector2(-2707.02, -3774.65)
+paired_teleporter = NodePath("../TeleporterRiverToTemple")
+exit_location = Vector2(2.08165e-12, 40)
+provide_hint = true
+
+[node name="TeleporterExitTempleIn" parent="level/LiveTeleportLocations" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
+position = Vector2(-5107.02, -2662.65)
+paired_teleporter = NodePath("../TeleporterExitTempleOut")
+
+[node name="TeleporterExitTempleOut" parent="level/LiveTeleportLocations" node_paths=PackedStringArray("paired_teleporter") instance=ExtResource("4_st1jc")]
+position = Vector2(-808.024, -768.645)
+paired_teleporter = NodePath("../TeleporterExitTempleIn")
+require_completion_status = 3
 
 [node name="InGameInterfaces" parent="." instance=ExtResource("5_430nq")]

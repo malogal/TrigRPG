@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://scenes/items/Frequency.gd" id="1_rgrsp"]
 
 [node name="Frequency" type="Node2D" groups=["power_up"]]
+z_index = 2
+z_as_relative = false
 script = ExtResource("1_rgrsp")
 
 [node name="Item" parent="." instance=ExtResource("1_c05uu")]

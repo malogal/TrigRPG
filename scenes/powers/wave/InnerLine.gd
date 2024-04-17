@@ -38,11 +38,11 @@ func move_inner_wave(is_positive):
 func _process(delta):
 	if queue_wave_change == 0:
 		inner_wave_speed = speed_min
-		print("reset")
 		return
 	if inner_wave_speed < speed_max:
 		inner_wave_speed += delta
-	print("wave speed: %f" % inner_wave_speed)
+	if inner_wave_speed > speed_max:
+		inner_wave_speed = speed_max
 	calc_index(queue_wave_change, delta)
 	queue_redraw()
 	queue_wave_change = 0

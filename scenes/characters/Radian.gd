@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var health: float = PI/92
 const AngleClass = preload("res://misc-utility/Angle.gd")
-var health_angle = AngleClass.new(health)
+var health_angle
 
 var ignore_new_anims: bool
 var is_attacking: bool
@@ -14,6 +14,10 @@ var player_body: Node2D
 
 @export var can_die: bool = false
 
+var heart_class = preload("res://scenes/misc/RadianHeartScene.tscn")
+@onready var heart_container = $GridContainer
+var heart_arr = []
+var is_dead = false
 var rng = RandomNumberGenerator.new()
 
 var use_wave_delay: Node
@@ -21,6 +25,13 @@ var damage_timer: Node
 var teleport_timer: Node
 
 func _ready():
+	health_angle = AngleClass.new(health)
+	if can_die:
+		for i in 3:
+			var heart = heart_class.instantiate()
+			heart_container.add_child(heart)
+			heart_arr.append(heart)
+			
 	# Weird hack to set scale down to a small value so we can grow it again later.
 	# This is in case the player starts in the sight range 
 	$sight_range.scale = $sight_range.scale * .1
@@ -52,6 +63,10 @@ func _ready():
 	add_child(teleport_timer)
 	
 func _physics_process(_delta: float) -> void:
+	if can_die && heart_arr.is_empty():
+		die()
+		return
+	
 	if is_attacking:
 		$PieThrowing.throw(global_position, player_body.global_position, AngleClass.new(2*PI))
 		$PieThrowing.set_cooldown(rng.randf_range(.75, 4))
@@ -86,6 +101,8 @@ func set_anims(anim: String):
 func get_anims() -> String:
 	return $anims.get_animation()
 
+func get_shape() -> Shape2D:
+	return $CollisionShape2D.shape	
 
 func _on_sight_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -105,9 +122,19 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		set_velocity(pushback_direction * 500)
 		move_and_slide()
 		$Health.set_angle_text(health_angle)
-		if health_angle.is_zero() && can_die:
-			# Add death later
-			pass
+		
+		if health_angle.is_zero() && !heart_arr.is_empty():
+			var heart = heart_arr.pop_back()
+			heart_container.remove_child(heart)
+			health_angle = AngleClass.new(0)
+
+func die():
+	modulate = modulate.darkened(1.0)
+	is_dead = true
+	velocity = Vector2.ZERO
+	await get_tree().create_timer(2).timeout
+	get_parent().remove_child(self)
+	queue_free()
 
 func delayed_teleport(pos: Vector2):
 	await get_tree().create_timer(.75).timeout
