@@ -15,10 +15,12 @@ var timeSpent
 
 var loadGameToggle = false
 var inventory
-
+signal player_class_reloaded
 signal demo_mode_changed
+## This indicates the user is in the 'play-test' area and the game should not make saves
 var in_test_mode: bool = false
-var demo_mode: bool = false:
+## The game is in demo mode and should have demo features available 
+var demo_mode: bool = true:
 	set(value):
 		demo_mode = value
 		demo_mode_changed.emit(value)
@@ -54,7 +56,10 @@ var achievementStatuses = {
 	"thrown100Pies": false,
 }
 
-var player: Player
+var player: Player:
+	set(value):
+		player = value
+		player_class_reloaded.emit()
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.DODGER_BLUE)
@@ -114,12 +119,12 @@ func save_game():
 
 			# Check the node has a save function.
 			if !node.has_method("getSaveStats"):
-				print("persistent node '%s' is missing a getSaveStats() function, skipped" % node.name)
 				continue
 
 			# Call the node's save function.
 			var nodeData = node.getSaveStats()
-
+			if nodeData == null:
+				continue
 			# JSON provides a static method to serialized JSON string.
 			jsonString = JSON.stringify(nodeData)
 
@@ -267,10 +272,10 @@ func startDialogueStored(cutscene_resource: Resource, title: String):
 func _set_is_dialog_active_false(any_: Variant = null):
 	isDialogActive = false
 
-func create_popup_window(text: String, time_out: int = 0):
+func create_popup_window(text: String, time_out: int = 0, transparent_bg: bool = true):
 	var popup: Node = PopUpScene.instantiate()
 	get_tree().current_scene.add_child(popup)
-	popup.show_message(text, time_out)
+	popup.show_message(text, time_out, transparent_bg)
 	
 func register_player(player_in: Player):
 	player = player_in

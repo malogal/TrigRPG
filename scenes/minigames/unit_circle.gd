@@ -2,13 +2,17 @@ extends StaticBody2D
 
 const AngleClass = preload("res://misc-utility/Angle.gd")
 
-@export var return_value: float = 0
+
 @export var goal_value: float = 0.5
 @export var unique_name: String = ""
-@export var str_goal_value_override: String = ""
+## if [code]str_goal_numerator[/code] and [code]str_goal_denominator[/code] are not empty, they will be displayed instead of [code]goal_value[/code] or [code]str_goal_value_override[/code]
 @export var str_goal_numerator: String = ""
+## if [code]str_goal_numerator[/code] and [code]str_goal_denominator[/code] are not empty, they will be displayed instead of [code]goal_value[/code] or [code]str_goal_value_override[/code]
 @export var str_goal_denominator: String = ""
+## if [code]str_goal_value_override[/code] is not empty, it will be displayed instead of [code]goal_value[/code], assuming the string fraction values are not empty
+@export var str_goal_value_override: String = ""
 
+var return_value: float = 0
 var success: bool          = false
 var previous_success: bool = false
 var angle       		   = AngleClass.new(0)
@@ -19,12 +23,16 @@ var maxAngle: float        = PI/2
 enum TrigFunc{ SIN, COS, TAN, SEC, CSC, COT }
 @export var type := TrigFunc.SIN
 @export var allow_hints := true
+
 @onready var label_type: RichTextLabel = $TextureRect/LabelType
 @onready var label_value: RichTextLabel = $TextureRect/LabelValue
+@onready var label_value_fraction: RichTextLabel = $TextureRect/LabelValueFraction
 
 var player
 var detection
 var prev_rotation: float    = 0.0
+var is_player_present: bool = false
+
 const success_color: String = "Greenyellow"
 const ERROR: float = 0.001
 
@@ -91,25 +99,34 @@ func bb_code_left_text(text: String) -> String:
 func bb_code_right_text(text: String) -> String:
 	return "[right]"+text+"[/right]"
 func set_type_label() -> void:
-	label_type.text = bb_code_left_text(bb_code_color_text(type_to_str() + "(Ø)="))
+	label_type.text = bb_code_right_text(bb_code_color_text(type_to_str() + "(Ø)="))
 	
 # Example formated fraction string: [center][color=red][u]√2[/u]/n2[/color][/center]
 func set_value_label() -> void:
+	# If fraction set, display that instead of value
+	if !str_goal_numerator.is_empty() and !str_goal_denominator.is_empty():
+		label_value_fraction.text = bb_code_left_text(
+			bb_code_color_text(
+				bb_code_underline_text(str_goal_numerator) + "\n" + str_goal_denominator))
+		label_value_fraction.visible = true
+		return
 	var text := ""
-	# If override is set, use that
+	# If override is set, use that instead of string value of goal_value
 	if !str_goal_value_override.is_empty():
 		text = str_goal_value_override
-	elif !str_goal_numerator.is_empty() and !str_goal_denominator.is_empty():
-		text = bb_code_underline_text(str_goal_numerator) + "\n" + str_goal_denominator
 	elif abs(goal_value) < ERROR :
 		text = "0"
 	else:
 		text = "%.2f" % goal_value
-	label_value.text = bb_code_center_text(bb_code_color_text(text))
+	label_value.visible = true
+	label_value.text = bb_code_left_text(bb_code_color_text(text))
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$hint.visible = false
+	# One of the value labels will be displayed in [code]set_value_label()[/code]
+	label_value_fraction.visible = false
+	label_value.visible = false
 	player = get_tree().get_nodes_in_group("player")[0]
 	detection = $EdgeArea
 	evaluate_return()
@@ -144,7 +161,13 @@ func _process(delta):
 		set_type_label()
 		set_value_label()
 		previous_success = success
-	
+		if success:
+			$AnimationPlayer.play("success")
+		else:
+			$AnimationPlayer.play("RESET")
+	if is_player_present && Input.is_action_just_pressed("interact"):
+		$hint.visible = !$hint.visible
+		
 func _draw():
 	$sin.clear_points()
 	$sin.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
@@ -153,24 +176,12 @@ func _draw():
 	$cos.add_point(Vector2(0,0))
 	$cos.add_point(Vector2(radius*cos($EdgeArea.rotation),0))
 
-var player_first_entry: bool = true
-var is_player_present: bool = false
-func _input(event) -> void: #Handles quests and other events
-	# Bail if npc not active (player not inside the collider)
-	if not is_player_present:
-		return
-	# Bail if the event is not a pressed "interact" action
-	if not event.is_action_pressed("interact"):
-		return
-	# reverse visibility
-	$hint.visible = not $hint.visible
 	 
 	
+var player_first_entry: bool = true
 func _on_sight_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and allow_hints:
 		is_player_present = true
-		# Start listening for key binds now that the player is in the interact area
-		set_process_input(true)
 		# The first time the player enters this Unit Circle give a pop-up reminding them of the hint
 		if player_first_entry:
 			Globals.create_popup_window("Press 'E' for a hint.", 2.5)
@@ -181,6 +192,4 @@ func _on_sight_range_body_entered(body: Node2D) -> void:
 func _on_sight_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player") and allow_hints:
 		is_player_present = false
-		# Stop listening for key binds now that the player has left the interact area
-		set_process_input(false)
 		$hint.visible = false

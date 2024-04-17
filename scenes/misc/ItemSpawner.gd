@@ -21,6 +21,8 @@ const default_disabled_radius: float = 0.1
 ## Size of the area-2d to look for player interactions
 @export var radius: float = default_disabled_radius
 
+var is_already_activated: bool = false
+
 var is_player_present: bool = false
 
 func _ready() -> void:
@@ -62,23 +64,24 @@ func spawn(_item_type: String = "", _amount: float = 1.0):
 	item.z_index = z_index
 	
 # This scene only looks for input when the player is in the interact area
-func _input(event): #Handles quests and other events
+func _process( delta: float, ) -> void:
 	# Bail if npc not active (player not inside the collider)
-	if not is_player_present:
+	if not is_player_present || is_already_activated:
 		return
 	# Bail if the event is not a pressed "interact" action
-	if Input.is_action_just_released("interact"):
+	if Input.is_action_just_pressed("interact"):
+		is_already_activated = true
 		spawn()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_player_present = true
 		# Start listening for key binds now that the player is in the interact area
-		set_process_input(true)
+		set_process(true)
 		Globals.create_popup_window("'E' to interact", 1)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_player_present = false
 		# Stop listening for key binds now that the player has left the interact area
-		set_process_input(false)
+		set_process(false)

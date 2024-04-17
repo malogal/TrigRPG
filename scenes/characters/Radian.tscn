@@ -167,6 +167,18 @@ speed_scale = 0.5
 
 [node name="DirectionalAnimationSetter" parent="." instance=ExtResource("9_deqwn")]
 
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = -1
+offset_left = -30.0
+offset_top = -76.0
+offset_right = 158.0
+offset_bottom = -16.0
+scale = Vector2(0.32572, 0.345597)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
 [connection signal="body_exited" from="sight_range" to="." method="_on_sight_range_body_exited"]

@@ -10,7 +10,8 @@ class_name Teleporter
 ## If enemies (or minigames) are in this direction relative to the teleporter, do not consider them for 'require_*'
 @export var ignore_direction: Direction = Direction.NONE 
 @export var provide_hint: bool = false
-
+@export var on_contact: bool = false
+@export var require_completion_status:	CompletionStatus = CompletionStatus.NONE
 enum Direction {
 	NONE, ## No restriction, consider all directions
 	NORTH, ## Ignore enemies above
@@ -19,17 +20,25 @@ enum Direction {
 	WEST ## Ignore enemies to the left
 }
 
+enum CompletionStatus {
+	NONE,
+	CAMP,
+	FOREST,
+	TEMPLE,
+}
 
 
 var is_player_present = false
 
 func _ready():
 	$Area2D/CollisionShape2D.shape.radius = radius
-	set_process_input(false)
-
+	set_process(false)
+	
 # This scene only looks for input when the player is in the interact area
-func _input(event): #Handles quests and other events
+func _process( delta: float, ) -> void:
 	# Bail if npc not active (player not inside the collider)
+	if !is_player_present:
+		return
 	if not is_player_present || paired_teleporter == null:
 		return
 	# Bail if the event is not a pressed "interact" action
@@ -42,7 +51,25 @@ func _input(event): #Handles quests and other events
 	if require_minigame_completion && is_incomplete_minigame_nearby():
 		Globals.create_popup_window("Incomplete minigame", 1.5)
 		return
+	if require_completion_status != CompletionStatus.NONE:
+		match require_completion_status:
+			CompletionStatus.CAMP:
+				if Globals.get_player().hasVisitedCamp != true:
+					Globals.create_popup_window("You are not ready yet", 1.5)
+					return
+			CompletionStatus.FOREST:
+				if Globals.get_player().hasVisitedForest != true:
+					Globals.create_popup_window("You are not ready yet", 1.5)
+					return
+			CompletionStatus.TEMPLE:
+				if Globals.get_player().hasVisitedTemple != true:
+					Globals.create_popup_window("You are not ready yet", 1.5)
+					return
+
+			CompletionStatus.NONE:
+				pass
 	paired_teleporter.emit_teleport()
+	
 	
 func emit_teleport():
 	get_tree().call_group("player", "teleport", to_global(exit_location))
@@ -81,21 +108,24 @@ func is_incomplete_minigame_nearby() -> bool:
 func _is_direction_ignored(node_pos: Vector2) -> bool:
 	match ignore_direction:
 		Direction.NORTH:
-			return node_pos.y < position.y  # above the teleporter
+			return node_pos.y < global_position.y  # above the teleporter
 		Direction.EAST:
-			return node_pos.x > position.x  # right of the teleporter
+			return node_pos.x > global_position.x  # right of the teleporter
 		Direction.SOUTH:
-			return node_pos.y > position.y  # below the teleporter
+			return node_pos.y > global_position.y  # below the teleporter
 		Direction.WEST:
-			return node_pos.x < position.x  # left of the teleporter
+			return node_pos.x < global_position.x  # left of the teleporter
 		_:
 			return false  # No direction is ignored
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		if on_contact:
+			paired_teleporter.emit_teleport()
+			return
 		is_player_present = true
 		# Start listening for key binds now that the player is in the interact area
-		set_process_input(true)
+		set_process(true)
 		if provide_hint:
 			Globals.create_popup_window("'E' to interact", 1)
 
@@ -103,4 +133,4 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_player_present = false
 		# Stop listening for key binds now that the player has left the interact area
-		set_process_input(false)
+		set_process(false)
