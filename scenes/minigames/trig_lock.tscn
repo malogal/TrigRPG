@@ -20,8 +20,10 @@ script = ExtResource("1_h6b1g")
 shape = SubResource("RectangleShape2D_5kx17")
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -80.0
+offset_top = -29.0
+offset_right = 80.0
+offset_bottom = -15.0
 
 [node name="Current" type="Line2D" parent="."]
 
