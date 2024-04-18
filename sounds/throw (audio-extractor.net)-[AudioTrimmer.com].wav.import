@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ds24dbwr7olfr"
+path="res://.godot/imported/throw (audio-extractor.net)-[AudioTrimmer.com].wav-abf4f3cb07e2d31cb81af944edf097c0.sample"
+
+[deps]
+
+source_file="res://sounds/throw (audio-extractor.net)-[AudioTrimmer.com].wav"
+dest_files=["res://.godot/imported/throw (audio-extractor.net)-[AudioTrimmer.com].wav-abf4f3cb07e2d31cb81af944edf097c0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

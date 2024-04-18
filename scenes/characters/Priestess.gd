@@ -63,10 +63,12 @@ func _input(event): #Handles quests and other events
 	
 	if !stored_dialogs_file.is_empty():
 		Globals.startDialogueStored(load(stored_dialogs_file), "start")
+		$BobNoise.play()
 	elif !dialogs.is_empty():
 		var title = "priestess" + str(get_rid().get_id())
 		# If starting dialogue suceeds, increment current dialogue 
 		if Globals.startDialogue(title, "Priestess", dialogs[current_dialog]):
+			$BobNoise.play()
 			current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())
 
 func set_anims(anim: String):

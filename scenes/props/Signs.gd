@@ -26,6 +26,7 @@ func _input(event): #Handles quests and other events
 		var title: String = sign_name + str(randi_range(0,5000))
 		title = title.replace(" ", "")
 		Globals.startDialogue(title, sign_name, sign_text)
+		$BobNoise.play()
 
 
 

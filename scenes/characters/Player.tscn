@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctd3mgp0s172q"]
+[gd_scene load_steps=16 format=3 uid="uid://ctd3mgp0s172q"]
 
 [ext_resource type="Script" path="res://scenes/characters/Player.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bk42yg5aycg0t" path="res://scenes/characters/debug_character.tscn" id="3"]
@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="7_7ept5"]
 [ext_resource type="PackedScene" uid="uid://co8ecubpep20b" path="res://scenes/powers/wave/wave_teleport.tscn" id="7_y8k3y"]
 [ext_resource type="PackedScene" uid="uid://cb4dkli6dkqbt" path="res://scenes/characters/movement/TeleportAnimation.tscn" id="8_ets2a"]
-[ext_resource type="AudioStream" uid="uid://brrq2y7xm7c6y" path="res://sounds/death (audio-extractor.net).wav" id="9_l7tu5"]
-[ext_resource type="AudioStream" uid="uid://0ihwreuo55ms" path="res://sounds/teleport-word (audio-extractor.net).wav" id="10_bk6xu"]
-[ext_resource type="AudioStream" uid="uid://cga5t2n75n67w" path="res://sounds/throw (audio-extractor.net).wav" id="11_juhbk"]
-[ext_resource type="AudioStream" uid="uid://bli8l0phbybci" path="res://sounds/injury (audio-extractor.net).wav" id="12_5ckr7"]
+[ext_resource type="AudioStream" uid="uid://bjucxulqkhsyu" path="res://sounds/death (audio-extractor.net)-[AudioTrimmer.com].wav" id="9_n8uga"]
+[ext_resource type="AudioStream" uid="uid://b2anjpjgtp2yx" path="res://sounds/teleport-word (audio-extractor.net)-[AudioTrimmer.com].wav" id="10_duvkc"]
+[ext_resource type="AudioStream" uid="uid://ds24dbwr7olfr" path="res://sounds/throw (audio-extractor.net)-[AudioTrimmer.com].wav" id="11_j3pyt"]
+[ext_resource type="AudioStream" uid="uid://bo0mmvkqf7cdd" path="res://sounds/injury (audio-extractor.net)-[AudioTrimmer.com].wav" id="12_a4neb"]
+[ext_resource type="AudioStream" uid="uid://diqcvyj034vsu" path="res://sounds/teleport-effect (audio-extractor.net)-[AudioTrimmer.com].wav" id="13_1qw5d"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 9.0
@@ -70,16 +71,21 @@ script = ExtResource("6_2jx58")
 [node name="TeleportAnimated" parent="." instance=ExtResource("8_ets2a")]
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_l7tu5")
+stream = ExtResource("9_n8uga")
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_bk6xu")
+stream = ExtResource("10_duvkc")
+volume_db = 7.924
 
 [node name="Throw" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_juhbk")
+stream = ExtResource("11_j3pyt")
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_5ckr7")
+stream = ExtResource("12_a4neb")
+
+[node name="TeleportEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_1qw5d")
+volume_db = 9.369
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6pajbeiauyo0"]
+[gd_scene load_steps=13 format=3 uid="uid://b6pajbeiauyo0"]
 
 [ext_resource type="Script" path="res://scenes/props/Signs.gd" id="1_030e3"]
 [ext_resource type="Texture2D" uid="uid://cpq1vnrdu27x8" path="res://textures/props/signs.png" id="2_t6dme"]
+[ext_resource type="AudioStream" uid="uid://drdh04n3t60b1" path="res://sounds/gibberish5 (audio-extractor.net)-[AudioTrimmer.com].wav" id="3_dhhxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3j3g"]
 atlas = ExtResource("2_t6dme")
@@ -79,6 +80,10 @@ shape = SubResource("CircleShape2D_t4r6w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_om3xc")
+
+[node name="BobNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dhhxo")
+volume_db = 11.244
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

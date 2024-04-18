@@ -38,12 +38,14 @@ func _input(event):
 		var quest_dialog = get_node("Quest").process()
 		if quest_dialog != "":
 			Dialogs.show_dialog(quest_dialog, character_name)
+			$BobQuestNoise.play()
 			return
 	
 	# If we reached here and there are generic dialogs to show, rotate among them
 	if not dialogs.is_empty():
 		Dialogs.show_dialog(dialogs[current_dialog], character_name)
 		current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())
+		$BobNormalNoise.play()
 		
 func _on_body_entered(body):
 	if body is Player:

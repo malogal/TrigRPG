@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://be1vtu124ssft"]
+[gd_scene load_steps=17 format=3 uid="uid://be1vtu124ssft"]
 
 [ext_resource type="Script" path="res://scenes/characters/Priestess.gd" id="1_vgehm"]
 [ext_resource type="Texture2D" uid="uid://2r7k24wic65v" path="res://textures/npcs/priestess_idle.png" id="2_g6xdh"]
 [ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="3_ewfxu"]
 [ext_resource type="Texture2D" uid="uid://cntn0nx7smxv2" path="res://textures/props/summon_circle.png" id="4_ncl3g"]
+[ext_resource type="AudioStream" uid="uid://cskuhow6i7all" path="res://sounds/gibberish3 (audio-extractor.net)-[AudioTrimmer.com].wav" id="5_b3ljo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6xyu"]
 
@@ -103,6 +104,10 @@ debug_color = Color(0.278431, 0.631373, 0, 0.419608)
 z_index = -1
 position = Vector2(0, 13)
 texture = ExtResource("4_ncl3g")
+
+[node name="BobNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_b3ljo")
+volume_db = 11.243
 
 [connection signal="body_entered" from="interact_area" to="." method="_on_interact_area_body_entered"]
 [connection signal="body_exited" from="interact_area" to="." method="_on_interact_area_body_exited"]

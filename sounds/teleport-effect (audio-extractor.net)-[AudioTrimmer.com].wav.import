@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://diqcvyj034vsu"
+path="res://.godot/imported/teleport-effect (audio-extractor.net)-[AudioTrimmer.com].wav-14eff308eaeab27e870ca6f98977b607.sample"
+
+[deps]
+
+source_file="res://sounds/teleport-effect (audio-extractor.net)-[AudioTrimmer.com].wav"
+dest_files=["res://.godot/imported/teleport-effect (audio-extractor.net)-[AudioTrimmer.com].wav-14eff308eaeab27e870ca6f98977b607.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

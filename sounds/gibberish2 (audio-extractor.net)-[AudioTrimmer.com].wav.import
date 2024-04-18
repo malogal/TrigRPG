@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4bp2y8oo5fri"
+path="res://.godot/imported/gibberish2 (audio-extractor.net)-[AudioTrimmer.com].wav-2c722a21e1a6dafab56d6febc0c6c610.sample"
+
+[deps]
+
+source_file="res://sounds/gibberish2 (audio-extractor.net)-[AudioTrimmer.com].wav"
+dest_files=["res://.godot/imported/gibberish2 (audio-extractor.net)-[AudioTrimmer.com].wav-2c722a21e1a6dafab56d6febc0c6c610.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

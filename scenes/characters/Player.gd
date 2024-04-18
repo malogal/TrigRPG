@@ -186,6 +186,8 @@ func get_input():
 					delayed_teleport($WaveTeleport.get_teleport_to())
 					# Get out of wave teleport mode 
 					$WaveTeleport.stop_wave()
+					#sfx
+					$TeleportEffect.play()
 			else:
 				Globals.create_popup_window("Must unlock teleport", 1.5)
 
@@ -231,6 +233,7 @@ func _physics_process(delta):
 			if $PieThrowing.throw(global_position, mouse_pos, pie_amount):
 				new_anim = "throw_"+facing
 				thrownPieCount = thrownPieCount + 1
+				$Throw.play()
 		WAVE:
 			var is_sine = true
 			# To make sine the default in all cases except cosine picked up,
@@ -349,7 +352,7 @@ func damage_player(area):
 		invincibility_timer.wait_time = time_invincible
 		invincibility_timer.start()
 		# Check if cutscene 2 is done and cutscene 3 isn't (meaning player is in first Radian fight), and play cutscene 3 instead of the game over screen if so
-		if hitpoints == 1 and cutscene2.finished == true and cutscene3.visited == false:
+		if cutscene2 and hitpoints == 1 and cutscene2.finished == true and cutscene3.visited == false:
 			cutscene3.start_intro()
 			hitpoints = 3
 		else: # Otherwise, lower health

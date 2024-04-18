@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://kbl0tflfjgmc"]
+[gd_scene load_steps=8 format=3 uid="uid://kbl0tflfjgmc"]
 
 [ext_resource type="Script" path="res://scenes/characters/Npc.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dscm5ic80ak2p" path="res://textures/temp-pj/frames/idle_down0000.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://sdgp3n0lbo63" path="res://sounds/gibberish4 (audio-extractor.net)-[AudioTrimmer.com].wav" id="3_7jvo6"]
+[ext_resource type="AudioStream" uid="uid://cskuhow6i7all" path="res://sounds/gibberish3 (audio-extractor.net)-[AudioTrimmer.com].wav" id="4_hgb6s"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "idle"
@@ -57,3 +59,9 @@ autoplay = "idle"
 position = Vector2(0, 25)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("2")
+
+[node name="BobQuestNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7jvo6")
+
+[node name="BobNormalNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hgb6s")

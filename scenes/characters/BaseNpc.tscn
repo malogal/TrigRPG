@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://4c6nil367abb"]
+[gd_scene load_steps=7 format=3 uid="uid://4c6nil367abb"]
 
 [ext_resource type="Script" path="res://scenes/characters/BaseNpc.gd" id="1_l76gx"]
 [ext_resource type="SpriteFrames" uid="uid://fokfh7v0uemm" path="res://scenes/characters/animations/NpcAnimationFrames.tres" id="2_n8hdq"]
 [ext_resource type="PackedScene" uid="uid://w5g542ngabum" path="res://scenes/characters/movement/DirectionalAnimationSetter.tscn" id="2_oe1nv"]
+[ext_resource type="AudioStream" uid="uid://sdgp3n0lbo63" path="res://sounds/gibberish4 (audio-extractor.net)-[AudioTrimmer.com].wav" id="4_5b1ev"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6xyu"]
 
@@ -32,6 +33,10 @@ z_index = -1
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_ebwpw")
 debug_color = Color(0.278431, 0.631373, 0, 0.419608)
+
+[node name="BobNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5b1ev")
+volume_db = 11.243
 
 [connection signal="body_entered" from="interact_area" to="." method="_on_interact_area_body_entered"]
 [connection signal="body_exited" from="interact_area" to="." method="_on_interact_area_body_exited"]
