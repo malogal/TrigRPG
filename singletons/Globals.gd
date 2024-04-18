@@ -17,6 +17,12 @@ var loadGameToggle = false
 var inventory
 signal player_class_reloaded
 signal demo_mode_changed
+
+var consumed_actions: Dictionary = {
+	"interact":false,
+	"throw_pie":false,
+}
+
 ## This indicates the user is in the 'play-test' area and the game should not make saves
 var in_test_mode: bool = false
 ## The game is in demo mode and should have demo features available 
@@ -43,6 +49,7 @@ var currentTimeInMs
 var startTimeInMs
 
 signal game_over_screen_status
+
 var showGameOverScreen: bool = false:
 	set(value):
 		showGameOverScreen = value
@@ -146,13 +153,11 @@ func load_game():
 	if currentSavePath != "" and !in_test_mode:
 		if not FileAccess.file_exists(currentSavePath):
 			return
-		var x := get_tree()
-		var savedNodes = get_tree().get_nodes_in_group("saved")
-		for node in savedNodes:
-			node.get_parent().remove_child(node)
-			node.queue_free()
-		
+			
 		var saveFile = FileAccess.open(currentSavePath, FileAccess.READ)
+				
+		var is_player_present: bool = false
+		var savedNodes: Array
 		
 		while saveFile.get_position() < saveFile.get_length():
 			# Get the saved dictionary from the next line in the save file
@@ -162,16 +167,28 @@ func load_game():
 			if not parseResult == OK:
 				printerr("JSON Parse Error: ", json.get_error_message(), " in ", jsonString, " at line ", json.get_error_line())
 				continue
-				
-			var nodeData = json.get_data()
+			var savedNode = json.get_data()
+			savedNodes.append(savedNode)
+			if savedNode.has("fileName") && savedNode.fileName == "res://scenes/characters/Player.tscn":
+				is_player_present = true
+		saveFile.close()
+		
+		# Need to confirm there is a player node before deleting nodes
+		if !is_player_present:
+			return
+		var removeNodes = get_tree().get_nodes_in_group("saved")
+		for node in removeNodes:
+			node.get_parent().remove_child(node)
+			node.queue_free()
 
+
+		for nodeData in savedNodes:
 			if isSaveData(nodeData):
 				continue
 				
 			if isInventoryData(nodeData):
 				Inventory.init_inventory(nodeData)
 				continue
-
 			## Firstly, we need to create the object and add it to the tree and set its position.
 			var newObject = load(nodeData.fileName).instantiate()
 			newObject.add_to_group("saved", true)
@@ -185,7 +202,8 @@ func load_game():
 					continue
 				newObject.set(i, nodeData[i])
 			
-		saveFile.close()
+		
+		
 
 
 func isSaveData(nodeData):
@@ -209,14 +227,18 @@ func handleAchievementConfig():
 			currentAchievements.append(data)
 
 		achievementsFile.close()
-
+	
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
+		if player == null: 
+			printerr("achievements unable to get player")
+			return
 	#get player achievements
-	var player = get_tree().get_nodes_in_group("player")[0]
-	if player:
-		var nodeAchievementStats = player.getAchievementStats()
-		achievementStatuses.seenWizard = nodeAchievementStats.hasVisitedCamp
-		achievementStatuses.enteredForest = nodeAchievementStats.hasVisitedForest
-		achievementStatuses.thrown100Pies = nodeAchievementStats.thrownPieCount >= 100
+
+	var nodeAchievementStats = player.getAchievementStats()
+	achievementStatuses.seenWizard = nodeAchievementStats.hasVisitedCamp
+	achievementStatuses.enteredForest = nodeAchievementStats.hasVisitedForest
+	achievementStatuses.thrown100Pies = nodeAchievementStats.thrownPieCount >= 100
 	
 	# update current achievements
 	var updatedAchievements = []
@@ -282,3 +304,21 @@ func register_player(player_in: Player):
 
 func get_player() -> Player:
 	return player
+
+func just_pressed_not_consumed(action: String) -> bool:
+	return Input.is_action_just_pressed(action) && consume_input(action)
+
+func just_released_not_consumed(action: String) -> bool:
+	return Input.is_action_just_released(action) && consume_input(action)
+	
+## Prevent double using an input (like picking up an item)
+## Returns true of that action has been used this frame
+func consume_input(consumed_input: String) -> bool:
+	if consumed_actions[consumed_input]:
+		return false
+	consumed_actions[consumed_input] = true
+	call_deferred("_clear_consumed_input", consumed_input)
+	return true
+	
+func _clear_consumed_input(cleared_input: String):
+	consumed_actions[cleared_input] = false

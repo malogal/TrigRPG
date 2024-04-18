@@ -69,7 +69,7 @@ func _process( delta: float, ) -> void:
 	if not is_player_present || is_already_activated:
 		return
 	# Bail if the event is not a pressed "interact" action
-	if Input.is_action_just_pressed("interact"):
+	if Globals.just_pressed_not_consumed("interact"):
 		is_already_activated = true
 		spawn()
 

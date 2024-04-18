@@ -49,12 +49,14 @@ var debug_teleport_btn = preload("res://scenes/menus/repeatable_button.tscn")
 
 func continueGame():
 	hide()
+	Globals.consume_input("throw_pie")
 	get_tree().paused = false
 	settingsContainer.hide()
 	
 	
 func pause():
-	Globals.save_game() 
+	Globals.save_game()
+	Globals.consume_input("throw_pie") 
 	get_tree().paused = true
 	show()
 

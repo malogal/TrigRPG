@@ -1,9 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://bllq7mij5cpil"]
+[gd_scene load_steps=16 format=3 uid="uid://bllq7mij5cpil"]
 
 [ext_resource type="Script" path="res://scenes/misc/Cutscene.gd" id="1_ejxkm"]
+[ext_resource type="Texture2D" uid="uid://bj8exkjdoterf" path="res://textures/projectile/teleport.png" id="2_fxxe6"]
 [ext_resource type="Texture2D" uid="uid://cxekfo0c521s" path="res://textures/props/animation_summon_circle.png" id="2_opd7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxx2b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epud7"]
+atlas = ExtResource("2_fxxe6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8jie"]
+atlas = ExtResource("2_fxxe6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pu2s"]
+atlas = ExtResource("2_fxxe6")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skvfl"]
+atlas = ExtResource("2_fxxe6")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1p7u"]
 atlas = ExtResource("2_opd7r")
@@ -31,6 +48,23 @@ region = Rect2(1170, 0, 234, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_in5ox"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epud7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8jie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pu2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skvfl")
+}],
+"loop": true,
+"name": &"pi-symbol",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y1p7u")
@@ -70,6 +104,6 @@ shape = SubResource("CircleShape2D_cxx2b")
 visible = false
 sprite_frames = SubResource("SpriteFrames_in5ox")
 animation = &"teleport"
-frame_progress = 0.710781
+frame_progress = 0.590202
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

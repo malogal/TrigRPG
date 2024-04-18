@@ -110,7 +110,6 @@ navigation_polygon = SubResource("NavigationPolygon_2li0p")
 [node name="RiverTilemap" type="TileMap" parent="."]
 position = Vector2(8, -9)
 tile_set = ExtResource("1_ailn8")
-collision_visibility_mode = 1
 format = 2
 layer_0/name = "Ground-2"
 layer_0/z_index = -2
@@ -163,7 +162,7 @@ script = ExtResource("5_tit8p")
 
 [node name="Signs3" parent="RiverTilemap" instance=ExtResource("2_fn5n3")]
 position = Vector2(180, -148)
-sign_text = "You may speak to people multiple times. Sometimes they havem ore to say."
+sign_text = "You may speak to people multiple times. Sometimes they have more to say."
 
 [node name="TempleDoor" type="AnimatedSprite2D" parent="RiverTilemap"]
 z_index = 6
@@ -249,6 +248,10 @@ sign_name = "Demo Over"
 position = Vector2(-849, -604)
 sign_style = 1
 sign_text = "To the right is the Temple of Amplitude. It will be the last level of this demo. We hope you've enjoyed this release of TrigRPG. Please proceed."
+
+[node name="Signs" parent="." instance=ExtResource("2_fn5n3")]
+position = Vector2(1154, -188)
+sign_text = "If you keep increasing the angle of a circle, eventually you will get back to zero again. "
 
 [connection signal="body_entered" from="RiverTilemap/TempleDoor/Area2D" to="RiverTilemap/TempleDoor" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="RiverTilemap/TempleDoor/Area2D" to="RiverTilemap/TempleDoor" method="_on_area_2d_body_exited"]

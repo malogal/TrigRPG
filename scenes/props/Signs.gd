@@ -46,6 +46,7 @@ func _input(event): #Handles quests and other events
 		return
 	
 	if not sign_text.is_empty():
+		Globals.consume_input("interact")
 		var title: String = sign_name + str(randi_range(0,5000))
 		title = title.replace(" ", "")
 		Globals.startDialogue(title, sign_name, sign_text)

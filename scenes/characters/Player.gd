@@ -34,6 +34,7 @@ var thrownPieCount: int = 0
 @export var facing: String = "down" # (String, "up", "down", "left", "right")
 
 var despawn_fx: PackedScene = preload("res://scenes/misc/DespawnFX.tscn")
+var bestow_teleport_dialogue = preload("res://dialogue/receive_teleport.dialogue")
 
 var anim: String                   = ""
 var new_anim: String               = ""
@@ -132,8 +133,9 @@ func _ready():
 	# placeholder start run to run a dialog, fill with dialog file name
 	#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/cutscene1.dialogue"), "start")
 	
-	allowed_powers.teleport = hasVisitedTemple
-	if !hasVisitedTemple:
+	# Recieve teleport either from visting in past or from an assignment of allowed_powers.
+	allowed_powers.teleport = hasVisitedTemple || allowed_powers.teleport
+	if !allowed_powers.teleport:
 		# Only allow teleport powers in debug mode (unless player has unlocked it)
 		allowed_powers.teleport = Globals.demo_mode
 		# If we had received teleportation naturally, we wouldn't want to subscribe to this signal
@@ -155,7 +157,7 @@ func get_input():
 				state = STATE_WALKING
 		action = STATE_IDLE
 		if !$WaveTeleport.is_wave_actived(): 
-			if Input.is_action_just_pressed("throw_pie"):
+			if Globals.just_pressed_not_consumed("throw_pie"):
 				action = PIE
 			if Input.is_action_just_pressed("change_pie_measurement_negative"):
 				pie_amount.sub_angle(pie_increment)
@@ -265,6 +267,7 @@ func _physics_process(delta):
 		if position.y < -1250:
 			hasVisitedForest = true
 	if not hasVisitedTemple:
+		var x = global_position
 		if global_position.x < -1000:
 			hasVisitedTemple = true
 			allowed_powers.teleport = true
@@ -308,6 +311,18 @@ func set_cooldowns():
 	$WaveTeleport.set_wave_cooldown(default_cooldown_wave / freq_cooldown_modifier)
 	$WaveTeleport.set_teleport_cooldown(default_cooldown_teleport / freq_cooldown_modifier)
 
+func bestow_teleport():
+	allowed_powers.teleport = true
+	if get_tree().paused:
+		assert(false)
+	$BestowTeleportAnimation.play("teleport")
+	$BestowTeleportAnimation.visible = true
+	Globals.startDialogueStored(bestow_teleport_dialogue, "start")
+	var dialogue_manager = Engine.get_singleton("DialogueManager")
+	await dialogue_manager.dialogue_ended
+	$BestowTeleportAnimation.stop()
+	$BestowTeleportAnimation.visible = false
+	
 func _on_hurtbox_area_entered(area):
 	damage_player(area)
 	shapes_in_hurtbox[area] = true
@@ -341,11 +356,11 @@ func damage_player(area):
 		invincibility_timer.wait_time = time_invincible
 		invincibility_timer.start()
 		# Check if cutscene 2 is done and cutscene 3 isn't (meaning player is in first Radian fight), and play cutscene 3 instead of the game over screen if so
-		if hitpoints == 1 and get_node("/root/Outside/level/ForestLevel/Cutscene2").finished == true and get_node("/root/Outside/level/ForestLevel/Cutscene3").visited == false:
-			get_node("/root/Outside/level/ForestLevel/Cutscene3").start_intro()
-			hitpoints = 3
-		else: # Otherwise, lower health
-			hitpoints -= 1
+		#if hitpoints == 1 and get_node("/root/Outside/level/ForestLevel/Cutscene2").finished == true and get_node("/root/Outside/level/ForestLevel/Cutscene3").visited == false:
+			#get_node("/root/Outside/level/ForestLevel/Cutscene3").start_intro()
+			#hitpoints = 3
+		#else: # Otherwise, lower health
+		hitpoints -= 1
 		emit_signal("health_changed", hitpoints)
 		var pushback_direction = (global_position - area.global_position).normalized()
 		set_velocity(pushback_direction * 1000)
@@ -417,6 +432,7 @@ func getSaveStats():
 		'hasVisitedCamp': hasVisitedCamp,
 		'hasVisitedForest': hasVisitedForest,
 		'hasVisitedTemple': hasVisitedTemple,
+		'allowed_powers': allowed_powers,
 	}
 	
 func getAchievementStats():

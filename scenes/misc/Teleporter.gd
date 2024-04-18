@@ -68,7 +68,8 @@ func _process( delta: float, ) -> void:
 
 			CompletionStatus.NONE:
 				pass
-	paired_teleporter.emit_teleport()
+	if Globals.consume_input("interact"):
+		paired_teleporter.emit_teleport()
 	
 	
 func emit_teleport():

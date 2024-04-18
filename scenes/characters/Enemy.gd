@@ -87,7 +87,7 @@ func _physics_process(_delta):
 	
 	match state:
 		STATE_IDLE:
-			new_anim = "idle_" + facing
+			$anims.stop()
 			
 		STATE_WALKING:
 			if player_in_sight:

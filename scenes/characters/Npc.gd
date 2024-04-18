@@ -42,6 +42,7 @@ func _input(event):
 	
 	# If we reached here and there are generic dialogs to show, rotate among them
 	if not dialogs.is_empty():
+		Globals.consume_input("interact")
 		Dialogs.show_dialog(dialogs[current_dialog], character_name)
 		current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())
 		

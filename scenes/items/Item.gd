@@ -55,7 +55,7 @@ func _ready():
 		item_type = name
 		
 func _process( _delta: float, ) -> void:
-	if pickup_able and Input.is_action_just_pressed("interact"):
+	if pickup_able and Globals.just_pressed_not_consumed("interact"):
 		pickup_able = false
 		pickup()
 		
