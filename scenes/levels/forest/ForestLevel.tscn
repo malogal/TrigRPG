@@ -262,6 +262,26 @@ can_die = true
 position = Vector2(-1543, -124)
 sign_text = "Ahead is a boss fight with Lord Radian. It is an incomplete fight and is only meant as a demonstration. The full fight would have had multiple levels and taken place in the city. "
 
+[node name="TrigLock2" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(-2476, 39)
+type = 1
+frequency = 1.0
+amplitude = -1.0
+
+[node name="Transformation5" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-2510.23, -19.6584)
+type = 0
+amount = -1.0
+
+[node name="Transformation4" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-2464.77, 97.0776)
+amount = -1.0
+
+[node name="Transformation3" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-2520, 96)
+type = 2
+amount = 3.142
+
 [node name="TrigLock" parent="." instance=ExtResource("11_y0bv1")]
 position = Vector2(-1953, 612)
 
@@ -270,4 +290,22 @@ position = Vector2(-1999, 671)
 
 [node name="Transformation2" parent="." instance=ExtResource("12_cvbyf")]
 position = Vector2(-1919, 671)
-amount = 3
+
+[node name="TrigLock3" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(-977, 210)
+frequency = 1.5
+v_shift = -0.5
+
+[node name="Transformation8" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-980.158, 169.968)
+amount = 1.5
+
+[node name="Transformation7" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-1076, 207)
+type = 0
+amount = 1.5
+
+[node name="Transformation6" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-962, 245)
+type = 3
+amount = -0.5

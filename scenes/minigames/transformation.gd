@@ -4,7 +4,7 @@ var original_position
 
 enum TransTypes{ AMPLITUDE, FREQUENCY, SHIFT_LR, SHIFT_UD }
 @export var type = TransTypes.FREQUENCY
-@export var amount := 2
+@export var amount : float = 2
 
 var teleport := false
 
