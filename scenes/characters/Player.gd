@@ -92,6 +92,10 @@ var hasVisitedCamp = false
 var hasVisitedForest = false
 var hasVisitedTemple = false
 
+#prepare cutscenes ahead of time
+@onready var cutscene2 = get_node("/root/Outside/level/ForestLevel/Cutscene2")
+@onready var cutscene3 = get_node("/root/Outside/level/ForestLevel/Cutscene3")
+
 # Move the player to the corresponding spawnpoint, if any and connect to the dialog system
 func _ready():
 	Globals.register_player(self)
@@ -208,13 +212,16 @@ func _physics_process(delta):
 		STATE_ATTACK:
 			#new_anim = "slash_" + facing
 			new_anim = "throw_"+facing
+			$Throw.play()
 			pass
 		STATE_DIE:
 			new_anim = "die"
+			$Death.play()
 			#new_anim = "idle_"+facing
 			state = STATE_IDLE
 		STATE_HURT:
 			new_anim = "hurt_"+facing
+			$Hurt.play()
 			#new_anim = "idle_"+facing
 			state = STATE_IDLE
 	match action:
@@ -238,6 +245,7 @@ func _physics_process(delta):
 					"frequency":Inventory.get_item("frequency", 1),
 				})
 			new_anim = "throw_"+facing
+			$Teleport.play()
 		_: 
 			action = STATE_IDLE
 			
@@ -341,8 +349,8 @@ func damage_player(area):
 		invincibility_timer.wait_time = time_invincible
 		invincibility_timer.start()
 		# Check if cutscene 2 is done and cutscene 3 isn't (meaning player is in first Radian fight), and play cutscene 3 instead of the game over screen if so
-		if hitpoints == 1 and get_node("/root/Outside/level/ForestLevel/Cutscene2").finished == true and get_node("/root/Outside/level/ForestLevel/Cutscene3").visited == false:
-			get_node("/root/Outside/level/ForestLevel/Cutscene3").start_intro()
+		if hitpoints == 1 and cutscene2.finished == true and cutscene3.visited == false:
+			cutscene3.start_intro()
 			hitpoints = 3
 		else: # Otherwise, lower health
 			hitpoints -= 1

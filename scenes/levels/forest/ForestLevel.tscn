@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kobmrlvjg8np"]
+[gd_scene load_steps=16 format=3 uid="uid://kobmrlvjg8np"]
 
 [ext_resource type="PackedScene" uid="uid://c32qtamlal1ob" path="res://scenes/levels/forest/ForestTileMap.tscn" id="1_rxt4u"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="1_wdw5i"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://be1vtu124ssft" path="res://scenes/characters/Priestess.tscn" id="6_bui67"]
 [ext_resource type="PackedScene" uid="uid://bufgnm1kucj8a" path="res://scenes/minigames/unit_circle.tscn" id="7_l7x13"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="8_b2v0g"]
-[ext_resource type="PackedScene" path="res://scenes/props/Signs.tscn" id="9_juc6h"]
+[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="9_juc6h"]
 [ext_resource type="PackedScene" uid="uid://bllq7mij5cpil" path="res://scenes/misc/Cutscene.tscn" id="9_otqhb"]
 [ext_resource type="PackedScene" uid="uid://c6ky4fyoquhby" path="res://scenes/characters/Radian.tscn" id="10_dee56"]
 [ext_resource type="PackedScene" uid="uid://deeunt0djf62e" path="res://scenes/minigames/trig_lock.tscn" id="11_y0bv1"]
