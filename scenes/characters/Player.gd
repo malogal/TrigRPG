@@ -267,7 +267,7 @@ func _physics_process(delta):
 	if not hasVisitedTemple:
 		if global_position.x < -1000:
 			hasVisitedTemple = true
-			allowed_powers.teleportation = true
+			allowed_powers.teleport = true
 
 # Used by external nodes that need to teleport the player. Example, a ladder that moves the character 
 # To another area. 

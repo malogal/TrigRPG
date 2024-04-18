@@ -40,7 +40,7 @@ var stop_on_hit_timer = Timer.new()
 var rand_rad_health = [PI/4.0, 2.0*PI/4.0, 3.0*PI/4.0,  4.0*PI/4.0, 5.0*PI/4.0, 6.0*PI/4.0, 7.0*PI/4.0,]
 var rand_deg_health = [45, 90, 135, 180, 225, 270, 315]
 func _ready():
-	if health == 0:
+	if is_zero_approx(health):
 		if randi() % 2 == 0:
 			health_in_radian = true
 			health = rand_rad_health[randi() % rand_rad_health.size()]

@@ -17,6 +17,7 @@ y_sort_enabled = true
 position = Vector2(208.024, -128.355)
 
 [node name="CampLevel" parent="level" instance=ExtResource("13_tp5cw")]
+position = Vector2(7.976, -8.645)
 
 [node name="ForestLevel" parent="level" instance=ExtResource("3_rrx2f")]
 position = Vector2(1515.98, -1179.65)
@@ -31,7 +32,7 @@ position = Vector2(6.976, -7.645)
 [node name="DebugTeleportLocations" type="Node2D" parent="level"]
 
 [node name="DebugTeleport" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]
-position = Vector2(-40.024, -41.645)
+position = Vector2(16.976, -22.645)
 location_name = "Camp"
 
 [node name="DebugTeleport2" parent="level/DebugTeleportLocations" instance=ExtResource("7_f7pd3")]

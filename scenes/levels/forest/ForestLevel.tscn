@@ -198,10 +198,6 @@ character_name = "Guy At House"
 move_range = 20
 default_move_type = "Vertical"
 
-[node name="Signs" parent="." instance=ExtResource("9_juc6h")]
-position = Vector2(-1382, 624)
-sign_text = "While in Demo Mode, you are provided with abilities that would not normally be unlocked. With teleportation access sooner than normal, you would be able to bypass certain areas that would normally require solving a puzzle of completion of earlier areas. How you enjoy the game is up to you, but it is designed to not require any teleportation until it is normally unlocked."
-
 [node name="Enemy25" parent="." instance=ExtResource("1_wdw5i")]
 position = Vector2(-673, -4190)
 health = 2.08165e-12
@@ -258,4 +254,10 @@ can_die = true
 
 [node name="Signs2" parent="." instance=ExtResource("9_juc6h")]
 position = Vector2(-1543, -124)
-sign_text = "Ahead is a boss fight with Lord Radian. It is an incomplete fight and is only meant as a demonstration. The full fight would have had multiple levels and taken place in the city. "
+sign_style = 1
+sign_text = "To the right is a boss fight with Lord Radian. It is an incomplete fight and is only meant as a demonstration. The full fight would have had multiple levels and taken place in the city. "
+
+[node name="Signs" parent="." instance=ExtResource("9_juc6h")]
+position = Vector2(-1382, 624)
+sign_text = "While in Demo Mode, you are provided with abilities that would not normally be unlocked. With teleportation access sooner than normal, you would be able to bypass certain areas that would normally require solving a puzzle of completion of earlier areas. How you enjoy the game is up to you, but it is designed to not require any teleportation until it is normally unlocked."
+demo_mode_only = true
