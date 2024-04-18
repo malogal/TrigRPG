@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://4c6nil367abb" path="res://scenes/characters/BaseNpc.tscn" id="2_pdcn4"]
 [ext_resource type="PackedScene" uid="uid://pafqjv8250j3" path="res://scenes/levels/camp/CampArea.tscn" id="3_l1tcx"]
 [ext_resource type="Script" path="res://scenes/levels/camp/WizardAtStart.gd" id="4_1epp4"]
-[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="5_ikxva"]
+[ext_resource type="PackedScene" path="res://scenes/props/Signs.tscn" id="5_ikxva"]
 
 [node name="Camp" type="Node2D"]
 
