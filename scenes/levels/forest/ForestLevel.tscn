@@ -279,5 +279,17 @@ cutscenePath = "res://dialogue/cutscene3.dialogue"
 [node name="CollisionShape2D" parent="Cutscene3/Area2D" index="0"]
 disabled = true
 
+[node name="Priestess4" parent="." instance=ExtResource("6_bui67")]
+position = Vector2(-1728, 275)
+dialogs = ["Good luck in there."]
+
+[node name="Cutscene4" parent="." instance=ExtResource("9_otqhb")]
+position = Vector2(-1753, 276)
+cutscenePath = "res://dialogue/cutscene4.dialogue"
+
+[node name="CollisionShape2D" parent="Cutscene4/Area2D" index="0"]
+scale = Vector2(8, 8)
+
 [editable path="Cutscene2"]
 [editable path="Cutscene3"]
+[editable path="Cutscene4"]
