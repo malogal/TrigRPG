@@ -26,7 +26,7 @@ visible = false
 position = Vector2(-3251.02, -3898.65)
 
 [node name="Character" parent="level" groups=["saved"] instance=ExtResource("8")]
-position = Vector2(6.976, -7.645)
+position = Vector2(6.976, -9.64499)
 
 [node name="DebugTeleportLocations" type="Node2D" parent="level"]
 

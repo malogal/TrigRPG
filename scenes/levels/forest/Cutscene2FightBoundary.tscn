@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ders136k0oghb"]
+
+[ext_resource type="TileSet" uid="uid://burecsy73055r" path="res://textures/tiles/InvisiblePhysicsTiles_set_vis_false.tres" id="1_vjlxq"]
+
+[node name="Cutscene2FightBoundary" type="TileMap"]
+tile_set = ExtResource("1_vjlxq")
+format = 2
+layer_0/tile_data = PackedInt32Array(-262141, 262144, 4, -262142, 262144, 2, -262143, 262144, 2, -262144, 262144, 2, -196609, 262144, 2, -196612, 131072, 4, -196611, 262144, 2, -196610, 262144, 2, 131068, 0, 5, 131069, 262144, 3, 131070, 262144, 3, 131071, 262144, 3, 65536, 262144, 3, 65537, 262144, 3, 65538, 262144, 3, 65539, 393216, 4, -196605, 0, 3, -131069, 0, 3, -65533, 0, 3, 3, 0, 3, -131076, 0, 2, -65540, 0, 2, -4, 0, 2, 65532, 0, 2)
