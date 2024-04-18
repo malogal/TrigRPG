@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="9_juc6h"]
 [ext_resource type="PackedScene" uid="uid://bllq7mij5cpil" path="res://scenes/misc/Cutscene.tscn" id="9_otqhb"]
 [ext_resource type="PackedScene" uid="uid://c6ky4fyoquhby" path="res://scenes/characters/Radian.tscn" id="10_dee56"]
+[ext_resource type="PackedScene" uid="uid://deeunt0djf62e" path="res://scenes/minigames/trig_lock.tscn" id="11_y0bv1"]
+[ext_resource type="PackedScene" uid="uid://cxr7ra7yo3eqt" path="res://scenes/minigames/transformation.tscn" id="12_cvbyf"]
 [ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="12_umeuc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lmdk1"]
@@ -266,6 +268,54 @@ sign_text = "To the right is a boss fight with Lord Radian. It is an incomplete 
 position = Vector2(-1382, 624)
 sign_text = "While in Demo Mode, you are provided with abilities that would not normally be unlocked. With teleportation access sooner than normal, you would be able to bypass certain areas that would normally require solving a puzzle of completion of earlier areas. How you enjoy the game is up to you, but it is designed to not require any teleportation until it is normally unlocked."
 demo_mode_only = true
+
+[node name="TrigLock2" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(-2476, 39)
+type = 1
+frequency = 1.0
+amplitude = -1.0
+
+[node name="Transformation5" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-2510.23, -19.6584)
+type = 0
+amount = -1.0
+
+[node name="Transformation4" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-2464.77, 97.0776)
+amount = -1.0
+
+[node name="Transformation3" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-2520, 96)
+type = 2
+amount = 3.142
+
+[node name="TrigLock" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(-1953, 612)
+
+[node name="Transformation" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-1999, 671)
+
+[node name="Transformation2" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-1919, 671)
+
+[node name="TrigLock3" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(-977, 210)
+frequency = 1.5
+v_shift = -0.5
+
+[node name="Transformation8" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-980.158, 169.968)
+amount = 1.5
+
+[node name="Transformation7" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-1076, 207)
+type = 0
+amount = 1.5
+
+[node name="Transformation6" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-962, 245)
+type = 3
+amount = -0.5
 
 [node name="Cutscene2" parent="." instance=ExtResource("9_otqhb")]
 position = Vector2(-1476, 717)

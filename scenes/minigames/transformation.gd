@@ -2,19 +2,31 @@ extends RigidBody2D
 
 var original_position
 
-enum { AMPLITUDE, FREQUENCY, SHIFT_LR, SHIFT_UD }
-@export var type = FREQUENCY
-@export var amount := 2
+enum TransTypes{ AMPLITUDE, FREQUENCY, SHIFT_LR, SHIFT_UD }
+@export var type = TransTypes.FREQUENCY
+@export var amount : float = 2
 
 var teleport := false
 
 func evaluate(input):
-	if type==AMPLITUDE or type==FREQUENCY:
+	if type==TransTypes.AMPLITUDE or type==TransTypes.FREQUENCY:
 		return input*amount
 	return input+amount
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if type==TransTypes.AMPLITUDE:
+		$Label.text = "Amp ∗"+str(amount)
+		$Amplitude.visible = true
+	if type==TransTypes.FREQUENCY:
+		$Label.text = "Freq ∗"+str(amount)
+		$Frequency.visible = true
+	if type==TransTypes.SHIFT_LR:
+		$Label.text = "H-shift "+str(amount)
+		$Shift_LR.visible = true
+	if type==TransTypes.SHIFT_UD:
+		$Label.text = "V-shift "+str(amount)
+		$Shift_UD.visible = true
 	original_position = global_position
 	pass # Replace with function body.
 
