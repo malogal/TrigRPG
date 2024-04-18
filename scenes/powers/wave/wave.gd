@@ -14,7 +14,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Wave properties, default values
-var amplitude: float = 450 # Height of the wave
+var amplitude: float = 300 # Height of the wave
 var frequency: float = 0.009 # How many waves within a certain distance
 var is_sine_wave: bool = true # True for sine, false for cosine
 var wave_color_pos: Color = Color(0.00000100867101, 0.5642226934433, 0.51764661073685, 0.7)

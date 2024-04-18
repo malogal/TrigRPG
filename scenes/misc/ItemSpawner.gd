@@ -58,7 +58,7 @@ func spawn(_item_type: String = "", _amount: float = 1.0):
 	# Must set amount before adding child or it will default to 1
 	item.amount = _amount
 	item.add_to_group("saved", true)
-	level.add_child(item)
+	level.call_deferred("add_child", item)
 	
 	item.global_position = global_position + spawn_location
 	item.z_index = z_index
@@ -69,7 +69,7 @@ func _process( delta: float, ) -> void:
 	if not is_player_present || is_already_activated:
 		return
 	# Bail if the event is not a pressed "interact" action
-	if Input.is_action_just_pressed("interact"):
+	if Globals.just_pressed_not_consumed("interact"):
 		is_already_activated = true
 		spawn()
 

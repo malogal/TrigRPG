@@ -65,6 +65,7 @@ func _input(event): #Handles quests and other events
 		Globals.startDialogueStored(load(stored_dialogs_file), "start")
 	elif !dialogs.is_empty():
 		var title = "priestess" + str(get_rid().get_id())
+		Globals.consume_input("interact")
 		# If starting dialogue suceeds, increment current dialogue 
 		if Globals.startDialogue(title, "Priestess", dialogs[current_dialog]):
 			current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())

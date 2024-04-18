@@ -255,7 +255,6 @@ libraries = {
 autoplay = "RESET"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 debug_path_custom_color = Color(0.913725, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="NavigationAgent2D"]

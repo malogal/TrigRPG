@@ -19,6 +19,8 @@ var queue_wave_change: int = 0
 signal teleport_player(point: Vector2)
 
 func _draw():
+	if abs(inner_wave_index) < 2:
+		return
 	if inner_wave_index > 0: 
 		draw_polyline(wave_points_positive.slice(0, inner_wave_index), inner_wave_color_pos, 2, true)
 	else:

@@ -1,0 +1,46 @@
+~ start
+
+Holy Trigonometry: You have received the [u]Blessing of Teleportation[/u], use this great power to defeat Lord Radian.
+
+Holy Trigonometry: You are able to create a wave function of either sine or cosine. You will need both to succeed in your adventure. 
+
+Holy Trigonometry: Press [u]'F'[/u] to bring up the wave function, [u]'Space'[/u] to travel along the positive x-axis or [u]'Space+Shift'[/u] to travel along the negative x-axis. 
+
+Holy Trigonometry: When the inner wave (a different color) reaches your desired destination, press [u]'Tab'[/u]. If the location is valid you will teleport there.
+
+Holy Trigonometry: Note, you may be unable to cross certain boundaries. We, the Heavens, shall inform you when your attempt is invalid. 
+
+Holy Trigonometry: Do you have any questions? 
+
+~ questions 
+
+- No. 
+
+	=> END
+
+- Are you really a divine being speaking to me?
+
+	Holy Trigonometry: The First Law of Sine,\n[i]"Thou shall not question the three sided Holy Trigonometry."[i]
+
+	=> questions
+	
+- What's a 'wave function'?
+
+	Holy Trigonometry: A 'wave function' mathematically represents the periodic oscillations typical of trigonometric functions, sine and cosine. 
+	
+	Holy Trigonometry: These functions graph as smooth, continuous waves, where the sine function starts at zero, ascends to one, descends through zero to negative one, and returns to zero. 
+	
+	Holy Trigonometry: In contrast, the cosine function begins at one, drops to zero, continues to negative one, and rises back to one. These waves enable you to map your movements across the coordinate system, determining where you can teleport within our world.
+	
+	Holy Trigonometry: The maximum and minimum values that are reached, '1' to '-1', can can be modified with the power of 'Amplitude'. With a power of '2x Amplitude' you would be able to reach twice the height of the normal wave. 
+
+	Holy Trigonometry: Alternatively you increase or decrease the density, or frequency, of the peaks. This is done with a 'Frequency' modifier. 
+
+	=> questions
+	
+- Huh?
+
+	Holy Trigonometry: Press button, go sparkle, Big Bob here, now Big Bob there. 
+	
+	=> questions
+	

@@ -8,7 +8,8 @@ var packed_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	packed_scene = load(referencePath)
+	if !referencePath.is_empty():
+		packed_scene = load(referencePath)
 	if startFocused:
 		grab_focus()
 

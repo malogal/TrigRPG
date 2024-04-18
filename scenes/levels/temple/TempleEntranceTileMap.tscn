@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ty1i41u3pskb"]
+[gd_scene load_steps=6 format=3 uid="uid://ty1i41u3pskb"]
 
 [ext_resource type="TileSet" uid="uid://m662xqbwgt3q" path="res://scenes/tilesets/ForestTileSet.tres" id="1_l0kte"]
 [ext_resource type="PackedScene" uid="uid://1cbsga8844qp" path="res://scenes/misc/EmitLight.tscn" id="2_sodw6"]
+[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="3_sge3m"]
+[ext_resource type="PackedScene" uid="uid://4p8hxrq30dg" path="res://scenes/items/Frequency.tscn" id="4_de4j7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rbkqc"]
 polygon = PackedVector2Array(320, 56, 312, 472, 888, 472, 888, 56)
@@ -138,3 +140,13 @@ position = Vector2(-1864, 1094)
 energy = 0.8
 blend_mode = 1
 max_distance = 1000.0
+
+[node name="Signs" parent="." instance=ExtResource("3_sge3m")]
+position = Vector2(580, 173)
+sign_style = 3
+sign_text = "Welcome to the Temple of Amplitude. Be careful, this once peacful sanctuary has been overrun with Lord Radian's minions. \\nYet, the sacred power of 2x Amplitude is still secure. Only a master of Trig may reach it. "
+
+[node name="Frequency" parent="." instance=ExtResource("4_de4j7")]
+position = Vector2(337, 205)
+amount = 2.0
+should_save = false

@@ -22,7 +22,8 @@ func load_player():
 	$Healthbar._on_health_changed(player.hitpoints)
 	$BottomUi.assign_player(player)
 	
-func _process(_delta):
-	if player == null:
-		pass
-		#get_tree().reload_current_scene()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("hide_ui") and Input.is_action_just_pressed("hide_ui") and !get_tree().paused:
+		visible = !visible
+		
+	

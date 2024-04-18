@@ -18,6 +18,8 @@ func _ready():
 func _process( delta: float, ) -> void:
 	# If player is in temple area, set it to visible and mark 'temple_area_visible' as true so we 
 	# don't keep setting it 'visible' every turn while it's already visible. 
+	if player == null:
+		return
 	if prev_temple_visibile:
 		if player.global_position.x > -1700:
 			$level/TempleScene.visible = false

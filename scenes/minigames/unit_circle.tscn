@@ -94,7 +94,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="LabelValueFraction" type="RichTextLabel" parent="TextureRect"]
-visible = false
 layout_mode = 0
 offset_left = 40.0
 offset_top = 4.0
@@ -108,6 +107,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="LabelValue" type="RichTextLabel" parent="TextureRect"]
+visible = false
 layout_mode = 0
 offset_left = 40.0
 offset_top = 6.0

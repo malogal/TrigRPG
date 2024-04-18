@@ -4,35 +4,38 @@
 [ext_resource type="PackedScene" uid="uid://4c6nil367abb" path="res://scenes/characters/BaseNpc.tscn" id="2_pdcn4"]
 [ext_resource type="PackedScene" uid="uid://pafqjv8250j3" path="res://scenes/levels/camp/CampArea.tscn" id="3_l1tcx"]
 [ext_resource type="Script" path="res://scenes/levels/camp/WizardAtStart.gd" id="4_1epp4"]
-[ext_resource type="PackedScene" path="res://scenes/props/Signs.tscn" id="5_ikxva"]
+[ext_resource type="PackedScene" uid="uid://b6pajbeiauyo0" path="res://scenes/props/Signs.tscn" id="5_ikxva"]
 
 [node name="Camp" type="Node2D"]
 
-[node name="Cutscene1" parent="." groups=["saved"] instance=ExtResource("1_7wwu8")]
+[node name="Cutscene1" parent="." instance=ExtResource("1_7wwu8")]
 position = Vector2(5.94701, -9.65002)
 cutscenePath = "res://dialogue/cutscene1.dialogue"
 
 [node name="Zard" parent="." groups=["saved"] instance=ExtResource("2_pdcn4")]
 position = Vector2(-43.053, -264.645)
-character_name = "Npc1"
+dialogs = ["Hmmm plans...."]
 default_move_type = "Vertical"
 
 [node name="BaseNpc" parent="." groups=["saved"] instance=ExtResource("2_pdcn4")]
 position = Vector2(-180.053, -86.65)
 npc_type = 0
-character_name = "NPC at the Tents"
+character_name = "Hungry Harry"
+dialogs = ["I wish our camp had a dedicated baker. I'm not meant for life outside the city."]
 start_animation = 1
 
 [node name="BaseNpc2" parent="." groups=["saved"] instance=ExtResource("2_pdcn4")]
 position = Vector2(196.947, -105.65)
 npc_type = 1
-character_name = "NPC Facing Right"
+character_name = "Stylish Sam"
+dialogs = ["I sure wish we had brought more clothes. I hate wearing the same thing as everyone else in camp."]
 start_animation = 3
 
 [node name="BaseNpc3" parent="." groups=["saved"] instance=ExtResource("2_pdcn4")]
 position = Vector2(-193.053, 34.35)
 npc_type = 0
-character_name = "Npc At the Logs"
+character_name = "Deep Thinker Thadeus"
+dialogs = ["Those logs are made from trees. Those barrels are made from trees. But trees are not made from barrels. ", "Leave me alone, I am a-pondering."]
 pause_movement_time = 3.5
 WALK_SPEED = 1300
 default_move_type = "Horizontal"

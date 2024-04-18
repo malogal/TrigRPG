@@ -69,6 +69,7 @@ func _input(event): #Handles quests and other events
 	if not dialogs.is_empty():
 		var title = character_name.replace(" ", "") + str(get_rid().get_id())
 		# If starting dialogue suceeds, increment current dialogue 
+		Globals.consume_input("interact")
 		if Globals.startDialogue(title, character_name, dialogs[current_dialog]):
 			current_dialog = wrapi(current_dialog + 1, 0, dialogs.size())
 		
