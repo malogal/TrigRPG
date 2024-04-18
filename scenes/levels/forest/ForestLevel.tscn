@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://kobmrlvjg8np"]
+[gd_scene load_steps=17 format=3 uid="uid://kobmrlvjg8np"]
 
 [ext_resource type="PackedScene" uid="uid://c32qtamlal1ob" path="res://scenes/levels/forest/ForestTileMap.tscn" id="1_rxt4u"]
 [ext_resource type="PackedScene" uid="uid://bycx5snr304xk" path="res://scenes/characters/Enemy.tscn" id="1_wdw5i"]
@@ -270,7 +270,7 @@ sign_text = "While in Demo Mode, you are provided with abilities that would not 
 demo_mode_only = true
 
 [node name="TrigLock2" parent="." instance=ExtResource("11_y0bv1")]
-position = Vector2(-2476, 39)
+position = Vector2(-2490, 39)
 type = 1
 frequency = 1.0
 amplitude = -1.0
@@ -299,21 +299,21 @@ position = Vector2(-1999, 671)
 position = Vector2(-1919, 671)
 
 [node name="TrigLock3" parent="." instance=ExtResource("11_y0bv1")]
-position = Vector2(-977, 210)
+position = Vector2(-1029, 149.032)
 frequency = 1.5
 v_shift = -0.5
 
 [node name="Transformation8" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-980.158, 169.968)
+position = Vector2(-1032.16, 109)
 amount = 1.5
 
 [node name="Transformation7" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-1076, 207)
+position = Vector2(-1128, 146.032)
 type = 0
 amount = 1.5
 
 [node name="Transformation6" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-962, 245)
+position = Vector2(-1014, 184.032)
 type = 3
 amount = -0.5
 
@@ -365,6 +365,18 @@ amount = 2.0
 [node name="Signs3" parent="." instance=ExtResource("9_juc6h")]
 position = Vector2(-657, 620)
 sign_text = "Power-ups can increase your combat ability. A frequency power up will reduce the cool down on all your abilities.\\n\\nIn the same way, frequency determines the period between oscillations in a sine wave. "
+
+[node name="Signs4" parent="." instance=ExtResource("9_juc6h")]
+position = Vector2(-1827, 704)
+sign_text = "Familarize yourself with modifying trig functions. Apply the transformations by pushing the blocks onto the graph. Transform the red function to match the green. Throw pies at the blocks or the graph to reset. "
+
+[node name="Signs5" parent="." instance=ExtResource("9_juc6h")]
+position = Vector2(-1215, 157)
+sign_text = "Familarize yourself with modifying trig functions. Apply the transformations by pushing the blocks onto the graph. Transform the red function to match the green. Throw pies at the blocks or the graph to reset. "
+
+[node name="Signs6" parent="." instance=ExtResource("9_juc6h")]
+position = Vector2(-2382, -43)
+sign_text = "Familarize yourself with modifying trig functions. Apply the transformations by pushing the blocks onto the graph. Transform the red function to match the green. Throw pies at the blocks or the graph to reset. "
 
 [editable path="Cutscene2"]
 [editable path="Cutscene3"]

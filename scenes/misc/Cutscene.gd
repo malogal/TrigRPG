@@ -19,6 +19,7 @@ func _ready():
 	var dialogue_manager = Engine.get_singleton("DialogueManager")
 	dialogue_manager.dialogue_ended.connect(_on_dialogue_ended)
 	if cutscenePath == cutsceneList[2]:
+		add_to_group("cutscene_3")
 		Globals.game_over_screen_status.connect(
 			func(is_active: bool):
 				if !visited && is_active && Globals.get_player().is_in_group("in_cutscene"): 
@@ -100,5 +101,9 @@ func getSaveStats():
 	}
 
 func _on_fight_timer_timeout():
-	if get_parent().find_child("Cutscene3").visited == false:
-		get_parent().find_child("Cutscene3").start_intro()
+	var cutscene3 = get_tree().get_first_node_in_group("cutscene_3")
+	if cutscene3 == null:
+		printerr("unable to find cutscene three")
+		return
+	if !cutscene3.visited:
+		cutscene3.start_intro()
