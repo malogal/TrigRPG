@@ -29,6 +29,8 @@ func setup(rect: Rect2 = Rect2(0, 0, 100, 100), speed: float = 100.0, timer_min:
 	timer.start()
 	
 func _process(delta):
+	if Globals.isDialogActive: # If dialogue is active, stop moving character
+		return
 	move_character(delta)
 
 func move_character(delta):
