@@ -72,6 +72,7 @@ func _process(delta):
 		$Label.add_theme_color_override("font_color",Color(0,1,0,1))
 	else:
 		$Label.add_theme_color_override("font_color",Color(1,0,0,1))
+	$CollisionShape2D.disabled = success
 
 
 func _draw():

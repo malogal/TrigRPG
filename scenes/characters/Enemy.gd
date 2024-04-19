@@ -192,6 +192,7 @@ func _on_hurtbox_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_in
 	if body.is_in_group("pie") and state != STATE_DIE and $DamageTimer.is_stopped():
 		$DamageTimer.start()
 		health_angle.add_angle(body.pie_get_amount())
+		$Hit.play()
 		var pushback_direction = body.linear_velocity.normalized()
 		set_velocity(pushback_direction * 30)
 		move_and_slide()

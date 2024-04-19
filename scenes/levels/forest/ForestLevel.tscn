@@ -208,6 +208,15 @@ default_move_type = "Vertical"
 position = Vector2(-1382, 624)
 sign_text = "While in Demo Mode, you are provided with abilities that would not normally be unlocked. With teleportation access sooner than normal, you would be able to bypass certain areas that would normally require solving a puzzle of completion of earlier areas. How you enjoy the game is up to you, but it is designed to not require any teleportation until it is normally unlocked."
 
+[node name="Signs3" parent="." instance=ExtResource("9_juc6h")]
+position = Vector2(-956, 265)
+sign_text = "You really wanted to konw what was on this sign, didn't you?"
+sign_name = "curiosity"
+
+[node name="Signs" parent="Signs3" instance=ExtResource("9_juc6h")]
+position = Vector2(501, -1561)
+sign_text = "Behold the marvelous TrigLock. It is nigh impassable but by the master of graph transformations. Only by choosing the correct combination of transformations will the way beyone be revealed (revealed) ((revealed))... If anything has gone wrong, smack it with a pie, that should set it back to normal."
+
 [node name="Enemy25" parent="." instance=ExtResource("1_wdw5i")]
 position = Vector2(-673, -4190)
 health = 2.08165e-12
@@ -266,26 +275,6 @@ can_die = true
 position = Vector2(-1543, -124)
 sign_text = "Ahead is a boss fight with Lord Radian. It is an incomplete fight and is only meant as a demonstration. The full fight would have had multiple levels and taken place in the city. "
 
-[node name="TrigLock2" parent="." instance=ExtResource("11_y0bv1")]
-position = Vector2(-2476, 39)
-type = 1
-frequency = 1.0
-amplitude = -1.0
-
-[node name="Transformation5" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-2510.23, -19.6584)
-type = 0
-amount = -1.0
-
-[node name="Transformation4" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-2464.77, 97.0776)
-amount = -1.0
-
-[node name="Transformation3" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-2520, 96)
-type = 2
-amount = 3.142
-
 [node name="TrigLock" parent="." instance=ExtResource("11_y0bv1")]
 position = Vector2(-1953, 612)
 
@@ -294,25 +283,53 @@ position = Vector2(-1999, 671)
 
 [node name="Transformation2" parent="." instance=ExtResource("12_cvbyf")]
 position = Vector2(-1919, 671)
+amount = 0.5
 
 [node name="TrigLock3" parent="." instance=ExtResource("11_y0bv1")]
-position = Vector2(-977, 210)
+position = Vector2(-985, 217)
 frequency = 1.5
 v_shift = -0.5
 
 [node name="Transformation8" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-980.158, 169.968)
+position = Vector2(-986, 172)
 amount = 1.5
 
 [node name="Transformation7" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-1076, 207)
+position = Vector2(-933, 172)
 type = 0
 amount = 1.5
 
 [node name="Transformation6" parent="." instance=ExtResource("12_cvbyf")]
-position = Vector2(-962, 245)
+position = Vector2(-1038, 171)
 type = 3
 amount = -0.5
+
+[node name="TrigLock2" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(183, -2601)
+type = 1
+frequency = 1.0
+amplitude = -1.0
+
+[node name="Transformation3" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(211, -2544)
+type = 2
+amount = 3.142
+
+[node name="Transformation4" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(157, -2545)
+type = 0
+amount = -1.0
+
+[node name="TrigLock4" parent="." instance=ExtResource("11_y0bv1")]
+position = Vector2(-399, -1353)
+
+[node name="Transformation9" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-376, -1299)
+type = 0
+amount = 0.75
+
+[node name="Transformation5" parent="." instance=ExtResource("12_cvbyf")]
+position = Vector2(-335, -1299)
 
 [node name="Cutscene2" parent="." instance=ExtResource("9_otqhb")]
 position = Vector2(-1476, 717)

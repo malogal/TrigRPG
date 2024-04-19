@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bycx5snr304xk"]
+[gd_scene load_steps=31 format=3 uid="uid://bycx5snr304xk"]
 
 [ext_resource type="Script" path="res://scenes/characters/Enemy.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b2m2nyig1yidl" path="res://scenes/misc/ItemSpawner.tscn" id="3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qjowafifjm62" path="res://textures/enemy/zombie_walk.png" id="4_hlxtn"]
 [ext_resource type="Script" path="res://scenes/characters/Health.gd" id="5_a7wje"]
 [ext_resource type="FontFile" uid="uid://ckacveixib62" path="res://fonts/zxSpectrumExpanded.ttf" id="6_03jtg"]
+[ext_resource type="AudioStream" uid="uid://b2c7b1puoytcg" path="res://sounds/zombie-hit-[AudioTrimmer.com].mp3" id="7_jhitv"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 height = 22.0
@@ -264,6 +265,10 @@ wait_time = 0.1
 [node name="GiveUpFollowingTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_jhitv")
+volume_db = 10.306
 
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
