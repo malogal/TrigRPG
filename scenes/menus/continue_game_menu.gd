@@ -104,7 +104,6 @@ func _on_save_1_delete_button_pressed():
 	# Delete save slot
 	if FileAccess.file_exists(save1Path):
 		DirAccess.remove_absolute(save1Path)
-		print("deleted data in " + save1Path)
 		loadSavesData()
 	
 
@@ -112,33 +111,28 @@ func _on_save_2_delete_button_pressed():
 	# Delete save slot
 	if FileAccess.file_exists(save2Path):
 		DirAccess.remove_absolute(save2Path)
-		print("deleted data in " + save2Path)
 		loadSavesData()
 
 func _on_save_3_delete_button_pressed():
 	# Delete save slot
 	if FileAccess.file_exists(save3Path):
 		DirAccess.remove_absolute(save3Path)
-		print("deleted data in " + save3Path)
 		loadSavesData()
 
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if mouseOverPanel1 and event.pressed and savesData[0].saveName.text != "":
-			print("loading save 1")
 			Globals.currentSavePath = save1Path
 			get_tree().change_scene_to_file(mainGamePath)
 			Globals.loadGameToggle = true
 			
 		if mouseOverPanel2 and event.pressed and savesData[1].saveName.text != "":
-			print("loading save 2")
 			Globals.currentSavePath = save2Path
 			get_tree().change_scene_to_file(mainGamePath)
 			Globals.loadGameToggle = true	
 					
 		if mouseOverPanel3 and event.pressed and savesData[2].saveName.text != "":
-			print("loading save 3")
 			Globals.currentSavePath = save3Path
 			get_tree().change_scene_to_file(mainGamePath)
 			Globals.loadGameToggle = true

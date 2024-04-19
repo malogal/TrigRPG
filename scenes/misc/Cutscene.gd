@@ -47,6 +47,8 @@ func start_intro():
 		var radian = Radian.instantiate()
 		radian.set_deferred("position", Vector2(-1476, 700))  # Put Radian in front of player
 		radian.set_deferred("name", "Scene2Radian")
+		radian.off_center = Vector2(0, -32)
+		radian.bounding_rect_size = 88
 		get_parent().call_deferred("add_child", radian)
 		radian.add_to_group("in_cutscene")
 		radian.add_to_group("remove_after")

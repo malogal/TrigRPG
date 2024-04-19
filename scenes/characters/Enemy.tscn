@@ -188,8 +188,10 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
-collision_mask = 3
+motion_mode = 1
 wall_min_slide_angle = 0.0
+platform_on_leave = 2
+platform_floor_layers = 4294967293
 script = ExtResource("1")
 metadata/_edit_horizontal_guides_ = [-71.0]
 
@@ -209,6 +211,7 @@ sprite_frames = SubResource("SpriteFrames_7q67h")
 animation = &"walk_down"
 
 [node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 
 [node name="attack_range" type="Area2D" parent="." groups=["enemy_weapons"]]
@@ -231,6 +234,7 @@ shape = SubResource("CircleShape2D_wabu1")
 autostart = true
 
 [node name="Health" type="RichTextLabel" parent="."]
+z_index = 2
 offset_left = -28.0
 offset_top = -48.0
 offset_right = 29.0
@@ -258,16 +262,22 @@ autoplay = "RESET"
 debug_path_custom_color = Color(0.913725, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="NavigationAgent2D"]
-wait_time = 0.1
+wait_time = 0.2
 
 [node name="GiveUpFollowingTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
+[node name="StopOnHitTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_shape_entered" from="hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="area_entered" from="attack_range" to="." method="_on_enter_attack_range"]
 [connection signal="area_exited" from="attack_range" to="." method="_on_exit_attack_range"]
 [connection signal="body_entered" from="sight_range" to="." method="_on_sight_range_body_entered"]
 [connection signal="body_exited" from="sight_range" to="." method="_on_sight_range_body_exited"]
 [connection signal="timeout" from="NavigationAgent2D/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="GiveUpFollowingTimer" to="." method="_on_give_up_following_timer_timeout"]
+[connection signal="timeout" from="StopOnHitTimer" to="." method="_on_stop_on_hit_timer_timeout"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed = 350
+@export var speed = 200
 
 var pie_group_name: String = "pie"
 var can_throw: bool

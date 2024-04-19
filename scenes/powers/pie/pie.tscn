@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dntuwro3gepaq"]
+[gd_scene load_steps=6 format=3 uid="uid://dntuwro3gepaq"]
 
 [ext_resource type="Script" path="res://scenes/powers/pie/pie.gd" id="1_4a6u7"]
 [ext_resource type="SpriteFrames" uid="uid://crquuaf15txjb" path="res://textures/projectile/PieSpriteFrames.tres" id="2_wn5b8"]
 [ext_resource type="Script" path="res://scenes/powers/pie/AnimatedPie.gd" id="6_kx5dj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_36cho"]
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygu5d"]
 
 [node name="Pie" type="RigidBody2D"]
 collision_layer = 6
 collision_mask = 0
+mass = 0.2
+physics_material_override = SubResource("PhysicsMaterial_36cho")
+linear_damp_mode = 1
 linear_damp = -1.0
 angular_damp = -1.0
 script = ExtResource("1_4a6u7")

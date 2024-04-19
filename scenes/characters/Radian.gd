@@ -10,10 +10,16 @@ var is_increasing_teleport: bool
 
 var player_body: Node2D
 
-@export var bounding_rect_size: float = 200.0
-
+@export var bounding_rect_size: float = 500.0
+@export var off_center: Vector2 = Vector2.ZERO
 @export var can_die: bool = false
-
+@export var disabled: bool = false:
+	set(value):
+		disabled = value
+		set_process(!disabled)
+		$DirectionalAnimationSetter.disabled = true
+		$RandomMover.disabled = true
+		
 var heart_class = preload("res://scenes/misc/RadianHeartScene.tscn")
 @onready var heart_container = $GridContainer
 var heart_arr = []
@@ -40,7 +46,7 @@ func _ready():
 	$PieThrowing.set_pie_group_name("radian-pie")
 	$Health.set_angle_text(health_angle)
 	# Set up the random mover node with a rectangle centered on our position. Use default values for remaining parameters 
-	$RandomMover.setup(Rect2(position.x - bounding_rect_size/2, position.y - bounding_rect_size/2, bounding_rect_size, bounding_rect_size))
+	$RandomMover.setup(bounding_rect_size, off_center)
 	# This call is not necessary, as we are just telling it to use the default params. But it's here 
 	# to show how the DirectionalAnimationSetter is used. Normally would pass in a dictionary
 	$DirectionalAnimationSetter.set_animation_map()
@@ -62,7 +68,7 @@ func _ready():
 	teleport_timer.wait_time = 2
 	add_child(teleport_timer)
 	
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if can_die && heart_arr.is_empty():
 		die()
 		return
@@ -97,7 +103,9 @@ func set_anims(anim: String):
 		return
 	$anims.stop()
 	$anims.animation = anim
-	$anims.play()	
+	$anims.play()
+	if velocity.is_zero_approx():
+		$anims.stop()
 
 func get_anims() -> String:
 	return $anims.get_animation()

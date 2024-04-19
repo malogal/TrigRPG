@@ -49,7 +49,6 @@ func _ready():
 	createActionList()
 
 func getSettingsFromFile():
-	print(FileAccess.file_exists(settingsPath))
 	if FileAccess.file_exists(settingsPath):
 		var savefile = FileAccess.open(settingsPath, FileAccess.READ)
 		

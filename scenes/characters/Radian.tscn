@@ -169,7 +169,6 @@ speed_scale = 0.5
 
 [node name="GridContainer" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(60, 60)
-anchors_preset = -1
 offset_left = -30.0
 offset_top = -76.0
 offset_right = 158.0

@@ -59,10 +59,9 @@ func _ready():
 	$yaxis.width = 1
 	$Label.add_theme_color_override("font_color",Color(1,0,0,1))
 	$Label.text = "y="+type_to_str()+"(x)"
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	redraw()
+	
+func redraw():
 	$yaxis.add_point(Vector2(0,-15))
 	$yaxis.add_point(Vector2(0,15))
 	$xaxis.add_point(Vector2(-80,0))
@@ -72,7 +71,6 @@ func _process(delta):
 		$Label.add_theme_color_override("font_color",Color(0,1,0,1))
 	else:
 		$Label.add_theme_color_override("font_color",Color(1,0,0,1))
-
 
 func _draw():
 	#for simplification, also figure out if successful
@@ -114,8 +112,6 @@ func _draw():
 
 
 func _on_body_entered(body):
-	print("transformation hit by")
-	print(body)
 	if body.is_in_group("transformation"):
 		transformations.append(body)
 		body.remove()
@@ -148,7 +144,7 @@ func _on_body_entered(body):
 		if current_v_shift<0:
 			equation += str(current_v_shift)
 		$Label.text = equation
-
+	redraw()
 
 func _on_hurtbox_body_entered(body):
 	if body.is_in_group("pie"):
@@ -160,3 +156,4 @@ func _on_hurtbox_body_entered(body):
 		current_h_shift = 0
 		current_amplitude = 1
 		current_v_shift = 0
+	redraw()

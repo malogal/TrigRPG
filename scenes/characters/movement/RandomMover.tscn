@@ -4,3 +4,12 @@
 
 [node name="RandomMover" type="Node2D"]
 script = ExtResource("1_nde3f")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 32.47
+debug_path_custom_color = Color(0.913725, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="NavigationAgent2D"]
+wait_time = 0.2
+
+[connection signal="timeout" from="NavigationAgent2D/Timer" to="." method="_on_timer_timeout"]

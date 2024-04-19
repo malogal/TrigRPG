@@ -154,7 +154,7 @@ puzzle = NodePath("../UnitCircle3")
 
 [node name="UnitCircle3" parent="." instance=ExtResource("7_l7x13")]
 position = Vector2(-584, -2193)
-goal_value = 1.047
+goal_value = 0.866
 str_goal_numerator = "√3"
 str_goal_denominator = "2"
 
@@ -258,6 +258,7 @@ position = Vector2(-1079, -169)
 health = 1.571
 bounding_rect_size = 150.0
 can_die = true
+disabled = true
 
 [node name="Signs2" parent="." instance=ExtResource("9_juc6h")]
 position = Vector2(-1543, -124)
