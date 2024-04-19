@@ -234,6 +234,7 @@ shape = SubResource("CircleShape2D_wabu1")
 autostart = true
 
 [node name="Health" type="RichTextLabel" parent="."]
+z_index = 2
 offset_left = -28.0
 offset_top = -48.0
 offset_right = 29.0
