@@ -35,7 +35,11 @@ will be chosen.
 
 var last_direction: Vector2 = Vector2(99,99)
 var deactivate: bool = false
-
+@export var disabled: bool = false:
+	set(value):
+		disabled = value
+		set_process(!disabled)
+		
 func _ready():
 	parent_body = get_parent()
 

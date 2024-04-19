@@ -16,7 +16,7 @@ func _ready():
 
 func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: int, group_name: String = "pie"):
 	global_position = start_pos
-	linear_damp = -1
+	#linear_damp = -1
 	amount = amount_of_pie
 	speed = pie_speed
 	angular_damp = -1

@@ -58,7 +58,7 @@ func spawn(_item_type: String = "", _amount: float = 1.0):
 	# Must set amount before adding child or it will default to 1
 	item.amount = _amount
 	item.add_to_group("saved", true)
-	level.call_deferred("add_child", item)
+	level.add_child(item)
 	
 	item.global_position = global_position + spawn_location
 	item.z_index = z_index
