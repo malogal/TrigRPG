@@ -51,8 +51,7 @@ func evaluate_return():
 	elif type==TrigFunc.COT and sin(theta!=0):
 		return_value = cos(theta)/sin(theta)
 	success = abs(return_value-goal_value) < ERROR
-	if success == true:
-		print_debug("unit circle success")
+
 
 func type_to_str() -> String:
 	match type:

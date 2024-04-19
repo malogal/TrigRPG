@@ -112,8 +112,6 @@ func _draw():
 
 
 func _on_body_entered(body):
-	print("transformation hit by")
-	print(body)
 	if body.is_in_group("transformation"):
 		transformations.append(body)
 		body.remove()

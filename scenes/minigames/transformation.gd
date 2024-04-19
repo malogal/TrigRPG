@@ -59,7 +59,5 @@ func _integrate_forces(state):
 		teleport = false
 
 func _on_body_entered(body):
-	print("transformation hit by")
-	print(body)
 	if body.is_in_group("pie") and visible:
 		reset()

@@ -118,7 +118,6 @@ func _ready():
 	$PieThrowing.turn_direction.connect(_on_pie_throwing_turn_direction)
 	
 	# getting current save path from load game screen
-	print("currently in save " + Globals.currentSavePath)
 	state = STATE_IDLE
 	action = STATE_IDLE
 	movement = movement_map.idle

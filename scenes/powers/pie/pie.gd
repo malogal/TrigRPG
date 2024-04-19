@@ -28,7 +28,6 @@ func new_pie(start_pos: Vector2, dir: Vector2, amount_of_pie: Angle, pie_speed: 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-	print_debug("pie out of screen")
 	
 func _process(_delta):
 	queue_redraw()
