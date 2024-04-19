@@ -211,11 +211,11 @@ sign_text = "While in Demo Mode, you are provided with abilities that would not 
 [node name="Signs3" parent="." instance=ExtResource("9_juc6h")]
 position = Vector2(-956, 265)
 sign_text = "You really wanted to konw what was on this sign, didn't you?"
-sign_name = "curiosity"
+sign_name = "Curiosity"
 
 [node name="Signs" parent="Signs3" instance=ExtResource("9_juc6h")]
 position = Vector2(501, -1561)
-sign_text = "Behold the marvelous TrigLock. It is nigh impassable but by the master of graph transformations. Only by choosing the correct combination of transformations will the way beyone be revealed (revealed) ((revealed))... If anything has gone wrong, smack it with a pie, that should set it back to normal."
+sign_text = "Behold the marvelous TrigLock. It is nigh impassable but by the master of graph transformations. Only by choosing the correct combination of transformations will the way beyond be revealed (revealed) ((revealed))... If anything has gone wrong, smack it with a pie, that should set it back to normal."
 
 [node name="Enemy25" parent="." instance=ExtResource("1_wdw5i")]
 position = Vector2(-673, -4190)
